@@ -1,0 +1,108 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+@mixin border($style, $color, $sides) {
+    @if ($style != "") {
+
+        @if ($sides == "") {
+            border: $style $color;
+
+        } @else {
+            @each $side in $sides {
+               @if ($side == 'top' or
+                    $side == 'right' or
+                    $side == 'bottom' or
+                    $side == 'left') {
+
+                    border-#{$side}: $style $color;
+                }
+            }
+        }  
+
+    }
+}
+
+body {
+  padding: 0;
+}
+
+
+$dark-background: #1c1b1b;
+
+.container {
+  position: relative;
+  left: 35px;
+}
+.main-header {
+  background-color: $dark-background;
+  height: 100px;
+  @include border(1px solid, #707070, bottom);
+
+}
+
+.jumbotron {
+  background-color: #262626;
+  top: 40px;
+  width: 700px;
+  height: 243px;
+  margin: 0px;
+  @include border(1px solid, #707070, bottom left right top);
+  text-align: center;
+  position: relative;
+
+}
+
+.main-body {
+  background-color: $dark-background;
+}
+
+.footer {
+  @include border(1px solid, #707070, bottom top);
+  border-radius: 3px;
+  padding-top: 20px;
+  
+}
+
+.main-section {
+  @extend .footer;
+  height: 1200px;
+}
+
+.animation-container {
+  background-color: $dark-background;
+  left: 28%;
+  width: 800px;
+  height: 600px;
+  @include border(1px solid, #707070, left right);  position: relative;
+
+}
+
+.main-blocks {
+  @extend .jumbotron;
+  top: 70px;
+  height: 243px;
+}
+
+.buffer {
+  @extend .footer;
+  border-top: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
