@@ -5,18 +5,15 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 @mixin border($style, $color, $sides) {
     @if ($style != "") {
-
         @if ($sides == "") {
             border: $style $color;
-
         } @else {
             @each $side in $sides {
                @if ($side == 'top' or
                     $side == 'right' or
                     $side == 'bottom' or
                     $side == 'left') {
-
-                    border-#{$side}: $style $color;
+                      border-#{$side}: $style $color;
                 }
             }
         }  
@@ -30,6 +27,7 @@ body {
 
 
 $dark-background: #1c1b1b;
+$grey-background: #262626;
 
 .container {
   position: relative;
@@ -42,10 +40,10 @@ $dark-background: #1c1b1b;
 
 }
 
-.jumbotron {
+.big-blocks {
   background-color: #262626;
   top: 40px;
-  width: 700px;
+  width: 67%;
   height: 243px;
   margin: 0px;
   @include border(1px solid, #707070, bottom left right top);
@@ -72,15 +70,15 @@ $dark-background: #1c1b1b;
 
 .animation-container {
   background-color: $dark-background;
-  left: 28%;
-  width: 800px;
+  left: 29%;
+  width: 45%;
   height: 600px;
   @include border(1px solid, #707070, left right);  position: relative;
 
 }
 
-.main-blocks {
-  @extend .jumbotron;
+.second-block {
+  @extend .big-blocks;
   top: 70px;
   height: 243px;
 }
@@ -88,6 +86,19 @@ $dark-background: #1c1b1b;
 .buffer {
   @extend .footer;
   border-top: none;
+}
+
+.block-container {
+  padding: 1% 5% 0% 5%;
+
+}
+
+.main-blocks {
+  @extend .big-blocks;
+  top: 0px;
+  width: 23%;
+  margin-right: 2%;
+  border-radius: 6px;
 }
 
 
