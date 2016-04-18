@@ -32,6 +32,7 @@ $grey-background: #262626;
 .container {
   position: relative;
   left: 35px;
+  padding:20px;
 }
 .main-header {
   background-color: $dark-background;
@@ -42,10 +43,12 @@ $grey-background: #262626;
 
 .big-blocks {
   background-color: #262626;
-  top: 40px;
-  width: 67%;
-  height: 243px;
+  top: 20px;
+  height: 260px;
   margin: 0px;
+  -webkit-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
+  -moz-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
+  box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
   @include border(1px solid, #707070, bottom left right top);
   text-align: center;
   position: relative;
@@ -63,24 +66,16 @@ $grey-background: #262626;
   
 }
 
-.main-section {
-  @extend .footer;
-  height: 1200px;
-}
+
 
 .animation-container {
   background-color: $dark-background;
-  left: 29%;
+  left: 25%;
   width: 45%;
-  height: 600px;
-  @include border(1px solid, #707070, left right);  position: relative;
+  height: 300px;
+  @include border(1px solid, #707070, left right bottom top);  
+  position: relative;
 
-}
-
-.second-block {
-  @extend .big-blocks;
-  top: 70px;
-  height: 243px;
 }
 
 .buffer {
@@ -89,7 +84,7 @@ $grey-background: #262626;
 }
 
 .block-container {
-  padding: 1% 5% 0% 5%;
+  padding: 1% 20% 0% 20%;
 
 }
 
@@ -97,10 +92,45 @@ $grey-background: #262626;
   @extend .big-blocks;
   top: 0px;
   width: 23%;
+  height: 200px;
   margin-right: 2%;
   border-radius: 6px;
+  &:hover {
+    background-color: #636363;
+
+  }
 }
 
+.first {
+
+}
+
+.routes {
+  height: 100px;
+  width: 100px;
+  position: relative;
+  margin-right: 20px;
+  display: inline;
+  @include border (1px solid, #707070, left right);
+  &:hover {
+    background-color: #636363;
+
+  }
+}
+
+.route-container {
+  height: 100%;
+  display: inline;
+}
+
+.about-me {
+  @include border(1px solid, #707070, left right bottom top);
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding: 20px;
+  left: 14%;
+
+}
 
 
 

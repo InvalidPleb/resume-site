@@ -35,7 +35,7 @@ angular
   .directive('mainBlock', function(){
     return {
         restrict: 'AEC',
-          templateUrl: '/views/blockdir.html',
-          replace: true
+        templateUrl: '/views/blockdir.html',
+        replace: true
       };
   });
