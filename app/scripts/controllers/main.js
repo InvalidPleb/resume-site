@@ -8,10 +8,24 @@
  * Controller of the resumeApp
  */
 angular.module('resumeApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MainCtrl', function ($http, $q) {
+
+  	var gitHub = 'https://api.github.com';
+
+  	function githubInfo() {
+		var defer = $q.defer();
+		$http.get(gitHub + '/repos/InvalidPleb/Runner-Calculator')
+			.success(function(res) {
+				defer.resolve(res);
+			})
+			.error(function(err, status) {
+				defer.reject(err);
+			});
+
+		return defer.promise;
+  	}
+
+  	console.log(githubInfo());
+
+	    
   });
