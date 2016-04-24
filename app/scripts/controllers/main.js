@@ -33,12 +33,12 @@ angular.module('resumeApp')
 	  	}
 
 	  	var githubGet = 'https://api.github.com';
-	  	var reposGet = '/users/InvalidPleb/repos';
-	  	var runCalcCommitGet = '/repos/InvalidPleb/Runner-Calculator/stats/commit_activity';
 	  	var commitContainer = [];
 	  	var repoContainer = [];
+	  	var commitTotal = 0;
+	  	var commitOwnerTotal = [];
 
-	  	function loopCommits(res, container) {
+	  	function pushCalledCommits(res, container) {
 	  		
 	  		for (i=0; i < res.length; i++) {
 
@@ -55,37 +55,60 @@ angular.module('resumeApp')
 
 	  	}
 
-	  	function init() {
-	  		getNames.get('https://api.github.com/users/InvalidPleb/repos')
+
+
+	  	function getGithubStuff() {
+	  		return $http.get(githubGet + '/users/InvalidPleb/repos')
 		  		.then(function(res){
-		  			pushCalledRepo(res);
-		  	});
+		  			pushCalledRepo(res.data);
+		  			return getOwnerCommits(repoContainer[0], -1, repoContainer.length);
+		  		});
+		  		
 			
 	  	}
 
-	  	function getCommits (repo) {
-	  		getNames.get('https://api.github.com/repos/' + repo + '/stats/commit_activity')
-		  		.then(function(res){
-		  			pushCalledRepo(res);
-		  	});
+	  	function getOwnerCommits (repo, repoNum, maxRepos) {
+	  		return $http.get(githubGet + '/repos/' + repo + '/stats/participation')
+	  			.then(function(res){
+	  				commitOwnerTotal.push(res.data.owner.reduce(add, 0));
+
+	  				repoNum++;
+
+	  				if (repoNum < maxRepos) {
+	  					return getOwnerCommits(repoContainer[repoNum], repoNum, maxRepos);
+	  				}
+	  			});
 	  	}
+	  	
+	  	function getCommits (repo, repoNum, maxRepos) {
 
-	  	function pushCalledRepo (res) {
+	  		return $http.get(githubGet +'/repos/' + repo + '/stats/commit_activity')
+	  			.then(function(res){
+		  			pushCalledCommits(res.data, commitContainer);		
+		  			commitTotal = commitContainer.reduce(add, 0);
 
-	  		for (i = 0; i < res.length; i++) {
-	  			repoContainer.push(res[i].full_name);
+		  			repoNum++;
 
-	  		}
+		  			if (repoNum < maxRepos) {
+		  				return getCommits(repoContainer[repoNum], repoNum, maxRepos);
+		  			}
+		  			
+		  		});
 	  		
 	  	}
 
-	  	console.log(repoContainer);
 
+	  	function pushCalledRepo (res) {
+	  		for (i = 0; i < res.length; i++) {
+	  			repoContainer.push(res[i].full_name);
+	  		}
+	  	}
 
+	  	var calls = getGithubStuff();
 
-
-
-	  	init();
+	  	$q.all([calls]).then(function(){
+	  		console.log(commitOwnerTotal);
+	  	});
 
 	  	/*
 
