@@ -66,15 +66,13 @@ $grey-background: #262626;
   
 }
 
-
-
 .animation-container {
   background-color: $dark-background;
-  left: 25%;
-  width: 45%;
-  height: 300px;
+  width: 90%;
+  height: 500px;
   @include border(1px solid, #707070, left right bottom top);  
   position: relative;
+  z-index: -2;
 
 }
 
@@ -83,27 +81,6 @@ $grey-background: #262626;
   border-top: none;
 }
 
-.block-container {
-  padding: 1% 20% 0% 20%;
-
-}
-
-.main-blocks {
-  @extend .big-blocks;
-  top: 0px;
-  width: 23%;
-  height: 200px;
-  margin-right: 2%;
-  border-radius: 6px;
-  &:hover {
-    background-color: #636363;
-
-  }
-}
-
-.first {
-
-}
 
 .routes {
   height: 100px;
