@@ -8,22 +8,6 @@
  * Controller of the resumeApp
  */
 angular.module('resumeApp')
-	.factory('getNames', function ($http, $q) {
-		var defer = $q.defer();
-	    return {
-	    	get: function (call) {
-				$http.get(call)
-					.success(function(res) {
-						defer.resolve(res);
-					})
-					.error(function(err, status) {
-						defer.reject(err);
-					});
-
-				return defer.promise;
-	  		}
-	    };
-	})
   	.controller('MainCtrl', function ($http, $q, $scope, getNames) {
 
 	  	var i, j;
@@ -60,7 +44,7 @@ angular.module('resumeApp')
 	  	function getGithubStuff() {
 	  		return $http.get(githubGet + '/users/InvalidPleb/repos')
 		  		.then(function(res){
-		  			console.log(res);
+		  			
 		  			pushCalledRepo(res.data);
 		  			return getOwnerCommits(repoContainer[0], -1, repoContainer.length);
 		  		});
@@ -71,8 +55,9 @@ angular.module('resumeApp')
 	  	function getOwnerCommits (repo, repoNum, maxRepos) {
 	  		return $http.get(githubGet + '/repos/' + repo + '/stats/participation')
 	  			.then(function(res){
+	  				console.log(res);
+	  				console.log(res.data.owner);
 	  				commitOwnerTotal.push(res.data.owner.reduce(add, 0));
-
 	  				repoNum++;
 
 	  				if (repoNum < maxRepos) {
@@ -82,7 +67,6 @@ angular.module('resumeApp')
 	  	}
 	  	
 	  	function getCommits (repo, repoNum, maxRepos) {
-
 	  		return $http.get(githubGet +'/repos/' + repo + '/stats/commit_activity')
 	  			.then(function(res){
 		  			pushCalledCommits(res.data, commitContainer);		
@@ -106,12 +90,184 @@ angular.module('resumeApp')
 	  	}
 
 	  	//var calls = getGithubStuff();
-	  	/*
-	  	$q.all([calls]).then(function(){
-	  		console.log(commitOwnerTotal);
-	  	});
+	  	
+	  	//$q.all([calls]).then(function(){
+	  		//console.log(commitOwnerTotal);
 
-		*/
+	  		
+	  	//});
+
+	  	var svgContainer = d3.select(".animation-container").append("svg")
+				.attr("width", 700)
+				.attr("height", 500);
+
+			function arc (inRad, outRad, sAng, eAng) {
+
+				return d3.svg.arc()
+					.innerRadius(inRad)
+				    .outerRadius(outRad)
+				    .startAngle(sAng * (Math.PI/180))
+				    .endAngle(eAng * (Math.PI/180));
+
+			}
+
+			function outerRing (sAng, eAng, counter) {
+
+				if (sAng === -1 && eAng === 3.89) {
+
+					sAng++;
+					eAng++;
+
+				} else {
+
+					sAng = sAng + 4.89;
+					eAng = eAng + 4.89;
+				}
+
+				counter++;
+
+				if (counter <= 52) {
+
+					svgContainer.append("path")
+					    .attr("d", arc(140, 160, sAng, eAng))
+					    .attr("transform", "translate(400,250)")
+					    .style("fill", "grey")
+					    .style("position", "relative")
+					    .style("z-index", "2")
+					    .on("mouseover", function (d) {
+						    d3.select(this).style("fill", "white");
+						}).on("mouseout", function (d) {
+						    d3.select(this).style("fill", "grey");
+						});
+
+
+					sAng = sAng + 2.05;
+					eAng = eAng + 2.05;
+
+					return outerRing(sAng, eAng, counter);
+				}
+			}
+
+			
+
+			function innerRing (sAng, eAng, repos, padding1, padding2){
+
+
+				var pie = d3.layout.pie()
+				.value(function (d) {
+					return d;
+				});
+
+				if (sAng === -1) {
+
+					sAng++;
+					eAng++;
+
+				} else {
+
+					sAng = sAng + eAng;
+					eAng = eAng + eAng;
+				}
+
+				svgContainer.append("path")
+				    .attr("d", arc(80, 140, sAng, eAng))
+				    .attr("transform", "translate(400,250)")
+				    .style("fill", "black")
+				    .style("position", "relative")
+				    .style("z-index", "2")
+				    .on("mouseover", function (d) {
+					    d3.select(this).style("fill", "white");
+					}).on("mouseout", function (d) {
+					    d3.select(this).style("fill", "black");
+					});
+
+
+				sAng = sAng + padding1;
+				eAng = eAng + padding2;
+
+			}
+
+			var commitOwnerSum = commitOwnerTotal.reduce(add, 0);
+			var percentArr = [];
+			var endPoint = 0;
+
+
+			function reconvertData (startPoint, degree, length, i) {
+
+				var commitOwnerPercent = commitOwnerTotal[i] / commitOwnerSum;
+				var commitDegrees = commitOwnerPercent * 360;
+
+				innerRing(startPoint, endPoint, 2.05, 2.05);
+				//innerRing(-1, 88, commitOwnerTotal.length, 0);
+
+				startPoint = startPoint + degree;
+				endPoint = startPoint + commitDegrees;
+				console.log(startPoint);
+				console.log(endPoint);
+				console.log(commitOwnerPercent);
+				
+
+				
+
+
+				i++;
+
+				if (i < length) {
+
+					return reconvertData(startPoint, commitDegrees, commitOwnerTotal.length, i);
+
+				}
+
+
+			}
+
+			reconvertData(-1, (commitOwnerTotal[0] * 360), commitOwnerTotal.length, 0);
+
+
+
+			
+
+			function convertData () {
+
+				var commitOwnerPercent;
+				var commitDegrees;
+				var startPoint;
+				var endPoint;
+
+				for (i=0; i < commitOwnerTotal.length; i++) {
+
+					commitOwnerPercent = commitOwnerTotal[i] / commitOwnerSum;
+					commitDegrees = commitOwnerPercent * 360;
+					console.log(commitDegrees);
+
+				}
+
+
+
+
+
+			}
+
+
+			
+
+
+
+			outerRing(-1, 3.89, 0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
 
 		//Make an SVG Container
 		
@@ -147,67 +303,7 @@ angular.module('resumeApp')
 			.attr("stroke-width", 10);
 		*/
 
-		var svgContainer = d3.select(".animation-container").append("svg")
-			.attr("width", 700)
-			.attr("height", 500);
-
-		function arc (inRad, outRad, sAng, eAng) {
-
-			return d3.svg.arc()
-				.innerRadius(inRad)
-			    .outerRadius(outRad)
-			    .startAngle(sAng * (Math.PI/180))
-			    .endAngle(eAng * (Math.PI/180));
-
-		}
-
-		var counter = 0;
-		var sAngle = -1;
-		var eAngle = 4;
-
-		function outerRing () {
-
-			if (sAngle === -1 && eAngle === 4) {
-
-				sAngle++;
-				eAngle++;
-
-			} else {
-
-				sAngle = sAngle + 5;
-				eAngle = eAngle + 5;
 		
-			}
-
-			counter++;
-
-			if (counter < 52) {
-
-				svgContainer.append("path")
-				    .attr("d", arc(140, 160, sAngle, eAngle))
-				    .attr("transform", "translate(200,200)")
-				    .style("fill", "grey")
-				    .on("mouseover", mouse()).on("mouseout", function (d) {
-					    d3.select(this).style("fill", "black");
-					});
-
-
-				sAngle = sAngle + 2.05;
-				eAngle = eAngle + 2.05;
-
-				return outerRing();
-
-			}
-		}
-
-		function mouse (){
-			console.log("yo");
-
-		}
-
-
-
-		outerRing();
 
 	  	/*
 

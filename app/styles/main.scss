@@ -23,16 +23,22 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 body {
   padding: 0;
+  position: relative;
+  z-index: -10;
 }
 
 
 $dark-background: #1c1b1b;
 $grey-background: #262626;
 
-.container {
+.main-container {
+  @extend .container;
   position: relative;
   left: 35px;
   padding:20px;
+  z-index: -3;
+  min-width: 800px;
+
 }
 .main-header {
   background-color: $dark-background;
@@ -75,6 +81,8 @@ $grey-background: #262626;
   z-index: -2;
 
 }
+
+
 
 .buffer {
   @extend .footer;
