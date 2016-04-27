@@ -68,7 +68,6 @@ angular.module('resumeApp')
 		  			pushCalledCommits(res.data, commitContainer);		
 		  			commitTotal = commitContainer.reduce(add, 0);
 		  			repoNum++;
-
 		  			if (repoNum < maxRepos) {
 		  				return getCommits(repoContainer[repoNum], repoNum, maxRepos);
 		  			}
@@ -168,7 +167,6 @@ angular.module('resumeApp')
 
 		function outerRing (sAng, eAng, i) {
 
-
 			if (sAng === -1 && eAng === 5.5) {
 
 				sAng++;
@@ -204,7 +202,7 @@ angular.module('resumeApp')
 					}).on("mouseout", function (d) {
 					    d3.select(this).style("fill", "rgba(50, 255, 50," + alpha + ")");
 					    div.transition()		
-	            			.duration(500)		
+	            			.duration(200)		
 	            			.style("opacity", 0);	
 				});
 
@@ -283,7 +281,7 @@ angular.module('resumeApp')
 				    .style("z-index", "2")
 				    .style("box-shadow", "0px 0px 9px 1px rgba(0,0,0,0.85)")
 				    .on("mouseover", function (d) {
-					    d3.select(this).style("fill", "rgba(" + color + "," + (alpha + 0.5)+ ")");
+					    d3.select(this).style("fill", "rgba(" + color + "," + (alpha + 0.5) + ")");
 					}).on("mouseout", function (d) {
 					    d3.select(this).style("fill", "rgba(" + color + "," + alpha + ")");
 					});
@@ -298,6 +296,40 @@ angular.module('resumeApp')
 			//eAng = eAng + padding2;
 
 		}
+
+		function coreRing(sAng, eAng, i) {
+
+			if (i <= 6) {
+
+				i++;
+
+				sAng = sAng + 50;
+				eAng = eAng + 50;
+
+				var color = colorObj[6];
+				var alpha = 0.7;
+
+
+			svgContainer.append("path")
+			    .attr("d", arc(30, 80, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
+			    .attr("transform", "translate(400,250)")
+			    .style("fill", "rgba(" + color + "," + alpha + ")")
+			    .style("position", "relative")
+				.style("z-index", "2");
+
+				sAng = sAng + 1.5;
+				eAng = eAng + 1.5;
+
+				return coreRing(sAng, eAng, i);
+
+			}
+
+			
+
+
+		}
+
+		coreRing(0, 50, 0);
 
 		innerRing(dataArr, colorObj[0], 0);
 
