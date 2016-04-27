@@ -75,11 +75,16 @@ $grey-background: #262626;
 .animation-container {
   background-color: $dark-background;
   width: 90%;
-  height: 500px;
+  height: 550px;
   @include border(1px solid, #707070, left right bottom top);  
   position: relative;
   z-index: -2;
 
+}
+
+.main-block {
+  @extend .animation-container;
+  left: 15px;
 }
 
 
@@ -115,6 +120,19 @@ $grey-background: #262626;
   padding: 20px;
   left: 14%;
 
+}
+
+.tooltip {  
+  position: absolute;     
+  text-align: center;     
+  width: 60px;          
+  height: 28px;         
+  padding: 2px;       
+  font: 12px sans-serif;    
+  background-color: #FFF; 
+  border: 0px;    
+  border-radius: 8px;     
+  pointer-events: none;     
 }
 
 

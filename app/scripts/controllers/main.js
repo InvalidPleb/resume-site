@@ -8,7 +8,7 @@
  * Controller of the resumeApp
  */
 angular.module('resumeApp')
-  	.controller('MainCtrl', function ($http, $q, $scope, getNames) {
+  	.controller('MainCtrl', function ($http, $q, $scope) {
 
 	  	var i, j;
 
@@ -44,7 +44,6 @@ angular.module('resumeApp')
 	  	function getGithubStuff() {
 	  		return $http.get(githubGet + '/users/InvalidPleb/repos')
 		  		.then(function(res){
-		  			
 		  			pushCalledRepo(res.data);
 		  			return getOwnerCommits(repoContainer[0], -1, repoContainer.length);
 		  		});
@@ -55,11 +54,8 @@ angular.module('resumeApp')
 	  	function getOwnerCommits (repo, repoNum, maxRepos) {
 	  		return $http.get(githubGet + '/repos/' + repo + '/stats/participation')
 	  			.then(function(res){
-	  				console.log(res);
-	  				console.log(res.data.owner);
 	  				commitOwnerTotal.push(res.data.owner.reduce(add, 0));
 	  				repoNum++;
-
 	  				if (repoNum < maxRepos) {
 	  					return getOwnerCommits(repoContainer[repoNum], repoNum, maxRepos);
 	  				}
@@ -71,7 +67,6 @@ angular.module('resumeApp')
 	  			.then(function(res){
 		  			pushCalledCommits(res.data, commitContainer);		
 		  			commitTotal = commitContainer.reduce(add, 0);
-
 		  			repoNum++;
 
 		  			if (repoNum < maxRepos) {
@@ -93,6 +88,8 @@ angular.module('resumeApp')
 	  	
 	  	//$q.all([calls]).then(function(){
 	  		//console.log(commitOwnerTotal);
+	  		
+	  		//console.log(pie(commitOwnerTotal));
 
 	  		
 	  	//});
@@ -101,260 +98,207 @@ angular.module('resumeApp')
 				.attr("width", 700)
 				.attr("height", 500);
 
-			function arc (inRad, outRad, sAng, eAng) {
+		function arc (inRad, outRad, sAng, eAng) {
 
-				return d3.svg.arc()
-					.innerRadius(inRad)
-				    .outerRadius(outRad)
-				    .startAngle(sAng * (Math.PI/180))
-				    .endAngle(eAng * (Math.PI/180));
+			return d3.svg.arc()
+				.innerRadius(inRad)
+			    .outerRadius(outRad)
+			    .startAngle(sAng)
+			    .endAngle(eAng);
 
+		}
+
+		var weekArr = [
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			1,
+			3,
+			6,
+			7,
+			6,
+			10,
+			12,
+			7,
+			6,
+			8,
+			9,
+			5,
+			13,
+			7,
+			6,
+			8,
+			7,
+			7,
+			6,
+			10,
+			12,
+			11,
+			7,
+			6,
+			7,
+			7,
+			10,
+			11, 
+			7, 
+			7
+		];
+
+		
+
+		function outerRing (sAng, eAng, i) {
+
+
+			if (sAng === -1 && eAng === 5.5) {
+
+				sAng++;
+				eAng++;
+
+			} else {
+
+				sAng = sAng + 6.42;
+				eAng = eAng + 6.42;
 			}
 
-			function outerRing (sAng, eAng, counter) {
+			var alpha = (weekArr[i] * 0.06) + 0.05;
 
-				if (sAng === -1 && eAng === 3.89) {
+			i++;
 
-					sAng++;
-					eAng++;
+			if (i <= 52) {
 
-				} else {
+				var g = svgContainer.append('svg:g');
 
-					sAng = sAng + 4.89;
-					eAng = eAng + 4.89;
-				}
-
-				counter++;
-
-				if (counter <= 52) {
-
-					svgContainer.append("path")
-					    .attr("d", arc(140, 160, sAng, eAng))
-					    .attr("transform", "translate(400,250)")
-					    .style("fill", "grey")
-					    .style("position", "relative")
-					    .style("z-index", "2")
-					    .on("mouseover", function (d) {
-						    d3.select(this).style("fill", "white");
-						}).on("mouseout", function (d) {
-						    d3.select(this).style("fill", "grey");
-						});
-
-
-					sAng = sAng + 2.05;
-					eAng = eAng + 2.05;
-
-					return outerRing(sAng, eAng, counter);
-				}
-			}
-
-			
-
-			function innerRing (sAng, eAng, repos, padding1, padding2){
-
-
-				var pie = d3.layout.pie()
-				.value(function (d) {
-					return d;
-				});
-
-				if (sAng === -1) {
-
-					sAng++;
-					eAng++;
-
-				} else {
-
-					sAng = sAng + eAng;
-					eAng = eAng + eAng;
-				}
-
-				svgContainer.append("path")
-				    .attr("d", arc(80, 140, sAng, eAng))
+				g.append("path")
+				    .attr("d", arc(140, 160, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
 				    .attr("transform", "translate(400,250)")
-				    .style("fill", "black")
+				    .style("fill", "rgba(50, 255, 50," + alpha + ")")
 				    .style("position", "relative")
 				    .style("z-index", "2")
 				    .on("mouseover", function (d) {
 					    d3.select(this).style("fill", "white");
+					    div.transition()		
+	            			.duration(200)		
+	            			.style("opacity", 0.9);
+	            		div.style("left", (d3.event.pageX - 110) + "px")
+	            			.style("top", (d3.event.pageY - 130) + "px");
 					}).on("mouseout", function (d) {
-					    d3.select(this).style("fill", "black");
-					});
+					    d3.select(this).style("fill", "rgba(50, 255, 50," + alpha + ")");
+					    div.transition()		
+	            			.duration(500)		
+	            			.style("opacity", 0);	
+				});
+
+				var div = d3.select(".animation-container").append("text")	
+					.attr("class", "tooltip")
+					.text("Week:")		
+					.style("opacity", 0);
 
 
-				sAng = sAng + padding1;
-				eAng = eAng + padding2;
+				sAng = sAng + 0.5;
+				eAng = eAng + 0.5;
 
+				return outerRing(sAng, eAng, i);
 			}
+		}
 
-			var commitOwnerSum = commitOwnerTotal.reduce(add, 0);
-			var percentArr = [];
-			var endPoint = 0;
+		/*
+
+		var div = ;
+
+		.on("mouseover", function(d) {		
+            div.transition()		
+                .duration(200)		
+                .style("opacity", .9);		
+            div	.html(formatTime(d.date) + "<br/>"  + d.close)	
+                .style("left", (d3.event.pageX) + "px")		
+                .style("top", (d3.event.pageY - 28) + "px");	
+            })					
+        .on("mouseout", function(d) {		
+            div.transition()		
+                .duration(500)		
+                .style("opacity", 0);	
+        });
+
+*/
+
+		outerRing(-1, 5.5, 0);
+
+		var pie = d3.layout.pie()
+			.value(function (d) {
+				return d;
+			});
+		
+
+		var dataArr = [3, 5, 152, 87, 4, 3];
+
+		var colorObj = {
+			0: [38, 53, 138],
+			1: [141, 165, 165],
+			2: [70, 100, 125],
+			3: [71, 71, 97],
+			4: [19, 163, 153],
+			5: [10, 144, 67],
+			6: [47, 177, 122],
+			7: [149, 199, 111],
+			8: [184, 209, 58],
+			9: [27, 100, 29],
+		};
 
 
-			function reconvertData (startPoint, degree, length, i) {
+		function innerRing (data, color, i){
 
-				var commitOwnerPercent = commitOwnerTotal[i] / commitOwnerSum;
-				var commitDegrees = commitOwnerPercent * 360;
+			if (i < data.length) {
 
-				innerRing(startPoint, endPoint, 2.05, 2.05);
-				//innerRing(-1, 88, commitOwnerTotal.length, 0);
+				var pieD = pie(data);
+				var sAng = pieD[i].startAngle;
+				var eAng = pieD[i].endAngle;
 
-				startPoint = startPoint + degree;
-				endPoint = startPoint + commitDegrees;
-				console.log(startPoint);
-				console.log(endPoint);
-				console.log(commitOwnerPercent);
-				
+				var alpha = 0.5;
 
-				
-
+				svgContainer.append("path")
+				    .attr("d", arc(80, 140, sAng, eAng))
+				    .attr("transform", "translate(400,250)")
+				    .style("fill", "rgba(" + color + "," + alpha + ")")
+				    .style("position", "relative")
+				    .style("z-index", "2")
+				    .style("box-shadow", "0px 0px 9px 1px rgba(0,0,0,0.85)")
+				    .on("mouseover", function (d) {
+					    d3.select(this).style("fill", "rgba(" + color + "," + (alpha + 0.5)+ ")");
+					}).on("mouseout", function (d) {
+					    d3.select(this).style("fill", "rgba(" + color + "," + alpha + ")");
+					});
 
 				i++;
 
-				if (i < length) {
-
-					return reconvertData(startPoint, commitDegrees, commitOwnerTotal.length, i);
-
-				}
-
+				return innerRing(dataArr, colorObj[i], i);
 
 			}
 
-			reconvertData(-1, (commitOwnerTotal[0] * 360), commitOwnerTotal.length, 0);
+			//sAng = sAng + padding1;
+			//eAng = eAng + padding2;
 
+		}
 
+		innerRing(dataArr, colorObj[0], 0);
 
-			
-
-			function convertData () {
-
-				var commitOwnerPercent;
-				var commitDegrees;
-				var startPoint;
-				var endPoint;
-
-				for (i=0; i < commitOwnerTotal.length; i++) {
-
-					commitOwnerPercent = commitOwnerTotal[i] / commitOwnerSum;
-					commitDegrees = commitOwnerPercent * 360;
-					console.log(commitDegrees);
-
-				}
-
-
-
-
-
-			}
-
-
-			
-
-
-
-			outerRing(-1, 3.89, 0);
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
-
-		//Make an SVG Container
-		
-		/*Draw the Circle
-		var circle = svgContainer.append("rect")
-			.attr("x", 200)
-			.attr("y", 30)
-			.attr("width", 300)
-			.attr("height", 300);
-
-		
-
-		var lineData = [
-			{x: 0, y: 0},
-			{x: 100, y: 200},
-			{x: 200, y: 300},
-			{x: 300, y: 350},
-		];
-
-		var line = d3.svg.line()
-			.x(function(d) {return d.x; })
-			.y(function(d) {return d.y; });
-
-		var group = svgContainer.append("g")
-		.attr("transform", "translate(100, 100)");
-
-		group.selectAll("path")
-			.data([lineData])
-			.enter()
-			.append("path")
-			.attr("d", line)
-			.attr("stroke", "#000")
-			.attr("stroke-width", 10);
-		*/
-
-		
-
-	  	/*
-
-	  	
-
-	  	githubInfo(githubGet + reposGet).then(function(res){
-
-	  		var fullNames = [];
-
-	  		for (i = 0; i < res.length; i++) {
-	  			fullNames.push(res[i].full_name);
-
-	  		}
-
-	  		return githubInfo(githubGet + '/repos/' + fullNames[0] + '/stats/commit_activity');
-
-
-	  	}).then(function(res){
-
-	  	}).catch(function(err){
-
-	  	});
-
-	  	githubInfo(githubGet + runCalcCommitGet).then(function(res){
-	  		console.log(loopCommits(res, commitContainer));
-
-	  	}).catch(function(err){
-	  		console.log("nop");
-
-	  	});
-
-
-
-	  	/*
-
-	  	var commits;
-
-	  	var promise = $http.get('https://api.github.com/repos/InvalidPleb/Runner-Calculator/stats/commit_activity');
-	  	promise.then(function(payload) {
-	  		return payload.data;
-	  	});
-
-	  	/*
-
-	  	function(a,u){
-	        u.getUser().then(function(user){
-	            a.user = user;
-	            console.log(a.user);
-	        });
-	    }
-	    */
-
-	  	//console.log(commits);
 });
