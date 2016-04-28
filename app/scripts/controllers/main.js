@@ -95,7 +95,9 @@ angular.module('resumeApp')
 
 	  	var svgContainer = d3.select(".animation-container").append("svg")
 				.attr("width", 700)
-				.attr("height", 500);
+				.attr("height", 500)
+				.style("position", "relative")
+				.style("left", "50px");
 
 		function arc (inRad, outRad, sAng, eAng) {
 
@@ -165,7 +167,7 @@ angular.module('resumeApp')
 
 		
 
-		function outerRing (sAng, eAng, i) {
+		function outerRing (sAng, eAng, color, i) {
 
 			if (sAng === -1 && eAng === 5.5) {
 
@@ -178,7 +180,11 @@ angular.module('resumeApp')
 				eAng = eAng + 6.42;
 			}
 
-			var alpha = (weekArr[i] * 0.06) + 0.05;
+			var color1 = color[0] + (weekArr[i] * 12);
+			var color2 = color[1] + (weekArr[i] * 12);
+			var color3 = color[2] + (weekArr[i] * 12);
+			var alpha = (weekArr[i] * 0.1) + 0.05;
+			var dayRing;
 
 			i++;
 
@@ -187,59 +193,53 @@ angular.module('resumeApp')
 				var g = svgContainer.append('svg:g');
 
 				g.append("path")
-				    .attr("d", arc(140, 160, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
-				    .attr("transform", "translate(400,250)")
-				    .style("fill", "rgba(50, 255, 50," + alpha + ")")
+				    .attr("d", arc(170, 200, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
+				    .attr("transform", "translate(450,250)")
+				    .style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")")
 				    .style("position", "relative")
 				    .style("z-index", "2")
 				    .on("mouseover", function (d) {
 					    d3.select(this).style("fill", "white");
+					    div.style("left", ((d3.select(this).attr("cx") + 422) + "px"))
+	            			.style("top", ((d3.select(this).attr("cy") + 172) + "px"));
 					    div.transition()		
+	            			.duration(50)		
+	            			.style("opacity", 0.9);
+	            		
+	            		dayRing = middleRing(0, 50, colorArr, dayCommits, 0);
+
+	            		for (i = 0; i < dayRing.length; i++) {
+	            			dayRing[i].transition()		
 	            			.duration(200)		
 	            			.style("opacity", 0.9);
-	            		div.style("left", (d3.event.pageX - 110) + "px")
-	            			.style("top", (d3.event.pageY - 130) + "px");
-					}).on("mouseout", function (d) {
-					    d3.select(this).style("fill", "rgba(50, 255, 50," + alpha + ")");
+	            		}
+	   
+					})
+					.on("mouseout", function (d) {
+					    d3.select(this).style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")");
 					    div.transition()		
+	            			.duration(50)		
+	            			.style("opacity", 0);
+	            		for (i = 0; i < dayRing.length; i++) {
+	            			dayRing[i].transition()		
 	            			.duration(200)		
-	            			.style("opacity", 0);	
+	            			.style("opacity", 0.1);
+	            			dayRing[i].remove()
+	            		}	
 				});
 
-				var div = d3.select(".animation-container").append("text")	
+				var div = d3.select(".animation-container").append("div")	
 					.attr("class", "tooltip")
+					.style('position','absolute')
 					.text("Week:")		
 					.style("opacity", 0);
-
 
 				sAng = sAng + 0.5;
 				eAng = eAng + 0.5;
 
-				return outerRing(sAng, eAng, i);
+				return outerRing(sAng, eAng, colorArr, i);
 			}
 		}
-
-		/*
-
-		var div = ;
-
-		.on("mouseover", function(d) {		
-            div.transition()		
-                .duration(200)		
-                .style("opacity", .9);		
-            div	.html(formatTime(d.date) + "<br/>"  + d.close)	
-                .style("left", (d3.event.pageX) + "px")		
-                .style("top", (d3.event.pageY - 28) + "px");	
-            })					
-        .on("mouseout", function(d) {		
-            div.transition()		
-                .duration(500)		
-                .style("opacity", 0);	
-        });
-
-*/
-
-		outerRing(-1, 5.5, 0);
 
 		var pie = d3.layout.pie()
 			.value(function (d) {
@@ -275,7 +275,7 @@ angular.module('resumeApp')
 
 				svgContainer.append("path")
 				    .attr("d", arc(80, 140, sAng, eAng))
-				    .attr("transform", "translate(400,250)")
+				    .attr("transform", "translate(450,250)")
 				    .style("fill", "rgba(" + color + "," + alpha + ")")
 				    .style("position", "relative")
 				    .style("z-index", "2")
@@ -297,39 +297,44 @@ angular.module('resumeApp')
 
 		}
 
-		function coreRing(sAng, eAng, i) {
+		var colorArr = [0,105, 0];
+		var dayCommits = [1, 1, 2, 5, 1, 3, 1];
 
-			if (i <= 6) {
+		function middleRing(sAng, eAng, color, data) {
 
-				i++;
+			var ring;
+			var ringCont = [];
+
+			for (i = 0; i <= 6; i++) {
 
 				sAng = sAng + 50;
 				eAng = eAng + 50;
+				
+				var color1 = color[0] + (data[i] * 30);
+				var color2 = color[1] + (data[i] * 30);
+				var color3 = color[2] + (data[i] * 30);
+				var alpha = (data[i] * 0.1) + 0.05;
 
-				var color = colorObj[6];
-				var alpha = 0.7;
+				ring = svgContainer.append("path")
+				    .attr("d", arc(145, 165, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
+				    .attr("transform", "translate(450,250)")
+				    .style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")")
+				    .style("position", "relative")
+					.style("z-index", "2")
+					.style("opacity", 0.3);
 
+					sAng = sAng + 1.5;
+					eAng = eAng + 1.5;
 
-			svgContainer.append("path")
-			    .attr("d", arc(30, 80, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
-			    .attr("transform", "translate(400,250)")
-			    .style("fill", "rgba(" + color + "," + alpha + ")")
-			    .style("position", "relative")
-				.style("z-index", "2");
-
-				sAng = sAng + 1.5;
-				eAng = eAng + 1.5;
-
-				return coreRing(sAng, eAng, i);
-
+				ringCont.push(ring);
 			}
 
-			
-
-
+			return ringCont;
 		}
 
-		coreRing(0, 50, 0);
+		
+		outerRing(-1, 5.5, colorArr, 0);
+		middleRing(0, 50, colorArr, [1,1,1,1,1,1,1], 0);
 
 		innerRing(dataArr, colorObj[0], 0);
 

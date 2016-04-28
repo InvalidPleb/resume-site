@@ -46,21 +46,6 @@ $grey-background: #262626;
   @include border(1px solid, #707070, bottom);
 
 }
-
-.big-blocks {
-  background-color: #262626;
-  top: 20px;
-  height: 260px;
-  margin: 0px;
-  -webkit-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
-  -moz-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
-  box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
-  @include border(1px solid, #707070, bottom left right top);
-  text-align: center;
-  position: relative;
-
-}
-
 .main-body {
   background-color: $dark-background;
 }
@@ -78,16 +63,42 @@ $grey-background: #262626;
   height: 550px;
   @include border(1px solid, #707070, left right bottom top);  
   position: relative;
+  display: flex;
   z-index: -2;
 
 }
 
-.main-block {
-  @extend .animation-container;
-  left: 15px;
+.block-container {
+  background-color: $dark-background;
+  width: 90%;
+  height: 550px;
+  @include border(1px solid, #707070, left right bottom top);  
+  position: relative;
+  z-index: -2;
+  
 }
 
+.main-blocks {
+  background-color: #262626;
+  top: 20px;
+  height: 125px;
+  width: 125px;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-left: 22px;
+  -webkit-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
+  -moz-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
+  box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
+  @include border(1px solid, #707070, bottom left right top);
+  text-align: center;
+  position: relative;
 
+}
+
+.block-group {
+  position: relative;
+  left: 5%;
+}
 
 .buffer {
   @extend .footer;
@@ -122,17 +133,21 @@ $grey-background: #262626;
 
 }
 
-.tooltip {  
-  position: absolute;     
-  text-align: center;     
-  width: 60px;          
-  height: 28px;         
+.tooltip {     
+  text-align: center; 
+  width: 157px;          
+  height: 157px;         
   padding: 2px;       
   font: 12px sans-serif;    
   background-color: #FFF; 
-  border: 0px;    
-  border-radius: 8px;     
-  pointer-events: none;     
+  border: 0px;
+  border-radius: 50%;
+  pointer-events: none; 
+}
+
+.index {
+  position: relative;
+  z-index: -5;
 }
 
 
