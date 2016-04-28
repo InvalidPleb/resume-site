@@ -200,8 +200,8 @@ angular.module('resumeApp')
 				    .style("z-index", "2")
 				    .on("mouseover", function (d) {
 					    d3.select(this).style("fill", "white");
-					    div.style("left", ((d3.select(this).attr("cx") + 422) + "px"))
-	            			.style("top", ((d3.select(this).attr("cy") + 172) + "px"));
+					    div.style("left", ((d3.select(this).attr("cx") + 424) + "px"))
+	            			.style("top", ((d3.select(this).attr("cy") + 174) + "px"));
 					    div.transition()		
 	            			.duration(50)		
 	            			.style("opacity", 0.9);
@@ -224,7 +224,7 @@ angular.module('resumeApp')
 	            			dayRing[i].transition()		
 	            			.duration(200)		
 	            			.style("opacity", 0.1);
-	            			dayRing[i].remove()
+	            			dayRing[i].remove();
 	            		}	
 				});
 

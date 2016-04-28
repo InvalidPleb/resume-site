@@ -79,7 +79,8 @@ $grey-background: #262626;
 }
 
 .main-blocks {
-  background-color: #262626;
+  background-color: #FFF;
+  background-repeat: no-repeat;
   top: 20px;
   height: 125px;
   width: 125px;
@@ -135,14 +136,15 @@ $grey-background: #262626;
 
 .tooltip {     
   text-align: center; 
-  width: 157px;          
-  height: 157px;         
+  width: 152px;          
+  height: 152px;         
   padding: 2px;       
-  font: 12px sans-serif;    
-  background-color: #FFF; 
+  font: 12px sans-serif;  
+  background-color: rgb(149, 199, 111); 
   border: 0px;
   border-radius: 50%;
-  pointer-events: none; 
+  pointer-events: none;
+  text-align: center;
 }
 
 .index {
