@@ -73,9 +73,7 @@ angular.module('resumeApp')
 	  	function getCommits (repo, repoNum, maxRepos) {
 	  		return $http.get(githubGet +'/repos/' + repo + '/stats/commit_activity')
 	  			.then(function(res){
-
 	  				commitDaily.push(res.data);
-
 		  			repoNum++;
 
 		  			if (repoNum < maxRepos) {
@@ -175,8 +173,6 @@ angular.module('resumeApp')
 
 		function outerRing (sAng, eAng, color, data, midData, i) {
 
-			
-
 			if (sAng === -1 && eAng === 5.5) {
 
 				sAng++;
@@ -202,19 +198,18 @@ angular.module('resumeApp')
 
 				g.append("path")
 				    .attr("d", arc(170, 200, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
-				    .attr("transform", "translate(450,250)")
+				    .attr("transform", "translate(355,250)")
 				    .style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")")
 				    .style("position", "relative")
 				    .style("z-index", "2")
 				    .on("mouseover", function (d) {
-					    d3.select(this).style("fill", "white");
-					    div.style("left", ((d3.select(this).attr("cx") + 424) + "px"))
+					    d3.select(this).style("fill", "rgb(89, 74, 41)");
+					    div.style("left", ((d3.select(this).attr("cx") + 422) + "px"))
 	            			.style("top", ((d3.select(this).attr("cy") + 174) + "px"));
 					    div.transition()		
 	            			.duration(50)		
 	            			.style("opacity", 0.9);
 	            		
-	            		console.log(midData[i]);
 	            		dayRing = middleRing(0, 50, colorArr, midData[i]);
 
 	            		for (j = 0; j < dayRing.length; j++) {
@@ -263,10 +258,10 @@ angular.module('resumeApp')
 
 		var colorObj = {
 			0: [38, 53, 138],
-			1: [141, 165, 165],
-			2: [239, 0, 42],
-			3: [188, 0, 141],
-			4: [19, 163, 153],
+			1: [188, 149, 41],
+			2: [201, 177, 0],
+			3: [142, 114, 31],
+			4: [160, 140, 67],
 			5: [10, 144, 67],
 			6: [47, 177, 122],
 			7: [149, 199, 111],
@@ -287,7 +282,7 @@ angular.module('resumeApp')
 
 				svgContainer.append("path")
 				    .attr("d", arc(80, 140, sAng, eAng))
-				    .attr("transform", "translate(450,250)")
+				    .attr("transform", "translate(355,250)")
 				    .style("fill", "rgba(" + color + "," + alpha + ")")
 				    .style("position", "relative")
 				    .style("z-index", "2")
@@ -328,7 +323,7 @@ angular.module('resumeApp')
 
 				ring = svgContainer.append("path")
 				    .attr("d", arc(145, 165, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
-				    .attr("transform", "translate(450,250)")
+				    .attr("transform", "translate(355,250)")
 				    .style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")")
 				    .style("position", "relative")
 					.style("z-index", "2")
@@ -343,52 +338,46 @@ angular.module('resumeApp')
 			return ringCont;
 		}
 
-		
-
-
-		function weekSum (arr) {
-
-			var arrCurr;
-			var output = [];
-			
-			for (i=0; i < arr.length; i++) {
-
-				arrCurr = arr[i];
-				
-				for (j=0; j < 52; j++) {
-
-					if (output[j] === undefined) {
-
-						output[j] = [];
-						output[j].push(arrCurr[j]);
-
-					} else {
-
-						output[j].push(arrCurr[j]);
-
-					}
-				}
-			}
-
-			var outputSum = [];
-
-			for (i=0; i < 52; i++) {
-
-				outputSum.push(output[i].reduce(add, 0));
-
-			}
-
-			return outputSum;
-		}
-
-
-
-
 		var calls = getGithubStuff();
 	  	
 	  	$q.all([calls]).then(function(){
 
-	  		var weekCommits = weekSum(commitOwnerWeekly);
+	  		function weekSum (arr) {
+
+				var arrCurr;
+				var output = [];
+				
+				for (i=0; i < arr.length; i++) {
+
+					arrCurr = arr[i];
+					
+					for (j=0; j < 52; j++) {
+
+						if (output[j] === undefined) {
+
+							output[j] = [];
+							output[j].push(arrCurr[j]);
+
+						} else {
+
+							output[j].push(arrCurr[j]);
+
+						}
+					}
+				}
+
+				var outputSum = [];
+
+				for (i=0; i < 52; i++) {
+
+					outputSum.push(output[i].reduce(add, 0));
+
+				}
+
+				return outputSum;
+			}
+
+			var weekCommits = weekSum(commitOwnerWeekly);
 
 	  		var dayCommits = [];
 	  		var weekCurr;
@@ -485,10 +474,11 @@ angular.module('resumeApp')
 
 	  		}
 
-
 	  		outerRing(-1, 5.5, [0,105, 0], weekCommits, dayArr, 0);
 			middleRing(0, 50, [0,105, 0], [1,1,1,1,1,1,1]);
 			innerRing(commitOwnerTotal, colorObj[0], 0);
+
+	  		
 	  		
 	  	});
 

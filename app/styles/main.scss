@@ -21,6 +21,27 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
     }
 }
 
+@mixin monthLabel($mTop, $mRig, $mBot, $mLef, $left, $top, $deg){
+
+  position: relative;
+  margin: $mTop $mRig $mBot $mLef;
+  left: $left;
+  top: $top;
+
+  font-family: "Open Sans";
+  font-weight: 500;
+  font-size: 18px;
+  color: #84783b;
+
+  -webkit-transform: rotate($deg);
+  -moz-transform: rotate($deg);
+  -ms-transform: rotate($deg);
+  -o-transform: rotate($deg);
+  transform: rotate($deg);
+}
+
+
+
 body {
   padding: 0;
   position: relative;
@@ -140,7 +161,7 @@ $grey-background: #262626;
   height: 152px;         
   padding: 2px;       
   font: 12px sans-serif;  
-  background-color: rgb(149, 199, 111); 
+  background-color: rgb(89, 74, 41); 
   border: 0px;
   border-radius: 50%;
   pointer-events: none;
@@ -151,6 +172,57 @@ $grey-background: #262626;
   position: relative;
   z-index: -5;
 }
+
+.january {
+  @include monthLabel(0px, 0px, 0px, 60px, 480px, 25px, 12deg);
+}
+.february {
+  @include monthLabel(0px, 0px, 0px, 60px, 570px, 50px, 42deg);
+}
+
+.march {
+  @include monthLabel(0px, 0px, 0px, 60px, 630px, 115px, 70deg);
+}
+
+.april {
+  @include monthLabel(0px, 0px, 0px, 60px, 640px, 200px, 100deg);
+}
+
+.may {
+  @include monthLabel(0px, 0px, 0px, 60px, 600px, 268px, 125deg);
+}
+
+.june {
+  @include monthLabel(0px, 0px, 0px, 60px, 515px, 310px, 155deg);
+}
+.july {
+  @include monthLabel(0px, 0px, 0px, 60px, 405px, 302px, 182.5deg);
+}
+
+.august {
+  @include monthLabel(0px, 0px, 0px, 60px, 305px, 250px, 212deg);
+}
+
+.september {
+  @include monthLabel(0px, 0px, 0px, 60px, 205px, 90px, 255deg);
+}
+
+.october {
+  @include monthLabel(0px, 0px, 0px, 60px, 205px, -45px, 285deg);
+}
+
+.november {
+  @include monthLabel(0px, 0px, 0px, 60px, 260px, -170px, 312deg);
+}
+
+.december {
+  @include monthLabel(0px, 0px, 0px, 60px, 365px, -255px, 340deg);
+}
+
+
+
+
+
 
 
 
