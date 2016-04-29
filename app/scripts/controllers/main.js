@@ -10,7 +10,7 @@
 angular.module('resumeApp')
   	.controller('MainCtrl', function ($http, $q, $scope) {
 
-	  	var i, j;
+	  	var i, j, l;
 
 	  	function add(a, b) {
 	      	return a + b;
@@ -21,6 +21,8 @@ angular.module('resumeApp')
 	  	var repoContainer = [];
 	  	var commitTotal = 0;
 	  	var commitOwnerTotal = [];
+	  	var commitOwnerWeekly = [];
+	  	var commitDaily = [];
 
 	  	function pushCalledCommits(res, container) {
 	  		
@@ -44,8 +46,9 @@ angular.module('resumeApp')
 	  	function getGithubStuff() {
 	  		return $http.get(githubGet + '/users/InvalidPleb/repos')
 		  		.then(function(res){
-		  			pushCalledRepo(res.data);
-		  			return getOwnerCommits(repoContainer[0], -1, repoContainer.length);
+
+		  			pushCalledRepo(res.data);	
+		  			return getOwnerCommits(repoContainer[0], -1, repoContainer.length, 0);
 		  		});
 		  		
 			
@@ -54,10 +57,15 @@ angular.module('resumeApp')
 	  	function getOwnerCommits (repo, repoNum, maxRepos) {
 	  		return $http.get(githubGet + '/repos/' + repo + '/stats/participation')
 	  			.then(function(res){
-	  				commitOwnerTotal.push(res.data.owner.reduce(add, 0));
+
+	  				commitOwnerWeekly[repoNum + 1] = (res.data.owner);
+	  				commitOwnerTotal.push(commitOwnerWeekly[repoNum + 1].reduce(add, 0));
 	  				repoNum++;
+
 	  				if (repoNum < maxRepos) {
 	  					return getOwnerCommits(repoContainer[repoNum], repoNum, maxRepos);
+	  				} else {
+	  					return getCommits(repoContainer[0], 0, repoContainer.length);
 	  				}
 	  			});
 	  	}
@@ -65,11 +73,16 @@ angular.module('resumeApp')
 	  	function getCommits (repo, repoNum, maxRepos) {
 	  		return $http.get(githubGet +'/repos/' + repo + '/stats/commit_activity')
 	  			.then(function(res){
-		  			pushCalledCommits(res.data, commitContainer);		
-		  			commitTotal = commitContainer.reduce(add, 0);
+
+	  				commitDaily.push(res.data);
+
 		  			repoNum++;
+
 		  			if (repoNum < maxRepos) {
 		  				return getCommits(repoContainer[repoNum], repoNum, maxRepos);
+		  			} else {
+
+
 		  			}
 		  			
 		  		});
@@ -81,17 +94,10 @@ angular.module('resumeApp')
 	  		for (i = 0; i < res.length; i++) {
 	  			repoContainer.push(res[i].full_name);
 	  		}
+
 	  	}
 
-	  	//var calls = getGithubStuff();
 	  	
-	  	//$q.all([calls]).then(function(){
-	  		//console.log(commitOwnerTotal);
-	  		
-	  		//console.log(pie(commitOwnerTotal));
-
-	  		
-	  	//});
 
 	  	var svgContainer = d3.select(".animation-container").append("svg")
 				.attr("width", 700)
@@ -167,7 +173,9 @@ angular.module('resumeApp')
 
 		
 
-		function outerRing (sAng, eAng, color, i) {
+		function outerRing (sAng, eAng, color, data, midData, i) {
+
+			
 
 			if (sAng === -1 && eAng === 5.5) {
 
@@ -180,15 +188,15 @@ angular.module('resumeApp')
 				eAng = eAng + 6.42;
 			}
 
-			var color1 = color[0] + (weekArr[i] * 12);
-			var color2 = color[1] + (weekArr[i] * 12);
-			var color3 = color[2] + (weekArr[i] * 12);
-			var alpha = (weekArr[i] * 0.1) + 0.05;
+			var color1 = color[0] + (data[i] * 12);
+			var color2 = color[1] + (data[i] * 12);
+			var color3 = color[2] + (data[i] * 12);
+			var alpha = (data[i] * 0.1) + 0.05;
 			var dayRing;
 
-			i++;
+			
 
-			if (i <= 52) {
+			if (i < 51) {
 
 				var g = svgContainer.append('svg:g');
 
@@ -205,11 +213,12 @@ angular.module('resumeApp')
 					    div.transition()		
 	            			.duration(50)		
 	            			.style("opacity", 0.9);
-	            		
-	            		dayRing = middleRing(0, 50, colorArr, dayCommits, 0);
+	            		console.log(i);
+	            		console.log(midData[i]);
+	            		dayRing = middleRing(0, 50, colorArr, midData[i].days);
 
-	            		for (i = 0; i < dayRing.length; i++) {
-	            			dayRing[i].transition()		
+	            		for (j = 0; j < dayRing.length; j++) {
+	            			dayRing[j].transition()		
 	            			.duration(200)		
 	            			.style("opacity", 0.9);
 	            		}
@@ -220,11 +229,11 @@ angular.module('resumeApp')
 					    div.transition()		
 	            			.duration(50)		
 	            			.style("opacity", 0);
-	            		for (i = 0; i < dayRing.length; i++) {
-	            			dayRing[i].transition()		
+	            		for (j = 0; j < dayRing.length; j++) {
+	            			dayRing[j].transition()		
 	            			.duration(200)		
 	            			.style("opacity", 0.1);
-	            			dayRing[i].remove();
+	            			dayRing[j].remove();
 	            		}	
 				});
 
@@ -234,10 +243,13 @@ angular.module('resumeApp')
 					.text("Week:")		
 					.style("opacity", 0);
 
-				sAng = sAng + 0.5;
-				eAng = eAng + 0.5;
+				sAng = sAng + 0.63;
+				eAng = eAng + 0.63;
+				i++;
 
-				return outerRing(sAng, eAng, colorArr, i);
+
+
+				return outerRing(sAng, eAng, colorArr, data, midData, i);
 			}
 		}
 
@@ -252,14 +264,14 @@ angular.module('resumeApp')
 		var colorObj = {
 			0: [38, 53, 138],
 			1: [141, 165, 165],
-			2: [70, 100, 125],
-			3: [71, 71, 97],
+			2: [239, 0, 42],
+			3: [188, 0, 141],
 			4: [19, 163, 153],
 			5: [10, 144, 67],
 			6: [47, 177, 122],
 			7: [149, 199, 111],
 			8: [184, 209, 58],
-			9: [27, 100, 29],
+			9: [229, 119, 55],
 		};
 
 
@@ -271,7 +283,7 @@ angular.module('resumeApp')
 				var sAng = pieD[i].startAngle;
 				var eAng = pieD[i].endAngle;
 
-				var alpha = 0.5;
+				var alpha = 0.6;
 
 				svgContainer.append("path")
 				    .attr("d", arc(80, 140, sAng, eAng))
@@ -281,14 +293,14 @@ angular.module('resumeApp')
 				    .style("z-index", "2")
 				    .style("box-shadow", "0px 0px 9px 1px rgba(0,0,0,0.85)")
 				    .on("mouseover", function (d) {
-					    d3.select(this).style("fill", "rgba(" + color + "," + (alpha + 0.5) + ")");
+					    d3.select(this).style("fill", "rgba(" + color + "," + (alpha + 0.3) + ")");
 					}).on("mouseout", function (d) {
 					    d3.select(this).style("fill", "rgba(" + color + "," + alpha + ")");
 					});
 
 				i++;
 
-				return innerRing(dataArr, colorObj[i], i);
+				return innerRing(data, colorObj[i], i);
 
 			}
 
@@ -298,7 +310,6 @@ angular.module('resumeApp')
 		}
 
 		var colorArr = [0,105, 0];
-		var dayCommits = [1, 1, 2, 5, 1, 3, 1];
 
 		function middleRing(sAng, eAng, color, data) {
 
@@ -310,10 +321,10 @@ angular.module('resumeApp')
 				sAng = sAng + 50;
 				eAng = eAng + 50;
 				
-				var color1 = color[0] + (data[i] * 30);
-				var color2 = color[1] + (data[i] * 30);
-				var color3 = color[2] + (data[i] * 30);
-				var alpha = (data[i] * 0.1) + 0.05;
+				var color1 = color[0] + (data[i] * 50);
+				var color2 = color[1] + (data[i] * 50);
+				var color3 = color[2] + (data[i] * 50);
+				var alpha = (data[i] * 0.2) + 0.05;
 
 				ring = svgContainer.append("path")
 				    .attr("d", arc(145, 165, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
@@ -333,9 +344,137 @@ angular.module('resumeApp')
 		}
 
 		
-		outerRing(-1, 5.5, colorArr, 0);
-		middleRing(0, 50, colorArr, [1,1,1,1,1,1,1], 0);
 
-		innerRing(dataArr, colorObj[0], 0);
+
+		function weekSum (arr) {
+
+			var arrCurr;
+			var output = [];
+			
+			for (i=0; i < arr.length; i++) {
+
+				arrCurr = arr[i];
+				
+				for (j=0; j < 52; j++) {
+
+					if (output[j] === undefined) {
+
+						output[j] = [];
+						output[j].push(arrCurr[j]);
+
+					} else {
+
+						output[j].push(arrCurr[j]);
+
+					}
+				}
+			}
+
+			var outputSum = [];
+
+			for (i=0; i < 52; i++) {
+
+				outputSum.push(output[i].reduce(add, 0));
+
+			}
+
+			return outputSum;
+		}
+
+
+
+
+		var calls = getGithubStuff();
+	  	
+	  	$q.all([calls]).then(function(){
+
+	  		var weekCommits = weekSum(commitOwnerWeekly);
+
+	  		var dayCommits = [];
+	  		var weekCurr;
+
+	  		console.log(commitDaily);
+
+	  		for (i=0; i < commitDaily.length; i++) {
+
+	  			weekCurr = commitDaily[i];
+
+	  			for (j=0; j < 52; j++) {
+
+	  				if (dayCommits[j] === undefined) {
+
+	  					dayCommits[j] = [];
+	  					dayCommits[j].push(weekCurr[j].days);
+
+	  				} else {
+	  					dayCommits[j].push(weekCurr[j].days);
+	  				}
+
+	  				
+	  			}
+	  		}
+
+
+	  		
+
+	  		var dayCurr;
+	  		var daySums = [];
+
+	  		for (i=0; i < dayCommits.length; i++) {
+
+	  			weekCurr = dayCommits[i];
+
+	  			if (daySums[i] === undefined) {
+
+	  				daySums[i] = [];
+
+	  			}
+
+	  			for (j=0; j < weekCurr.length; j++) {
+
+	  				dayCurr = weekCurr[j];
+
+	  				for (l=0; l < dayCurr.length; l++) {
+
+	  					daySums[i].push(dayCurr[l]);
+
+	  				}
+
+
+
+	  				
+
+	  				
+	  			}
+
+
+	  		}
+
+	  		console.log(i);
+
+	  		console.log(daySums);
+
+
+
+
+	  		
+
+
+	  		outerRing(-1, 5.5, [0,105, 0], weekCommits, commitDaily, 0);
+			middleRing(0, 50, [0,105, 0], [1,1,1,1,1,1,1]);
+			innerRing(commitOwnerTotal, colorObj[0], 0);
+
+			
+
+
+	  		
+	  		
+
+
+	  		
+	  	});
+
+		
+		
 
 });
