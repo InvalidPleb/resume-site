@@ -13,7 +13,7 @@ angular.module('resumeApp')
   		$scope.angular = {
   			id: "angular",
   			changeVar: "angOp",
-  			txt: "Angular.js"
+  			txt: "Angular"
   		};
 
   		$scope.jQuery = {
@@ -61,7 +61,7 @@ angular.module('resumeApp')
   		$scope.cscript = {
   			id: "cscript",
   			changeVar: "cscOp",
-  			txt: "Coffee script"
+  			txt: "CoffeeScript"
   		};
 
   		$scope.photoshop = {
@@ -162,9 +162,6 @@ angular.module('resumeApp')
 
 		  			if (repoNum < maxRepos) {
 		  				return getCommits(repoContainer[repoNum], repoNum, maxRepos);
-		  			} else {
-
-
 		  			}
 		  			
 		  		});
