@@ -1,18 +1,18 @@
 <div class="animation-container">
   <div class="commit-circle">
     <div class="repository">
-    <div class="january">Jan</div>
-    <div class="february">Feb</div>
-    <div class="march">Mar</div>
-    <div class="april">Apr</div>
-    <div class="may">May</div>
-    <div class="june">Jun</div>
-    <div class="july">Jul</div>
-    <div class="august">Aug</div>
-    <div class="september">Sep</div>
-    <div class="october">Oct</div>
-    <div class="november">Nov</div>
-    <div class="december">Dec</div>
+        <div class="january">Jan</div>
+        <div class="february">Feb</div>
+        <div class="march">Mar</div>
+        <div class="april">Apr</div>
+        <div class="may">May</div>
+        <div class="june">Jun</div>
+        <div class="july">Jul</div>
+        <div class="august">Aug</div>
+        <div class="september">Sep</div>
+        <div class="october">Oct</div>
+        <div class="november">Nov</div>
+        <div class="december">Dec</div>
     </div>
   </div>
   
@@ -20,26 +20,61 @@
 
 <div class="block-container">
   <div class="block-group">
-    <div class="rotate main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background-image: url('/images/js.png');"></div>
-    <div class="rotate1 main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background-image: url('/images/html5-3.png');"></div>
-    <div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background-image: url('/images/css-4.png');"></div>
-    <div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background-image: url('/images/angular.png');"></div>
-    <div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background-image: url('/images/jquery.png');"></div>
-    <div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background-image: url('/images/bootstrap.png');"></div>
+    <div class="row">
+        <div class="block-titles col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            <div class="title-text">Frameworks</div>
+        </div>
+    </div>
+    <div class="row">
+        <main-block info="angular"></main-block>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+        <main-block info="jQuery"></main-block>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+        <main-block info="bootstrap"></main-block>
+    </div>
 
-    <div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background-image: url('/images/git-3.png');"></div>
-    <div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background-image: url('/images/yeoman-2.png');"></div>
-    <div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background-image: url('/images/grunt.png');"></div>
-    <div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background-image: url('/images/bower-logo.png');"></div>
-    <div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background-image: url('/images/sass-4.png');"></div>
-    <div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background-image: url('/images/coffeescript-2.png');"></div>
-
-    <div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background-image: url('/images/photoshop.png');"></div>
-    <div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background-image: url('/images/d3js.png');"></div>
-    <div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background-image: url('/images/balsamiq.png');"></div>
-    <div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background-image: url('/images/photoshop.png');"></div>
-    <div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background-image: url('/images/d3js.png');"></div>
-    <div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background-image: url('/images/balsamiq.png');"></div>
+    <div class="row seperator">
+        <div class="block-titles col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            <div class="title-text">Development Tools</div>
+        </div>
+    </div>
+    <div class="row dev-tools">
+        <main-block info="git"></main-block>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+        <main-block info="yeoman"></main-block>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+        <main-block info="grunt"></main-block>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+        <main-block info="bower"></main-block>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+    </div>
+    <div class="row seperator">
+        <div class="block-titles col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            <div class="title-text">Preprocessors</div>
+        </div>
+    </div>
+    <div class="row preprocessors">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+        <main-block info="sass"></main-block>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+        <main-block info="cscript"></main-block>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+    </div>
+    <div class="row seperator">
+        <div class="block-titles col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            <div class="title-text">Design Tools</div>
+        </div>
+    </div>
+    <div class="row dev-tools">
+        <main-block info="photoshop"></main-block>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+        <main-block info="gimp"></main-block>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+        <main-block info="balsamiq"></main-block>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+        <main-block info="d3"></main-block>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+    </div>
   </div>
 
 

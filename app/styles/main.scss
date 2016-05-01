@@ -40,6 +40,28 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   transform: rotate($deg);
 }
 
+@mixin fadeImg($img) {
+  background-image: url($img);
+  opacity: 1;
+  width: 125px;
+  height: 125px;
+  border-radius: 5px;
+  transition: all 0.5s ease-in;
+  position: relative;
+  z-index: 1;
+  -webkit-backface-visibility: hidden;
+  background-repeat: no-repeat;
+
+  -webkit-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
+  -moz-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
+  box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
+  @include border(1px solid, $gold-color, bottom left right top);
+  
+  &:hover {
+    opacity: 0;
+  }
+}
+
 
 
 body {
@@ -51,6 +73,7 @@ body {
 
 $dark-background: #1c1b1b;
 $grey-background: #262626;
+$gold-color: rgb(89, 74, 41);
 
 .main-container {
   @extend .container;
@@ -64,7 +87,7 @@ $grey-background: #262626;
 .main-header {
   background-color: $dark-background;
   height: 100px;
-  @include border(1px solid, #707070, bottom);
+  @include border(1px solid, $gold-color, bottom);
 
 }
 .main-body {
@@ -72,7 +95,7 @@ $grey-background: #262626;
 }
 
 .footer {
-  @include border(1px solid, #707070, bottom top);
+  @include border(1px solid, $gold-color, bottom top);
   border-radius: 3px;
   padding-top: 20px;
   
@@ -82,7 +105,7 @@ $grey-background: #262626;
   background-color: $dark-background;
   width: 90%;
   height: 550px;
-  @include border(1px solid, #707070, left right bottom top);  
+  @include border(1px solid, $gold-color, left right bottom top);  
   position: relative;
   display: flex;
   z-index: -2;
@@ -92,8 +115,8 @@ $grey-background: #262626;
 .block-container {
   background-color: $dark-background;
   width: 90%;
-  height: 550px;
-  @include border(1px solid, #707070, left right bottom top);  
+  height: 1550px;
+  @include border(1px solid, $gold-color, left right bottom top);  
   position: relative;
   z-index: -2;
   
@@ -107,19 +130,41 @@ $grey-background: #262626;
   width: 125px;
   border-radius: 5px;
   margin-top: 10px;
-  margin-left: 22px;
+  padding: 0px;
   -webkit-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
   -moz-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
   box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
-  @include border(1px solid, #707070, bottom left right top);
   text-align: center;
   position: relative;
-
 }
 
 .block-group {
   position: relative;
-  left: 5%;
+  left: 15%;
+  padding-top: 2%;
+}
+
+.block-titles {
+  background-color: $dark-background;
+  @include border(1px solid, $gold-color, bottom);
+  height: 50px;
+  left: 12px;
+  text-align: center;
+}
+
+.seperator {
+  position: relative;
+  margin-top: 5%;
+}
+
+.title-text {
+  font-family: "Open Sans";
+  font-weight: 500;
+  font-size: 28px;
+  color: $gold-color;
+  position: relative;
+  top: 25%;
+
 }
 
 .buffer {
@@ -134,7 +179,7 @@ $grey-background: #262626;
   position: relative;
   margin-right: 20px;
   display: inline;
-  @include border (1px solid, #707070, left right);
+  @include border (1px solid, $gold-color, left right);
   &:hover {
     background-color: #636363;
 
@@ -147,7 +192,7 @@ $grey-background: #262626;
 }
 
 .about-me {
-  @include border(1px solid, #707070, left right bottom top);
+  @include border(1px solid, $gold-color, left right bottom top);
   margin-top: 20px;
   margin-bottom: 10px;
   padding: 20px;
@@ -161,7 +206,7 @@ $grey-background: #262626;
   height: 152px;         
   padding: 2px;       
   font: 12px sans-serif;  
-  background-color: rgb(89, 74, 41); 
+  background-color: $gold-color;
   border: 0px;
   border-radius: 50%;
   pointer-events: none;
@@ -171,6 +216,99 @@ $grey-background: #262626;
 .index {
   position: relative;
   z-index: -5;
+}
+
+.imgTxt {
+  font-family: "Open Sans";
+  font-weight: 500;
+  font-size: 22px;
+  position: relative;
+  bottom: 80px;
+  color: $gold-color;
+  z-index: 0;
+  transition: all 0.5s ease-in;
+}
+
+.fullOpacity {
+  opacity: 1;
+
+}
+
+.noOpacity {
+  opacity: 0;
+}
+
+
+.frameworks {
+
+}
+
+.dev-tools {
+  position: relative;
+  right: 17px;
+}
+
+.preprocessors {
+  position: relative;
+  left: 25px;
+}
+
+
+
+#angular {
+  @include fadeImg('/images/angular.png');
+}
+
+#jquery {
+  @include fadeImg('/images/jquery.png');
+}
+
+#bootstrap {
+  @include fadeImg('/images/bootstrap.png');
+}
+
+#git {
+  @include fadeImg('/images/git-3.png');
+}
+
+#yeoman {
+  @include fadeImg('/images/yeoman-2.png');
+}
+
+#grunt {
+  @include fadeImg('/images/grunt.png');
+
+}
+
+#bower {
+  @include fadeImg('/images/bower-logo.png');
+
+}
+
+#sass {
+  @include fadeImg('/images/sass-4.png');
+
+}
+#cscript {
+  @include fadeImg('/images/coffeescript-2.png');
+
+}
+
+#photoshop {
+  @include fadeImg('/images/photoshop.png');
+
+}
+#gimp {
+  @include fadeImg('/images/gimp.png');
+
+}
+#balsamiq {
+  @include fadeImg('/images/balsamiq.png');
+
+}
+#d3 {
+  @include fadeImg('/images/d3js.png');
+
 }
 
 .january {
@@ -216,7 +354,7 @@ $grey-background: #262626;
 }
 
 .december {
-  @include monthLabel(0px, 0px, 0px, 60px, 365px, -255px, 340deg);
+  @include monthLabel(0px, 0px, 0px, 60px, 365px, -255px, 345deg);
 }
 
 

@@ -34,6 +34,9 @@ angular
   })
   .directive('mainBlock', function(){
     return {
+        scope: {
+          blockInfo: '=info'
+        },
         restrict: 'AEC',
         templateUrl: '/views/blockdir.html',
         replace: true

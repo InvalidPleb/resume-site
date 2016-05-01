@@ -1,14 +1,4 @@
-<div class="block-group">
-	<div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
-	<div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
-	<div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
-	<div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
-	<div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
-	<div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
-	<div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
-	<div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
-	<div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
-	<div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
-	<div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
-	<div class="main-blocks col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+<div  class="main-blocks col-lg-2 col-md-2 col-sm-2 col-xs-2">
+    <div id="{{blockInfo.id}}" ng-init="blockInfo.changeVar = false" ng-mouseover="blockInfo.changeVar = true" ng-mouseleave="blockInfo.changeVar = false"></div>
+    <span class="imgTxt" ng-class="{noOpacity: !blockInfo.changeVar, fullOpacity: blockInfo.changeVar}">{{blockInfo.txt}}</span>
 </div>

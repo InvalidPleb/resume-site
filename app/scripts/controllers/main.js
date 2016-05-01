@@ -10,6 +10,90 @@
 angular.module('resumeApp')
   	.controller('MainCtrl', function ($http, $q, $scope) {
 
+  		$scope.angular = {
+  			id: "angular",
+  			changeVar: "angOp",
+  			txt: "Angular.js"
+  		};
+
+  		$scope.jQuery = {
+  			id: "jquery",
+  			changeVar: "jquOp",
+  			txt: "JQuery"
+  		};
+
+  		$scope.bootstrap = {
+  			id: "bootstrap",
+  			changeVar: "bootOp",
+  			txt: "Bootstrap"
+  		};
+
+  		$scope.git = {
+  			id: "git",
+  			changeVar: "gitOp",
+  			txt: "Git"
+  		};
+
+  		$scope.yeoman = {
+  			id: "yeoman",
+  			changeVar: "yeoOp",
+  			txt: "Yeoman"
+  		};
+
+  		$scope.grunt = {
+  			id: "grunt",
+  			changeVar: "gruntOp",
+  			txt: "Grunt"
+  		};
+
+  		$scope.bower = {
+  			id: "bower",
+  			changeVar: "bowOp",
+  			txt: "Bower"
+  		};
+
+  		$scope.sass = {
+  			id: "sass",
+  			changeVar: "sassOp",
+  			txt: "Sass"
+  		};
+
+  		$scope.cscript = {
+  			id: "cscript",
+  			changeVar: "cscOp",
+  			txt: "Coffee script"
+  		};
+
+  		$scope.photoshop = {
+  			id: "photoshop",
+  			changeVar: "photoOp",
+  			txt: "Photoshop"
+  		};
+
+  		$scope.gimp = {
+  			id: "gimp",
+  			changeVar: "gimpOp",
+  			txt: "Gimp"
+  		};
+
+  		$scope.balsamiq = {
+  			id: "balsamiq",
+  			changeVar: "balOp",
+  			txt: "Balsamiq"
+  		};
+
+  		$scope.d3 = {
+  			id: "d3",
+  			changeVar: "d3Op",
+  			txt: "D3"
+  		};
+
+  		
+
+
+
+
+
 	  	var i, j, l;
 
 	  	function add(a, b) {
@@ -113,63 +197,6 @@ angular.module('resumeApp')
 
 		}
 
-		var weekArr = [
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			1,
-			3,
-			6,
-			7,
-			6,
-			10,
-			12,
-			7,
-			6,
-			8,
-			9,
-			5,
-			13,
-			7,
-			6,
-			8,
-			7,
-			7,
-			6,
-			10,
-			12,
-			11,
-			7,
-			6,
-			7,
-			7,
-			10,
-			11, 
-			7, 
-			7
-		];
-
-		
 
 		function outerRing (sAng, eAng, color, data, midData, i) {
 
@@ -481,8 +508,6 @@ angular.module('resumeApp')
 	  		
 	  		
 	  	});
-
-		
 		
 
 });
