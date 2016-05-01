@@ -182,7 +182,7 @@ angular.module('resumeApp')
 				.attr("width", 700)
 				.attr("height", 500)
 				.style("position", "relative")
-				.style("left", "50px");
+				.style("left", "120px");
 
 		function arc (inRad, outRad, sAng, eAng) {
 
@@ -228,7 +228,7 @@ angular.module('resumeApp')
 				    .style("z-index", "2")
 				    .on("mouseover", function (d) {
 					    d3.select(this).style("fill", "rgb(89, 74, 41)");
-					    div.style("left", ((d3.select(this).attr("cx") + 422) + "px"))
+					    div.style("left", ((d3.select(this).attr("cx") + 492) + "px"))
 	            			.style("top", ((d3.select(this).attr("cy") + 174) + "px"));
 					    div.transition()		
 	            			.duration(50)		

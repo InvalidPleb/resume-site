@@ -71,9 +71,10 @@ body {
 }
 
 
-$dark-background: #1c1b1b;
+$dark-background: #141415;
 $grey-background: #262626;
-$gold-color: rgb(89, 74, 41);
+$gold-color: rgb(158, 142, 76);
+$rock-background: '/images/rock-background.png';
 
 .main-container {
   @extend .container;
@@ -84,14 +85,19 @@ $gold-color: rgb(89, 74, 41);
   min-width: 800px;
 
 }
+
+.top-header {
+  background-image: url($rock-background);
+}
+
 .main-header {
-  background-color: $dark-background;
-  height: 100px;
-  @include border(1px solid, $gold-color, bottom);
+background-image: url($rock-background);
+height: 100px;
+@include border(1px solid, $gold-color, bottom);
 
 }
 .main-body {
-  background-color: $dark-background;
+  background-image: url($rock-background);
 }
 
 .footer {
@@ -102,26 +108,47 @@ $gold-color: rgb(89, 74, 41);
 }
 
 .animation-container {
-  background-color: $dark-background;
-  width: 90%;
+  background-color:$dark-background;
+  width: 100%;
   height: 550px;
   @include border(1px solid, $gold-color, left right bottom top);  
   position: relative;
   display: flex;
   z-index: -2;
+  -webkit-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
+  -moz-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
+  box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
 
 }
 
 .block-title-section {
-  height: 200px;
+  height: 100px;
+  width: 100%;
   @include border(1px solid, $gold-color, bottom);  
 }
 
+.graph-title-section {
+  height: 100px;
+  width: 100%;
+  @include border (1px solid, $gold-color, left right top);
+}
+
+.block-title-section-text {
+  font-family: "Open Sans";
+  font-weight: 500;
+  font-size: 40px;
+  color: $gold-color;
+  position: relative;
+  text-align: center;
+  top: 20%;
+
+}
+
 .block-container {
-  background-color: $dark-background;
-  width: 90%;
-  height: 1550px;
-  @include border(1px solid, $gold-color, left right bottom top);  
+  background-image: url($rock-background);
+  width: 100%;
+  height: 1100px;
+  @include border(1px solid, $gold-color, left right bottom);  
   position: relative;
   z-index: -2;
   
@@ -150,20 +177,16 @@ $gold-color: rgb(89, 74, 41);
 }
 
 .block-titles {
-  background-color: $dark-background;
+  background-image: url($rock-background);
   @include border(1px solid, $gold-color, bottom);
   height: 50px;
-  left: 18%;
+  left: 19.0%;
   text-align: center;
 }
 
 .seperator {
   position: relative;
   margin-top: 5%;
-}
-
-.icon-row {
-
 }
 
 .title-text {
@@ -227,13 +250,18 @@ $gold-color: rgb(89, 74, 41);
   z-index: -5;
 }
 
-.imgTxt {
+.gold-text {
   font-family: "Open Sans";
   font-weight: 500;
-  font-size: 22px;
+  font-size: 24px;
+  color: $gold-color;
+
+}
+
+.img-text {
   position: relative;
   bottom: 80px;
-  color: $gold-color;
+  
   z-index: 0;
   transition: all 0.5s ease-in;
 }
@@ -249,17 +277,19 @@ $gold-color: rgb(89, 74, 41);
 
 
 .frameworks {
+  position: relative;
+  left: 30px;
 
 }
 
 .dev-tools {
   position: relative;
-  right: 17px;
+  left: 20px;
 }
 
 .preprocessors {
   position: relative;
-  left: 25px;
+  left: 50px;
 }
 
 
@@ -321,49 +351,49 @@ $gold-color: rgb(89, 74, 41);
 }
 
 .january {
-  @include monthLabel(0px, 0px, 0px, 60px, 480px, 25px, 12deg);
+  @include monthLabel(0px, 0px, 0px, 60px, 550px, 25px, 12deg);
 }
 .february {
-  @include monthLabel(0px, 0px, 0px, 60px, 570px, 50px, 42deg);
+  @include monthLabel(0px, 0px, 0px, 60px, 640px, 50px, 42deg);
 }
 
 .march {
-  @include monthLabel(0px, 0px, 0px, 60px, 630px, 115px, 70deg);
+  @include monthLabel(0px, 0px, 0px, 60px, 700px, 115px, 70deg);
 }
 
 .april {
-  @include monthLabel(0px, 0px, 0px, 60px, 640px, 200px, 100deg);
+  @include monthLabel(0px, 0px, 0px, 60px, 710px, 200px, 100deg);
 }
 
 .may {
-  @include monthLabel(0px, 0px, 0px, 60px, 600px, 268px, 125deg);
+  @include monthLabel(0px, 0px, 0px, 60px, 670px, 268px, 125deg);
 }
 
 .june {
-  @include monthLabel(0px, 0px, 0px, 60px, 515px, 310px, 155deg);
+  @include monthLabel(0px, 0px, 0px, 60px, 585px, 310px, 155deg);
 }
 .july {
-  @include monthLabel(0px, 0px, 0px, 60px, 405px, 302px, 182.5deg);
+  @include monthLabel(0px, 0px, 0px, 60px, 475px, 302px, 182.5deg);
 }
 
 .august {
-  @include monthLabel(0px, 0px, 0px, 60px, 305px, 250px, 212deg);
+  @include monthLabel(0px, 0px, 0px, 60px, 375px, 250px, 212deg);
 }
 
 .september {
-  @include monthLabel(0px, 0px, 0px, 60px, 205px, 90px, 255deg);
+  @include monthLabel(0px, 0px, 0px, 60px, 275px, 90px, 255deg);
 }
 
 .october {
-  @include monthLabel(0px, 0px, 0px, 60px, 205px, -45px, 285deg);
+  @include monthLabel(0px, 0px, 0px, 60px, 275px, -45px, 285deg);
 }
 
 .november {
-  @include monthLabel(0px, 0px, 0px, 60px, 260px, -170px, 312deg);
+  @include monthLabel(0px, 0px, 0px, 60px, 330px, -170px, 312deg);
 }
 
 .december {
-  @include monthLabel(0px, 0px, 0px, 60px, 365px, -255px, 345deg);
+  @include monthLabel(0px, 0px, 0px, 60px, 425px, -255px, 345deg);
 }
 
 
