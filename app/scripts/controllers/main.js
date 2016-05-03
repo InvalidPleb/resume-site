@@ -88,12 +88,6 @@ angular.module('resumeApp')
   			txt: "D3"
   		};
 
-  		
-
-
-
-
-
 	  	var i, j, l;
 
 	  	function add(a, b) {
@@ -124,8 +118,6 @@ angular.module('resumeApp')
 	  		return container.reduce(add, 0);
 
 	  	}
-
-
 
 	  	function getGithubStuff() {
 	  		return $http.get(githubGet + '/users/InvalidPleb/repos')
@@ -168,15 +160,12 @@ angular.module('resumeApp')
 	  		
 	  	}
 
-
 	  	function pushCalledRepo (res) {
 	  		for (i = 0; i < res.length; i++) {
 	  			repoContainer.push(res[i].full_name);
 	  		}
 
 	  	}
-
-	  	
 
 	  	var svgContainer = d3.select(".animation-container").append("svg")
 				.attr("width", 700)
@@ -193,7 +182,6 @@ angular.module('resumeApp')
 			    .endAngle(eAng);
 
 		}
-
 
 		function outerRing (sAng, eAng, color, data, midData, i) {
 
@@ -213,8 +201,6 @@ angular.module('resumeApp')
 			var color3 = color[2] + (data[i] * 12);
 			var alpha = (data[i] * 0.1) + 0.05;
 			var dayRing;
-
-			
 
 			if (i < 51) {
 
@@ -265,8 +251,6 @@ angular.module('resumeApp')
 				sAng = sAng + 0.63;
 				eAng = eAng + 0.63;
 				i++;
-
-
 
 				return outerRing(sAng, eAng, colorArr, data, midData, i);
 			}
