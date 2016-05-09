@@ -13,79 +13,183 @@ angular.module('resumeApp')
   		$scope.angular = {
   			id: "angular",
   			changeVar: "angOp",
-  			txt: "Angular"
+  			txt: "Angular",
+  			skill1: "Data Binding",
+  			skill2: "Templating",
+  			skill3: "Templating",
+  			skill4: "Templating",
+  			skill1Hide: "false",
+  			skill2Hide: "false",
+  			skill3Hide: "true",
+  			skill4Hide: "true",
   		};
 
   		$scope.jQuery = {
   			id: "jquery",
   			changeVar: "jquOp",
-  			txt: "JQuery"
+  			txt: "JQuery",
+  			skill1: "Data Binding",
+  			skill2: "Templating",
+  			skill3: "Templating",
+  			skill4: "Templating",
+  			skill1Hide: "false",
+  			skill2Hide: "false",
+  			skill3Hide: "true",
+  			skill4Hide: "true",
   		};
 
   		$scope.bootstrap = {
   			id: "bootstrap",
   			changeVar: "bootOp",
-  			txt: "Bootstrap"
+  			txt: "Bootstrap",
+  			skill1: "Data Binding",
+  			skill2: "Templating",
+  			skill3: "Templating",
+  			skill4: "Templating",
+  			skill1Hide: "false",
+  			skill2Hide: "false",
+  			skill3Hide: "true",
+  			skill4Hide: "true",
   		};
 
   		$scope.git = {
   			id: "git",
   			changeVar: "gitOp",
-  			txt: "Git"
+  			txt: "Git",
+  			skill1: "Data Binding",
+  			skill2: "Templating",
+  			skill3: "Templating",
+  			skill4: "Templating",
+  			skill1Hide: "false",
+  			skill2Hide: "false",
+  			skill3Hide: "true",
+  			skill4Hide: "true",
   		};
 
   		$scope.yeoman = {
   			id: "yeoman",
   			changeVar: "yeoOp",
-  			txt: "Yeoman"
+  			txt: "Yeoman",
+  			skill1: "Data Binding",
+  			skill2: "Templating",
+  			skill3: "Templating",
+  			skill4: "Templating",
+  			skill1Hide: "false",
+  			skill2Hide: "false",
+  			skill3Hide: "true",
+  			skill4Hide: "true",
   		};
 
   		$scope.grunt = {
   			id: "grunt",
   			changeVar: "gruntOp",
-  			txt: "Grunt"
+  			txt: "Grunt",
+  			skill1: "Data Binding",
+  			skill2: "Templating",
+  			skill3: "Templating",
+  			skill4: "Templating",
+  			skill1Hide: "false",
+  			skill2Hide: "false",
+  			skill3Hide: "true",
+  			skill4Hide: "true",
   		};
 
   		$scope.bower = {
   			id: "bower",
   			changeVar: "bowOp",
-  			txt: "Bower"
+  			txt: "Bower",
+  			skill1: "Data Binding",
+  			skill2: "Templating",
+  			skill3: "Templating",
+  			skill4: "Templating",
+  			skill1Hide: "false",
+  			skill2Hide: "false",
+  			skill3Hide: "true",
+  			skill4Hide: "true",
   		};
 
   		$scope.sass = {
   			id: "sass",
   			changeVar: "sassOp",
-  			txt: "Sass"
+  			txt: "Sass",
+  			skill1: "Data Binding",
+  			skill2: "Templating",
+  			skill3: "Templating",
+  			skill4: "Templating",
+  			skill1Hide: "false",
+  			skill2Hide: "false",
+  			skill3Hide: "true",
+  			skill4Hide: "true",
   		};
 
   		$scope.cscript = {
   			id: "cscript",
   			changeVar: "cscOp",
-  			txt: "CoffeeScript"
+  			txt: "CoffeeScript",
+  			skill1: "Data Binding",
+  			skill2: "Templating",
+  			skill3: "Templating",
+  			skill4: "Templating",
+  			skill1Hide: "false",
+  			skill2Hide: "false",
+  			skill3Hide: "true",
+  			skill4Hide: "true",
   		};
 
   		$scope.photoshop = {
   			id: "photoshop",
   			changeVar: "photoOp",
-  			txt: "Photoshop"
+  			txt: "Photoshop",
+  			skill1: "Data Binding",
+  			skill2: "Templating",
+  			skill3: "Templating",
+  			skill4: "Templating",
+  			skill1Hide: "false",
+  			skill2Hide: "false",
+  			skill3Hide: "true",
+  			skill4Hide: "true",
   		};
 
   		$scope.gimp = {
   			id: "gimp",
   			changeVar: "gimpOp",
-  			txt: "Gimp"
+  			txt: "Gimp",
+  			skill1: "Data Binding",
+  			skill2: "Templating",
+  			skill3: "Templating",
+  			skill4: "Templating",
+  			skill1Hide: "false",
+  			skill2Hide: "false",
+  			skill3Hide: "true",
+  			skill4Hide: "true",
   		};
 
   		$scope.balsamiq = {
   			id: "balsamiq",
   			changeVar: "balOp",
-  			txt: "Balsamiq"
+  			txt: "Balsamiq",
+  			skill1: "Data Binding",
+  			skill2: "Templating",
+  			skill3: "Templating",
+  			skill4: "Templating",
+  			skill1Hide: "false",
+  			skill2Hide: "false",
+  			skill3Hide: "true",
+  			skill4Hide: "true",
   		};
 
   		$scope.d3 = {
   			id: "d3",
   			changeVar: "d3Op",
-  			txt: "D3"
+  			txt: "D3",
+  			skill1: "Data Binding",
+  			skill2: "Templating",
+  			skill3: "Templating",
+  			skill4: "Templating",
+  			skill1Hide: "false",
+  			skill2Hide: "false",
+  			skill3Hide: "true",
+  			skill4Hide: "true",
   		};
 
 	  	var i, j, l;
@@ -346,6 +450,8 @@ angular.module('resumeApp')
 			return ringCont;
 		}
 
+		/*
+
 		var calls = getGithubStuff();
 	  	
 	  	$q.all([calls]).then(function(){
@@ -489,6 +595,8 @@ angular.module('resumeApp')
 	  		
 	  		
 	  	});
+
+*/
 		
 
 });
