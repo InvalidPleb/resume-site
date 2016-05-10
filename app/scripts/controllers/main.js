@@ -30,8 +30,8 @@ angular.module('resumeApp')
   			txt: "JQuery",
   			skill1: "DOM Manipulation",
   			skill2: "AJAX",
-  			skill3: "Templating",
-  			skill4: "Templating",
+  			skill3: "",
+  			skill4: "",
   			skill1Hide: "false",
   			skill2Hide: "false",
   			skill3Hide: "true",
@@ -43,9 +43,9 @@ angular.module('resumeApp')
   			changeVar: "bootOp",
   			txt: "Bootstrap",
   			skill1: "Responsive Design",
-  			skill2: "Templating",
-  			skill3: "Templating",
-  			skill4: "Templating",
+  			skill2: "",
+  			skill3: "",
+  			skill4: "",
   			skill1Hide: "false",
   			skill2Hide: "true",
   			skill3Hide: "true",
@@ -58,8 +58,8 @@ angular.module('resumeApp')
   			txt: "Git",
   			skill1: "Version Control",
   			skill2: "Github",
-  			skill3: "Templating",
-  			skill4: "Templating",
+  			skill3: "",
+  			skill4: "",
   			skill1Hide: "false",
   			skill2Hide: "false",
   			skill3Hide: "true",
@@ -72,8 +72,8 @@ angular.module('resumeApp')
   			txt: "Yeoman",
   			skill1: "Yeoman Workflow",
   			skill2: "Scaffolding",
-  			skill3: "Templating",
-  			skill4: "Templating",
+  			skill3: "",
+  			skill4: "",
   			skill1Hide: "false",
   			skill2Hide: "false",
   			skill3Hide: "true",
@@ -99,9 +99,9 @@ angular.module('resumeApp')
   			changeVar: "bowOp",
   			txt: "Bower",
   			skill1: "Package Managing",
-  			skill2: "Templating",
-  			skill3: "Templating",
-  			skill4: "Templating",
+  			skill2: "",
+  			skill3: "",
+  			skill4: "",
   			skill1Hide: "false",
   			skill2Hide: "true",
   			skill3Hide: "true",
@@ -115,7 +115,7 @@ angular.module('resumeApp')
   			skill1: "Simple CSS Syntax",
   			skill2: "Variables",
   			skill3: "Inheritance",
-  			skill4: "Templating",
+  			skill4: "",
   			skill1Hide: "false",
   			skill2Hide: "false",
   			skill3Hide: "false",
@@ -127,9 +127,9 @@ angular.module('resumeApp')
   			changeVar: "cscOp",
   			txt: "CoffeeScript",
   			skill1: "Simple JS Syntax",
-  			skill2: "Templating",
-  			skill3: "Templating",
-  			skill4: "Templating",
+  			skill2: "",
+  			skill3: "",
+  			skill4: "",
   			skill1Hide: "false",
   			skill2Hide: "true",
   			skill3Hide: "true",
@@ -141,9 +141,9 @@ angular.module('resumeApp')
   			changeVar: "photoOp",
   			txt: "Photoshop",
   			skill1: "Data Binding",
-  			skill2: "Templating",
-  			skill3: "Templating",
-  			skill4: "Templating",
+  			skill2: "",
+  			skill3: "",
+  			skill4: "",
   			skill1Hide: "false",
   			skill2Hide: "false",
   			skill3Hide: "true",
@@ -156,8 +156,8 @@ angular.module('resumeApp')
   			txt: "Gimp",
   			skill1: "Image Editing",
   			skill2: "Bitmapping",
-  			skill3: "Templating",
-  			skill4: "Templating",
+  			skill3: "",
+  			skill4: "",
   			skill1Hide: "false",
   			skill2Hide: "false",
   			skill3Hide: "true",
@@ -170,8 +170,8 @@ angular.module('resumeApp')
   			txt: "Balsamiq",
   			skill1: "Wireframing",
   			skill2: "Mockups",
-  			skill3: "Templating",
-  			skill4: "Templating",
+  			skill3: "",
+  			skill4: "",
   			skill1Hide: "false",
   			skill2Hide: "false",
   			skill3Hide: "true",
@@ -184,8 +184,8 @@ angular.module('resumeApp')
   			txt: "D3",
   			skill1: "Data Visualization",
   			skill2: "SVG Manipulation",
-  			skill3: "Templating",
-  			skill4: "Templating",
+  			skill3: "",
+  			skill4: "",
   			skill1Hide: "false",
   			skill2Hide: "false",
   			skill3Hide: "true",
@@ -226,19 +226,23 @@ angular.module('resumeApp')
 	  	function getGithubStuff() {
 	  		return $http.get(githubGet + '/users/InvalidPleb/repos')
 		  		.then(function(res){
-
-		  			pushCalledRepo(res.data);	
-		  			return getOwnerCommits(repoContainer[0], -1, repoContainer.length, 0);
+		  			pushCalledRepo(res.data);
+		  			console.log(repoContainer);	
+		  			//return getOwnerCommits(repoContainer[0], 0, repoContainer.length, 0);
+		  			return getCommits(repoContainer[0], 0, repoContainer.length);
 		  		});
 		  		
 			
 	  	}
+
+	  	/*
 
 	  	function getOwnerCommits (repo, repoNum, maxRepos) {
 	  		return $http.get(githubGet + '/repos/' + repo + '/stats/participation')
 	  			.then(function(res){
 
 	  				commitOwnerWeekly[repoNum + 1] = (res.data.owner);
+
 	  				commitOwnerTotal.push(commitOwnerWeekly[repoNum + 1].reduce(add, 0));
 	  				repoNum++;
 
@@ -249,6 +253,8 @@ angular.module('resumeApp')
 	  				}
 	  			});
 	  	}
+
+	  	*/
 	  	
 	  	function getCommits (repo, repoNum, maxRepos) {
 	  		return $http.get(githubGet +'/repos/' + repo + '/stats/commit_activity')
@@ -306,7 +312,7 @@ angular.module('resumeApp')
 			var alpha = (data[i] * 0.1) + 0.05;
 			var dayRing;
 
-			if (i < 51) {
+			if (i < 52) {
 
 				var g = svgContainer.append('svg:g');
 
@@ -324,7 +330,7 @@ angular.module('resumeApp')
 	            			.duration(50)		
 	            			.style("opacity", 0.9);
 	            		
-	            		dayRing = middleRing(0, 50, colorArr, midData[i]);
+	            		dayRing = middleRing(0, 50, colorArr, midData[i - 1]);
 
 	            		for (j = 0; j < dayRing.length; j++) {
 	            			dayRing[j].transition()		
@@ -352,8 +358,8 @@ angular.module('resumeApp')
 					.text("Week:")		
 					.style("opacity", 0);
 
-				sAng = sAng + 0.63;
-				eAng = eAng + 0.63;
+				sAng = sAng + 0.5;
+				eAng = eAng + 0.5;
 				i++;
 
 				return outerRing(sAng, eAng, colorArr, data, midData, i);
@@ -427,6 +433,10 @@ angular.module('resumeApp')
 
 				sAng = sAng + 50;
 				eAng = eAng + 50;
+
+
+
+
 				
 				var color1 = color[0] + (data[i] * 50);
 				var color2 = color[1] + (data[i] * 50);
@@ -450,11 +460,13 @@ angular.module('resumeApp')
 			return ringCont;
 		}
 
-		/*
+		
 
 		var calls = getGithubStuff();
 	  	
 	  	$q.all([calls]).then(function(){
+
+	  		/*
 
 	  		function weekSum (arr) {
 
@@ -491,14 +503,26 @@ angular.module('resumeApp')
 				return outputSum;
 			}
 
-			var weekCommits = weekSum(commitOwnerWeekly);
+			*/
 
+			//var weekCommits = weekSum(commitOwnerWeekly);
+
+
+
+			var commitDailyArr = commitDaily.slice(1, 5);
+			var weekCommits = [];
 	  		var dayCommits = [];
+	  		var repoCommits = [];
+	  		var weekCurrTotal = [];
 	  		var weekCurr;
 
-	  		for (i=0; i < commitDaily.length; i++) {
 
-	  			weekCurr = commitDaily[i];
+	  		console.log(commitDailyArr);
+
+	  		for (i=0; i < commitDailyArr.length; i++) {
+
+	  			weekCurr = commitDailyArr[i];
+	  			weekCurrTotal[i] = [];
 
 	  			for (j=0; j < 52; j++) {
 
@@ -511,9 +535,15 @@ angular.module('resumeApp')
 	  					dayCommits[j].push(weekCurr[j].days);
 	  				}
 
-	  				
+	  				weekCurrTotal[i].push(weekCurr[j].total);
+
 	  			}
+
+	  			repoCommits[i] = (weekCurrTotal[i].reduce(add, 0));
 	  		}
+
+	  		repoCommits.push(1);
+	  		repoCommits.unshift(3);
 
 	  		var dayCurr;
 	  		var daySums = [];
@@ -558,6 +588,7 @@ angular.module('resumeApp')
 	  			}
 
 	  			daySumsCurr = daySums[i];
+	  			weekCommits.push(daySums[i].reduce(add, 0));
 
 
 	  			for (l=0; l < daySumsCurr.length; l++) {
@@ -588,15 +619,18 @@ angular.module('resumeApp')
 
 	  		}
 
+	  		console.log(weekCommits);
+	  		console.log(commitOwnerTotal);
+
 	  		outerRing(-1, 5.5, [0,105, 0], weekCommits, dayArr, 0);
 			middleRing(0, 50, [0,105, 0], [1,1,1,1,1,1,1]);
-			innerRing(commitOwnerTotal, colorObj[0], 0);
+			innerRing(repoCommits, colorObj[0], 0);
 
 	  		
 	  		
 	  	});
 
-*/
+
 		
 
 });
