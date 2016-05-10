@@ -51,11 +51,6 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   z-index: 1;
   -webkit-backface-visibility: hidden;
   background-repeat: no-repeat;
-
-  -webkit-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
-  -moz-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
-  box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
-  @include border(1px solid, $gold-color, bottom left right top);
   
   &:hover {
     opacity: 0;
@@ -163,6 +158,7 @@ height: 100px;
   border-radius: 5px;
   margin-top: 10px;
   padding: 0px;
+  @include border(1px solid, $gold-color, top left right bottom); 
   -webkit-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
   -moz-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
   box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
@@ -196,18 +192,20 @@ height: 100px;
 }
 
 .tool-container {
-  height: 400px;
+  height: 300px;
   top: 20px;
   padding-left: 23px;
 
   //@include border(0.5px solid, rgb(82, 74, 42), top bottom left right);
   border-radius: 10px;
+  white-space: nowrap;
+  overflow: hidden;
 
 }
 
 .skills-list {
   top: 10%;
-  right: 15%;
+  right: 18%;
   position: relative;
   color: $gold-color;
 }
@@ -261,8 +259,7 @@ height: 100px;
 .img-text {
   position: relative;
   bottom: 80px;
-  
-  z-index: 0;
+  z-index: 0; 
   transition: all 0.5s ease-in;
 }
 
@@ -284,12 +281,12 @@ height: 100px;
 
 .dev-tools {
   position: relative;
-  left: 20px;
+  left: 4%;
 }
 
 .preprocessors {
   position: relative;
-  left: 50px;
+  left: 13.5%;
 }
 
 
@@ -320,7 +317,7 @@ height: 100px;
 }
 
 #bower {
-  @include fadeImg('/images/bower-logo.png');
+  @include fadeImg('/images/bower-3.png');
 
 }
 
@@ -346,7 +343,7 @@ height: 100px;
 
 }
 #d3 {
-  @include fadeImg('/images/d3js-2.png');
+  @include fadeImg('/images/d3-3.png');
 
 }
 
