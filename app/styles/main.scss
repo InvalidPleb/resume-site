@@ -153,6 +153,18 @@ height: 100px;
   
 }
 
+.projects-container {
+  @extend .block-container;
+  height: 700px;
+
+}
+
+.projects-title-section {
+  height: 100px;
+  width: 100%;
+  @include border (1px solid, $gold-color, top bottom);
+}
+
 .main-blocks {
   background-color: #333030;
   background-repeat: no-repeat;

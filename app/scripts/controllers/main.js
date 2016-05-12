@@ -192,8 +192,6 @@ angular.module('resumeApp')
   			skill4Hide: "true",
   		};
 
-	  	var i, j, l;
-
 	  	function add(a, b) {
 	      	return a + b;
 	  	}
@@ -208,11 +206,11 @@ angular.module('resumeApp')
 
 	  	function pushCalledCommits(res, container) {
 	  		
-	  		for (i=0; i < res.length; i++) {
+	  		for (var i=0; i < res.length; i++) {
 
 	  			if (res[i].total > 0) {
 
-	  				for (j=0; j < res[i].days.length; j++) {
+	  				for (var j=0; j < res[i].days.length; j++) {
 	  					container.push(res[i].days[j]);
 
 	  				}
@@ -227,7 +225,6 @@ angular.module('resumeApp')
 	  		return $http.get(githubGet + '/users/InvalidPleb/repos')
 		  		.then(function(res){
 		  			pushCalledRepo(res.data);
-		  			console.log(repoContainer);	
 		  			//return getOwnerCommits(repoContainer[0], 0, repoContainer.length, 0);
 		  			return getCommits(repoContainer[0], 0, repoContainer.length);
 		  		});
@@ -271,17 +268,40 @@ angular.module('resumeApp')
 	  	}
 
 	  	function pushCalledRepo (res) {
-	  		for (i = 0; i < res.length; i++) {
+	  		for (var i = 0; i < res.length; i++) {
 	  			repoContainer.push(res[i].full_name);
 	  		}
 
 	  	}
+
+
+	  	// -------------- Graph -------------- //
 
 	  	var svgContainer = d3.select(".animation-container").append("svg")
 				.attr("width", 400)
 				.attr("height", 500)
 				.style("position", "relative")
 				.style("right", "132px");
+
+		var pie = d3.layout.pie()
+			.value(function (d) {
+				return d;
+			});
+
+		var colorObj = {
+			0: [38, 53, 138],
+			1: [188, 149, 41],
+			2: [201, 177, 0],
+			3: [142, 114, 31],
+			4: [160, 140, 67],
+			5: [10, 144, 67],
+			6: [47, 177, 122],
+			7: [149, 199, 111],
+			8: [184, 209, 58],
+			9: [229, 119, 55],
+		};
+
+		var colorArr = [0,105, 0];
 
 		function arc (inRad, outRad, sAng, eAng) {
 
@@ -332,7 +352,7 @@ angular.module('resumeApp')
 	            		
 	            		dayRing = middleRing(0, 50, colorArr, midData[i - 1]);
 
-	            		for (j = 0; j < dayRing.length; j++) {
+	            		for (var j = 0; j < dayRing.length; j++) {
 	            			dayRing[j].transition()		
 	            			.duration(200)		
 	            			.style("opacity", 0.9);
@@ -344,7 +364,7 @@ angular.module('resumeApp')
 					    div.transition()		
 	            			.duration(50)		
 	            			.style("opacity", 0);
-	            		for (j = 0; j < dayRing.length; j++) {
+	            		for (var j = 0; j < dayRing.length; j++) {
 	            			dayRing[j].transition()		
 	            			.duration(200)		
 	            			.style("opacity", 0.1);
@@ -365,28 +385,6 @@ angular.module('resumeApp')
 				return outerRing(sAng, eAng, colorArr, data, midData, i);
 			}
 		}
-
-		var pie = d3.layout.pie()
-			.value(function (d) {
-				return d;
-			});
-		
-
-		var dataArr = [3, 5, 152, 87, 4, 3];
-
-		var colorObj = {
-			0: [38, 53, 138],
-			1: [188, 149, 41],
-			2: [201, 177, 0],
-			3: [142, 114, 31],
-			4: [160, 140, 67],
-			5: [10, 144, 67],
-			6: [47, 177, 122],
-			7: [149, 199, 111],
-			8: [184, 209, 58],
-			9: [229, 119, 55],
-		};
-
 
 		function innerRing (data, color, i){
 
@@ -422,22 +420,17 @@ angular.module('resumeApp')
 
 		}
 
-		var colorArr = [0,105, 0];
-
+		
 		function middleRing(sAng, eAng, color, data) {
 
 			var ring;
 			var ringCont = [];
 
-			for (i = 0; i <= 6; i++) {
+			for (var i = 0; i <= 6; i++) {
 
 				sAng = sAng + 50;
 				eAng = eAng + 50;
 
-
-
-
-				
 				var color1 = color[0] + (data[i] * 50);
 				var color2 = color[1] + (data[i] * 50);
 				var color3 = color[2] + (data[i] * 50);
@@ -460,97 +453,46 @@ angular.module('resumeApp')
 			return ringCont;
 		}
 
-		
+		function getDayCommits(inputArr, outputRepos, outputDays) {
 
-		var calls = getGithubStuff();
-	  	
-	  	$q.all([calls]).then(function(){
-
-	  		/*
-
-	  		function weekSum (arr) {
-
-				var arrCurr;
-				var output = [];
-				
-				for (i=0; i < arr.length; i++) {
-
-					arrCurr = arr[i];
-					
-					for (j=0; j < 52; j++) {
-
-						if (output[j] === undefined) {
-
-							output[j] = [];
-							output[j].push(arrCurr[j]);
-
-						} else {
-
-							output[j].push(arrCurr[j]);
-
-						}
-					}
-				}
-
-				var outputSum = [];
-
-				for (i=0; i < 52; i++) {
-
-					outputSum.push(output[i].reduce(add, 0));
-
-				}
-
-				return outputSum;
-			}
-
-			*/
-
-			//var weekCommits = weekSum(commitOwnerWeekly);
-
-
-
-			var commitDailyArr = commitDaily.slice(1, 5);
-			var weekCommits = [];
-	  		var dayCommits = [];
-	  		var repoCommits = [];
+  			var inputArrSlice = inputArr.slice(1, 5);
 	  		var weekCurrTotal = [];
 	  		var weekCurr;
 
+	  		for (var i=0; i < inputArrSlice.length; i++) {
 
-	  		console.log(commitDailyArr);
-
-	  		for (i=0; i < commitDailyArr.length; i++) {
-
-	  			weekCurr = commitDailyArr[i];
+	  			weekCurr = inputArrSlice[i];
 	  			weekCurrTotal[i] = [];
 
-	  			for (j=0; j < 52; j++) {
+	  			for (var j=0; j < 52; j++) {
 
-	  				if (dayCommits[j] === undefined) {
+	  				if (outputDays[j] === undefined) {
 
-	  					dayCommits[j] = [];
-	  					dayCommits[j].push(weekCurr[j].days);
+	  					outputDays[j] = [];
+	  					outputDays[j].push(weekCurr[j].days);
 
 	  				} else {
-	  					dayCommits[j].push(weekCurr[j].days);
+	  					outputDays[j].push(weekCurr[j].days);
 	  				}
 
 	  				weekCurrTotal[i].push(weekCurr[j].total);
-
 	  			}
 
-	  			repoCommits[i] = (weekCurrTotal[i].reduce(add, 0));
+	  			outputRepos[i] = (weekCurrTotal[i].reduce(add, 0));
 	  		}
 
-	  		repoCommits.push(1);
-	  		repoCommits.unshift(3);
+	  		return [outputRepos, outputDays];
+  		}
 
-	  		var dayCurr;
+  		function sumDayCommits(inputArr) {
+
+  			var dayCurr;
+	  		var weekCurr;
 	  		var daySums = [];
 
-	  		for (i=0; i < dayCommits.length; i++) {
+	  		for (var i=0; i < inputArr.length; i++) {
 
-	  			weekCurr = dayCommits[i];
+	  			weekCurr = inputArr[i];
 
 	  			if (daySums[i] === undefined) {
 
@@ -558,11 +500,11 @@ angular.module('resumeApp')
 
 	  			}
 
-	  			for (j=0; j < weekCurr.length; j++) {
+	  			for (var j=0; j < weekCurr.length; j++) {
 
 	  				dayCurr = weekCurr[j];
 
-	  				for (l=0; l < dayCurr.length; l++) {
+	  				for (var l=0; l < dayCurr.length; l++) {
 
 	  					daySums[i].push(dayCurr[l]);
 
@@ -572,14 +514,19 @@ angular.module('resumeApp')
 
 	  		}
 
-	  		var dayArr = [];
+	  		return daySums;
+  		}
+
+  		function parseCommits(inputArr) {
+
+  			var dayArr = [];
+  			var weekCommits = [];
 	  		var daySumsCurr = [];
 	  		var dayArrCurr = [];
-	  		var dayArrSave = [];
 
-	  		j = 0;
+	  		var j = 0;
 
-	  		for (i=0; (i < daySums.length); i++) {
+	  		for (var i=0; (i < inputArr.length); i++) {
 
 	  			if (dayArr[i] === undefined) {
 
@@ -587,11 +534,10 @@ angular.module('resumeApp')
 
 	  			}
 
-	  			daySumsCurr = daySums[i];
-	  			weekCommits.push(daySums[i].reduce(add, 0));
+	  			daySumsCurr = inputArr[i];
+	  			weekCommits.push(inputArr[i].reduce(add, 0));
 
-
-	  			for (l=0; l < daySumsCurr.length; l++) {
+	  			for (var l=0; l < daySumsCurr.length; l++) {
 
 	  				if ((l + 1) % 7 === 0) {
 
@@ -616,18 +562,36 @@ angular.module('resumeApp')
 
 	  			}
 
-
 	  		}
 
-	  		console.log(weekCommits);
-	  		console.log(commitOwnerTotal);
+	  		return [weekCommits, dayArr];
+  		}
 
-	  		outerRing(-1, 5.5, [0,105, 0], weekCommits, dayArr, 0);
+
+		
+		var calls = getGithubStuff();
+	  	
+	  	$q.all([calls]).then(function(){
+
+	  		
+	  		var repoCommits = [];
+	  		var dayCommits = [];
+
+	  		var gotDayCommits = getDayCommits(commitDaily, repoCommits, dayCommits);
+
+	  		repoCommits = gotDayCommits[0];
+	  		dayCommits = gotDayCommits[1];
+
+	  		repoCommits.push(1);
+	  		repoCommits.unshift(3);
+
+	  		var daySums = sumDayCommits(dayCommits);
+	  		var gotParsedCommits = parseCommits(daySums);
+
+	  		outerRing(-1, 5.5, [0,105, 0], gotParsedCommits[0], gotParsedCommits[1], 0);
 			middleRing(0, 50, [0,105, 0], [1,1,1,1,1,1,1]);
 			innerRing(repoCommits, colorObj[0], 0);
 
-	  		
-	  		
 	  	});
 
 
