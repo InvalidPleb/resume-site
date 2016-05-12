@@ -278,10 +278,10 @@ angular.module('resumeApp')
 	  	}
 
 	  	var svgContainer = d3.select(".animation-container").append("svg")
-				.attr("width", 700)
+				.attr("width", 400)
 				.attr("height", 500)
 				.style("position", "relative")
-				.style("left", "120px");
+				.style("right", "132px");
 
 		function arc (inRad, outRad, sAng, eAng) {
 
@@ -318,7 +318,7 @@ angular.module('resumeApp')
 
 				g.append("path")
 				    .attr("d", arc(170, 200, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
-				    .attr("transform", "translate(355,250)")
+				    .attr("transform", "translate(200,250)")
 				    .style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")")
 				    .style("position", "relative")
 				    .style("z-index", "2")
@@ -400,7 +400,7 @@ angular.module('resumeApp')
 
 				svgContainer.append("path")
 				    .attr("d", arc(80, 140, sAng, eAng))
-				    .attr("transform", "translate(355,250)")
+				    .attr("transform", "translate(200,250)")
 				    .style("fill", "rgba(" + color + "," + alpha + ")")
 				    .style("position", "relative")
 				    .style("z-index", "2")
@@ -445,7 +445,7 @@ angular.module('resumeApp')
 
 				ring = svgContainer.append("path")
 				    .attr("d", arc(145, 165, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
-				    .attr("transform", "translate(355,250)")
+				    .attr("transform", "translate(200,250)")
 				    .style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")")
 				    .style("position", "relative")
 					.style("z-index", "2")

@@ -146,6 +146,9 @@ height: 100px;
   height: 1800px;
   @include border(1px solid, $gold-color, left right bottom);  
   position: relative;
+  -webkit-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
+  -moz-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
+  box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
   z-index: -2;
   
 }
@@ -291,6 +294,14 @@ height: 100px;
   left: 13.5%;
 }
 
+.month-labels {
+  width: 500px;
+  height: 500px;
+  position: relative;
+  left: 315px;
+  transform: rotate(225deg);
+}
+
 
 
 #angular {
@@ -350,49 +361,49 @@ height: 100px;
 }
 
 .january {
-  @include monthLabel(0px, 0px, 0px, 60px, 550px, 25px, 12deg);
+  @include monthLabel(0px, 0px, 0px, 60px, 228px, 74px, 12deg);
 }
 .february {
-  @include monthLabel(0px, 0px, 0px, 60px, 640px, 50px, 42deg);
+  @include monthLabel(0px, 0px, 0px, 60px, 273px, 193px, 41.5deg);
 }
 
 .march {
-  @include monthLabel(0px, 0px, 0px, 60px, 700px, 115px, 70deg);
+  @include monthLabel(0px, 0px, 0px, 60px, 245px, 315px, 70.5deg);
 }
 
 .april {
-  @include monthLabel(0px, 0px, 0px, 60px, 710px, 200px, 100deg);
+  @include monthLabel(0px, 0px, 0px, 60px, 130px, 410px, 105deg);
 }
 
 .may {
-  @include monthLabel(0px, 0px, 0px, 60px, 670px, 268px, 125deg);
+  @include monthLabel(0px, 0px, 0px, 60px, 0px, 435px, 130deg);
 }
 
 .june {
-  @include monthLabel(0px, 0px, 0px, 60px, 585px, 310px, 155deg);
+  @include monthLabel(0px, 0px, 0px, 60px, -165px, 380px, 162deg);
 }
 .july {
-  @include monthLabel(0px, 0px, 0px, 60px, 475px, 302px, 182.5deg);
+  @include monthLabel(0px, 0px, 0px, 60px, -280px, 240px, 195deg);
 }
 
 .august {
-  @include monthLabel(0px, 0px, 0px, 60px, 375px, 250px, 212deg);
+  @include monthLabel(0px, 0px, 0px, 60px, -325px, 80px, 223deg);
 }
 
 .september {
-  @include monthLabel(0px, 0px, 0px, 60px, 275px, 90px, 255deg);
+  @include monthLabel(0px, 0px, 0px, 60px, -290px, -100px, 255deg);
 }
 
 .october {
-  @include monthLabel(0px, 0px, 0px, 60px, 275px, -45px, 285deg);
+  @include monthLabel(0px, 0px, 0px, 60px, -185px, -240px, 285deg);
 }
 
 .november {
-  @include monthLabel(0px, 0px, 0px, 60px, 330px, -170px, 312deg);
+  @include monthLabel(0px, 0px, 0px, 60px, -50px, -315px, 312deg);
 }
 
 .december {
-  @include monthLabel(0px, 0px, 0px, 60px, 425px, -255px, 345deg);
+  @include monthLabel(0px, 0px, 0px, 60px, 100px, -317px, 340deg);
 }
 
 
