@@ -10,6 +10,35 @@
 angular.module('resumeApp')
   	.controller('MainCtrl', function ($http, $q, $scope) {
 
+
+  		$scope.darkreader = {
+  			id: "darkreader",
+  			changeVar: "darkOp",
+  			txt: "Dark Reader",
+  			skill1: "Data Binding",
+  			skill2: "Templating",
+  			skill3: "Routing",
+  			skill4: "MVC/MVW",
+  			skill1Hide: "false",
+  			skill2Hide: "false",
+  			skill3Hide: "false",
+  			skill4Hide: "false",
+  		};
+
+  		$scope.tmtheme = {
+  			id: "tmtheme",
+  			changeVar: "themeOp",
+  			txt: "TmTheme",
+  			skill1: "Data Binding",
+  			skill2: "Templating",
+  			skill3: "Routing",
+  			skill4: "MVC/MVW",
+  			skill1Hide: "false",
+  			skill2Hide: "false",
+  			skill3Hide: "false",
+  			skill4Hide: "false",
+  		};
+
   		$scope.angular = {
   			id: "angular",
   			changeVar: "angOp",
@@ -559,11 +588,9 @@ angular.module('resumeApp')
 	  					dayArrCurr[j] = (dayArrCurr[j] + daySumsCurr[l]);
 
 	  				}
-
 	  			}
-
 	  		}
-
+	  		
 	  		return [weekCommits, dayArr];
   		}
 

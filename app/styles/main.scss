@@ -155,7 +155,7 @@ height: 100px;
 
 .projects-container {
   @extend .block-container;
-  height: 700px;
+  height: 1200px;
 
 }
 
@@ -314,7 +314,14 @@ height: 100px;
   transform: rotate(225deg);
 }
 
+#darkreader {
+  @include fadeImg('/images/darkreader-2.png');
+  margin-left: 2px;
+}
 
+#tmtheme {
+  @include fadeImg('/images/tmtheme-1.png');
+}
 
 #angular {
   @include fadeImg('/images/angular.png');
@@ -326,6 +333,8 @@ height: 100px;
 
 #bootstrap {
   @include fadeImg('/images/bootstrap-3.png');
+  margin-left: -1px;
+  margin-top: -1px;
 }
 
 #git {
@@ -347,7 +356,10 @@ height: 100px;
 }
 
 #sass {
-  @include fadeImg('/images/sass-4.png');
+  @include fadeImg('/images/sass-5.png');
+  margin-left: 2px;
+  margin-top: 2px;
+
 
 }
 #cscript {
@@ -368,7 +380,9 @@ height: 100px;
 
 }
 #d3 {
-  @include fadeImg('/images/d3-3.png');
+  @include fadeImg('/images/d3-4.png');
+  margin-left: 3px;
+  margin-top: 5px;
 
 }
 
