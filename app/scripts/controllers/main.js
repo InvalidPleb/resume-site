@@ -19,10 +19,15 @@ angular.module('resumeApp')
   			skill2: "Templating",
   			skill3: "Routing",
   			skill4: "MVC/MVW",
-  			skill1Hide: "false",
-  			skill2Hide: "false",
-  			skill3Hide: "false",
-  			skill4Hide: "false",
+  			skill1Hide: "true",
+  			skill2Hide: "true",
+  			skill3Hide: "true",
+  			skill4Hide: "true",
+  			nameHide: "false",
+  			nameTxt: "Dark Reader",
+  			nameClass: "block-name-def",
+  			paraHide: "false",
+  			paraTxt: "A chrome extension that inverts brightness of web pages and aims to reduce eyestrain while browsing the web.",
   		};
 
   		$scope.tmtheme = {
@@ -33,10 +38,15 @@ angular.module('resumeApp')
   			skill2: "Templating",
   			skill3: "Routing",
   			skill4: "MVC/MVW",
-  			skill1Hide: "false",
-  			skill2Hide: "false",
-  			skill3Hide: "false",
-  			skill4Hide: "false",
+  			skill1Hide: "true",
+  			skill2Hide: "true",
+  			skill3Hide: "true",
+  			skill4Hide: "true",
+  			nameHide: "false",
+  			nameTxt: "TmTheme Editor",
+  			nameClass: "block-name-tm",
+  			paraHide: "false",
+  			paraTxt: "A color scheme editor for SublimeText, Textmate and other text editors. It allows you to edit tmtheme files easier and faster.",
   		};
 
   		$scope.angular = {
@@ -51,6 +61,9 @@ angular.module('resumeApp')
   			skill2Hide: "false",
   			skill3Hide: "false",
   			skill4Hide: "false",
+  			nameHide: "false",
+  			nameTxt: "Angular",
+  			nameClass: "block-name-def"
   		};
 
   		$scope.jQuery = {
@@ -65,6 +78,9 @@ angular.module('resumeApp')
   			skill2Hide: "false",
   			skill3Hide: "true",
   			skill4Hide: "true",
+  			nameHide: "false",
+  			nameTxt: "JQuery",
+  			nameClass: "block-name-def"
   		};
 
   		$scope.bootstrap = {
@@ -79,6 +95,9 @@ angular.module('resumeApp')
   			skill2Hide: "true",
   			skill3Hide: "true",
   			skill4Hide: "true",
+  			nameHide: "false",
+  			nameTxt: "Bootstrap",
+  			nameClass: "block-name-def"
   		};
 
   		$scope.git = {
@@ -93,6 +112,9 @@ angular.module('resumeApp')
   			skill2Hide: "false",
   			skill3Hide: "true",
   			skill4Hide: "true",
+  			nameHide: "false",
+  			nameTxt: "Git",
+  			nameClass: "block-name-def"
   		};
 
   		$scope.yeoman = {
@@ -107,6 +129,9 @@ angular.module('resumeApp')
   			skill2Hide: "false",
   			skill3Hide: "true",
   			skill4Hide: "true",
+  			nameHide: "false",
+  			nameTxt: "Yeoman",
+  			nameClass: "block-name-def"
   		};
 
   		$scope.grunt = {
@@ -121,6 +146,9 @@ angular.module('resumeApp')
   			skill2Hide: "false",
   			skill3Hide: "false",
   			skill4Hide: "false",
+  			nameHide: "false",
+  			nameTxt: "Grunt",
+  			nameClass: "block-name-def"
   		};
 
   		$scope.bower = {
@@ -135,6 +163,9 @@ angular.module('resumeApp')
   			skill2Hide: "true",
   			skill3Hide: "true",
   			skill4Hide: "true",
+  			nameHide: "false",
+  			nameTxt: "Bower",
+  			nameClass: "block-name-def"
   		};
 
   		$scope.sass = {
@@ -149,6 +180,9 @@ angular.module('resumeApp')
   			skill2Hide: "false",
   			skill3Hide: "false",
   			skill4Hide: "true",
+  			nameHide: "false",
+  			nameTxt: "Sass",
+  			nameClass: "block-name-def"
   		};
 
   		$scope.cscript = {
@@ -163,20 +197,9 @@ angular.module('resumeApp')
   			skill2Hide: "true",
   			skill3Hide: "true",
   			skill4Hide: "true",
-  		};
-
-  		$scope.photoshop = {
-  			id: "photoshop",
-  			changeVar: "photoOp",
-  			txt: "Photoshop",
-  			skill1: "Data Binding",
-  			skill2: "",
-  			skill3: "",
-  			skill4: "",
-  			skill1Hide: "false",
-  			skill2Hide: "false",
-  			skill3Hide: "true",
-  			skill4Hide: "true",
+  			nameHide: "false",
+  			nameTxt: "CoffeeScript",
+  			nameClass: "block-name-def"
   		};
 
   		$scope.gimp = {
@@ -191,6 +214,9 @@ angular.module('resumeApp')
   			skill2Hide: "false",
   			skill3Hide: "true",
   			skill4Hide: "true",
+  			nameHide: "false",
+  			nameTxt: "Gimp",
+  			nameClass: "block-name-def"
   		};
 
   		$scope.balsamiq = {
@@ -205,6 +231,9 @@ angular.module('resumeApp')
   			skill2Hide: "false",
   			skill3Hide: "true",
   			skill4Hide: "true",
+  			nameHide: "false",
+  			nameTxt: "Balsamiq",
+  			nameClass: "block-name-def"
   		};
 
   		$scope.d3 = {
@@ -219,6 +248,9 @@ angular.module('resumeApp')
   			skill2Hide: "false",
   			skill3Hide: "true",
   			skill4Hide: "true",
+  			nameHide: "false",
+  			nameTxt: "D3",
+  			nameClass: "block-name-def"
   		};
 
 	  	function add(a, b) {

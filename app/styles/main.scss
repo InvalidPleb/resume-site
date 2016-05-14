@@ -71,6 +71,14 @@ $grey-background: #262626;
 $gold-color: rgb(158, 142, 76);
 $rock-background: '/images/rock-background.png';
 
+.gold-text {
+  font-family: "Open Sans";
+  font-weight: 500;
+  font-size: 22px;
+  color: $gold-color;
+
+}
+
 .main-container {
   @extend .container;
   position: relative;
@@ -155,7 +163,7 @@ height: 100px;
 
 .projects-container {
   @extend .block-container;
-  height: 1200px;
+  height: 1000px;
 
 }
 
@@ -195,6 +203,38 @@ height: 100px;
   text-align: center;
 }
 
+.projects-block-title {
+  @extend .block-titles;
+  width: 420px;
+  left: 29%;
+}
+
+
+.block-name-def {
+  @extend .gold-text;
+  top: 20px;
+  right: 7px;
+  position: relative;
+  text-align: center;
+
+}
+
+.block-name-tm {
+  @extend .block-name-def;
+  right: 13px;
+}
+
+.block-para {
+  @extend .gold-text;
+  width: 300px;
+  top: 20px;
+  right: 70px;
+  font-size: 17px;
+  position: relative;
+  white-space: normal;
+
+}
+
 .skills-container {
   width: 90%;
   height: 350px;
@@ -203,21 +243,13 @@ height: 100px;
   background-image: url($rock-background);
   @include border(0.5px solid, rgb(82, 74, 42), top bottom left right);
   border-radius: 10px;
-  
-
-
 }
 
 .tool-container {
   height: 300px;
-  top: 20px;
   padding-left: 23px;
-
-  //@include border(0.5px solid, rgb(82, 74, 42), top bottom left right);
   border-radius: 10px;
   white-space: nowrap;
-  overflow: hidden;
-
 }
 
 .skills-list {
@@ -265,13 +297,7 @@ height: 100px;
   z-index: -5;
 }
 
-.gold-text {
-  font-family: "Open Sans";
-  font-weight: 500;
-  font-size: 24px;
-  color: $gold-color;
 
-}
 
 .img-text {
   position: relative;
@@ -367,10 +393,6 @@ height: 100px;
 
 }
 
-#photoshop {
-  @include fadeImg('/images/photoshop.png');
-
-}
 #gimp {
   @include fadeImg('/images/gimp-4.png');
 
@@ -382,7 +404,7 @@ height: 100px;
 #d3 {
   @include fadeImg('/images/d3-4.png');
   margin-left: 3px;
-  margin-top: 5px;
+  margin-top: 6px;
 
 }
 

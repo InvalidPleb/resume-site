@@ -1,7 +1,9 @@
 <div class="tool-container col-lg-2 col-md-2 col-sm-2 col-xs-2">
+	<p class="{{blockInfo.nameClass}}" ng-hide="{{blockInfo.nameHide}}">{{blockInfo.nameTxt}}</p>
 	<div class="main-blocks">
 	    <div id="{{blockInfo.id}}" ng-init="blockInfo.changeVar = false" ng-mouseover="blockInfo.changeVar = true" ng-mouseleave="blockInfo.changeVar = false"></div>
 	    <span class="img-text gold-text" ng-class="{noOpacity: !blockInfo.changeVar, fullOpacity: blockInfo.changeVar}">{{blockInfo.txt}}</span>
+
 	</div>
 	<ul class="skills-list">
 		<li ng-hide="{{blockInfo.skill1Hide}}">{{blockInfo.skill1}}</li>
@@ -9,4 +11,5 @@
 		<li ng-hide="{{blockInfo.skill3Hide}}">{{blockInfo.skill3}}</li>
 		<li ng-hide="{{blockInfo.skill4Hide}}">{{blockInfo.skill4}}</li>
 	</ul>
+	<div class="block-para" ng-hide="{{blockInfo.paraHide}}">{{blockInfo.paraTxt}}</div>
 </div>
