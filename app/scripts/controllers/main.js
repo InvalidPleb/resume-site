@@ -514,11 +514,35 @@ angular.module('resumeApp')
 			return ringCont;
 		}
 
-		function getDayCommits(inputArr, outputRepos, outputDays) {
+		function getDayCommits2(inputArr) {
+
+			var inputArrSlice = inputArr.slice(1, 5);
+			var weekCurrTotal = [];
+
+			inputArrSlice.forEach(function(arr){
+				console.log(arr);
+
+				arr.forEach(function(days){
+					
+
+
+
+
+				});
+
+			});
+
+
+		}
+		
+
+		function getDayCommits(inputArr) {
 
   			var inputArrSlice = inputArr.slice(1, 5);
 	  		var weekCurrTotal = [];
 	  		var weekCurr;
+	  		var outputDays = [];
+	  		var outputRepos = [];
 
 	  		for (var i=0; i < inputArrSlice.length; i++) {
 
@@ -626,20 +650,14 @@ angular.module('resumeApp')
 	  		return [weekCommits, dayArr];
   		}
 
-
-		
 		var calls = getGithubStuff();
 	  	
 	  	$q.all([calls]).then(function(){
 
-	  		
-	  		var repoCommits = [];
-	  		var dayCommits = [];
+	  		var gotDayCommits = getDayCommits(commitDaily);
 
-	  		var gotDayCommits = getDayCommits(commitDaily, repoCommits, dayCommits);
-
-	  		repoCommits = gotDayCommits[0];
-	  		dayCommits = gotDayCommits[1];
+	  		var repoCommits = gotDayCommits[0];
+	  		var dayCommits = gotDayCommits[1];
 
 	  		repoCommits.push(1);
 	  		repoCommits.unshift(3);
@@ -652,8 +670,5 @@ angular.module('resumeApp')
 			innerRing(repoCommits, colorObj[0], 0);
 
 	  	});
-
-
-		
 
 });
