@@ -286,33 +286,9 @@ angular.module('resumeApp')
 	  		return $http.get(githubGet + '/users/InvalidPleb/repos')
 		  		.then(function(res){
 		  			pushCalledRepo(res.data);
-		  			//return getOwnerCommits(repoContainer[0], 0, repoContainer.length, 0);
 		  			return getCommits(repoContainer[0], 0, repoContainer.length);
 		  		});
-		  		
-			
 	  	}
-
-	  	/*
-
-	  	function getOwnerCommits (repo, repoNum, maxRepos) {
-	  		return $http.get(githubGet + '/repos/' + repo + '/stats/participation')
-	  			.then(function(res){
-
-	  				commitOwnerWeekly[repoNum + 1] = (res.data.owner);
-
-	  				commitOwnerTotal.push(commitOwnerWeekly[repoNum + 1].reduce(add, 0));
-	  				repoNum++;
-
-	  				if (repoNum < maxRepos) {
-	  					return getOwnerCommits(repoContainer[repoNum], repoNum, maxRepos);
-	  				} else {
-	  					return getCommits(repoContainer[0], 0, repoContainer.length);
-	  				}
-	  			});
-	  	}
-
-	  	*/
 	  	
 	  	function getCommits (repo, repoNum, maxRepos) {
 	  		return $http.get(githubGet +'/repos/' + repo + '/stats/commit_activity')
@@ -323,16 +299,13 @@ angular.module('resumeApp')
 		  			if (repoNum < maxRepos) {
 		  				return getCommits(repoContainer[repoNum], repoNum, maxRepos);
 		  			}
-		  			
 		  		});
-	  		
 	  	}
 
 	  	function pushCalledRepo (res) {
 	  		for (var i = 0; i < res.length; i++) {
 	  			repoContainer.push(res[i].full_name);
 	  		}
-
 	  	}
 
 
@@ -377,12 +350,10 @@ angular.module('resumeApp')
 		function outerRing (sAng, eAng, color, data, midData, i) {
 
 			if (sAng === -1 && eAng === 5.5) {
-
 				sAng++;
 				eAng++;
 
 			} else {
-
 				sAng = sAng + 6.42;
 				eAng = eAng + 6.42;
 			}
@@ -473,12 +444,7 @@ angular.module('resumeApp')
 				i++;
 
 				return innerRing(data, colorObj[i], i);
-
 			}
-
-			//sAng = sAng + padding1;
-			//eAng = eAng + padding2;
-
 		}
 
 		
@@ -510,31 +476,8 @@ angular.module('resumeApp')
 
 				ringCont.push(ring);
 			}
-
 			return ringCont;
 		}
-
-		function getDayCommits2(inputArr) {
-
-			var inputArrSlice = inputArr.slice(1, 5);
-			var weekCurrTotal = [];
-
-			inputArrSlice.forEach(function(arr){
-				console.log(arr);
-
-				arr.forEach(function(days){
-					
-
-
-
-
-				});
-
-			});
-
-
-		}
-		
 
 		function getDayCommits(inputArr) {
 
@@ -559,13 +502,10 @@ angular.module('resumeApp')
 	  				} else {
 	  					outputDays[j].push(weekCurr[j].days);
 	  				}
-
 	  				weekCurrTotal[i].push(weekCurr[j].total);
 	  			}
-
 	  			outputRepos[i] = (weekCurrTotal[i].reduce(add, 0));
 	  		}
-
 	  		return [outputRepos, outputDays];
   		}
 
@@ -582,7 +522,6 @@ angular.module('resumeApp')
 	  			if (daySums[i] === undefined) {
 
 	  				daySums[i] = [];
-
 	  			}
 
 	  			for (var j=0; j < weekCurr.length; j++) {
@@ -592,13 +531,9 @@ angular.module('resumeApp')
 	  				for (var l=0; l < dayCurr.length; l++) {
 
 	  					daySums[i].push(dayCurr[l]);
-
 	  				}
-	  				
 	  			}
-
 	  		}
-
 	  		return daySums;
   		}
 
