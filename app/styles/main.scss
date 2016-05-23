@@ -71,6 +71,19 @@ $grey-background: #262626;
 $gold-color: rgb(158, 142, 76);
 $rock-background: '/images/rock-background.png';
 
+
+.tooltip {
+  height: 50px;
+  width: 150px;
+  border-radius: 5px;
+  @include border(1px solid, $gold-color, top left right bottom);
+  background-color: $dark-background;
+  color: #fff;
+  position: relative;
+  text-align: center;
+  
+}
+
 .gold-text {
   font-family: "Open Sans";
   font-weight: 500;
@@ -121,7 +134,15 @@ height: 100px;
   -webkit-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
   -moz-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
   box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
+  pointer-events: all;
 
+}
+
+.d3-container {
+  height: 550px;
+  position: relative;
+  z-index: -5;
+  pointer-events: none;
 }
 
 .block-title-section {
@@ -273,8 +294,41 @@ height: 100px;
   border-radius: 10px;
 }
 
-#runner-calc {
-  background-image: url('/images/runnercalc345.png');
+.site-container-tablet {
+  @extend .site-container;
+  width: 250px;
+  height: 200px;
+  top: 59.5px;
+  
+}
+
+.site-container-mobile {
+  @extend .site-container;
+  width: 90px;
+  height: 186px;
+  top: 74px;
+  
+
+}
+
+.site-container-txt {
+  @extend .gold-text;
+  top: 20px;
+  position: relative;
+}
+
+.site-container-txt-tablet {
+  @extend .site-container-txt;
+  top: -29px;
+}
+
+.site-container-txt-mobile {
+  @extend .site-container-txt;
+  top: -45px;
+}
+
+#runner-calc-desktop {
+  //background-image: url('/images/runnercalc345.png');
   top: 1px;
   left: 2px;
   width: 345px;
@@ -283,10 +337,21 @@ height: 100px;
   position: relative;
 }
 
+#runner-calc-tablet {
+  @extend #runner-calc-desktop;
+  
+
+}
+
+#runner-calc-mobile {
+  @extend #runner-calc-desktop;
+
+}
+
 .project-desc-container {
   @extend .skills-container;
   height: 200px;
-  margin-top: 50px;
+  margin-top: 100px;
   position: relative;
 
 }
@@ -311,7 +376,7 @@ height: 100px;
   border-top: none;
 }
 
-.tooltip {     
+.tooltip1 {     
   text-align: center; 
   width: 152px;          
   height: 152px;         

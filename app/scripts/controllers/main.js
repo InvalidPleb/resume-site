@@ -308,21 +308,23 @@
 		  		for (var i = 0; i < res.length; i++) {
 		  			repoContainer.push(res[i].full_name);
 		  		}
+
 		  	}
 
 
 		  	// -------------- Graph -------------- //
 
-		  	var svgContainer = d3.select(".animation-container").append("svg")
-					.attr("width", 400)
-					.attr("height", 500)
-					.style("position", "relative")
-					.style("right", "132px");
+		  	var svgContainer = d3.select(".animation-container")
+		  		.append("svg")
+				.attr("width", 400)
+				.attr("height", 500)
+				.style("position", "relative")
+				.style("right", "132px");
 
 			var pie = d3.layout.pie()
 				.value(function (d) {
 					return d;
-				});
+			});
 
 			var colorObj = {
 				0: [38, 53, 138],
@@ -404,10 +406,10 @@
 		            			.style("opacity", 0.1);
 		            			dayRing[j].remove();
 		            		}	
-					});
+						});
 
 					var div = d3.select(".animation-container").append("div")	
-						.attr("class", "tooltip")
+						.attr("class", "tooltip1")
 						.style('position','absolute')
 						.text("Week:")		
 						.style("opacity", 0);
@@ -420,9 +422,25 @@
 				}
 			}
 
-			function innerRing (data, color, i){
+			function stylePos(element, top, left) {
+				return element.style("top", (top) + "px")
+					.style("left", (left) + "px");
+			}
+
+			function innerRing (data, nameArr, color, i){
+
+
+
+				
 
 				if (i < data.length) {
+
+					var repoName = nameArr[i].slice(12,nameArr[i].length);
+
+					var tooltip = d3.select(".d3-container")
+						.append("div")
+					    .attr("class", "tooltip")				
+					    .style("opacity", 0);
 
 					var pieD = pie(data);
 					var sAng = pieD[i].startAngle;
@@ -437,17 +455,64 @@
 					    .style("position", "relative")
 					    .style("z-index", "2")
 					    .style("box-shadow", "0px 0px 9px 1px rgba(0,0,0,0.85)")
-					    .on("mouseover", function (d) {
+					    .on("mouseover", function () {
+					    	tooltip.style("opacity", 1)
+							.style("pointer-events", "none")
+							.style("left", (300) + "px")
+                			.style("top", (-500) + "px")
+                			.html(function(d) {
+							    return "<p>" + repoName + "</p>" + "<p>" + data[i - 1] + " commits</p>";
+							});
+                			
+							if (i === 1) {
+
+								stylePos(tooltip, -480, 420);
+
+							}
+							if (i === 2) {
+
+								stylePos(tooltip, -500, 380);
+
+							}
+							if (i === 3) {
+
+								stylePos(tooltip, -425, 680);
+
+							}
+							if (i === 4) {
+
+								stylePos(tooltip, -450, 320);
+
+							}
+
+							if (i === 5) {
+
+								stylePos(tooltip, -700, 480);
+
+							}
+							if (i === 6) {
+
+								stylePos(tooltip, -750, 520);
+
+							}
+						   	
 						    d3.select(this).style("fill", "rgba(" + color + "," + (alpha + 0.3) + ")");
-						}).on("mouseout", function (d) {
+						}).on("mouseout", function () {
+							tooltip.style("opacity", 0);
+							tooltip.style("pointer-events", "none");
+						   	
 						    d3.select(this).style("fill", "rgba(" + color + "," + alpha + ")");
 						});
 
 					i++;
 
-					return innerRing(data, colorObj[i], i);
+					return innerRing(data, repoContainer, colorObj[i], i);
 				}
 			}
+
+			
+
+
 
 			
 			function middleRing(sAng, eAng, color, data) {
@@ -478,6 +543,7 @@
 
 					ringCont.push(ring);
 				}
+
 				return ringCont;
 			}
 
@@ -508,6 +574,7 @@
 		  			}
 		  			outputRepos[i] = (weekCurrTotal[i].reduce(add, 0));
 		  		}
+
 		  		return [outputRepos, outputDays];
 	  		}
 
@@ -536,6 +603,7 @@
 		  				}
 		  			}
 		  		}
+		  		
 		  		return daySums;
 	  		}
 
@@ -591,6 +659,8 @@
 		  	
 		  	$q.all([calls]).then(function(){
 
+		  		console.log(repoContainer);
+
 		  		var gotDayCommits = getDayCommits(commitDaily);
 
 		  		var repoCommits = gotDayCommits[0];
@@ -604,7 +674,7 @@
 
 		  		outerRing(-1, 5.5, [0,105, 0], gotParsedCommits[0], gotParsedCommits[1], 0);
 				middleRing(0, 50, [0,105, 0], [1,1,1,1,1,1,1]);
-				innerRing(repoCommits, colorObj[0], 0);
+				innerRing(repoCommits, repoContainer, colorObj[0], 0);
 
 		  	});
 
