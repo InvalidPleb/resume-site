@@ -269,11 +269,11 @@
 
 		  	function pushCalledCommits(res, container) {
 		  		
-		  		for (var i=0; i < res.length; i++) {
+		  		for (let i=0; i < res.length; i++) {
 
 		  			if (res[i].total > 0) {
 
-		  				for (var j=0; j < res[i].days.length; j++) {
+		  				for (let j=0; j < res[i].days.length; j++) {
 		  					container.push(res[i].days[j]);
 
 		  				}
@@ -305,7 +305,7 @@
 		  	}
 
 		  	function pushCalledRepo (res) {
-		  		for (var i = 0; i < res.length; i++) {
+		  		for (let i = 0; i < res.length; i++) {
 		  			repoContainer.push(res[i].full_name);
 		  		}
 
@@ -353,24 +353,43 @@
 
 			function outerRing (sAng, eAng, color, data, midData, i) {
 
-				if (sAng === -1 && eAng === 5.5) {
-					sAng++;
-					eAng++;
-
-				} else {
-					sAng = sAng + 6.42;
-					eAng = eAng + 6.42;
-				}
-
-				var color1 = color[0] + (data[i] * 12);
-				var color2 = color[1] + (data[i] * 12);
-				var color3 = color[2] + (data[i] * 12);
-				var alpha = (data[i] * 0.1) + 0.05;
-				var dayRing;
-
 				if (i < 52) {
 
-					var g = svgContainer.append('svg:g');
+					if (sAng === -1 && eAng === 5.5) {
+						sAng++;
+						eAng++;
+
+					} else {
+						sAng = sAng + 6.42;
+						eAng = eAng + 6.42;
+					}
+
+					let color1 = color[0] + (data[i] * 13);
+					let color2 = color[1] + (data[i] * 13);
+					let color3 = color[2] + (data[i] * 13);
+					let alpha = (data[i] * 0.1) + 0.05;
+					let dayRing;
+					let midDataInd = midData[i];
+
+					let g = svgContainer.append('svg:g');
+
+					let div = d3.select(".animation-container").append("div")	
+						.attr("class", "tooltip1")
+						.style('position','absolute')	
+						.style("opacity", 0)
+						.html(function() {
+							return "<p class=\"day-tooltip-title\">Week " + (i + 1) + "</p>" +
+								"<p class=\"day-tooltip-label\"> &nbsp; &nbsp; Day &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Commits</p>" +
+								"<div class=\"day-tooltip-container\">" + 
+									"<p class=\"day-tooltip\">S|" + midDataInd[0] + "</p>" +
+									"<p class=\"day-tooltip\">M|" + midDataInd[1] + "</p>" +
+									"<p class=\"day-tooltip\">T|" + midDataInd[2] + "</p>" +
+									"<p class=\"day-tooltip\">W|" + midDataInd[3] + "</p>" +
+									"<p class=\"day-tooltip\">T|" + midDataInd[4] + "</p>" +
+									"<p class=\"day-tooltip\">F|" + midDataInd[5] + "</p>" +
+									"<p class=\"day-tooltip\">S|" + midDataInd[6] + "</p>" +
+								"</div>";	
+					});
 
 					g.append("path")
 					    .attr("d", arc(170, 200, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
@@ -386,9 +405,9 @@
 		            			.duration(50)		
 		            			.style("opacity", 0.9);
 		            		
-		            		dayRing = middleRing(0, 50, colorArr, midData[i - 1]);
+		            		dayRing = middleRing(0, 50, colorArr, midDataInd);
 
-		            		for (var j = 0; j < dayRing.length; j++) {
+		            		for (let j = 0; j < dayRing.length; j++) {
 		            			dayRing[j].transition()		
 		            			.duration(200)		
 		            			.style("opacity", 0.9);
@@ -396,23 +415,18 @@
 		   
 						})
 						.on("mouseout", function (d) {
+
 						    d3.select(this).style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")");
 						    div.transition()		
 		            			.duration(50)		
 		            			.style("opacity", 0);
-		            		for (var j = 0; j < dayRing.length; j++) {
+		            		for (let j = 0; j < dayRing.length; j++) {
 		            			dayRing[j].transition()		
 		            			.duration(200)		
 		            			.style("opacity", 0.1);
 		            			dayRing[j].remove();
 		            		}	
 						});
-
-					var div = d3.select(".animation-container").append("div")	
-						.attr("class", "tooltip1")
-						.style('position','absolute')
-						.text("Week:")		
-						.style("opacity", 0);
 
 					sAng = sAng + 0.5;
 					eAng = eAng + 0.5;
@@ -429,24 +443,20 @@
 
 			function innerRing (data, nameArr, color, i){
 
-
-
-				
-
 				if (i < data.length) {
 
-					var repoName = nameArr[i].slice(12,nameArr[i].length);
+					let repoName = nameArr[i].slice(12,nameArr[i].length);
 
-					var tooltip = d3.select(".d3-container")
+					let tooltip = d3.select(".d3-container")
 						.append("div")
 					    .attr("class", "tooltip")				
 					    .style("opacity", 0);
 
-					var pieD = pie(data);
-					var sAng = pieD[i].startAngle;
-					var eAng = pieD[i].endAngle;
+					let pieD = pie(data);
+					let sAng = pieD[i].startAngle;
+					let eAng = pieD[i].endAngle;
 
-					var alpha = 0.6;
+					let alpha = 0.6;
 
 					svgContainer.append("path")
 					    .attr("d", arc(80, 140, sAng, eAng))
@@ -465,35 +475,22 @@
 							});
                 			
 							if (i === 1) {
-
 								stylePos(tooltip, -480, 420);
-
 							}
 							if (i === 2) {
-
 								stylePos(tooltip, -500, 380);
-
 							}
 							if (i === 3) {
-
 								stylePos(tooltip, -425, 680);
-
 							}
 							if (i === 4) {
-
 								stylePos(tooltip, -450, 320);
-
 							}
-
 							if (i === 5) {
-
 								stylePos(tooltip, -700, 480);
-
 							}
 							if (i === 6) {
-
 								stylePos(tooltip, -750, 520);
-
 							}
 						   	
 						    d3.select(this).style("fill", "rgba(" + color + "," + (alpha + 0.3) + ")");
@@ -509,28 +506,22 @@
 					return innerRing(data, repoContainer, colorObj[i], i);
 				}
 			}
-
-			
-
-
-
 			
 			function middleRing(sAng, eAng, color, data) {
 
-				var ring;
-				var ringCont = [];
+				let ringCont = [];
 
-				for (var i = 0; i <= 6; i++) {
+				for (let i = 0; i <= 6; i++) {
 
 					sAng = sAng + 50;
 					eAng = eAng + 50;
 
-					var color1 = color[0] + (data[i] * 50);
-					var color2 = color[1] + (data[i] * 50);
-					var color3 = color[2] + (data[i] * 50);
-					var alpha = (data[i] * 0.2) + 0.05;
+					let color1 = color[0] + (data[i] * 50);
+					let color2 = color[1] + (data[i] * 50);
+					let color3 = color[2] + (data[i] * 50);
+					let alpha = (data[i] * 0.2) + 0.05;
 
-					ring = svgContainer.append("path")
+					let ring = svgContainer.append("path")
 					    .attr("d", arc(145, 165, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
 					    .attr("transform", "translate(200,250)")
 					    .style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")")
@@ -549,24 +540,21 @@
 
 			function getDayCommits(inputArr) {
 
-	  			var inputArrSlice = inputArr.slice(1, 5);
-		  		var weekCurrTotal = [];
-		  		var weekCurr;
-		  		var outputDays = [];
-		  		var outputRepos = [];
+	  			let inputArrSlice = inputArr.slice(1, 5);
+		  		let weekCurrTotal = [];
+		  		let outputDays = [];
+		  		let outputRepos = [];
 
-		  		for (var i=0; i < inputArrSlice.length; i++) {
+		  		for (let i=0; i < inputArrSlice.length; i++) {
 
-		  			weekCurr = inputArrSlice[i];
+		  			let weekCurr = inputArrSlice[i];
 		  			weekCurrTotal[i] = [];
 
-		  			for (var j=0; j < 52; j++) {
+		  			for (let j=0; j < 52; j++) {
 
 		  				if (outputDays[j] === undefined) {
-
 		  					outputDays[j] = [];
 		  					outputDays[j].push(weekCurr[j].days);
-
 		  				} else {
 		  					outputDays[j].push(weekCurr[j].days);
 		  				}
@@ -580,24 +568,22 @@
 
 	  		function sumDayCommits(inputArr) {
 
-	  			var dayCurr;
-		  		var weekCurr;
-		  		var daySums = [];
+		  		let daySums = [];
 
-		  		for (var i=0; i < inputArr.length; i++) {
+		  		for (let i=0; i < inputArr.length; i++) {
 
-		  			weekCurr = inputArr[i];
+		  			let weekCurr = inputArr[i];
 
 		  			if (daySums[i] === undefined) {
 
 		  				daySums[i] = [];
 		  			}
 
-		  			for (var j=0; j < weekCurr.length; j++) {
+		  			for (let j=0; j < weekCurr.length; j++) {
 
-		  				dayCurr = weekCurr[j];
+		  				let dayCurr = weekCurr[j];
 
-		  				for (var l=0; l < dayCurr.length; l++) {
+		  				for (let l=0; l < dayCurr.length; l++) {
 
 		  					daySums[i].push(dayCurr[l]);
 		  				}
@@ -609,14 +595,14 @@
 
 	  		function parseCommits(inputArr) {
 
-	  			var dayArr = [];
-	  			var weekCommits = [];
-		  		var daySumsCurr = [];
-		  		var dayArrCurr = [];
+	  			let dayArr = [];
+	  			let weekCommits = [];
+		  		let daySumsCurr = [];
+		  		let dayArrCurr = [];
 
-		  		var j = 0;
+		  		let j = 0;
 
-		  		for (var i=0; (i < inputArr.length); i++) {
+		  		for (let i=0; (i < inputArr.length); i++) {
 
 		  			if (dayArr[i] === undefined) {
 
@@ -627,7 +613,7 @@
 		  			daySumsCurr = inputArr[i];
 		  			weekCommits.push(inputArr[i].reduce(add, 0));
 
-		  			for (var l=0; l < daySumsCurr.length; l++) {
+		  			for (let l=0; l < daySumsCurr.length; l++) {
 
 		  				if ((l + 1) % 7 === 0) {
 
@@ -658,8 +644,6 @@
 			var calls = getGithubStuff();
 		  	
 		  	$q.all([calls]).then(function(){
-
-		  		console.log(repoContainer);
 
 		  		var gotDayCommits = getDayCommits(commitDaily);
 
