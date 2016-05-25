@@ -14,245 +14,465 @@
 
 
 	  		$scope.darkreader = {
-	  			id: "darkreader",
-	  			changeVar: "darkOp",
-	  			txt: "Dark Reader",
-	  			skill1: "Data Binding",
-	  			skill2: "Templating",
-	  			skill3: "Routing",
-	  			skill4: "MVC/MVW",
-	  			skill1Hide: "true",
-	  			skill2Hide: "true",
-	  			skill3Hide: "true",
-	  			skill4Hide: "true",
-	  			nameHide: "false",
-	  			nameTxt: "Dark Reader",
-	  			nameClass: "block-name-def",
-	  			paraHide: "false",
-	  			paraTxt: "A chrome extension that inverts brightness of web pages and aims to reduce eyestrain while browsing the web.",
+
+	  			attr:   {
+			  				id: "darkreader",
+			  				href: "https://github.com/alexanderby/darkreader",
+			  				nameClass: "block-name-def",
+	  					},
+
+	  			binding: {
+	  						nameHide: "false",
+				  			paraHide: "false",
+	  						skill1Hide: "true",
+				  			skill2Hide: "true",
+				  			skill3Hide: "true",
+				  			skill4Hide: "true",
+	  					},
+
+	  			skills: {
+	  						skill1: "",
+				  			skill2: "",
+				  			skill3: "",
+				  			skill4: ""
+	  					},
+
+	  			text:   {
+	  						nameTxt: "Dark Reader",
+	  						paraTxt: "A chrome extension that inverts brightness of web pages and aims to reduce eyestrain while browsing the web.",
+				  			txt1: "View on",
+				  			txt2: "Github",
+	  					}
 	  		};
 
 	  		$scope.tmtheme = {
-	  			id: "tmtheme",
-	  			changeVar: "themeOp",
-	  			txt: "TmTheme",
-	  			skill1: "Data Binding",
-	  			skill2: "Templating",
-	  			skill3: "Routing",
-	  			skill4: "MVC/MVW",
-	  			skill1Hide: "true",
-	  			skill2Hide: "true",
-	  			skill3Hide: "true",
-	  			skill4Hide: "true",
-	  			nameHide: "false",
-	  			nameTxt: "TmTheme Editor",
-	  			nameClass: "block-name-tm",
-	  			paraHide: "false",
-	  			paraTxt: "A color scheme editor for SublimeText, Textmate and other text editors. It allows you to edit tmtheme files easier and faster.",
+
+	  			attr:   {
+			  				id: "tmtheme",
+			  				href: "https://github.com/aziz/tmTheme-Editor",
+			  				nameClass: "block-name-tm",
+	  					},
+
+	  			binding: {
+
+	  						nameHide: "false",
+	  						paraHide: "false",
+	  						skill1Hide: "true",
+				  			skill2Hide: "true",
+				  			skill3Hide: "true",
+				  			skill4Hide: "true",
+	  					},
+
+	  			skills: {
+	  						skill1: "",
+				  			skill2: "",
+				  			skill3: "",
+				  			skill4: ""
+	  					},
+
+	  			text:   {
+	  						nameTxt: "TmTheme Editor",
+	  						paraTxt: "A color scheme editor for SublimeText, Textmate and other text editors. It allows you to edit tmtheme files easier and faster.",
+				  			txt1: "View on",
+				  			txt2: "Github",
+	  					}
 	  		};
 
+
 	  		$scope.angular = {
-	  			id: "angular",
-	  			changeVar: "angOp",
-	  			txt: "Angular",
-	  			skill1: "Data Binding",
-	  			skill2: "Templating",
-	  			skill3: "Routing",
-	  			skill4: "MVC/MVW",
-	  			skill1Hide: "false",
-	  			skill2Hide: "false",
-	  			skill3Hide: "false",
-	  			skill4Hide: "false",
-	  			nameHide: "false",
-	  			nameTxt: "Angular",
-	  			nameClass: "block-name-def"
+
+	  			attr:   {
+			  				id: "angular",
+			  				href: "",
+			  				nameClass: "block-name-def",
+	  					},
+
+	  			binding: {
+
+	  						nameHide: "false",
+	  						paraHide: "true",
+	  						skill1Hide: "false",
+				  			skill2Hide: "false",
+				  			skill3Hide: "false",
+				  			skill4Hide: "false",
+	  					},
+
+	  			skills: {
+	  						skill1: "Data Binding",
+				  			skill2: "Templating",
+				  			skill3: "Routing",
+				  			skill4: "MVC/MVW",
+	  					},
+
+	  			text:   {
+	  						nameTxt: "Angular",
+	  						paraTxt: "",
+				  			txt1: "",
+				  			txt2: "",
+	  					}
 	  		};
 
 	  		$scope.jQuery = {
-	  			id: "jquery",
-	  			changeVar: "jquOp",
-	  			txt: "JQuery",
-	  			skill1: "DOM Manipulation",
-	  			skill2: "AJAX",
-	  			skill3: "",
-	  			skill4: "",
-	  			skill1Hide: "false",
-	  			skill2Hide: "false",
-	  			skill3Hide: "true",
-	  			skill4Hide: "true",
-	  			nameHide: "false",
-	  			nameTxt: "JQuery",
-	  			nameClass: "block-name-def"
+
+	  			attr:   {
+			  				id: "jquery",
+			  				href: "",
+			  				nameClass: "block-name-def",
+	  					},
+
+	  			binding: {
+
+	  						nameHide: "false",
+	  						paraHide: "true",
+	  						skill1Hide: "false",
+				  			skill2Hide: "false",
+				  			skill3Hide: "true",
+				  			skill4Hide: "true",
+	  					},
+
+	  			skills: {
+	  						skill1: "DOM Manipulation",
+				  			skill2: "AJAX",
+				  			skill3: "",
+				  			skill4: "",
+	  					},
+
+	  			text:   {
+	  						nameTxt: "jQuery",
+	  						paraTxt: "",
+				  			txt1: "",
+				  			txt2: "",
+	  					}
 	  		};
 
 	  		$scope.bootstrap = {
-	  			id: "bootstrap",
-	  			changeVar: "bootOp",
-	  			txt: "Bootstrap",
-	  			skill1: "Responsive Design",
-	  			skill2: "",
-	  			skill3: "",
-	  			skill4: "",
-	  			skill1Hide: "false",
-	  			skill2Hide: "true",
-	  			skill3Hide: "true",
-	  			skill4Hide: "true",
-	  			nameHide: "false",
-	  			nameTxt: "Bootstrap",
-	  			nameClass: "block-name-def"
+
+	  			attr:   {
+			  				id: "bootstrap",
+			  				href: "",
+			  				nameClass: "block-name-def",
+	  					},
+
+	  			binding: {
+
+	  						nameHide: "false",
+	  						paraHide: "true",
+	  						skill1Hide: "false",
+				  			skill2Hide: "true",
+				  			skill3Hide: "true",
+				  			skill4Hide: "true",
+	  					},
+
+	  			skills: {
+	  						skill1: "Responsive Design",
+				  			skill2: "",
+				  			skill3: "",
+				  			skill4: "",
+	  					},
+
+	  			text:   {
+	  						nameTxt: "Bootstrap",
+	  						paraTxt: "",
+				  			txt1: "",
+				  			txt2: "",
+	  					}
 	  		};
 
 	  		$scope.git = {
-	  			id: "git",
-	  			changeVar: "gitOp",
-	  			txt: "Git",
-	  			skill1: "Version Control",
-	  			skill2: "Github",
-	  			skill3: "",
-	  			skill4: "",
-	  			skill1Hide: "false",
-	  			skill2Hide: "false",
-	  			skill3Hide: "true",
-	  			skill4Hide: "true",
-	  			nameHide: "false",
-	  			nameTxt: "Git",
-	  			nameClass: "block-name-def"
+
+	  			attr:   {
+			  				id: "git",
+			  				href: "",
+			  				nameClass: "block-name-def",
+	  					},
+
+	  			binding: {
+
+	  						nameHide: "false",
+	  						paraHide: "true",
+	  						skill1Hide: "false",
+				  			skill2Hide: "false",
+				  			skill3Hide: "true",
+				  			skill4Hide: "true",
+	  					},
+
+	  			skills: {
+	  						skill1: "Version Control",
+				  			skill2: "Github",
+				  			skill3: "",
+				  			skill4: "",
+	  					},
+
+	  			text:   {
+	  						nameTxt: "Git",
+	  						paraTxt: "",
+				  			txt1: "",
+				  			txt2: "",
+	  					}
 	  		};
 
 	  		$scope.yeoman = {
-	  			id: "yeoman",
-	  			changeVar: "yeoOp",
-	  			txt: "Yeoman",
-	  			skill1: "Yeoman Workflow",
-	  			skill2: "Scaffolding",
-	  			skill3: "",
-	  			skill4: "",
-	  			skill1Hide: "false",
-	  			skill2Hide: "false",
-	  			skill3Hide: "true",
-	  			skill4Hide: "true",
-	  			nameHide: "false",
-	  			nameTxt: "Yeoman",
-	  			nameClass: "block-name-def"
+
+	  			attr:   {
+			  				id: "yeoman",
+			  				href: "",
+			  				nameClass: "block-name-def",
+	  					},
+
+	  			binding: {
+
+	  						nameHide: "false",
+	  						paraHide: "true",
+	  						skill1Hide: "false",
+				  			skill2Hide: "false",
+				  			skill3Hide: "true",
+				  			skill4Hide: "true",
+	  					},
+
+	  			skills: {
+	  						skill1: "Yeoman Workflow",
+				  			skill2: "Scaffolding",
+				  			skill3: "",
+				  			skill4: "",
+	  					},
+
+	  			text:   {
+	  						nameTxt: "Yeoman",
+	  						paraTxt: "",
+				  			txt1: "",
+				  			txt2: "",
+	  					}
 	  		};
 
 	  		$scope.grunt = {
-	  			id: "grunt",
-	  			changeVar: "gruntOp",
-	  			txt: "Grunt",
-	  			skill1: "Compiling",
-	  			skill2: "Minification",
-	  			skill3: "Linting",
-	  			skill4: "Livereload",
-	  			skill1Hide: "false",
-	  			skill2Hide: "false",
-	  			skill3Hide: "false",
-	  			skill4Hide: "false",
-	  			nameHide: "false",
-	  			nameTxt: "Grunt",
-	  			nameClass: "block-name-def"
+
+	  			attr:   {
+			  				id: "grunt",
+			  				href: "",
+			  				nameClass: "block-name-def",
+	  					},
+
+	  			binding: {
+
+	  						nameHide: "false",
+	  						paraHide: "true",
+	  						skill1Hide: "false",
+				  			skill2Hide: "false",
+				  			skill3Hide: "false",
+				  			skill4Hide: "false",
+	  					},
+
+	  			skills: {
+	  						skill1: "Compiling",
+				  			skill2: "Minification",
+				  			skill3: "Linting",
+				  			skill4: "Livereload",
+	  					},
+
+	  			text:   {
+	  						nameTxt: "Grunt",
+	  						paraTxt: "",
+				  			txt1: "",
+				  			txt2: "",
+	  					}
 	  		};
 
 	  		$scope.bower = {
-	  			id: "bower",
-	  			changeVar: "bowOp",
-	  			txt: "Bower",
-	  			skill1: "Package Managing",
-	  			skill2: "",
-	  			skill3: "",
-	  			skill4: "",
-	  			skill1Hide: "false",
-	  			skill2Hide: "true",
-	  			skill3Hide: "true",
-	  			skill4Hide: "true",
-	  			nameHide: "false",
-	  			nameTxt: "Bower",
-	  			nameClass: "block-name-def"
+
+	  			attr:   {
+			  				id: "bower",
+			  				href: "",
+			  				nameClass: "block-name-def",
+	  					},
+
+	  			binding: {
+
+	  						nameHide: "false",
+	  						paraHide: "true",
+	  						skill1Hide: "false",
+				  			skill2Hide: "true",
+				  			skill3Hide: "true",
+				  			skill4Hide: "true",
+	  					},
+
+	  			skills: {
+	  						skill1: "Package Managing",
+				  			skill2: "",
+				  			skill3: "",
+				  			skill4: "",
+	  					},
+
+	  			text:   {
+	  						nameTxt: "Bower",
+	  						paraTxt: "",
+				  			txt1: "",
+				  			txt2: "",
+	  					}
 	  		};
 
 	  		$scope.sass = {
-	  			id: "sass",
-	  			changeVar: "sassOp",
-	  			txt: "Sass",
-	  			skill1: "Simple CSS Syntax",
-	  			skill2: "Variables",
-	  			skill3: "Inheritance",
-	  			skill4: "",
-	  			skill1Hide: "false",
-	  			skill2Hide: "false",
-	  			skill3Hide: "false",
-	  			skill4Hide: "true",
-	  			nameHide: "false",
-	  			nameTxt: "Sass",
-	  			nameClass: "block-name-def"
+
+	  			attr:   {
+			  				id: "sass",
+			  				href: "",
+			  				nameClass: "block-name-def",
+	  					},
+
+	  			binding: {
+
+	  						nameHide: "false",
+	  						paraHide: "true",
+	  						skill1Hide: "false",
+				  			skill2Hide: "false",
+				  			skill3Hide: "false",
+				  			skill4Hide: "true",
+	  					},
+
+	  			skills: {
+	  						skill1: "Simple CSS Syntax",
+				  			skill2: "Variables",
+				  			skill3: "Inheritance",
+				  			skill4: "",
+	  					},
+
+	  			text:   {
+	  						nameTxt: "Sass",
+	  						paraTxt: "",
+				  			txt1: "",
+				  			txt2: "",
+	  					}
 	  		};
 
 	  		$scope.cscript = {
-	  			id: "cscript",
-	  			changeVar: "cscOp",
-	  			txt: "CoffeeScript",
-	  			skill1: "Simple JS Syntax",
-	  			skill2: "",
-	  			skill3: "",
-	  			skill4: "",
-	  			skill1Hide: "false",
-	  			skill2Hide: "true",
-	  			skill3Hide: "true",
-	  			skill4Hide: "true",
-	  			nameHide: "false",
-	  			nameTxt: "CoffeeScript",
-	  			nameClass: "block-name-def"
+
+	  			attr:   {
+			  				id: "cscript",
+			  				href: "",
+			  				nameClass: "block-name-def",
+	  					},
+
+	  			binding: {
+
+	  						nameHide: "false",
+	  						paraHide: "true",
+	  						skill1Hide: "false",
+				  			skill2Hide: "true",
+				  			skill3Hide: "true",
+				  			skill4Hide: "true",
+	  					},
+
+	  			skills: {
+	  						skill1: "Simple JS Syntax",
+				  			skill2: "",
+				  			skill3: "",
+				  			skill4: "",
+	  					},
+
+	  			text:   {
+	  						nameTxt: "CoffeeScript",
+	  						paraTxt: "",
+				  			txt1: "",
+				  			txt2: "",
+	  					}
 	  		};
 
 	  		$scope.gimp = {
-	  			id: "gimp",
-	  			changeVar: "gimpOp",
-	  			txt: "Gimp",
-	  			skill1: "Image Editing",
-	  			skill2: "Bitmapping",
-	  			skill3: "",
-	  			skill4: "",
-	  			skill1Hide: "false",
-	  			skill2Hide: "false",
-	  			skill3Hide: "true",
-	  			skill4Hide: "true",
-	  			nameHide: "false",
-	  			nameTxt: "Gimp",
-	  			nameClass: "block-name-def"
+
+	  			attr:   {
+			  				id: "gimp",
+			  				href: "",
+			  				nameClass: "block-name-def",
+	  					},
+
+	  			binding: {
+
+	  						nameHide: "false",
+	  						paraHide: "true",
+	  						skill1Hide: "false",
+				  			skill2Hide: "false",
+				  			skill3Hide: "true",
+				  			skill4Hide: "true",
+	  					},
+
+	  			skills: {
+	  						skill1: "Image Editing",
+				  			skill2: "Bitmapping",
+				  			skill3: "",
+				  			skill4: "",
+	  					},
+
+	  			text:   {
+	  						nameTxt: "Gimp",
+	  						paraTxt: "",
+				  			txt1: "",
+				  			txt2: "",
+	  					}
 	  		};
 
 	  		$scope.balsamiq = {
-	  			id: "balsamiq",
-	  			changeVar: "balOp",
-	  			txt: "Balsamiq",
-	  			skill1: "Wireframing",
-	  			skill2: "Mockups",
-	  			skill3: "",
-	  			skill4: "",
-	  			skill1Hide: "false",
-	  			skill2Hide: "false",
-	  			skill3Hide: "true",
-	  			skill4Hide: "true",
-	  			nameHide: "false",
-	  			nameTxt: "Balsamiq",
-	  			nameClass: "block-name-def"
+
+	  			attr:   {
+			  				id: "balsamiq",
+			  				href: "",
+			  				nameClass: "block-name-def",
+	  					},
+
+	  			binding: {
+
+	  						nameHide: "false",
+	  						paraHide: "true",
+	  						skill1Hide: "false",
+				  			skill2Hide: "false",
+				  			skill3Hide: "true",
+				  			skill4Hide: "true",
+	  					},
+
+	  			skills: {
+	  						skill1: "Wireframing",
+				  			skill2: "Mockups",
+				  			skill3: "",
+				  			skill4: "",
+	  					},
+
+	  			text:   {
+	  						nameTxt: "Balsamiq",
+	  						paraTxt: "",
+				  			txt1: "",
+				  			txt2: "",
+	  					}
 	  		};
 
 	  		$scope.d3 = {
-	  			id: "d3",
-	  			changeVar: "d3Op",
-	  			txt: "D3",
-	  			skill1: "Data Visualization",
-	  			skill2: "SVG Manipulation",
-	  			skill3: "",
-	  			skill4: "",
-	  			skill1Hide: "false",
-	  			skill2Hide: "false",
-	  			skill3Hide: "true",
-	  			skill4Hide: "true",
-	  			nameHide: "false",
-	  			nameTxt: "D3",
-	  			nameClass: "block-name-def"
+
+	  			attr:   {
+			  				id: "d3",
+			  				href: "",
+			  				nameClass: "block-name-def",
+	  					},
+
+	  			binding: {
+
+	  						nameHide: "false",
+	  						paraHide: "true",
+	  						skill1Hide: "false",
+				  			skill2Hide: "false",
+				  			skill3Hide: "true",
+				  			skill4Hide: "true",
+	  					},
+
+	  			skills: {
+	  						skill1: "Data Visualization",
+				  			skill2: "SVG Manipulation",
+				  			skill3: "",
+				  			skill4: "",
+	  					},
+
+	  			text:   {
+	  						nameTxt: "D3",
+	  						paraTxt: "",
+				  			txt1: "",
+				  			txt2: "",
+	  					}
 	  		};
 
 		  	function add(a, b) {
@@ -260,11 +480,7 @@
 		  	}
 
 		  	var githubGet = 'https://api.github.com';
-		  	var commitContainer = [];
 		  	var repoContainer = [];
-		  	var commitTotal = 0;
-		  	var commitOwnerTotal = [];
-		  	var commitOwnerWeekly = [];
 		  	var commitDaily = [];
 
 		  	function getGithubStuff() {
@@ -335,10 +551,15 @@
 
 			var defCenterTooltip = d3.select(".animation-container").append("div")	
 						.attr("class", "tooltip1")
-						.style('position','absolute')	
-						.style("opacity", 1)
+						.style('position','absolute')
 						.style("left", (492) + "px")
 		            	.style("top", (174) + "px");
+
+		    var graphCircle = d3.select(".animation-container").append("div")	
+						.attr("class", "graph-circle")
+						.style('position','absolute')
+						.style("left", (363) + "px")
+		            	.style("top", (45) + "px");
 
 
 		    function drawCss(cssClass, top, left, text) {
@@ -351,11 +572,14 @@
 							});
 		    }
 
+		    function htmlMidData(i, data) {
+				let dayArray = ["S", "M", "T", "W", "T", "F", "S",];
+				return "<p class=\"day-tooltip\">" + dayArray[i] +"|" + data[i] + "</p>";
+			}
+
 		    drawCss("line", 190, 710, "");
 		    drawCss("line", 290, 200, "");
 		    drawCss("line", 75, 265, "");
-
-
 		    drawCss("tooltip2", 50, 150, "Weeks");
 		    drawCss("tooltip2", 265, 80, "Repositories");
 		    drawCss("tooltip2", 165, 880, "Days");
@@ -390,13 +614,13 @@
 							return "<p class=\"day-tooltip-title\">Week " + (i + 1) + "</p>" +
 								"<p class=\"day-tooltip-label\"> &nbsp; &nbsp; Day &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Commits</p>" +
 								"<div class=\"day-tooltip-container\">" + 
-									"<p class=\"day-tooltip\">S|" + midDataInd[0] + "</p>" +
-									"<p class=\"day-tooltip\">M|" + midDataInd[1] + "</p>" +
-									"<p class=\"day-tooltip\">T|" + midDataInd[2] + "</p>" +
-									"<p class=\"day-tooltip\">W|" + midDataInd[3] + "</p>" +
-									"<p class=\"day-tooltip\">T|" + midDataInd[4] + "</p>" +
-									"<p class=\"day-tooltip\">F|" + midDataInd[5] + "</p>" +
-									"<p class=\"day-tooltip\">S|" + midDataInd[6] + "</p>" +
+										htmlMidData(0, midDataInd) +
+										htmlMidData(1, midDataInd) +
+										htmlMidData(2, midDataInd) +
+										htmlMidData(3, midDataInd) +
+										htmlMidData(4, midDataInd) +
+										htmlMidData(5, midDataInd) +
+										htmlMidData(6, midDataInd) +
 								"</div>";	
 					});
 
@@ -406,7 +630,7 @@
 					    .style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")")
 					    .style("position", "relative")
 					    .style("z-index", "2")
-					    .on("mouseover", function (d) {
+					    .on("mouseover", function () {
 						    d3.select(this).style("fill", "rgb(89, 74, 41)");
 						    centerTooltip.style("left", ((d3.select(this).attr("cx") + 492) + "px"))
 		            			.style("top", ((d3.select(this).attr("cy") + 174) + "px"));
@@ -423,8 +647,7 @@
 		            		}
 		   
 						})
-						.on("mouseout", function (d) {
-
+						.on("mouseout", function () {
 						    d3.select(this).style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")");
 						    centerTooltip.transition()		
 		            			.duration(200)		
@@ -451,8 +674,6 @@
 			}
 
 			function innerRing (data, nameArr, color, i){
-
-				console.log(nameArr);
 
 				if (i < data.length) {
 
@@ -484,24 +705,26 @@
                 			.html(function() {
 							    return "<p>" + repoName + "</p>" + "<p>" + data[i - 1] + " commits</p>";
 							});
+
+							// FUNCTION HERE ?
                 			
 							if (i === 1) {
-								stylePos(tooltip, -480, 420);
+								stylePos(tooltip, 60, 420);
 							}
 							if (i === 2) {
-								stylePos(tooltip, -500, 380);
+								stylePos(tooltip, 90, 380);
 							}
 							if (i === 3) {
-								stylePos(tooltip, -425, 680);
+								stylePos(tooltip, 230, 680);
 							}
 							if (i === 4) {
-								stylePos(tooltip, -450, 320);
+								stylePos(tooltip, 200, 320);
 							}
 							if (i === 5) {
-								stylePos(tooltip, -700, 480);
+								stylePos(tooltip, 60, 480);
 							}
 							if (i === 6) {
-								stylePos(tooltip, -750, 520);
+								stylePos(tooltip, 60, 520);
 							}
 						   	
 						    d3.select(this).style("fill", "rgba(" + color + "," + (alpha + 0.3) + ")");
