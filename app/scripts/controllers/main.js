@@ -267,23 +267,6 @@
 		  	var commitOwnerWeekly = [];
 		  	var commitDaily = [];
 
-		  	function pushCalledCommits(res, container) {
-		  		
-		  		for (let i=0; i < res.length; i++) {
-
-		  			if (res[i].total > 0) {
-
-		  				for (let j=0; j < res[i].days.length; j++) {
-		  					container.push(res[i].days[j]);
-
-		  				}
-		  			}
-		  		}
-
-		  		return container.reduce(add, 0);
-
-		  	}
-
 		  	function getGithubStuff() {
 		  		return $http.get(githubGet + '/users/InvalidPleb/repos')
 			  		.then(function(res){
@@ -297,7 +280,6 @@
 		  			.then(function(res){
 		  				commitDaily.push(res.data);
 			  			repoNum++;
-
 			  			if (repoNum < maxRepos) {
 			  				return getCommits(repoContainer[repoNum], repoNum, maxRepos);
 			  			}
@@ -319,7 +301,7 @@
 				.attr("width", 400)
 				.attr("height", 500)
 				.style("position", "relative")
-				.style("right", "132px");
+				.style("right", "152px");
 
 			var pie = d3.layout.pie()
 				.value(function (d) {
@@ -327,11 +309,11 @@
 			});
 
 			var colorObj = {
-				0: [38, 53, 138],
-				1: [188, 149, 41],
-				2: [201, 177, 0],
-				3: [142, 114, 31],
-				4: [160, 140, 67],
+				0: [133, 130, 116],
+				1: [117,113,22],
+				2: [208, 208, 54],
+				3: [74,103,19],
+				4: [174,188,33],
 				5: [10, 144, 67],
 				6: [47, 177, 122],
 				7: [149, 199, 111],
@@ -350,6 +332,33 @@
 				    .endAngle(eAng);
 
 			}
+
+			var defCenterTooltip = d3.select(".animation-container").append("div")	
+						.attr("class", "tooltip1")
+						.style('position','absolute')	
+						.style("opacity", 1)
+						.style("left", (492) + "px")
+		            	.style("top", (174) + "px");
+
+
+		    function drawCss(cssClass, top, left, text) {
+		    	return d3.select(".animation-container").append("div")	
+						.attr("class", cssClass)
+						.style("left", (left) + "px")
+		            	.style("top", (top) + "px")
+		            	.html(function() {
+							    return "<p class=\"tooltipText\">" + text + "</p>";
+							});
+		    }
+
+		    drawCss("line", 190, 710, "");
+		    drawCss("line", 290, 200, "");
+		    drawCss("line", 75, 265, "");
+
+
+		    drawCss("tooltip2", 50, 150, "Weeks");
+		    drawCss("tooltip2", 265, 80, "Repositories");
+		    drawCss("tooltip2", 165, 880, "Days");
 
 			function outerRing (sAng, eAng, color, data, midData, i) {
 
@@ -373,7 +382,7 @@
 
 					let g = svgContainer.append('svg:g');
 
-					let div = d3.select(".animation-container").append("div")	
+					let centerTooltip = d3.select(".animation-container").append("div")	
 						.attr("class", "tooltip1")
 						.style('position','absolute')	
 						.style("opacity", 0)
@@ -399,10 +408,10 @@
 					    .style("z-index", "2")
 					    .on("mouseover", function (d) {
 						    d3.select(this).style("fill", "rgb(89, 74, 41)");
-						    div.style("left", ((d3.select(this).attr("cx") + 492) + "px"))
+						    centerTooltip.style("left", ((d3.select(this).attr("cx") + 492) + "px"))
 		            			.style("top", ((d3.select(this).attr("cy") + 174) + "px"));
-						    div.transition()		
-		            			.duration(50)		
+						    centerTooltip.transition()		
+		            			.duration(200)		
 		            			.style("opacity", 0.9);
 		            		
 		            		dayRing = middleRing(0, 50, colorArr, midDataInd);
@@ -417,14 +426,14 @@
 						.on("mouseout", function (d) {
 
 						    d3.select(this).style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")");
-						    div.transition()		
-		            			.duration(50)		
+						    centerTooltip.transition()		
+		            			.duration(200)		
 		            			.style("opacity", 0);
 		            		for (let j = 0; j < dayRing.length; j++) {
 		            			dayRing[j].transition()		
 		            			.duration(200)		
-		            			.style("opacity", 0.1);
-		            			dayRing[j].remove();
+		            			.style("opacity", 0.1)
+		            			.remove();
 		            		}	
 						});
 
@@ -442,6 +451,8 @@
 			}
 
 			function innerRing (data, nameArr, color, i){
+
+				console.log(nameArr);
 
 				if (i < data.length) {
 
@@ -470,7 +481,7 @@
 							.style("pointer-events", "none")
 							.style("left", (300) + "px")
                 			.style("top", (-500) + "px")
-                			.html(function(d) {
+                			.html(function() {
 							    return "<p>" + repoName + "</p>" + "<p>" + data[i - 1] + " commits</p>";
 							});
                 			

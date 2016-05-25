@@ -32,6 +32,27 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   font-weight: 500;
   font-size: 18px;
   color: #84783b;
+  z-index: 3;
+
+  -webkit-transform: rotate($deg);
+  -moz-transform: rotate($deg);
+  -ms-transform: rotate($deg);
+  -o-transform: rotate($deg);
+  transform: rotate($deg);
+}
+
+@mixin dayLabel($left, $top, $deg) {
+
+
+  position: relative;
+  left: $left;
+  top: $top;
+  z-index: 5;
+
+  font-family: "Open Sans";
+  font-weight: 500;
+  font-size: 18px;
+  color: #84783b;
 
   -webkit-transform: rotate($deg);
   -moz-transform: rotate($deg);
@@ -58,6 +79,11 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 }
 
 
+$dark-background: #141415;
+$grey-background: #262626;
+$gold-color: rgb(158, 142, 76);
+$rock-background: '/images/rock-background.png';
+
 
 body {
   padding: 0;
@@ -65,24 +91,42 @@ body {
   z-index: -10;
 }
 
+.gold-text {
+  font-family: "Open Sans";
+  font-weight: 500;
+  font-size: 22px;
+  color: $gold-color;
 
-$dark-background: #141415;
-$grey-background: #262626;
-$gold-color: rgb(158, 142, 76);
-$rock-background: '/images/rock-background.png';
+}
 
 
 .tooltip {
+  @extend .gold-text;
+  font-size: 14px;
   height: 50px;
   width: 150px;
   border-radius: 5px;
   @include border(1px solid, $gold-color, top left right bottom);
   background-image: url($rock-background);
-  color: #fff;
   position: relative;
   text-align: center;
   transition: all 0.25s ease-in;
+}
+
+.tooltip2 {
+  @extend .tooltip;
+  position: absolute;
+  line-height: 50px; /* <-- this is what you must define */
+  vertical-align: middle;
+  opacity: 1;
+
+
+}
+
+.tooltipText {
+  font-size: 16px;
   
+
 }
 
 .tooltip1 {     
@@ -97,8 +141,15 @@ $rock-background: '/images/rock-background.png';
   border-radius: 50%;
   pointer-events: none;
   text-align: center;
-  
+}
 
+.line {
+  height: 2px;
+  width: 250px;
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+  @include border(1px solid, $gold-color, bottom);
 }
 
 .day-tooltip {
@@ -112,8 +163,7 @@ $rock-background: '/images/rock-background.png';
   top:10px;
   left: 20px;
   font-size:18px; 
-  position:relative; 
-   
+  position:relative;
   border-bottom:1px solid rgb(158, 142, 76);
 }
 
@@ -127,14 +177,6 @@ $rock-background: '/images/rock-background.png';
   right: 3px;
   font-family: monospace;
   position: relative;
-
-}
-
-.gold-text {
-  font-family: "Open Sans";
-  font-weight: 500;
-  font-size: 22px;
-  color: $gold-color;
 
 }
 
@@ -153,10 +195,9 @@ $rock-background: '/images/rock-background.png';
 }
 
 .main-header {
-background-image: url($rock-background);
-height: 100px;
-@include border(1px solid, $gold-color, bottom);
-
+  background-image: url($rock-background);
+  height: 100px;
+  @include border(1px solid, $gold-color, bottom);
 }
 .main-body {
   background-image: url($rock-background);
@@ -468,8 +509,8 @@ height: 100px;
   width: 500px;
   height: 500px;
   position: relative;
-  left: 315px;
-  transform: rotate(225deg);
+  left: 319px;
+  transform: rotate(210deg);
 }
 
 #darkreader {
@@ -540,50 +581,72 @@ height: 100px;
 
 }
 
-.january {
+#january {
   @include monthLabel(0px, 0px, 0px, 60px, 228px, 74px, 12deg);
 }
-.february {
+#february {
   @include monthLabel(0px, 0px, 0px, 60px, 273px, 193px, 41.5deg);
 }
 
-.march {
+#march {
   @include monthLabel(0px, 0px, 0px, 60px, 245px, 315px, 70.5deg);
 }
 
-.april {
+#april {
   @include monthLabel(0px, 0px, 0px, 60px, 130px, 410px, 105deg);
 }
 
-.may {
+#may {
   @include monthLabel(0px, 0px, 0px, 60px, 0px, 435px, 130deg);
 }
 
-.june {
+#june {
   @include monthLabel(0px, 0px, 0px, 60px, -165px, 380px, 162deg);
 }
-.july {
+#july {
   @include monthLabel(0px, 0px, 0px, 60px, -280px, 240px, 195deg);
 }
 
-.august {
+#august {
   @include monthLabel(0px, 0px, 0px, 60px, -325px, 80px, 223deg);
 }
 
-.september {
+#september {
   @include monthLabel(0px, 0px, 0px, 60px, -290px, -100px, 255deg);
 }
 
-.october {
+#october {
   @include monthLabel(0px, 0px, 0px, 60px, -185px, -240px, 285deg);
 }
 
-.november {
+#november {
   @include monthLabel(0px, 0px, 0px, 60px, -50px, -315px, 312deg);
 }
 
-.december {
+#december {
   @include monthLabel(0px, 0px, 0px, 60px, 100px, -317px, 340deg);
+}
+
+#sunday {
+  @include dayLabel(206px, 200px, 75deg);
+}
+#monday {
+  @include dayLabel(180px, 305px, 130deg);
+}
+#tuesday {
+  @include dayLabel(60px, 342px, 180deg);
+}
+#wednesday {
+  @include dayLabel(-60px, 260px, 230deg);
+}
+#thursday {
+  @include dayLabel(-93px, 105px, 282deg);
+}
+#friday {
+  @include dayLabel(-10px, -26px, 330deg);  
+}
+#saturday {
+  @include dayLabel(120px, -53px, 25deg);
 }
 
 
