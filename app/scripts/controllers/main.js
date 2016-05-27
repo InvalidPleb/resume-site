@@ -475,6 +475,23 @@
 	  					}
 	  		};
 
+
+
+
+	  		//total
+			//highest daily
+			//highest weekly
+			//longest streak
+
+
+			//repo - commit total
+
+			//first commit date/time
+			//last commit date/time
+
+			//info on most recent commits
+
+
 		  	function add(a, b) {
 		      	return a + b;
 		  	}
@@ -705,9 +722,7 @@
                 			.html(function() {
 							    return "<p>" + repoName + "</p>" + "<p>" + data[i - 1] + " commits</p>";
 							});
-
-							// FUNCTION HERE ?
-                			
+							
 							if (i === 1) {
 								stylePos(tooltip, 60, 420);
 							}

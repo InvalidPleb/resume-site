@@ -81,6 +81,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 $dark-background: #141415;
 $grey-background: #262626;
 $gold-color: rgb(158, 142, 76);
+$dim-gold-color: rgb(82, 74, 42);
 $rock-background: '/images/rock-background.png';
 
 
@@ -108,7 +109,7 @@ body {
   left: 5%;
   position: relative;
   background-image: url($rock-background);
-  @include border(0.5px solid, rgb(82, 74, 42), top bottom left right);
+  @include border(0.5px solid, $dim-gold-color, top bottom left right);
   border-radius: 10px;
 }
 
@@ -258,8 +259,31 @@ body {
 
 .graph-desc-section {
   height: 100%;
-  margin-left: 63px;
   position: relative; 
+}
+
+
+
+.contribution-info {
+  height: 250px;
+  top: 20px;
+  position: relative;
+  @include border(2px solid, $dim-gold-color, left);
+
+  &:nth-child(2) {
+    border: none;
+  }
+
+}
+
+.contribution-text-left {
+  @extend .gold-text;
+  text-align: left;
+}
+
+.contribution-text-right {
+  @extend .gold-text;
+  text-align: right;
 }
 
 .block-center {
@@ -410,7 +434,7 @@ body {
   height: 250px;
   top: 10px;
   position: relative;
-  @include border(1px solid, rgb(82, 74, 42), top bottom left right);
+  @include border(1px solid, $dim-gold-color, top bottom left right);
   border-radius: 10px;
 }
 
