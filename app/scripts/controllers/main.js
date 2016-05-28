@@ -848,6 +848,7 @@
 	  			let weekCommits = [];
 		  		let daySumsCurr = [];
 		  		let dayArrCurr = [];
+		  		let allDays = [];
 
 		  		let j = 0;
 
@@ -864,7 +865,7 @@
 
 		  			for (let l=0; l < daySumsCurr.length; l++) {
 
-		  				if ((l + 1) % 7 === 0) {
+		  				if (l % 7 === 0) {
 
 			  				j = 0;
 
@@ -890,20 +891,104 @@
 		  		return [weekCommits, dayArr];
 	  		}
 
+	  		function streakData(inputArr) {
+
+	  			let streakArr = [];
+
+	  			for (var i=0; i < inputArr.length; i++) {
+
+	  				let currInputArr = inputArr[i];
+
+	  				for (var j=0; j < currInputArr.length; j++) {
+
+	  					streakArr.push(currInputArr[j]);
+	  				}
+
+	  			}
+	  			return streakArr;
+	  		}
+
+	  		function getStreaks(inputArr) {
+
+				let streakCounter = 0;
+				let longestStreak = 0;
+				let currStreak = 0;
+				let endCurrStreak = false;
+
+				for (var i = inputArr.length; i > 0; i--) {
+
+					if (inputArr[i] === 0) {
+
+						if (streakCounter === 0) {
+
+
+
+						
+						} else {
+
+							if (currStreak > longestStreak) {
+
+								longestStreak = currStreak;
+							}
+
+							
+							streakCounter = 0;
+						}
+
+					} else {
+
+						if (endCurrStreak === false) {
+
+							console.log(currStreak);
+
+							currStreak = streakCounter;
+						}
+
+						streakCounter++;
+					}
+				}
+				return [currStreak, longestStreak];
+			}
+
 			var calls = getGithubStuff();
 		  	
 		  	$q.all([calls]).then(function(){
 
 		  		var gotDayCommits = getDayCommits(commitDaily);
-
 		  		var repoCommits = gotDayCommits[0];
 		  		var dayCommits = gotDayCommits[1];
-
+		  		
 		  		repoCommits.push(1);
 		  		repoCommits.unshift(3);
 
 		  		var daySums = sumDayCommits(dayCommits);
 		  		var gotParsedCommits = parseCommits(daySums);
+		  		var allWeekCommits = gotParsedCommits[0];
+		  		var allDayCommits = gotParsedCommits[1];
+		  		var streakArr = streakData(allDayCommits);
+
+		  		var gotStreaks = getStreaks(streakArr);
+
+		  		var currentStreak = gotStreaks[0];
+		  		var longestStreak = gotStreaks[1];
+
+		  		$scope.dataObj = {
+
+		  			commits: {
+
+		  				days: allDayCommits,
+		  				weeks: allWeekCommits,
+		  				thisWeek: allWeekCommits[51],
+		  				thisYear: allWeekCommits.reduce(add, 0),
+		  				currStreak: gotStreaks[1],
+		  				longestStreak: gotStreaks[1],
+		  			}
+
+		  		};
+
+
+
+		  		console.log($scope.dataObj);
 
 		  		outerRing(-1, 5.5, [0,105, 0], gotParsedCommits[0], gotParsedCommits[1], 0);
 				middleRing(0, 50, [0,105, 0], [1,1,1,1,1,1,1]);
