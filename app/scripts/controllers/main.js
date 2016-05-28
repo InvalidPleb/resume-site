@@ -496,6 +496,11 @@
 		      	return a + b;
 		  	}
 
+		  	function openLink(url) {
+			  var win = window.open(url, '_blank');
+			  win.focus();
+			}
+
 		  	var githubGet = 'https://api.github.com';
 		  	var repoContainer = [];
 		  	var commitDaily = [];
@@ -695,19 +700,20 @@
 				if (i < data.length) {
 
 					let repoName = nameArr[i].slice(12,nameArr[i].length);
-
+	
 					let tooltip = d3.select(".d3-container")
 						.append("div")
-					    .attr("class", "tooltip")				
+					    .attr("class", "repoTooltip")				
 					    .style("opacity", 0);
 
 					let pieD = pie(data);
 					let sAng = pieD[i].startAngle;
 					let eAng = pieD[i].endAngle;
+					let poop = false;
 
 					let alpha = 0.6;
 
-					svgContainer.append("path")
+					var pieCurve = svgContainer.append("path")
 					    .attr("d", arc(80, 140, sAng, eAng))
 					    .attr("transform", "translate(200,250)")
 					    .style("fill", "rgba(" + color + "," + alpha + ")")
@@ -716,11 +722,13 @@
 					    .style("box-shadow", "0px 0px 9px 1px rgba(0,0,0,0.85)")
 					    .on("mouseover", function () {
 					    	tooltip.style("opacity", 1)
-							.style("pointer-events", "none")
+							
 							.style("left", (300) + "px")
                 			.style("top", (-500) + "px")
                 			.html(function() {
-							    return "<p>" + repoName + "</p>" + "<p>" + data[i - 1] + " commits</p>";
+							    return "<p>" + repoName + "</p>" + 
+							    "<p>" + data[i - 1] + " commits</p>" +
+							    "<p>Click to view on Github</p>";
 							});
 							
 							if (i === 1) {
@@ -745,11 +753,14 @@
 						    d3.select(this).style("fill", "rgba(" + color + "," + (alpha + 0.3) + ")");
 						}).on("mouseout", function () {
 							tooltip.style("opacity", 0);
-							tooltip.style("pointer-events", "none");
+							
 						   	
 						    d3.select(this).style("fill", "rgba(" + color + "," + alpha + ")");
-						});
+						}).on("click", function() {
 
+							openLink("https://github.com/InvalidPleb/" + repoName);
+
+						});
 					i++;
 
 					return innerRing(data, repoContainer, colorObj[i], i);
@@ -915,15 +926,12 @@
 				let currStreak = 0;
 				let endCurrStreak = false;
 
-				for (var i = inputArr.length; i > 0; i--) {
+				for (var i = (inputArr.length - 1); i > 0; i--) {
 
 					if (inputArr[i] === 0) {
 
 						if (streakCounter === 0) {
 
-
-
-						
 						} else {
 
 							if (currStreak > longestStreak) {
@@ -931,7 +939,7 @@
 								longestStreak = currStreak;
 							}
 
-							
+							endCurrStreak = true;
 							streakCounter = 0;
 						}
 
@@ -939,7 +947,6 @@
 
 						if (endCurrStreak === false) {
 
-							console.log(currStreak);
 
 							currStreak = streakCounter;
 						}
@@ -947,6 +954,7 @@
 						streakCounter++;
 					}
 				}
+
 				return [currStreak, longestStreak];
 			}
 
@@ -969,6 +977,8 @@
 
 		  		var gotStreaks = getStreaks(streakArr);
 
+		  		console.log(gotStreaks);
+
 		  		var currentStreak = gotStreaks[0];
 		  		var longestStreak = gotStreaks[1];
 
@@ -980,15 +990,31 @@
 		  				weeks: allWeekCommits,
 		  				thisWeek: allWeekCommits[51],
 		  				thisYear: allWeekCommits.reduce(add, 0),
-		  				currStreak: gotStreaks[1],
+		  				currStreak: gotStreaks[0],
 		  				longestStreak: gotStreaks[1],
+		  			},
+
+		  			repositories: {
+
+		  				darkReader: repoCommits[0],
+		  				resumeSite: repoCommits[1],
+		  				runnerCalc: repoCommits[2],
+		  				sips: repoCommits[3],
+		  				sublimeText: repoCommits[4],
+		  				tmTheme: repoCommits[5],
+
+		  				href: {
+
+		  					darkReader: "https://github.com/alexanderby/darkreader",
+			  				resumeSite: "https://github.com/InvalidPleb/resume-site",
+			  				runnerCalc: "https://github.com/InvalidPleb/Runner-Calculator",
+			  				sips: "https://github.com/InvalidPleb/sips",
+			  				sublimeText: "https://github.com/InvalidPleb/sublime-text-themes",
+			  				tmTheme: "https://github.com/aziz/tmTheme-Editor",
+		  				}
 		  			}
 
 		  		};
-
-
-
-		  		console.log($scope.dataObj);
 
 		  		outerRing(-1, 5.5, [0,105, 0], gotParsedCommits[0], gotParsedCommits[1], 0);
 				middleRing(0, 50, [0,105, 0], [1,1,1,1,1,1,1]);

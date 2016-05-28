@@ -38,6 +38,13 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   -ms-transform: rotate($deg);
   -o-transform: rotate($deg);
   transform: rotate($deg);
+
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;
 }
 
 @mixin dayLabel($left, $top, $deg) {
@@ -58,6 +65,13 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   -ms-transform: rotate($deg);
   -o-transform: rotate($deg);
   transform: rotate($deg);
+
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;
 }
 
 @mixin fadeImg($img) {
@@ -126,6 +140,12 @@ body {
   background-image: url($rock-background);
 }
 
+.navbar-default {
+  @include border(1px solid, $gold-color, left right bottom);
+  border-radius: 0;
+  border-top: none;
+}
+
 .main-header {
   background-image: url($rock-background);
   height: 100px;
@@ -137,9 +157,26 @@ body {
 
 .footer {
   @include border(1px solid, $gold-color, bottom top);
-  border-radius: 3px;
   padding-top: 20px;
   
+}
+
+.buffer {
+  @extend .footer;
+  border-top: none;
+}
+
+.index {
+  position: relative;
+  z-index: -5;
+}
+
+
+#greeting-section {
+
+  height: 500px;
+
+
 }
 
 .animation-container {
@@ -149,11 +186,11 @@ body {
   @include border(1px solid, $gold-color, left right bottom top);  
   position: relative;
   display: flex;
-  z-index: -2;
+  z-index: 2;
   -webkit-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
   -moz-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
   box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
-  pointer-events: all;
+  
 
 }
 
@@ -161,12 +198,11 @@ body {
   height: 900px;
   position: relative;
   z-index: -5;
-  pointer-events: none;
 }
 
 .tooltip {
   @extend .gold-text;
-  font-size: 14px;
+  font-size: 15px;
   height: 50px;
   width: 150px;
   border-radius: 5px;
@@ -175,6 +211,13 @@ body {
   position: absolute;
   text-align: center;
   transition: all 0.25s ease-in;
+  pointer-events: none;
+}
+
+.repoTooltip {
+  @extend .tooltip;
+  height: 85px;
+  width: 180px;
 }
 
 .tooltip1 {     
@@ -252,9 +295,11 @@ body {
 
 .graph-description {
   @extend .skills-container;
+  height: 300px;
   position: absolute;
   bottom: 50px;
   padding: 10px;
+  z-index: 5;
 }
 
 .graph-desc-section {
@@ -265,12 +310,13 @@ body {
 
 
 .contribution-info {
-  height: 250px;
+  height: 200px;
   top: 20px;
   position: relative;
   @include border(2px solid, $dim-gold-color, left);
+  z-index: 5;
 
-  &:nth-child(2) {
+  &:nth-child(2), &:nth-child(4) {
     border: none;
   }
 
@@ -284,6 +330,10 @@ body {
 .contribution-text-right {
   @extend .gold-text;
   text-align: right;
+
+  & > a {
+    color: $gold-color;
+  }
 }
 
 .block-center {
@@ -512,16 +562,6 @@ body {
   color: $gold-color;
   position: relative;
   top: 25%;
-}
-
-.buffer {
-  @extend .footer;
-  border-top: none;
-}
-
-.index {
-  position: relative;
-  z-index: -5;
 }
 
 .block-href {
