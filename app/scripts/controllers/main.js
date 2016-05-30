@@ -9,6 +9,25 @@
 	 * # MainCtrl
 	 * Controller of the resumeApp
 	 */
+
+
+
+	 /*
+
+		1. name
+		2. title
+		3. description
+		4. contact
+
+
+
+
+
+
+
+
+
+	 */
 	angular.module('resumeApp')
 	  	.controller('MainCtrl', function ($http, $q, $scope) {
 
@@ -497,8 +516,8 @@
 		  	}
 
 		  	function openLink(url) {
-			  var win = window.open(url, '_blank');
-			  win.focus();
+			  var link = window.open(url, '_blank');
+			  link.focus();
 			}
 
 		  	var githubGet = 'https://api.github.com';
@@ -530,6 +549,15 @@
 		  		}
 
 		  	}
+
+
+		  	function parallax() {
+		  		let ypos = window.pageYOffset;
+		  		let image = $('.container-parallax');
+		  		image.css('transform', 'translateY(' + (ypos * -0.4) + 'px)');
+		  	}
+
+		  	window.addEventListener('scroll', parallax);
 
 
 		  	// -------------- Graph -------------- //
@@ -596,7 +624,7 @@
 
 		    function htmlMidData(i, data) {
 				let dayArray = ["S", "M", "T", "W", "T", "F", "S",];
-				return "<p class=\"day-tooltip\">" + dayArray[i] +"|" + data[i] + "</p>";
+				return "<p class=\"day-tooltip\">" + dayArray[i] +"|<span>" + data[i] + "</span></p>";
 			}
 
 		    drawCss("line", 190, 710, "");
@@ -726,7 +754,7 @@
 							.style("left", (300) + "px")
                 			.style("top", (-500) + "px")
                 			.html(function() {
-							    return "<p>" + repoName + "</p>" + 
+							    return "<p class=\"repo-name\">" + repoName + "</p>" + 
 							    "<p>" + data[i - 1] + " commits</p>" +
 							    "<p>Click to view on Github</p>";
 							});

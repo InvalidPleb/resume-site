@@ -1,7 +1,7 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
-// endbower
+// endbower 
 
 @mixin border($style, $color, $sides) {
     @if ($style != "") {
@@ -130,10 +130,45 @@ body {
 .main-container {
   @extend .container;
   position: relative;
+  top: 80px;
   left: 35px;
   padding:20px;
   z-index: -3;
   min-width: 800px;
+
+}
+
+@mixin parallax($pic, $marginTop) {
+  margin-top: $marginTop;
+  background-image: url($pic);
+  position: absolute;
+  height: 1000px;
+  width: 100%;
+  z-index: -5;
+
+}
+
+.padding {
+  margin-top: 900px;
+  height: 200px;
+  width: 100%;
+  background-image: url($rock-background);
+  @include border(2px solid, $gold-color, top bottom);
+  z-index: -3;
+  position: absolute;
+}
+
+.container-parallax {
+
+}
+
+#first-parallax {
+  @include parallax('/images/whitemist-lg.jpg', 10px);
+}
+
+#second-parallax {
+  @include parallax('/images/whitemist-lg.jpg', 1100px);
+
 }
 
 .top-header {
@@ -173,8 +208,15 @@ body {
 
 
 #greeting-section {
+  background-image: url($rock-background);
+  height: 900px;
+  top: 10px;
+  z-index: 2;
+  margin-left: 0px;
+  margin-right: 0px;
+  position: relative;
+  @include border(1px solid, $gold-color, left right bottom top);  
 
-  height: 500px;
 
 
 }
@@ -216,9 +258,18 @@ body {
 
 .repoTooltip {
   @extend .tooltip;
-  height: 85px;
+  height: 88px;
   width: 180px;
+
+  & > :nth-child(1) {
+    font-size: 17px;  
+  }
+
+  & > :nth-child(2) {
+    color: #3ECF84;
+  }
 }
+
 
 .tooltip1 {     
   text-align: center; 
@@ -269,6 +320,12 @@ body {
   margin-top: -10px;
   font-family: monospace;
   position: relative;
+
+  & > span {
+
+    color: #3ECF84;
+
+  }
 }
 
 .day-tooltip-title {
@@ -292,6 +349,7 @@ body {
   position: relative;
 
 }
+
 
 .graph-description {
   @extend .skills-container;
