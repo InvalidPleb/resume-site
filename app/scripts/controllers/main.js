@@ -551,13 +551,18 @@
 		  	}
 
 
-		  	function parallax() {
+		  	function parallax(image, offsetX, offsetY) {
+		  		let xpos = window.pageXOffset;
 		  		let ypos = window.pageYOffset;
-		  		let image = $('.container-parallax');
-		  		image.css('transform', 'translateY(' + (ypos * -0.4) + 'px)');
+		  		image.css('transform', 'translate3d(' + (xpos * offsetX) + 'px,' + (ypos * offsetY) + 'px,0px)');
 		  	}
 
-		  	window.addEventListener('scroll', parallax);
+		  	$(window).scroll(function(){
+		  		parallax($('.container-parallax'), 0, -0.4);
+		  		parallax($('.padding'), 0, -0.5);
+		  	});
+
+		  	
 
 
 		  	// -------------- Graph -------------- //

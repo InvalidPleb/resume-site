@@ -91,7 +91,6 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   }
 }
 
-
 $dark-background: #141415;
 $grey-background: #262626;
 $gold-color: rgb(158, 142, 76);
@@ -130,44 +129,79 @@ body {
 .main-container {
   @extend .container;
   position: relative;
-  top: 80px;
-  left: 35px;
   padding:20px;
   z-index: -3;
-  min-width: 800px;
-
-}
-
-@mixin parallax($pic, $marginTop) {
-  margin-top: $marginTop;
-  background-image: url($pic);
-  position: absolute;
-  height: 1000px;
-  width: 100%;
-  z-index: -5;
+  margin: auto;
 
 }
 
 .padding {
-  margin-top: 900px;
+  margin-top: -150px;
   height: 200px;
   width: 100%;
   background-image: url($rock-background);
   @include border(2px solid, $gold-color, top bottom);
   z-index: -3;
   position: absolute;
+  -webkit-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
+  -moz-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
+  box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
+
+  &:nth-child(4) {
+    margin-top: 950px;
+  }
+
+  &:nth-child(6) {
+    margin-top: 2050px;
+  }
+
+  &:nth-child(8) {
+    margin-top: 3150px;
+  }
+
+  &:nth-child(10) {
+    margin-top: 4250px;
+  }
+
+  &:nth-child(12) {
+    margin-top: 5250px;
+  }
+
 }
 
 .container-parallax {
 
-}
+  margin-top: -1150px;
+  background-image: url('/images/eyepat.png');
+  position: absolute;
+  height: 1000px;
+  width: 100%;
+  z-index: -5;
 
-#first-parallax {
-  @include parallax('/images/whitemist-lg.jpg', 10px);
-}
+  &:nth-child(3) {
+    margin-top: -50px;
+  }
 
-#second-parallax {
-  @include parallax('/images/whitemist-lg.jpg', 1100px);
+  &:nth-child(5) {
+    margin-top: 950px;
+  }
+
+  &:nth-child(7) {
+    margin-top: 1950px;
+  }
+
+  &:nth-child(9) {
+    margin-top: 2950px;
+  }
+
+  &:nth-child(11) {
+    margin-top: 3950px;
+  }
+
+  &:nth-child(13) {
+    margin-top: 4950px;
+  }
+
 
 }
 
@@ -210,12 +244,17 @@ body {
 #greeting-section {
   background-image: url($rock-background);
   height: 900px;
-  top: 10px;
   z-index: 2;
-  margin-left: 0px;
-  margin-right: 0px;
+  margin-top: 2%;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-bottom: 2%;
   position: relative;
-  @include border(1px solid, $gold-color, left right bottom top);  
+
+  @include border(1px solid, $gold-color, left right bottom top);
+  -webkit-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
+  -moz-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
+  box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
 
 
 
@@ -240,6 +279,9 @@ body {
   height: 900px;
   position: relative;
   z-index: -5;
+  -webkit-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
+  -moz-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
+  box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
 }
 
 .tooltip {
@@ -416,7 +458,11 @@ body {
 .graph-title-section {
   height: 100px;
   width: 100%;
+  background-image: url($rock-background);
   @include border (1px solid, $gold-color, left right top);
+  -webkit-box-shadow: -19px 2px 19px -4px rgba(0,0,0,0.75);
+  -moz-box-shadow: -19px 2px 19px -4px rgba(0,0,0,0.75);
+  box-shadow: -19px 2px 19px -4px rgba(0,0,0,0.75);
 }
 
 .block-title-section-text {
@@ -436,9 +482,9 @@ body {
   height: 1800px;
   @include border(1px solid, $gold-color, left right bottom);  
   position: relative;
-  -webkit-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
-  -moz-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
-  box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
+  -webkit-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
+  -moz-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
+  box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
   z-index: -2;
   
 }
@@ -446,6 +492,9 @@ body {
 .projects-container {
   @extend .block-container;
   height: 1350px;
+  -webkit-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
+  -moz-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
+  box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
 
 }
 
