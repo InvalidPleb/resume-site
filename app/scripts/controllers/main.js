@@ -752,12 +752,14 @@
 					    .style("fill", "rgba(" + color + "," + alpha + ")")
 					    .style("position", "relative")
 					    .style("z-index", "2")
+					    .style("cursor", "pointer")
 					    .style("box-shadow", "0px 0px 9px 1px rgba(0,0,0,0.85)")
 					    .on("mouseover", function () {
 					    	tooltip.style("opacity", 1)
 							
 							.style("left", (300) + "px")
                 			.style("top", (-500) + "px")
+                			.style("cursor", "pointer")
                 			.html(function() {
 							    return "<p class=\"repo-name\">" + repoName + "</p>" + 
 							    "<p>" + data[i - 1] + " commits</p>" +
