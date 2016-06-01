@@ -125,8 +125,8 @@ body {
   @include border(0.5px solid, $dim-gold-color, top bottom left right);
   border-radius: 10px;
   -webkit-box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
--moz-box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
-box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
+  -moz-box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
+  box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
 }
 
 .main-container {
@@ -151,24 +151,30 @@ box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
   box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
 
   &:nth-child(4) {
-    margin-top: 950px;
+    margin-top: 1050px;
   }
 
   &:nth-child(6) {
-    margin-top: 2050px;
+    margin-top: 2150px;
   }
 
   &:nth-child(8) {
-    margin-top: 3150px;
+    margin-top: 3250px;
   }
 
   &:nth-child(10) {
-    margin-top: 4150px;
+    margin-top: 4450px;
   }
 
   &:nth-child(12) {
-    margin-top: 5250px;
+    margin-top: 5550px;
   }
+
+  &:nth-child(14) {
+    margin-top: 6550px;
+  }
+
+
 
 }
 
@@ -183,14 +189,17 @@ box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
 
   &:nth-child(3) {
     margin-top: -50px;
+    background-image: url('/images/swirlpat.png');
   }
 
   &:nth-child(5) {
     margin-top: 950px;
+
   }
 
   &:nth-child(7) {
     margin-top: 1950px;
+    background-image: url('/images/eyepat.png');
   }
 
   &:nth-child(9) {
@@ -227,14 +236,9 @@ box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
   background-image: url($rock-background);
 }
 
-.footer {
+.buffer {
   @include border(1px solid, $gold-color, bottom top);
   padding-top: 20px;
-  
-}
-
-.buffer {
-  @extend .footer;
   border-top: none;
 }
 
@@ -296,6 +300,9 @@ box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
   text-align: center;
   transition: all 0.25s ease-in;
   pointer-events: none;
+  -webkit-box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
+  -moz-box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
+  box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
 }
 
 .repoTooltip {
@@ -330,7 +337,7 @@ box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
 .tooltip2 {
   @extend .tooltip;
   position: absolute;
-  line-height: 50px; /* <-- this is what you must define */
+  line-height: 50px;
   vertical-align: middle;
   opacity: 1;
 }
@@ -339,14 +346,34 @@ box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
   font-size: 16px;
 }
 
+
+.graph-wrapper {
+  height: 460px;
+  z-index: -4;
+  top: 20px;
+  right: 24.8%;
+  position: absolute;
+  pointer-events: none;
+  background-image: url($rock-background);
+  @include border(0.5px solid, $dim-gold-color, top bottom left right);
+  border-radius: 10px;
+  -webkit-box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
+  -moz-box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
+  box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
+
+}
+
 .graph-circle {
   width: 410px;          
   height: 410px;
+  z-index: -3;
   border-radius: 50%;
   position: absolute;
   @include border(2px solid, $gold-color, top left right bottom);
-  background-image: none;
-  z-index: -3;
+  background-color: $dark-background;
+  -webkit-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
+  -moz-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
+  box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
 
 }
 
@@ -389,9 +416,7 @@ box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
   right: 3px;
   font-family: monospace;
   position: relative;
-
 }
-
 
 .graph-description {
   @extend .skills-container;
@@ -406,8 +431,6 @@ box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
   height: 100%;
   position: relative; 
 }
-
-
 
 .contribution-info {
   height: 200px;

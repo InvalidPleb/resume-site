@@ -9,25 +9,7 @@
 	 * # MainCtrl
 	 * Controller of the resumeApp
 	 */
-
-
-
-	 /*
-
-		1. name
-		2. title
-		3. description
-		4. contact
-
-
-
-
-
-
-
-
-
-	 */
+	 
 	angular.module('resumeApp')
 	  	.controller('MainCtrl', function ($http, $q, $scope) {
 
@@ -494,23 +476,6 @@
 	  					}
 	  		};
 
-
-
-
-	  		//total
-			//highest daily
-			//highest weekly
-			//longest streak
-
-
-			//repo - commit total
-
-			//first commit date/time
-			//last commit date/time
-
-			//info on most recent commits
-
-
 		  	function add(a, b) {
 		      	return a + b;
 		  	}
@@ -559,7 +524,7 @@
 
 		  	$(window).scroll(function(){
 		  		parallax($('.container-parallax'), 0, -0.4);
-		  		parallax($('.padding'), 0, -0.5);
+		  		parallax($('.padding'), 0, -0.6);
 		  	});
 
 		  	
