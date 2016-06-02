@@ -49,93 +49,82 @@
         </div>
     </div>
 </div>
-<div class="">
+<div class="graph-container">
     <div class="graph-title-section">
         <div class="block-title-section-text">My live Github activity</div>
     </div>
-</div>
-<div class="d3-container">
-    <div class="animation-container">
-        <div class="month-labels">
-            <div id="january">Jan</div>
-            <div id="february">Feb</div>
-            <div id="march">Mar</div>
-            <div id="april">Apr</div>
-            <div id="may">May</div>
-            <div id="june">Jun</div>
-            <div id="july">Jul</div>
-            <div id="august">Aug</div>
-            <div id="september">Sep</div>
-            <div id="october">Oct</div>
-            <div id="november">Nov</div>
-            <div id="december">Dec</div>
+    <div class="d3-container">
+        <div class="animation-container">
+            <div class="month-labels">
+                <div id="january">Jan</div>
+                <div id="february">Feb</div>
+                <div id="march">Mar</div>
+                <div id="april">Apr</div>
+                <div id="may">May</div>
+                <div id="june">Jun</div>
+                <div id="july">Jul</div>
+                <div id="august">Aug</div>
+                <div id="september">Sep</div>
+                <div id="october">Oct</div>
+                <div id="november">Nov</div>
+                <div id="december">Dec</div>
+            </div>
+            <div class="day-labels">
+                 <div id="sunday">Su</div>
+                 <div id="monday">M</div>
+                 <div id="tuesday">Tu</div>
+                 <div id="wednesday">W</div>
+                 <div id="thursday">Th</div>
+                 <div id="friday">F</div>
+                 <div id="saturday">Sa</div>  
+            </div>
         </div>
-        <div class="day-labels">
-             <div id="sunday">Su</div>
-             <div id="monday">M</div>
-             <div id="tuesday">Tu</div>
-             <div id="wednesday">W</div>
-             <div id="thursday">Th</div>
-             <div id="friday">F</div>
-             <div id="saturday">Sa</div>  
-        </div>
-
-       
-    </div>
-    <div class="graph-description col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="row">
-            <div class="col-lg-2 col-md-0 col-sm-0 col-xs-0"></div>
-            <div class="graph-desc-section col-lg-4 col-md-6 col-sm-6 col-xs-6">
-                <div class="block-center">
-                    <soan>Contributions</span>
+        <div class="graph-description col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="col-lg-2 col-md-0 col-sm-0 col-xs-0"></div>
+                <div class="graph-desc-section col-lg-4 col-md-6 col-sm-6 col-xs-6">
+                    <div class="block-center">
+                        <soan>Contributions</span>
+                    </div>
                 </div>
-            </div>
-            <div class="graph-desc-section col-lg-4 col-md-6 col-sm-6 col-xs-6">
-                <div class="block-center">
-                    <span>Repositories</span>
+                <div class="graph-desc-section col-lg-4 col-md-6 col-sm-6 col-xs-6">
+                    <div class="block-center">
+                        <span>Repositories</span>
+                    </div>
                 </div>
+                <div class="col-lg-2 col-md-0 col-sm-0 col-xs-0"></div>
             </div>
-            <div class="col-lg-2 col-md-0 col-sm-0 col-xs-0"></div>
+            <div class="row contribution-container">
+                <div class="col-lg-2 col-md-0 col-sm-0 col-xs-0"></div>
+                <div class="contribution-info col-lg-2 col-md-3 col-sm-3 col-xs-3">
+                    <p class="contribution-text-right">This week</p>
+                    <p class="contribution-text-right">This year</p>
+                    <p class="contribution-text-right">Current Streak</p>
+                    <p class="contribution-text-right">Longest Streak</p>
+                </div>
+                <div class="contribution-info col-lg-2 col-md-3 col-sm-3 col-xs-3">
+                    <p class="contribution-text-left">{{dataObj.commits.thisWeek}} commits</p>
+                    <p class="contribution-text-left">{{dataObj.commits.thisYear}} commits</p>
+                    <p class="contribution-text-left">{{dataObj.commits.currStreak}} days</p>
+                    <p class="contribution-text-left">{{dataObj.commits.longestStreak}} days</p>
+                </div>
+                <div class="contribution-info col-lg-2 col-md-3 col-sm-3 col-xs-3">
+                    <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.runnerCalc}}">Runner Calc</a></p>
+                    <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.sips}}">Sips</a></p>
+                    <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.resumeSite}}">Resume</a></p>
+                    <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.darkReader}}">Dark Reader</a></p>
+                    <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.tmTheme}}">TmTheme</a></p>
+                </div>
+                <div class="contribution-info col-lg-2 col-md-3 col-sm-3 col-xs-3">
+                    <p class="contribution-text-left">{{dataObj.repositories.runnerCalc}} commits</p>
+                    <p class="contribution-text-left">{{dataObj.repositories.sips}} commits</p>
+                    <p class="contribution-text-left">{{dataObj.repositories.resumeSite}} commits</p>
+                    <p class="contribution-text-left">{{dataObj.repositories.darkReader}} commits</p>
+                    <p class="contribution-text-left">{{dataObj.repositories.tmTheme}} commit</p>
+                </div>
+                <div class="col-lg-2 col-md-0 col-sm-0 col-xs-0"></div>
+            </div>   
         </div>
-        <div class="row contribution-container">
-            <div class="col-lg-2 col-md-0 col-sm-0 col-xs-0"></div>
-            <div class="contribution-info col-lg-2 col-md-3 col-sm-3 col-xs-3">
-                <p class="contribution-text-right">This week</p>
-                <p class="contribution-text-right">This year</p>
-                <p class="contribution-text-right">Current Streak</p>
-                <p class="contribution-text-right">Longest Streak</p>
-                
-
-
-            </div>
-            <div class="contribution-info col-lg-2 col-md-3 col-sm-3 col-xs-3">
-                <p class="contribution-text-left">{{dataObj.commits.thisWeek}} commits</p>
-                <p class="contribution-text-left">{{dataObj.commits.thisYear}} commits</p>
-                <p class="contribution-text-left">{{dataObj.commits.currStreak}} days</p>
-                <p class="contribution-text-left">{{dataObj.commits.longestStreak}} days</p>
-            </div>
-
-
-
-
-            <div class="contribution-info col-lg-2 col-md-3 col-sm-3 col-xs-3">
-                <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.runnerCalc}}">Runner Calc</a></p>
-                <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.sips}}">Sips</a></p>
-                <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.resumeSite}}">Resume</a></p>
-                <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.darkReader}}">Dark Reader</a></p>
-                <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.tmTheme}}">TmTheme</a></p>
-            </div>
-            <div class="contribution-info col-lg-2 col-md-3 col-sm-3 col-xs-3">
-                <p class="contribution-text-left">{{dataObj.repositories.runnerCalc}} commits</p>
-                <p class="contribution-text-left">{{dataObj.repositories.sips}} commits</p>
-                <p class="contribution-text-left">{{dataObj.repositories.resumeSite}} commits</p>
-                <p class="contribution-text-left">{{dataObj.repositories.darkReader}} commits</p>
-                <p class="contribution-text-left">{{dataObj.repositories.tmTheme}} commit</p>
-            </div>
-            <div class="col-lg-2 col-md-0 col-sm-0 col-xs-0"></div>
-        </div>
-
-        
     </div>
 </div>
 

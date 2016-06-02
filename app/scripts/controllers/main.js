@@ -519,12 +519,13 @@
 		  	function parallax(image, offsetX, offsetY) {
 		  		let xpos = window.pageXOffset;
 		  		let ypos = window.pageYOffset;
-		  		image.css('transform', 'translate3d(' + (xpos * offsetX) + 'px,' + (ypos * offsetY) + 'px,0px)');
+		  		image.css('transform', 'translate3d(' + (ypos * offsetX) + 'px,' + (ypos * offsetY) + 'px,0px)');
 		  	}
 
 		  	$(window).scroll(function(){
 		  		parallax($('.container-parallax'), 0, -0.4);
 		  		parallax($('.padding'), 0, -0.6);
+		  		//parallax($('.decoration'), -0.1, 0);
 		  	});
 
 		  	

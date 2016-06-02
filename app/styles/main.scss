@@ -1,4 +1,5 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+@import "compass/css3";
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower 
@@ -104,11 +105,28 @@ body {
   z-index: -10;
 }
 
+
+
+.inset-text-effect {
+  display: inline-block;
+  @include box-sizing(content-box);
+  border: none;
+  font: normal 40px/1 "Aladin", Helvetica, sans-serif;
+  color: rgba(48,48,48,1);
+  text-align: center;
+  text-transform: normal;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  white-space: pre;
+  @include text-shadow(1px 1px 0 rgba(140,140,140,0.6) , -1px -1px 1px rgba(0,0,0,0.67) );
+}
+
 .gold-text {
   font-family: "Open Sans";
   font-weight: 500;
   font-size: 22px;
   color: $gold-color;
+
 
 }
 
@@ -122,8 +140,6 @@ body {
   left: 5%;
   position: relative;
   background-image: url($rock-background);
-  @include border(0.5px solid, $dim-gold-color, top bottom left right);
-  border-radius: 10px;
   -webkit-box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
   -moz-box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
   box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
@@ -175,13 +191,28 @@ body {
   }
 
 
+}
+
+.decoration {
+
+  height: 45px;
+  width: 100%;
+  top: 40%;
+  position: relative;
+  @include border(2px solid, $gold-color, left right bottom top);
+
+  background-image: url('/images/royalpat.png');
+  -webkit-box-shadow: inset 0px 0px 20px 5px rgba(0,0,0,0.75);
+-moz-box-shadow: inset 0px 0px 20px 5px rgba(0,0,0,0.75);
+box-shadow: inset 0px 0px 20px 5px rgba(0,0,0,0.75);
 
 }
 
 .container-parallax {
 
   margin-top: -1150px;
-  background-image: url('/images/royalpat.png');
+  background-color: $dark-background;
+  //background-image: url('/images/royalpat.png');
   position: absolute;
   height: 1000px;
   width: 100%;
@@ -189,7 +220,7 @@ body {
 
   &:nth-child(3) {
     margin-top: -50px;
-    background-image: url('/images/swirlpat.png');
+    //background-image: url('/images/royalpat.png');
   }
 
   &:nth-child(5) {
@@ -199,7 +230,7 @@ body {
 
   &:nth-child(7) {
     margin-top: 1950px;
-    background-image: url('/images/eyepat.png');
+    //background-image: url('/images/eyepat.png');
   }
 
   &:nth-child(9) {
@@ -257,7 +288,6 @@ body {
   margin-right: 15%;
   margin-bottom: 2%;
   position: relative;
-
   @include border(1px solid, $gold-color, left right bottom top);
   -webkit-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
   -moz-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
@@ -267,11 +297,58 @@ body {
 
 }
 
+.sphere {
+  width: 100px;
+  height: 100px;
+  background-color: $gold-color;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: inset 45px -25px 40px rgba(0,0,0,.5);
+
+}
+
+.sphere-shadow {
+  width: 100px;
+  height: 100px;
+  top: 50px;
+  right: 40px;
+  margin-left: 20px;
+  padding: 0px;
+  position: relative;
+  border-radius: 50%;
+  -webkit-box-shadow: -6px 6px 20px -2px rgba(0,0,0,0.75);
+  -moz-box-shadow: -6px 6px 20px -2px rgba(0,0,0,0.75);
+  box-shadow: -6px 6px 20px -2px rgba(0,0,0,0.75);
+  transition: all .5s cubic-bezier(.17,.67,.83,.67);
+
+  &:hover {
+    -webkit-box-shadow: -5px 10px 35px 5px rgba(0,0,0,0.75);
+    -moz-box-shadow: -5px 10px 35px 5px rgba(0,0,0,0.75);
+    box-shadow: -5px 10px 35px 5px rgba(0,0,0,0.75);
+  }
+  
+
+}
+
+
+.nav-circle {
+  width: 100px;
+  height: 100px;
+  top: 50px;
+  right: 40px;
+  margin-left: 25px;
+  background-color: $gold-color;
+  border-radius: 50%;
+  -webkit-box-shadow: -6px 6px 20px 5px rgba(0,0,0,0.75);
+  -moz-box-shadow: -6px 6px 20px 5px rgba(0,0,0,0.75);
+  box-shadow: -6px 6px 20px 5px rgba(0,0,0,0.75);
+  
+}
+
 .animation-container {
   background-color: $dark-background;
   width: 100%;
   height: 900px;
-  @include border(1px solid, $gold-color, left right bottom top);  
   position: relative;
   display: flex;
   z-index: 2;
@@ -281,11 +358,9 @@ body {
 
 .d3-container {
   height: 900px;
+  top: 20px;
   position: relative;
   z-index: -5;
-  -webkit-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
-  -moz-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
-  box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
 }
 
 .tooltip {
@@ -332,6 +407,9 @@ body {
   border-radius: 50%;
   pointer-events: none;
   text-align: center;
+  -webkit-box-shadow: inset 0px 0px 35px 5px rgba(0,0,0,0.75);
+  -moz-box-shadow: inset 0px 0px 35px 5px rgba(0,0,0,0.75);
+  box-shadow: inset 0px 0px 35px 5px rgba(0,0,0,0.75);
 }
 
 .tooltip2 {
@@ -370,7 +448,7 @@ body {
   border-radius: 50%;
   position: absolute;
   @include border(2px solid, $gold-color, top left right bottom);
-  background-color: $dark-background;
+  background-color: #111;
   -webkit-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
   -moz-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
   box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
@@ -380,9 +458,13 @@ body {
 .line {
   height: 2px;
   width: 250px;
+  z-index: 3;
   position: absolute;
   pointer-events: none;
   @include border(1px solid, $gold-color, bottom);
+  -webkit-box-shadow: -7px 6px 24px 5px rgba(0,0,0,0.75);
+  -moz-box-shadow: -7px 6px 24px 5px rgba(0,0,0,0.75);
+  box-shadow: -7px 6px 24px 5px rgba(0,0,0,0.75);
 }
 
 .day-tooltip {
@@ -471,22 +553,31 @@ body {
   margin-right: auto;
 }
 
-.block-title-section {
+.projects-title-section {
   height: 100px;
-  width: 100%;
+  width: 90%;
+  left: 5%;
+  top: 20px;
+  position: relative;
   background-image: url($rock-background);
-  @include border(1px solid, $gold-color, bottom); 
+  -webkit-box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
+  -moz-box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
+  box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
 }
 
-.graph-title-section {
-  height: 100px;
-  width: 100%;
-  background-image: url($rock-background);
-  @include border (1px solid, $gold-color, left right top);
-  -webkit-box-shadow: -19px 2px 19px -4px rgba(0,0,0,0.75);
-  -moz-box-shadow: -19px 2px 19px -4px rgba(0,0,0,0.75);
-  box-shadow: -19px 2px 19px -4px rgba(0,0,0,0.75);
+.block-title-section {
+  @extend .projects-title-section;
+
 }
+
+
+
+.graph-title-section {
+  @extend .projects-title-section;
+
+}
+
+
 
 .block-title-section-text {
   font-family: "Open Sans";
@@ -503,13 +594,22 @@ body {
   @extend .block-title-section-text;
   font-size: 50px;
   top: 10%;
+
+  &:nth-child(2) {
+    font-size: 28px;
+    letter-spacing: 8px;
+  }
+  &:nth-child(3) {
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
 }
 
 .block-container {
   background-color: $dark-background;
   width: 100%;
   height: 1800px;
-  @include border(1px solid, $gold-color, left right bottom);  
+  @include border(1px solid, $gold-color, left right top bottom);  
   position: relative;
   -webkit-box-shadow: -13px 20px 35px 10px rgba(0,0,0,0.75);
   -moz-box-shadow: -13px 20px 35px 10px rgba(0,0,0,0.75);
@@ -527,13 +627,12 @@ body {
 
 }
 
-.projects-title-section {
-  height: 100px;
-  width: 100%;
-  background-image: url($rock-background);
-  @include border (1px solid, $gold-color, top bottom);
-
+.graph-container {
+  @extend .block-container;
+  height: 1000px;
 }
+
+
 
 .main-blocks {
   background-color: #333030;
@@ -681,12 +780,13 @@ body {
 
 .project-desc-container {
   @extend .skills-container;
+  @include border(1px solid, $dim-gold-color, top left bottom right);
+  border-radius: 10px;
   height: 200px;
   margin-top: 100px;
   position: relative;
-  -webkit-box-shadow: -8px 8px 35px -8px rgba(0,0,0,0.75);
-  -moz-box-shadow: -8px 8px 35px -8px rgba(0,0,0,0.75);
-  box-shadow: -8px 8px 35px -8px rgba(0,0,0,0.75);
+  box-shadow: none;
+  
 
 }
 
