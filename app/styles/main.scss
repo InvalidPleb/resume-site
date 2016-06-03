@@ -18,14 +18,20 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
                 }
             }
         }  
-
     }
 }
 
-@mixin monthLabel($mTop, $mRig, $mBot, $mLef, $left, $top, $deg){
+@mixin prefix($property, $value, $prefixes: ()) {
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value;
+  }
+  #{$property}: $value;
+}
+
+@mixin monthLabel($left, $top, $deg){
 
   position: relative;
-  margin: $mTop $mRig $mBot $mLef;
+  margin: 0px 0px 0px 60px;
   left: $left;
   top: $top;
 
@@ -34,22 +40,12 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   font-size: 18px;
   color: #84783b;
 
-  -webkit-transform: rotate($deg);
-  -moz-transform: rotate($deg);
-  -ms-transform: rotate($deg);
-  -o-transform: rotate($deg);
-  transform: rotate($deg);
-
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none;   /* Chrome/Safari/Opera */
-  -khtml-user-select: none;    /* Konqueror */
-  -moz-user-select: none;      /* Firefox */
-  -ms-user-select: none;       /* Internet Explorer/Edge */
-  user-select: none;
+  @include prefix(transform, rotate($deg), webkit moz ms o);
+  @include prefix(user-select, none, webkit moz ms o);
+  -webkit-touch-callout: none;
 }
 
 @mixin dayLabel($left, $top, $deg) {
-
 
   position: relative;
   left: $left;
@@ -61,18 +57,9 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   font-size: 18px;
   color: #84783b;
 
-  -webkit-transform: rotate($deg);
-  -moz-transform: rotate($deg);
-  -ms-transform: rotate($deg);
-  -o-transform: rotate($deg);
-  transform: rotate($deg);
-
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none;   /* Chrome/Safari/Opera */
-  -khtml-user-select: none;    /* Konqueror */
-  -moz-user-select: none;      /* Firefox */
-  -ms-user-select: none;       /* Internet Explorer/Edge */
-  user-select: none;
+  @include prefix(transform, rotate($deg), webkit moz ms o);
+  @include prefix(user-select, none, webkit moz ms o);
+  -webkit-touch-callout: none;
 }
 
 @mixin fadeImg($img) {
@@ -92,7 +79,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   }
 }
 
-$dark-background: #141415;
+$dark-background: #181819;
 $grey-background: #262626;
 $gold-color: rgb(158, 142, 76);
 $dim-gold-color: rgb(82, 74, 42);
@@ -106,28 +93,11 @@ body {
 }
 
 
-
-.inset-text-effect {
-  display: inline-block;
-  @include box-sizing(content-box);
-  border: none;
-  font: normal 40px/1 "Aladin", Helvetica, sans-serif;
-  color: rgba(48,48,48,1);
-  text-align: center;
-  text-transform: normal;
-  -o-text-overflow: clip;
-  text-overflow: clip;
-  white-space: pre;
-  @include text-shadow(1px 1px 0 rgba(140,140,140,0.6) , -1px -1px 1px rgba(0,0,0,0.67) );
-}
-
 .gold-text {
   font-family: "Open Sans";
   font-weight: 500;
   font-size: 22px;
   color: $gold-color;
-
-
 }
 
 .no-pe {
@@ -140,9 +110,7 @@ body {
   left: 5%;
   position: relative;
   background-image: url($rock-background);
-  -webkit-box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
-  -moz-box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
-  box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
+  @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
 .main-container {
@@ -162,9 +130,7 @@ body {
   @include border(2px solid, $gold-color, top bottom);
   z-index: -3;
   position: absolute;
-  -webkit-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
-  -moz-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
-  box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
+  @include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
 
   &:nth-child(4) {
     margin-top: 1050px;
@@ -189,8 +155,6 @@ body {
   &:nth-child(14) {
     margin-top: 6550px;
   }
-
-
 }
 
 .decoration {
@@ -200,12 +164,8 @@ body {
   top: 40%;
   position: relative;
   @include border(2px solid, $gold-color, left right bottom top);
-
   background-image: url('/images/royalpat.png');
-  -webkit-box-shadow: inset 0px 0px 20px 5px rgba(0,0,0,0.75);
--moz-box-shadow: inset 0px 0px 20px 5px rgba(0,0,0,0.75);
-box-shadow: inset 0px 0px 20px 5px rgba(0,0,0,0.75);
-
+  @include prefix(box-shadow, inset 0px 0px 20px 5px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
 .container-parallax {
@@ -244,8 +204,6 @@ box-shadow: inset 0px 0px 20px 5px rgba(0,0,0,0.75);
   &:nth-child(13) {
     margin-top: 4950px;
   }
-
-
 }
 
 .top-header {
@@ -289,12 +247,7 @@ box-shadow: inset 0px 0px 20px 5px rgba(0,0,0,0.75);
   margin-bottom: 2%;
   position: relative;
   @include border(1px solid, $gold-color, left right bottom top);
-  -webkit-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
-  -moz-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
-  box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
-
-
-
+  @include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
 .sphere {
@@ -303,8 +256,7 @@ box-shadow: inset 0px 0px 20px 5px rgba(0,0,0,0.75);
   background-color: $gold-color;
   border-radius: 50%;
   position: relative;
-  box-shadow: inset 45px -25px 40px rgba(0,0,0,.5);
-
+  @include prefix(box-shadow, inset 45px -25px 40px rgba(0,0,0,.5), webkit moz ms o);
 }
 
 .sphere-shadow {
@@ -316,18 +268,13 @@ box-shadow: inset 0px 0px 20px 5px rgba(0,0,0,0.75);
   padding: 0px;
   position: relative;
   border-radius: 50%;
-  -webkit-box-shadow: -6px 6px 20px -2px rgba(0,0,0,0.75);
-  -moz-box-shadow: -6px 6px 20px -2px rgba(0,0,0,0.75);
-  box-shadow: -6px 6px 20px -2px rgba(0,0,0,0.75);
+  @include prefix(box-shadow, -6px 6px 20px -2px rgba(0,0,0,0.75), webkit moz ms o);
   transition: all .5s cubic-bezier(.17,.67,.83,.67);
 
   &:hover {
-    -webkit-box-shadow: -5px 10px 35px 5px rgba(0,0,0,0.75);
-    -moz-box-shadow: -5px 10px 35px 5px rgba(0,0,0,0.75);
-    box-shadow: -5px 10px 35px 5px rgba(0,0,0,0.75);
+    @include prefix(box-shadow, -5px 10px 35px 5px rgba(0,0,0,0.75), webkit moz ms o);
   }
   
-
 }
 
 
@@ -339,9 +286,7 @@ box-shadow: inset 0px 0px 20px 5px rgba(0,0,0,0.75);
   margin-left: 25px;
   background-color: $gold-color;
   border-radius: 50%;
-  -webkit-box-shadow: -6px 6px 20px 5px rgba(0,0,0,0.75);
-  -moz-box-shadow: -6px 6px 20px 5px rgba(0,0,0,0.75);
-  box-shadow: -6px 6px 20px 5px rgba(0,0,0,0.75);
+  @include prefix(box-shadow, -6px 6px 20px 5px rgba(0,0,0,0.75), webkit moz ms o);
   
 }
 
@@ -352,7 +297,6 @@ box-shadow: inset 0px 0px 20px 5px rgba(0,0,0,0.75);
   position: relative;
   display: flex;
   z-index: 2;
-  
 
 }
 
@@ -375,9 +319,7 @@ box-shadow: inset 0px 0px 20px 5px rgba(0,0,0,0.75);
   text-align: center;
   transition: all 0.25s ease-in;
   pointer-events: none;
-  -webkit-box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
-  -moz-box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
-  box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
+  @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
 .repoTooltip {
@@ -407,9 +349,7 @@ box-shadow: inset 0px 0px 20px 5px rgba(0,0,0,0.75);
   border-radius: 50%;
   pointer-events: none;
   text-align: center;
-  -webkit-box-shadow: inset 0px 0px 35px 5px rgba(0,0,0,0.75);
-  -moz-box-shadow: inset 0px 0px 35px 5px rgba(0,0,0,0.75);
-  box-shadow: inset 0px 0px 35px 5px rgba(0,0,0,0.75);
+  @include prefix(box-shadow, inset 0px 0px 35px 5px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
 .tooltip2 {
@@ -425,22 +365,6 @@ box-shadow: inset 0px 0px 20px 5px rgba(0,0,0,0.75);
 }
 
 
-.graph-wrapper {
-  height: 460px;
-  z-index: -4;
-  top: 20px;
-  right: 24.8%;
-  position: absolute;
-  pointer-events: none;
-  background-image: url($rock-background);
-  @include border(0.5px solid, $dim-gold-color, top bottom left right);
-  border-radius: 10px;
-  -webkit-box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
-  -moz-box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
-  box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
-
-}
-
 .graph-circle {
   width: 410px;          
   height: 410px;
@@ -449,9 +373,7 @@ box-shadow: inset 0px 0px 20px 5px rgba(0,0,0,0.75);
   position: absolute;
   @include border(2px solid, $gold-color, top left right bottom);
   background-color: #111;
-  -webkit-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
-  -moz-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
-  box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
+  @include prefix(box-shadow, -6px 12px 29px 3px rgba(0,0,0,0.75), webkit moz ms o);
 
 }
 
@@ -462,9 +384,7 @@ box-shadow: inset 0px 0px 20px 5px rgba(0,0,0,0.75);
   position: absolute;
   pointer-events: none;
   @include border(1px solid, $gold-color, bottom);
-  -webkit-box-shadow: -7px 6px 24px 5px rgba(0,0,0,0.75);
-  -moz-box-shadow: -7px 6px 24px 5px rgba(0,0,0,0.75);
-  box-shadow: -7px 6px 24px 5px rgba(0,0,0,0.75);
+  @include prefix(box-shadow, -7px 6px 24px 5px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
 .day-tooltip {
@@ -560,9 +480,7 @@ box-shadow: inset 0px 0px 20px 5px rgba(0,0,0,0.75);
   top: 20px;
   position: relative;
   background-image: url($rock-background);
-  -webkit-box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
-  -moz-box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
-  box-shadow: -7px 6px 24px 2px rgba(0,0,0,0.75);
+  @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
 .block-title-section {
@@ -611,20 +529,14 @@ box-shadow: inset 0px 0px 20px 5px rgba(0,0,0,0.75);
   height: 1800px;
   @include border(1px solid, $gold-color, left right top bottom);  
   position: relative;
-  -webkit-box-shadow: -13px 20px 35px 10px rgba(0,0,0,0.75);
-  -moz-box-shadow: -13px 20px 35px 10px rgba(0,0,0,0.75);
-  box-shadow: -13px 20px 35px 10px rgba(0,0,0,0.75);
+  @include prefix(box-shadow, -13px 20px 35px 10px rgba(0,0,0,0.75), webkit moz ms o);
   z-index: -2;
-  
 }
 
 .projects-container {
   @extend .block-container;
   height: 1350px;
-  -webkit-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
-  -moz-box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
-  box-shadow: -7px 11px 28px 14px rgba(0,0,0,0.75);
-
+  @include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
 .graph-container {
@@ -643,10 +555,8 @@ box-shadow: inset 0px 0px 20px 5px rgba(0,0,0,0.75);
   border-radius: 5px;
   margin-top: 10px;
   padding: 0px;
-  @include border(1px solid, $gold-color, top left right bottom); 
-  -webkit-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
-  -moz-box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
-  box-shadow: inset 0px 0px 9px 1px rgba(0,0,0,0.85);
+  @include border(1px solid, $gold-color, top left right bottom);
+  @include prefix(box-shadow, inset 0px 0px 9px 1px rgba(0,0,0,0.85), webkit moz ms o);
   text-align: center;
   position: relative;
 }
@@ -864,144 +774,81 @@ box-shadow: inset 0px 0px 20px 5px rgba(0,0,0,0.75);
   transform: rotate(210deg);
 }
 
-#darkreader {
-  @include fadeImg('/images/darkreader-2.png');
-  margin-left: 2px;
+$toolList: "darkreader", "tmtheme", "angular", "jquery", 
+           "bootstrap", "git", "yeoman", "grunt", "bower", 
+           "sass", "cscript", "gimp", "balsamiq", "d3";
+
+@each $tool in $toolList {
+
+  @if $tool == "darkreader" {
+    ##{$tool} {
+      @include fadeImg('/images/' + $tool + '.png');
+      margin: 0px 0px 0px 2px;
+    }
+  } @else if $tool == "bootstrap" {
+    ##{$tool} {
+      @include fadeImg('/images/' + $tool + '.png');
+      margin: -1px 0px 0px -1px;
+    }
+  } @else if $tool == "sass" {
+    ##{$tool} {
+      @include fadeImg('/images/' + $tool + '.png');
+      margin: 2px 0px 0px 2px;
+    }
+  } @else if $tool == "d3" {
+    ##{$tool} {
+      @include fadeImg('/images/' + $tool + '.png');
+      margin: 6px 0px 0px 3px;
+    }
+  } @else {
+    ##{$tool} {
+      @include fadeImg('/images/' + $tool + '.png');
+    }
+  }
 }
 
-#tmtheme {
-  @include fadeImg('/images/tmtheme-1.png');
+$monthList: (
+
+  january: (230px, 85px, 15deg),
+  february: (273px, 195px, 42deg),
+  march: (243px, 315px, 70.5deg),
+  april: (127px, 410px, 105deg),
+  may: (1px, 436px, 130deg),
+  june: (-165px, 382px, 162deg),
+  july: (-280px, 242px, 195deg),
+  august: (-328px, 82px, 223deg),
+  september: (-293px, -100px, 255deg),
+  october: (-186px, -240px, 285deg),
+  november: (-48px, -315px, 312deg),
+  december: (105px, -307px, 342deg)
+
+);
+
+$dayList: (
+
+  sunday: (206px, 200px, 75deg),
+  monday: (180px, 305px, 130deg),
+  tuesday: (60px, 342px, 180deg),
+  wednesday: (-60px, 260px, 230deg),
+  thursday: (-93px, 105px, 282deg),
+  friday: (-10px, -26px, 330deg),
+  saturday: (120px, -53px, 25deg)
+
+);
+
+@each $month, $values in $monthList {
+
+  ##{$month} {
+    @include monthLabel(nth($values, 1), nth($values, 2), nth($values, 3)); 
+  }
 }
 
-#angular {
-  @include fadeImg('/images/angular.png');
-}
+@each $day, $values in $dayList {
 
-#jquery {
-  @include fadeImg('/images/jquery-4.png');
+  ##{$day} {
+    @include dayLabel(nth($values, 1), nth($values, 2), nth($values, 3)); 
+  }
 }
-
-#bootstrap {
-  @include fadeImg('/images/bootstrap-3.png');
-  margin-left: -1px;
-  margin-top: -1px;
-}
-
-#git {
-  @include fadeImg('/images/git-4.png');
-}
-
-#yeoman {
-  @include fadeImg('/images/yeoman-5.png');
-}
-
-#grunt {
-  @include fadeImg('/images/grunt.png');
-
-}
-
-#bower {
-  @include fadeImg('/images/bower-3.png');
-
-}
-
-#sass {
-  @include fadeImg('/images/sass-5.png');
-  margin-left: 2px;
-  margin-top: 2px;
-
-
-}
-#cscript {
-  @include fadeImg('/images/coffeescript-2.png');
-
-}
-
-#gimp {
-  @include fadeImg('/images/gimp-4.png');
-
-}
-#balsamiq {
-  @include fadeImg('/images/balsamiq.png');
-
-}
-#d3 {
-  @include fadeImg('/images/d3-4.png');
-  margin-left: 3px;
-  margin-top: 6px;
-
-}
-
-#january {
-  @include monthLabel(0px, 0px, 0px, 60px, 230px, 85px, 15deg);
-
-}
-#february {
-  @include monthLabel(0px, 0px, 0px, 60px, 273px, 195px, 42deg);
-}
-
-#march {
-  @include monthLabel(0px, 0px, 0px, 60px, 243px, 315px, 70.5deg);
-}
-
-#april {
-  @include monthLabel(0px, 0px, 0px, 60px, 127px, 410px, 105deg);
-}
-
-#may {
-  @include monthLabel(0px, 0px, 0px, 60px, 1px, 436px, 130deg);
-}
-
-#june {
-  @include monthLabel(0px, 0px, 0px, 60px, -165px, 382px, 162deg);
-}
-#july {
-  @include monthLabel(0px, 0px, 0px, 60px, -280px, 242px, 195deg);
-}
-
-#august {
-  @include monthLabel(0px, 0px, 0px, 60px, -328px, 82px, 223deg);
-}
-
-#september {
-  @include monthLabel(0px, 0px, 0px, 60px, -293px, -100px, 255deg);
-}
-
-#october {
-  @include monthLabel(0px, 0px, 0px, 60px, -186px, -240px, 285deg);
-}
-
-#november {
-  @include monthLabel(0px, 0px, 0px, 60px, -48px, -315px, 312deg);
-}
-
-#december {
-  @include monthLabel(0px, 0px, 0px, 60px, 105px, -307px, 342deg);
-}
-
-#sunday {
-  @include dayLabel(206px, 200px, 75deg);
-}
-#monday {
-  @include dayLabel(180px, 305px, 130deg);
-}
-#tuesday {
-  @include dayLabel(60px, 342px, 180deg);
-}
-#wednesday {
-  @include dayLabel(-60px, 260px, 230deg);
-}
-#thursday {
-  @include dayLabel(-93px, 105px, 282deg);
-}
-#friday {
-  @include dayLabel(-10px, -26px, 330deg);  
-}
-#saturday {
-  @include dayLabel(120px, -53px, 25deg);
-}
-
-
 
 
 
