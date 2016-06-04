@@ -85,13 +85,16 @@ $gold-color: rgb(158, 142, 76);
 $dim-gold-color: rgb(82, 74, 42);
 $rock-background: '/images/rock-background.png';
 
+* {
+  padding: 0px;
+  margin: 0px;
+}
 
 body {
   padding: 0;
   position: relative;
   z-index: -10;
 }
-
 
 .gold-text {
   font-family: "Open Sans";
@@ -106,7 +109,7 @@ body {
 
 .skills-container {
   width: 90%;
-  height: 350px;
+  height: 600px;
   left: 5%;
   position: relative;
   background-image: url($rock-background);
@@ -163,7 +166,7 @@ body {
   width: 100%;
   top: 40%;
   position: relative;
-  @include border(2px solid, $gold-color, left right bottom top);
+  @include border(2px solid, $gold-color, bottom top);
   background-image: url('/images/royalpat.png');
   @include prefix(box-shadow, inset 0px 0px 20px 5px rgba(0,0,0,0.75), webkit moz ms o);
 }
@@ -251,25 +254,31 @@ body {
 }
 
 .sphere {
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
   background-color: $gold-color;
   border-radius: 50%;
+  cursor: pointer;
   position: relative;
   @include prefix(box-shadow, inset 45px -25px 40px rgba(0,0,0,.5), webkit moz ms o);
+  transition: all .25s cubic-bezier(.17,.67,.83,.67);
+
+  &:hover {
+    @include prefix(box-shadow, inset 45px -35px 40px rgba(0,0,0,.5), webkit moz ms o);
+  }
 }
 
 .sphere-shadow {
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
   top: 50px;
-  right: 40px;
-  margin-left: 20px;
+  right: 120px;
+  margin-left: 50px;
   padding: 0px;
   position: relative;
   border-radius: 50%;
   @include prefix(box-shadow, -6px 6px 20px -2px rgba(0,0,0,0.75), webkit moz ms o);
-  transition: all .5s cubic-bezier(.17,.67,.83,.67);
+  transition: all .25s cubic-bezier(.17,.67,.83,.67);
 
   &:hover {
     @include prefix(box-shadow, -5px 10px 35px 5px rgba(0,0,0,0.75), webkit moz ms o);
@@ -375,6 +384,12 @@ body {
   background-color: #111;
   @include prefix(box-shadow, -6px 12px 29px 3px rgba(0,0,0,0.75), webkit moz ms o);
 
+}
+
+.pie {
+  z-index: 2;
+  cursor: pointer;
+  position: relative;
 }
 
 .line {
@@ -526,7 +541,7 @@ body {
 .block-container {
   background-color: $dark-background;
   width: 100%;
-  height: 1800px;
+  height: 2800px;
   @include border(1px solid, $gold-color, left right top bottom);  
   position: relative;
   @include prefix(box-shadow, -13px 20px 35px 10px rgba(0,0,0,0.75), webkit moz ms o);
@@ -614,7 +629,7 @@ body {
 
 .skills-list {
   top: 10%;
-  right: 18%;
+  left: 10%;
   position: relative;
   color: $gold-color;
 }
@@ -696,9 +711,16 @@ body {
   margin-top: 100px;
   position: relative;
   box-shadow: none;
-  
-
 }
+
+.tools-desc-container {
+  @extend .project-desc-container;
+  @extend .gold-text;
+  margin-top: 0px;
+  font-size: 18px;
+  padding: 10px;
+}
+
 
 .seperator {
   position: relative;
@@ -778,6 +800,35 @@ $toolList: "darkreader", "tmtheme", "angular", "jquery",
            "bootstrap", "git", "yeoman", "grunt", "bower", 
            "sass", "cscript", "gimp", "balsamiq", "d3";
 
+$monthMap: (
+
+  january: (230px, 85px, 15deg),
+  february: (273px, 195px, 42deg),
+  march: (243px, 315px, 70.5deg),
+  april: (127px, 410px, 105deg),
+  may: (1px, 436px, 130deg),
+  june: (-165px, 382px, 162deg),
+  july: (-280px, 242px, 195deg),
+  august: (-328px, 82px, 223deg),
+  september: (-293px, -100px, 255deg),
+  october: (-186px, -240px, 285deg),
+  november: (-48px, -315px, 312deg),
+  december: (105px, -307px, 342deg)
+
+);
+
+$dayMap: (
+
+  sunday: (206px, 200px, 75deg),
+  monday: (180px, 305px, 130deg),
+  tuesday: (60px, 342px, 180deg),
+  wednesday: (-60px, 260px, 230deg),
+  thursday: (-93px, 105px, 282deg),
+  friday: (-10px, -26px, 330deg),
+  saturday: (120px, -53px, 25deg)
+
+);
+
 @each $tool in $toolList {
 
   @if $tool == "darkreader" {
@@ -807,43 +858,14 @@ $toolList: "darkreader", "tmtheme", "angular", "jquery",
   }
 }
 
-$monthList: (
-
-  january: (230px, 85px, 15deg),
-  february: (273px, 195px, 42deg),
-  march: (243px, 315px, 70.5deg),
-  april: (127px, 410px, 105deg),
-  may: (1px, 436px, 130deg),
-  june: (-165px, 382px, 162deg),
-  july: (-280px, 242px, 195deg),
-  august: (-328px, 82px, 223deg),
-  september: (-293px, -100px, 255deg),
-  october: (-186px, -240px, 285deg),
-  november: (-48px, -315px, 312deg),
-  december: (105px, -307px, 342deg)
-
-);
-
-$dayList: (
-
-  sunday: (206px, 200px, 75deg),
-  monday: (180px, 305px, 130deg),
-  tuesday: (60px, 342px, 180deg),
-  wednesday: (-60px, 260px, 230deg),
-  thursday: (-93px, 105px, 282deg),
-  friday: (-10px, -26px, 330deg),
-  saturday: (120px, -53px, 25deg)
-
-);
-
-@each $month, $values in $monthList {
+@each $month, $values in $monthMap {
 
   ##{$month} {
     @include monthLabel(nth($values, 1), nth($values, 2), nth($values, 3)); 
   }
 }
 
-@each $day, $values in $dayList {
+@each $day, $values in $dayMap {
 
   ##{$day} {
     @include dayLabel(nth($values, 1), nth($values, 2), nth($values, 3)); 

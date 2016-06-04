@@ -715,11 +715,8 @@
 					var pieCurve = svgContainer.append("path")
 					    .attr("d", arc(80, 140, sAng, eAng))
 					    .attr("transform", "translate(200,250)")
+					    .attr("class", "pie")
 					    .style("fill", "rgba(" + color + "," + alpha + ")")
-					    .style("position", "relative")
-					    .style("z-index", "2")
-					    .style("cursor", "pointer")
-					    .style("box-shadow", "0px 0px 9px 1px rgba(0,0,0,0.85)")
 					    .on("mouseover", function () {
 					    	tooltip.style("opacity", 1)
 							
@@ -975,10 +972,7 @@
 		  		var allWeekCommits = gotParsedCommits[0];
 		  		var allDayCommits = gotParsedCommits[1];
 		  		var streakArr = streakData(allDayCommits);
-
 		  		var gotStreaks = getStreaks(streakArr);
-
-		  		console.log(gotStreaks);
 
 		  		var currentStreak = gotStreaks[0];
 		  		var longestStreak = gotStreaks[1];
