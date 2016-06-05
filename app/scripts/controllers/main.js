@@ -14,6 +14,37 @@
 	  	.controller('MainCtrl', function ($http, $q, $scope) {
 
 
+	  		$scope.frameworks = {
+
+	  			title: "Frameworks",
+	  			containerClass: "frameworks",
+	  			tool1: "angular",
+	  			tool2: "jQuery",
+	  			tool3: "bootstrap",
+	  			tool4: "",
+	  			columnClass1: "col-lg-2 col-md-2 col-sm-2 col-xs-2",
+	  			columnClass2: "col-lg-2 col-md-2 col-sm-2 col-xs-2",
+	  			columnClass3: "",
+	  			columnClass4: "",
+	  			textId: "",
+	  			paraText1: "",
+	  			paraText2: "",
+
+	  		}
+
+	  		$scope.devTools = {
+
+	  		}
+
+	  		$scope.designTools = {
+
+	  		}
+
+	  		$scope.preprocessors = {
+
+	  		}
+
+
 	  		$scope.darkreader = {
 
 	  			attr:   {

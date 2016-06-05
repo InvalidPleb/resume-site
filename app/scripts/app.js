@@ -41,4 +41,14 @@ angular
         templateUrl: '/views/blockdir.html',
         replace: true
       };
+  })
+  .directive('toolBlock', function(){
+    return {
+        scope: {
+          toolInfo: '=info'
+        },
+        restrict: 'AEC',
+        templateUrl: '/views/tooldir.html',
+        replace: true
+      };
   });

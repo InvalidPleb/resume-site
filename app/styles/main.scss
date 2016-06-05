@@ -716,9 +716,34 @@ body {
 .tools-desc-container {
   @extend .project-desc-container;
   @extend .gold-text;
+  
   margin-top: 0px;
-  font-size: 18px;
+  font-size: 19px;
   padding: 10px;
+}
+
+$skillList: "frameworks", "dev-tools", "design-tools", "preprocessors";
+
+@each $skill in $skillList {
+
+  @if $skill == "design-tools" {
+    ##{$skill} {
+      height: 250px;
+      bottom: 20px;
+    }
+  } @else if $skill == "preprocessors" {
+
+    ##{$skill} {
+      height: 180px;  
+    }
+
+  } @else {
+
+    ##{$skill} {
+      height: 220px;  
+    }
+
+  }
 }
 
 
