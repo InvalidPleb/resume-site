@@ -103,6 +103,17 @@ body {
   color: $gold-color;
 }
 
+.block-title-section-text {
+  font-family: "Open Sans";
+  font-weight: 500;
+  font-size: 40px;
+  color: $gold-color;
+  position: relative;
+  text-align: center;
+  top: 20%;
+
+}
+
 .no-pe {
   pointer-events: none;
 }
@@ -253,7 +264,45 @@ body {
   @include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
+.greeting-para {
+  top: 50px;
+  position: relative;
+}
+
+#canvas {
+  z-index: -1;
+  position: absolute;
+}
+
+.name-text {
+  @extend .block-title-section-text;
+  font-size: 50px;
+  top: 0;
+  &:nth-child(1) {
+    margin-top: 50px;
+  }
+
+  &:nth-child(2) {
+    margin-top: 20px;
+    font-size: 28px;
+    letter-spacing: 8px;
+  }
+  &:nth-child(3) {
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+
+}
+
+
+.sphere-container {
+  top: 30px;
+  pointer-events: none;
+
+}
+
 .sphere {
+  pointer-events:all;
   width: 110px;
   height: 110px;
   background-color: $gold-color;
@@ -512,31 +561,8 @@ body {
 
 
 
-.block-title-section-text {
-  font-family: "Open Sans";
-  font-weight: 500;
-  font-size: 40px;
-  color: $gold-color;
-  position: relative;
-  text-align: center;
-  top: 20%;
 
-}
 
-.name-text {
-  @extend .block-title-section-text;
-  font-size: 50px;
-  top: 10%;
-
-  &:nth-child(2) {
-    font-size: 28px;
-    letter-spacing: 8px;
-  }
-  &:nth-child(3) {
-    font-size: 18px;
-    letter-spacing: 1px;
-  }
-}
 
 .block-container {
   background-color: $dark-background;

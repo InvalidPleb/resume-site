@@ -12,37 +12,7 @@
 	 
 	angular.module('resumeApp')
 	  	.controller('MainCtrl', function ($http, $q, $scope) {
-
-
-	  		$scope.frameworks = {
-
-	  			title: "Frameworks",
-	  			containerClass: "frameworks",
-	  			tool1: "angular",
-	  			tool2: "jQuery",
-	  			tool3: "bootstrap",
-	  			tool4: "",
-	  			columnClass1: "col-lg-2 col-md-2 col-sm-2 col-xs-2",
-	  			columnClass2: "col-lg-2 col-md-2 col-sm-2 col-xs-2",
-	  			columnClass3: "",
-	  			columnClass4: "",
-	  			textId: "",
-	  			paraText1: "",
-	  			paraText2: "",
-
-	  		}
-
-	  		$scope.devTools = {
-
-	  		}
-
-	  		$scope.designTools = {
-
-	  		}
-
-	  		$scope.preprocessors = {
-
-	  		}
+	  		
 
 
 	  		$scope.darkreader = {
@@ -560,6 +530,119 @@
 		  	});
 
 		  	
+
+		  	var canvas = document.getElementById("canvas");
+			//var context = canvas.getContext("2d");
+
+			$( window ).resize(function() {
+			  fitToContainer(canvas);
+			  fadeOut2();
+			});
+			fitToContainer(canvas);
+			
+
+			function fitToContainer(canvas){
+			  canvas.style.width='100%';
+			  canvas.style.height='100%';
+			  canvas.width  = canvas.offsetWidth;
+			  canvas.height = canvas.offsetHeight;
+			}
+
+			function getMousePos(canvas, evt) {
+			    var rect = canvas.getBoundingClientRect();
+			    return {
+			      x: evt.clientX - rect.left,
+			      y: evt.clientY - rect.top
+			    };
+			}
+
+			var ctx = canvas.getContext("2d"),
+			    painting = false,
+			    lastX = 0,
+			    lastY = 0;
+
+			canvas.onmousemove = function (e) {
+			    
+		        var pos = getMousePos(canvas, e);
+			    let posx = pos.x;
+			    let posy = pos.y;
+				ctx.beginPath();
+		        var x = posx; // x coordinate
+		        var y = posy; // y coordinate
+		        var radius = 10; // Arc radius
+		        var startAngle = 0; // Starting point on circle
+		        var endAngle = Math.PI * 2 // End point on circle
+		        ctx.fillStyle = "rgba(82, 74, 42,1)";
+		        var circle = ctx.arc(x, y, radius, startAngle, endAngle, true);
+
+		       	
+		        ctx.fill();
+		        ctx.closePath();
+				ctx.beginPath();
+		        ctx.stroke();
+			    
+			}
+
+			function fadeOut() {
+			    ctx.fillStyle = "rgba(24,24,24,0.2)";
+			    ctx.fillRect(0, 0, canvas.width, canvas.height);
+			    setTimeout(fadeOut,50);
+			}
+
+			function fadeOut2() {
+			    ctx.fillStyle = "rgba(24,24,24,1)";
+			    ctx.fillRect(0, 0, canvas.width, canvas.height);
+			    
+			}
+
+			fadeOut();
+			fadeOut2();
+
+			/*
+
+			
+
+			function draw(e){
+				console.log(e);
+			    var pos = getMousePos(canvas, e);
+			    let posx = pos.x;
+			    let posy = pos.y;
+
+			    context.fillStyle = "#ffffff";
+			    context.fillRect (posx, posy, 4, 4);
+			}
+
+			function drawCircle(e) {
+
+				console.log(e);
+
+				var pos = getMousePos(canvas, e);
+			    let posx = pos.x;
+			    let posy = pos.y;
+
+				context.beginPath();
+		        var x = posx; // x coordinate
+		        var y = posy; // y coordinate
+		        var radius = 20; // Arc radius
+		        var startAngle = 0; // Starting point on circle
+		        var endAngle = Math.PI * 2 // End point on circle
+
+		        var circle = context.arc(x, y, radius, startAngle, endAngle, true);
+
+		        fadeOut(circle);
+		       
+		        context.fill();
+		        context.stroke();
+		        
+			}
+
+			function fadeOut(ele) {
+			    ele.setTimeout(fadeOut,100);
+			}
+
+			canvas.addEventListener('mousemove', drawCircle, false);
+
+			*/
 
 
 		  	// -------------- Graph -------------- //
