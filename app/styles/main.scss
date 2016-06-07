@@ -96,6 +96,47 @@ body {
   z-index: -10;
 }
 
+.loading {
+  width: 60px;
+  height: 60px;
+  z-index: 4;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  margin: auto;
+  position: absolute;
+  border: 5px solid #FFF;
+  border-top-color: $gold-color;
+  border-radius: 100%;
+  animation: round 1s linear infinite;
+}
+
+@keyframes round {
+  from {transform: rotate (0deg)}
+  to {transform: rotate(360deg)}
+}
+
+.loadingScreen {
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  margin: auto;
+  position: absolute;
+  background-color: $dark-background;
+}
+
+a:hover, a:focus, a:active {
+  color: $gold-color;
+  text-decoration: none;
+  border-bottom: 2px solid $gold-color;
+
+}
+
 .gold-text {
   font-family: "Open Sans";
   font-weight: 500;
@@ -252,9 +293,9 @@ body {
 
 
 #greeting-section {
-  background-image: url($rock-background);
+  background-color: $gold-color;
   height: 700px;
-  z-index: 2;
+  z-index: 5;
   margin-top: 2%;
   margin-left: 15%;
   margin-right: 15%;
@@ -262,6 +303,11 @@ body {
   position: relative;
   @include border(1px solid, $gold-color, left right bottom top);
   @include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
+
+  & > div {
+    pointer-events:none;
+    @include prefix(user-select, none, webkit moz ms o);
+  }
 }
 
 .greeting-para {
@@ -298,6 +344,7 @@ body {
 .sphere-container {
   top: 30px;
   pointer-events: none;
+  
 
 }
 
@@ -305,6 +352,7 @@ body {
   pointer-events:all;
   width: 110px;
   height: 110px;
+  margin-bottom: 10px;
   background-color: $gold-color;
   border-radius: 50%;
   cursor: pointer;
@@ -333,6 +381,11 @@ body {
     @include prefix(box-shadow, -5px 10px 35px 5px rgba(0,0,0,0.75), webkit moz ms o);
   }
   
+}
+
+.sphere-text {
+  @extend .gold-text;
+  pointer-events: all;
 }
 
 

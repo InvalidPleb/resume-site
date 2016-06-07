@@ -11,7 +11,7 @@
 	 */
 	 
 	angular.module('resumeApp')
-	  	.controller('MainCtrl', function ($http, $q, $scope) {
+	  	.controller('MainCtrl', function ($http, $q, $scope, $location, $anchorScroll) {
 	  		
 
 
@@ -477,6 +477,8 @@
 	  					}
 	  		};
 
+
+
 		  	function add(a, b) {
 		      	return a + b;
 		  	}
@@ -531,6 +533,8 @@
 
 		  	
 
+
+
 		  	var canvas = document.getElementById("canvas");
 			//var context = canvas.getContext("2d");
 
@@ -549,7 +553,7 @@
 			}
 
 			function getMousePos(canvas, evt) {
-			    var rect = canvas.getBoundingClientRect();
+			    let rect = canvas.getBoundingClientRect();
 			    return {
 			      x: evt.clientX - rect.left,
 			      y: evt.clientY - rect.top
@@ -561,32 +565,73 @@
 			    lastX = 0,
 			    lastY = 0;
 
-			canvas.onmousemove = function (e) {
-			    
-		        var pos = getMousePos(canvas, e);
-			    let posx = pos.x;
-			    let posy = pos.y;
-				ctx.beginPath();
-		        var x = posx; // x coordinate
-		        var y = posy; // y coordinate
-		        var radius = 10; // Arc radius
-		        var startAngle = 0; // Starting point on circle
-		        var endAngle = Math.PI * 2 // End point on circle
-		        ctx.fillStyle = "rgba(82, 74, 42,1)";
-		        var circle = ctx.arc(x, y, radius, startAngle, endAngle, true);
+			function drawCircle(e) {
 
-		       	
+				let pos = getMousePos(canvas, e),
+			        posx = pos.x,
+			        posy = pos.y,
+			        x = posx,
+		            y = posy,
+		            radius = 30,
+		            startAngle = 0,
+		            endAngle = Math.PI * 2;
+	
+		        ctx.fillStyle = "rgba(82, 74, 42,1)";
+		        ctx.beginPath();
+		        ctx.arc(x, y, radius, startAngle, endAngle, true);
 		        ctx.fill();
-		        ctx.closePath();
-				ctx.beginPath();
-		        ctx.stroke();
-			    
+
 			}
 
+			var painting = false;
+
+			
+
+			
+
+			canvas.onmousemove = function (e) {
+
+				drawCircle(e);
+
+			   
+			};
+
+			canvas.onmouseup = function (e) {
+
+
+				let screenFill = setTimeout(function(){
+				  fadeOut();
+				  console.log("yo");
+				},50);
+
+					
+
+			}
+
+			
+
 			function fadeOut() {
+
 			    ctx.fillStyle = "rgba(24,24,24,0.2)";
 			    ctx.fillRect(0, 0, canvas.width, canvas.height);
-			    setTimeout(fadeOut,50);
+
+			    
+
+		    	let screenFill = setTimeout(function(){
+				  fadeOut();
+				},50);
+
+
+			    
+
+		    	
+				canvas.onmousedown = function (e) {
+
+					clearTimeout(screenFill);
+					
+				}
+
+		    	
 			}
 
 			function fadeOut2() {
@@ -594,55 +639,13 @@
 			    ctx.fillRect(0, 0, canvas.width, canvas.height);
 			    
 			}
+			canvas.style.webkitFilter = "blur(10px)";
 
 			fadeOut();
 			fadeOut2();
 
-			/*
 
-			
 
-			function draw(e){
-				console.log(e);
-			    var pos = getMousePos(canvas, e);
-			    let posx = pos.x;
-			    let posy = pos.y;
-
-			    context.fillStyle = "#ffffff";
-			    context.fillRect (posx, posy, 4, 4);
-			}
-
-			function drawCircle(e) {
-
-				console.log(e);
-
-				var pos = getMousePos(canvas, e);
-			    let posx = pos.x;
-			    let posy = pos.y;
-
-				context.beginPath();
-		        var x = posx; // x coordinate
-		        var y = posy; // y coordinate
-		        var radius = 20; // Arc radius
-		        var startAngle = 0; // Starting point on circle
-		        var endAngle = Math.PI * 2 // End point on circle
-
-		        var circle = context.arc(x, y, radius, startAngle, endAngle, true);
-
-		        fadeOut(circle);
-		       
-		        context.fill();
-		        context.stroke();
-		        
-			}
-
-			function fadeOut(ele) {
-			    ele.setTimeout(fadeOut,100);
-			}
-
-			canvas.addEventListener('mousemove', drawCircle, false);
-
-			*/
 
 
 		  	// -------------- Graph -------------- //
@@ -1073,6 +1076,24 @@
 			var calls = getGithubStuff();
 		  	
 		  	$q.all([calls]).then(function(){
+
+		  		(function() {
+			        function hideScreen () {
+			          // Checking if user browser has a firefox only feature
+			          if (typeof InstallTrigger !== 'undefined') {
+			            setTimeout(function() {
+			              $('.loadingScreen').fadeOut(500);
+			              $('.loading').fadeOut(500);
+			            }, 200);
+			          } else {
+			            setTimeout(function() {
+			              $('.loadingScreen').fadeOut(500);
+			              $('.loading').fadeOut(500);
+			            }, 200);
+			          }
+			        }
+			        hideScreen();
+			    })();
 
 		  		var gotDayCommits = getDayCommits(commitDaily);
 		  		var repoCommits = gotDayCommits[0];
