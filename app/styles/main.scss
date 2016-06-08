@@ -81,8 +81,8 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 $dark-background: #181819;
 $grey-background: #262626;
-$gold-color: rgb(158, 142, 76);
-$dim-gold-color: rgb(82, 74, 42);
+$gold-color: #9E8E4C;
+$dim-gold-color: #524A2A;
 $rock-background: '/images/rock-background.png';
 
 * {
@@ -102,7 +102,7 @@ body {
   z-index: 4;
   top: 0px;
   right: 0px;
-  bottom: 0px;
+  bottom: 20%;
   left: 0px;
   margin: auto;
   position: absolute;
@@ -178,7 +178,7 @@ a:hover, a:focus, a:active {
 }
 
 .padding {
-  margin-top: -150px;
+  margin-top: 0px;
   height: 200px;
   width: 100%;
   background-image: url($rock-background);
@@ -225,9 +225,9 @@ a:hover, a:focus, a:active {
 
 .container-parallax {
 
-  margin-top: -1150px;
+  margin-top: -1000px;
   background-color: $dark-background;
-  //background-image: url('/images/royalpat.png');
+  background-image: url('/images/darklinepat2.png');
   position: absolute;
   height: 1000px;
   width: 100%;
@@ -293,7 +293,7 @@ a:hover, a:focus, a:active {
 
 
 #greeting-section {
-  background-color: $gold-color;
+  background-color: $dark-background;
   height: 700px;
   z-index: 5;
   margin-top: 2%;
@@ -308,15 +308,26 @@ a:hover, a:focus, a:active {
     pointer-events:none;
     @include prefix(user-select, none, webkit moz ms o);
   }
+
+  & > div > span {
+    top:20px;
+    left:20px;
+    font-size:14px;
+    position:relative;
+
+  }
+
+
 }
 
 .greeting-para {
-  top: 50px;
+  top: 25px;
   position: relative;
 }
 
 #canvas {
   z-index: -1;
+  cursor: pointer;
   position: absolute;
 }
 
@@ -325,7 +336,7 @@ a:hover, a:focus, a:active {
   font-size: 50px;
   top: 0;
   &:nth-child(1) {
-    margin-top: 50px;
+    margin-top: 0px;
   }
 
   &:nth-child(2) {
@@ -539,9 +550,12 @@ a:hover, a:focus, a:active {
 
 .graph-description {
   @extend .skills-container;
-  height: 300px;
+  height: 500px;
+  margin: 0px;
+  top: 525px;
+  bottom: 0px;
   position: absolute;
-  bottom: 50px;
+  
   padding: 10px;
   z-index: 5;
 }
@@ -549,6 +563,12 @@ a:hover, a:focus, a:active {
 .graph-desc-section {
   height: 100%;
   position: relative; 
+}
+
+#graph-para {
+  top: 50px;
+  height: 150px;
+  color: #c9c5b7;
 }
 
 .contribution-info {
@@ -612,11 +632,6 @@ a:hover, a:focus, a:active {
 
 }
 
-
-
-
-
-
 .block-container {
   background-color: $dark-background;
   width: 100%;
@@ -635,7 +650,7 @@ a:hover, a:focus, a:active {
 
 .graph-container {
   @extend .block-container;
-  height: 1000px;
+  height: 1180px;
 }
 
 

@@ -11,7 +11,7 @@
 	 */
 	 
 	angular.module('resumeApp')
-	  	.controller('MainCtrl', function ($http, $q, $scope, $location, $anchorScroll) {
+	  	.controller('MainCtrl', function ($http, $q, $scope) {
 	  		
 
 
@@ -488,6 +488,10 @@
 			  link.focus();
 			}
 
+
+
+			// -------- Github AJAX -------- //
+
 		  	var githubGet = 'https://api.github.com';
 		  	var repoContainer = [];
 		  	var commitDaily = [];
@@ -518,9 +522,87 @@
 
 		  	}
 
+		  	// -------- AJAX Callback -------- //
+
+			var calls = getGithubStuff();
+		  	$q.all([calls]).then(function(){
+
+		  		(function() {
+			        function hideScreen () {
+			          // Checking if user browser has a firefox only feature
+			          if (typeof InstallTrigger !== 'undefined') {
+			            setTimeout(function() {
+			              $('.loadingScreen').fadeOut(500);
+			              $('.loading').fadeOut(500);
+			            }, 200);
+			          } else {
+			            setTimeout(function() {
+			              $('.loadingScreen').fadeOut(500);
+			              $('.loading').fadeOut(500);
+			            }, 200);
+			          }
+			        }
+			        hideScreen();
+			    })();
+
+		  		var gotDayCommits = getDayCommits(commitDaily);
+		  		var repoCommits = gotDayCommits[0];
+		  		var dayCommits = gotDayCommits[1];
+		  		
+		  		repoCommits.push(1);
+		  		repoCommits.unshift(3);
+
+		  		var daySums = sumDayCommits(dayCommits);
+		  		var gotParsedCommits = parseCommits(daySums);
+		  		var allWeekCommits = gotParsedCommits[0];
+		  		var allDayCommits = gotParsedCommits[1];
+		  		var streakArr = streakData(allDayCommits);
+		  		var gotStreaks = getStreaks(streakArr);
+
+		  		$scope.dataObj = {
+
+		  			commits: {
+
+		  				days: allDayCommits,
+		  				weeks: allWeekCommits,
+		  				thisWeek: allWeekCommits[51],
+		  				thisYear: allWeekCommits.reduce(add, 0),
+		  				currStreak: gotStreaks[0],
+		  				longestStreak: gotStreaks[1],
+		  			},
+
+		  			repositories: {
+
+		  				darkReader: repoCommits[0],
+		  				resumeSite: repoCommits[1],
+		  				runnerCalc: repoCommits[2],
+		  				sips: repoCommits[3],
+		  				sublimeText: repoCommits[4],
+		  				tmTheme: repoCommits[5],
+
+		  				href: {
+
+		  					darkReader: "https://github.com/alexanderby/darkreader",
+			  				resumeSite: "https://github.com/InvalidPleb/resume-site",
+			  				runnerCalc: "https://github.com/InvalidPleb/Runner-Calculator",
+			  				sips: "https://github.com/InvalidPleb/sips",
+			  				sublimeText: "https://github.com/InvalidPleb/sublime-text-themes",
+			  				tmTheme: "https://github.com/aziz/tmTheme-Editor",
+		  				}
+		  			}
+
+		  		};
+
+		  		outerRing(-1, 5.5, [0,105, 0], gotParsedCommits[0], gotParsedCommits[1], 0);
+				middleRing(0, 50, [0,105, 0], [1,1,1,1,1,1,1]);
+				innerRing(repoCommits, repoContainer, colorObj[0], 0);
+
+		  	});
+
+		  	// -------- Background Parallax -------- //
+
 
 		  	function parallax(image, offsetX, offsetY) {
-		  		let xpos = window.pageXOffset;
 		  		let ypos = window.pageYOffset;
 		  		image.css('transform', 'translate3d(' + (ypos * offsetX) + 'px,' + (ypos * offsetY) + 'px,0px)');
 		  	}
@@ -532,7 +614,7 @@
 		  	});
 
 		  	
-
+		  	// -------- Canvas -------- //
 
 
 		  	var canvas = document.getElementById("canvas");
@@ -542,7 +624,7 @@
 			  fitToContainer(canvas);
 			  fadeOut2();
 			});
-			fitToContainer(canvas);
+			
 			
 
 			function fitToContainer(canvas){
@@ -551,6 +633,7 @@
 			  canvas.width  = canvas.offsetWidth;
 			  canvas.height = canvas.offsetHeight;
 			}
+			fitToContainer(canvas);
 
 			function getMousePos(canvas, evt) {
 			    let rect = canvas.getBoundingClientRect();
@@ -561,9 +644,7 @@
 			}
 
 			var ctx = canvas.getContext("2d"),
-			    painting = false,
-			    lastX = 0,
-			    lastY = 0;
+			    painting = false;
 
 			function drawCircle(e) {
 
@@ -576,79 +657,79 @@
 		            startAngle = 0,
 		            endAngle = Math.PI * 2;
 	
-		        ctx.fillStyle = "rgba(82, 74, 42,1)";
+		        ctx.fillStyle = "rgba(188,185,166,1)";
 		        ctx.beginPath();
 		        ctx.arc(x, y, radius, startAngle, endAngle, true);
 		        ctx.fill();
 
 			}
 
-			var painting = false;
-
-			
-
-			
-
-			canvas.onmousemove = function (e) {
-
-				drawCircle(e);
-
-			   
-			};
-
-			canvas.onmouseup = function (e) {
-
-
-				let screenFill = setTimeout(function(){
-				  fadeOut();
-				  console.log("yo");
-				},50);
-
-					
-
-			}
-
-			
-
 			function fadeOut() {
 
 			    ctx.fillStyle = "rgba(24,24,24,0.2)";
 			    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-			    
 
-		    	let screenFill = setTimeout(function(){
-				  fadeOut();
-				},50);
+			    if (painting) {
+			    	var screenFill = setTimeout(function(){
+					  fadeOut();
+					},30);
 
+			    }
 
-			    
-
-		    	
 				canvas.onmousedown = function (e) {
 
 					clearTimeout(screenFill);
-					
-				}
+				};
 
-		    	
+				
+				canvas.onmouseenter = function(e) {
+
+					painting = true;
+					var screenFill = setTimeout(function(){
+					  fadeOut();
+					},30);
+				};
+
+				canvas.onmouseleave = function(e) {
+					
+					//setTimeout(function(){
+						clearTimeout(screenFill);
+						painting = false;
+					//},700);
+			
+				};
+
+				
 			}
 
 			function fadeOut2() {
 			    ctx.fillStyle = "rgba(24,24,24,1)";
 			    ctx.fillRect(0, 0, canvas.width, canvas.height);
-			    
 			}
+
+			canvas.onmousemove = function (e) {
+
+				drawCircle(e);
+
+			};
+
+			canvas.onmouseup = function (e) {
+
+				var screenFill = setTimeout(function(){
+				  fadeOut();
+				},30);
+
+			};
+
+			
+
 			canvas.style.webkitFilter = "blur(10px)";
 
 			fadeOut();
 			fadeOut2();
 
-
-
-
-
-		  	// -------------- Graph -------------- //
+		  	// -------------- Github Graph -------------- //
 
 		  	var svgContainer = d3.select(".animation-container")
 		  		.append("svg")
@@ -825,7 +906,6 @@
 					let pieD = pie(data);
 					let sAng = pieD[i].startAngle;
 					let eAng = pieD[i].endAngle;
-					let poop = false;
 
 					let alpha = 0.6;
 
@@ -913,6 +993,8 @@
 				return ringCont;
 			}
 
+			// -------- Data Sorting Functions -------- // 
+
 			function getDayCommits(inputArr) {
 
 	  			let inputArrSlice = inputArr.slice(1, 5);
@@ -964,7 +1046,6 @@
 		  				}
 		  			}
 		  		}
-		  		
 		  		return daySums;
 	  		}
 
@@ -974,7 +1055,6 @@
 	  			let weekCommits = [];
 		  		let daySumsCurr = [];
 		  		let dayArrCurr = [];
-		  		let allDays = [];
 
 		  		let j = 0;
 
@@ -1013,7 +1093,6 @@
 		  				}
 		  			}
 		  		}
-		  		
 		  		return [weekCommits, dayArr];
 	  		}
 
@@ -1070,87 +1149,8 @@
 					}
 				}
 
-				return [currStreak, longestStreak];
-			}
-
-			var calls = getGithubStuff();
-		  	
-		  	$q.all([calls]).then(function(){
-
-		  		(function() {
-			        function hideScreen () {
-			          // Checking if user browser has a firefox only feature
-			          if (typeof InstallTrigger !== 'undefined') {
-			            setTimeout(function() {
-			              $('.loadingScreen').fadeOut(500);
-			              $('.loading').fadeOut(500);
-			            }, 200);
-			          } else {
-			            setTimeout(function() {
-			              $('.loadingScreen').fadeOut(500);
-			              $('.loading').fadeOut(500);
-			            }, 200);
-			          }
-			        }
-			        hideScreen();
-			    })();
-
-		  		var gotDayCommits = getDayCommits(commitDaily);
-		  		var repoCommits = gotDayCommits[0];
-		  		var dayCommits = gotDayCommits[1];
-		  		
-		  		repoCommits.push(1);
-		  		repoCommits.unshift(3);
-
-		  		var daySums = sumDayCommits(dayCommits);
-		  		var gotParsedCommits = parseCommits(daySums);
-		  		var allWeekCommits = gotParsedCommits[0];
-		  		var allDayCommits = gotParsedCommits[1];
-		  		var streakArr = streakData(allDayCommits);
-		  		var gotStreaks = getStreaks(streakArr);
-
-		  		var currentStreak = gotStreaks[0];
-		  		var longestStreak = gotStreaks[1];
-
-		  		$scope.dataObj = {
-
-		  			commits: {
-
-		  				days: allDayCommits,
-		  				weeks: allWeekCommits,
-		  				thisWeek: allWeekCommits[51],
-		  				thisYear: allWeekCommits.reduce(add, 0),
-		  				currStreak: gotStreaks[0],
-		  				longestStreak: gotStreaks[1],
-		  			},
-
-		  			repositories: {
-
-		  				darkReader: repoCommits[0],
-		  				resumeSite: repoCommits[1],
-		  				runnerCalc: repoCommits[2],
-		  				sips: repoCommits[3],
-		  				sublimeText: repoCommits[4],
-		  				tmTheme: repoCommits[5],
-
-		  				href: {
-
-		  					darkReader: "https://github.com/alexanderby/darkreader",
-			  				resumeSite: "https://github.com/InvalidPleb/resume-site",
-			  				runnerCalc: "https://github.com/InvalidPleb/Runner-Calculator",
-			  				sips: "https://github.com/InvalidPleb/sips",
-			  				sublimeText: "https://github.com/InvalidPleb/sublime-text-themes",
-			  				tmTheme: "https://github.com/aziz/tmTheme-Editor",
-		  				}
-		  			}
-
-		  		};
-
-		  		outerRing(-1, 5.5, [0,105, 0], gotParsedCommits[0], gotParsedCommits[1], 0);
-				middleRing(0, 50, [0,105, 0], [1,1,1,1,1,1,1]);
-				innerRing(repoCommits, repoContainer, colorObj[0], 0);
-
-		  	});
+			return [currStreak, longestStreak];
+		}
 
 	});
 })();
