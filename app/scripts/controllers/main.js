@@ -618,6 +618,9 @@
 
 
 		  	var canvas = document.getElementById("canvas");
+		  	var mainControlSection = document.getElementById("mainControlSection");
+		  	var sphere = document.getElementsByClassName("sphere");
+		  	var sphereTxt = document.getElementsByClassName("sphere-text");
 			//var context = canvas.getContext("2d");
 
 			$( window ).resize(function() {
@@ -646,7 +649,20 @@
 			var ctx = canvas.getContext("2d"),
 			    painting = false;
 
+			function changeFillStyle() {
+
+
+
+			}
+
+			function numRound (value,dec){
+		        value=Math.floor(value * dec + 0.05) / dec;
+		        return(value);
+		    }
+
 			function drawCircle(e) {
+
+
 
 				let pos = getMousePos(canvas, e),
 			        posx = pos.x,
@@ -656,13 +672,18 @@
 		            radius = 30,
 		            startAngle = 0,
 		            endAngle = Math.PI * 2;
+		        let rgbR = numRound((posx * 0.1) + 70, 1);
+				let rgbG = numRound((posy * 0.1) + 100, 1);
+				let rgbB = numRound((posy * 0.1) * 5, 1);
 	
-		        ctx.fillStyle = "rgba(188,185,166,1)";
+		        ctx.fillStyle = 'rgba(' + rgbR + ',' + rgbG + ',' + rgbB + ',1)';
 		        ctx.beginPath();
 		        ctx.arc(x, y, radius, startAngle, endAngle, true);
 		        ctx.fill();
 
 			}
+
+			var clicked = false;
 
 			function fadeOut() {
 
@@ -677,18 +698,44 @@
 
 			    }
 
+			    mainControlSection.onmousedown = function (e) {
+
+			    	clearTimeout(screenFill);
+					clicked = true;
+			    };
+
+			    sphere.onmousedown = function (e) {
+
+			    	clearTimeout(screenFill);
+					clicked = true;
+			    };
+
+			    sphereTxt.onmousedown = function (e) {
+
+			    	clearTimeout(screenFill);
+					clicked = true;
+			    };
+
+
 				canvas.onmousedown = function (e) {
 
+
 					clearTimeout(screenFill);
+					clicked = true;
+					
 				};
 
 				
 				canvas.onmouseenter = function(e) {
 
 					painting = true;
-					var screenFill = setTimeout(function(){
-					  fadeOut();
-					},30);
+					if (!clicked) {
+						var screenFill = setTimeout(function(){
+						  fadeOut();
+						},30);
+
+					}
+					
 				};
 
 				canvas.onmouseleave = function(e) {
@@ -719,6 +766,8 @@
 				var screenFill = setTimeout(function(){
 				  fadeOut();
 				},30);
+
+				clicked = false;
 
 			};
 

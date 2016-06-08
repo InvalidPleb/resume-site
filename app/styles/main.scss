@@ -83,6 +83,7 @@ $dark-background: #181819;
 $grey-background: #262626;
 $gold-color: #9E8E4C;
 $dim-gold-color: #524A2A;
+$cream-color: #c9c5b7;
 $rock-background: '/images/rock-background.png';
 
 * {
@@ -148,7 +149,7 @@ a:hover, a:focus, a:active {
   font-family: "Open Sans";
   font-weight: 500;
   font-size: 40px;
-  color: $gold-color;
+  color: $cream-color;
   position: relative;
   text-align: center;
   top: 20%;
@@ -568,7 +569,7 @@ a:hover, a:focus, a:active {
 #graph-para {
   top: 50px;
   height: 150px;
-  color: #c9c5b7;
+  color: $cream-color;
 }
 
 .contribution-info {
@@ -586,15 +587,17 @@ a:hover, a:focus, a:active {
 
 .contribution-text-left {
   @extend .gold-text;
+  color: $cream-color;
   text-align: left;
 }
 
 .contribution-text-right {
   @extend .gold-text;
+  color: $cream-color;
   text-align: right;
 
   & > a {
-    color: $gold-color;
+    color: $cream-color;
   }
 }
 
@@ -689,6 +692,7 @@ a:hover, a:focus, a:active {
 
 .block-name-def {
   @extend .gold-text;
+  color: $cream-color;
   top: 20px;
   right: 5px;
   position: relative;
@@ -703,6 +707,7 @@ a:hover, a:focus, a:active {
 
 .block-para {
   @extend .gold-text;
+  color: $cream-color;
   width: 300px;
   top: 20px;
   right: 70px;
@@ -725,7 +730,7 @@ a:hover, a:focus, a:active {
   top: 10%;
   left: 10%;
   position: relative;
-  color: $gold-color;
+  color: $cream-color;
 }
 
 .project-site-container {
@@ -810,7 +815,7 @@ a:hover, a:focus, a:active {
 .tools-desc-container {
   @extend .project-desc-container;
   @extend .gold-text;
-  
+  color: $cream-color;
   margin-top: 0px;
   font-size: 19px;
   padding: 10px;
@@ -850,7 +855,7 @@ $skillList: "frameworks", "dev-tools", "design-tools", "preprocessors";
   font-family: "Open Sans";
   font-weight: 500;
   font-size: 28px;
-  color: $gold-color;
+  color: $cream-color;
   position: relative;
   top: 25%;
 }
