@@ -86,6 +86,9 @@ $dim-gold-color: #524A2A;
 $cream-color: #c9c5b7;
 $rock-background: '/images/rock-background.png';
 
+
+// -------- Element Selectors -------- //
+
 * {
   padding: 0px;
   margin: 0px;
@@ -96,6 +99,72 @@ body {
   position: relative;
   z-index: -10;
 }
+
+a:hover, a:focus, a:active {
+  color: $gold-color;
+  text-decoration: none;
+  border-bottom: 2px solid $gold-color;
+
+}
+
+// -------- General Classes --------- //
+
+.gold-text {
+  font-family: "Open Sans";
+  font-weight: 500;
+  font-size: 22px;
+  color: $gold-color;
+}
+
+.no-pe {
+  pointer-events: none;
+}
+
+.block-title-section-text {
+  font-family: "Open Sans";
+  font-weight: 500;
+  font-size: 40px;
+  color: #c9b564;
+  position: relative;
+  text-align: center;
+  top: 20%;
+
+}
+
+.main-blocks {
+  background-color: #333030;
+  background-repeat: no-repeat;
+  top: 20px;
+  height: 125px;
+  width: 125px;
+  border-radius: 5px;
+  margin-top: 10px;
+  padding: 0px;
+  @include border(1px solid, $gold-color, top left right bottom);
+  @include prefix(box-shadow, inset 0px 0px 9px 1px rgba(0,0,0,0.85), webkit moz ms o);
+  text-align: center;
+  position: relative;
+}
+
+.fullOpacity {
+  opacity: 1;
+  visibility: visible;
+
+}
+
+.noOpacity {
+  opacity: 0;
+  visibility: collapse;
+}
+
+
+.seperator {
+  position: relative;
+  margin-top: 5%;
+}
+
+
+// -------- Loading Overlay -------- //
 
 .loading {
   width: 60px;
@@ -131,51 +200,10 @@ body {
   background-color: $dark-background;
 }
 
-a:hover, a:focus, a:active {
-  color: $gold-color;
-  text-decoration: none;
-  border-bottom: 2px solid $gold-color;
+// -------- Background & Parallax -------- //
 
-}
-
-.gold-text {
-  font-family: "Open Sans";
-  font-weight: 500;
-  font-size: 22px;
-  color: $gold-color;
-}
-
-.block-title-section-text {
-  font-family: "Open Sans";
-  font-weight: 500;
-  font-size: 40px;
-  color: $cream-color;
-  position: relative;
-  text-align: center;
-  top: 20%;
-
-}
-
-.no-pe {
-  pointer-events: none;
-}
-
-.skills-container {
-  width: 90%;
-  height: 600px;
-  left: 5%;
-  position: relative;
+.main-body {
   background-image: url($rock-background);
-  @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
-}
-
-.main-container {
-  @extend .container;
-  position: relative;
-  z-index: -3;
-  margin: auto;
-  right: 10px;
-
 }
 
 .padding {
@@ -262,36 +290,8 @@ a:hover, a:focus, a:active {
   }
 }
 
-.top-header {
-  background-image: url($rock-background);
-}
 
-.navbar-default {
-  @include border(1px solid, $gold-color, left right bottom);
-  border-radius: 0;
-  border-top: none;
-}
-
-.main-header {
-  background-image: url($rock-background);
-  height: 100px;
-  @include border(1px solid, $gold-color, bottom);
-}
-.main-body {
-  background-image: url($rock-background);
-}
-
-.buffer {
-  @include border(1px solid, $gold-color, bottom top);
-  padding-top: 20px;
-  border-top: none;
-}
-
-.index {
-  position: relative;
-  z-index: -5;
-}
-
+// -------- Top Greeting Section -------- //
 
 #greeting-section {
   background-color: $dark-background;
@@ -317,12 +317,10 @@ a:hover, a:focus, a:active {
     position:relative;
 
   }
-
-
 }
 
 .greeting-para {
-  top: 25px;
+  top: 45px;
   position: relative;
 }
 
@@ -334,30 +332,33 @@ a:hover, a:focus, a:active {
 
 .name-text {
   @extend .block-title-section-text;
+  color: #c9b564;
   font-size: 50px;
   top: 0;
-  &:nth-child(1) {
+  &:nth-child(2) {
     margin-top: 0px;
   }
 
-  &:nth-child(2) {
+  &:nth-child(3) {
     margin-top: 20px;
     font-size: 28px;
     letter-spacing: 8px;
   }
-  &:nth-child(3) {
+  &:nth-child(4) {
     font-size: 18px;
     letter-spacing: 1px;
   }
 
 }
 
-
 .sphere-container {
-  top: 30px;
+  @extend .name-text;
+  top: 20px; 
   pointer-events: none;
-  
 
+  &:nth-child(3) {
+    letter-spacing: 0px;
+  }
 }
 
 .sphere {
@@ -365,7 +366,7 @@ a:hover, a:focus, a:active {
   width: 110px;
   height: 110px;
   margin-bottom: 10px;
-  background-color: $gold-color;
+  background-color: #c9b564;
   border-radius: 50%;
   cursor: pointer;
   position: relative;
@@ -397,220 +398,15 @@ a:hover, a:focus, a:active {
 
 .sphere-text {
   @extend .gold-text;
+  color: #c9b564;
   pointer-events: all;
 }
 
+// -------- Projects Section -------- //
 
-.nav-circle {
-  width: 100px;
-  height: 100px;
-  top: 50px;
-  right: 40px;
-  margin-left: 25px;
-  background-color: $gold-color;
-  border-radius: 50%;
-  @include prefix(box-shadow, -6px 6px 20px 5px rgba(0,0,0,0.75), webkit moz ms o);
-  
-}
-
-.animation-container {
-  background-color: $dark-background;
-  width: 100%;
-  height: 900px;
-  position: relative;
-  display: flex;
-  z-index: 2;
-
-}
-
-.d3-container {
-  height: 900px;
-  top: 20px;
+.index {
   position: relative;
   z-index: -5;
-}
-
-.tooltip {
-  @extend .gold-text;
-  font-size: 15px;
-  height: 50px;
-  width: 150px;
-  border-radius: 5px;
-  @include border(1px solid, $gold-color, top left right bottom);
-  background-image: url($rock-background);
-  position: absolute;
-  text-align: center;
-  transition: all 0.25s ease-in;
-  pointer-events: none;
-  @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
-}
-
-.repoTooltip {
-  @extend .tooltip;
-  height: 88px;
-  width: 180px;
-
-  & > :nth-child(1) {
-    font-size: 17px;  
-  }
-
-  & > :nth-child(2) {
-    color: #3ECF84;
-  }
-}
-
-
-.tooltip1 {     
-  text-align: center; 
-  width: 152px;          
-  height: 152px;         
-  padding: 2px;       
-  font: 12px sans-serif;
-  color: $gold-color;
-  background-image: url($rock-background);
-  @include border(2px solid, $gold-color, top left right bottom);
-  border-radius: 50%;
-  pointer-events: none;
-  text-align: center;
-  @include prefix(box-shadow, inset 0px 0px 35px 5px rgba(0,0,0,0.75), webkit moz ms o);
-}
-
-.tooltip2 {
-  @extend .tooltip;
-  position: absolute;
-  line-height: 50px;
-  vertical-align: middle;
-  opacity: 1;
-}
-
-.tooltipText {
-  font-size: 16px;
-}
-
-
-.graph-circle {
-  width: 410px;          
-  height: 410px;
-  z-index: -3;
-  border-radius: 50%;
-  position: absolute;
-  @include border(2px solid, $gold-color, top left right bottom);
-  background-color: #111;
-  @include prefix(box-shadow, -6px 12px 29px 3px rgba(0,0,0,0.75), webkit moz ms o);
-
-}
-
-.pie {
-  z-index: 2;
-  cursor: pointer;
-  position: relative;
-}
-
-.line {
-  height: 2px;
-  width: 250px;
-  z-index: 3;
-  position: absolute;
-  pointer-events: none;
-  @include border(1px solid, $gold-color, bottom);
-  @include prefix(box-shadow, -7px 6px 24px 5px rgba(0,0,0,0.75), webkit moz ms o);
-}
-
-.day-tooltip {
-  margin-top: -10px;
-  font-family: monospace;
-  position: relative;
-
-  & > span {
-
-    color: #3ECF84;
-
-  }
-}
-
-.day-tooltip-title {
-  width: 105px;
-  top:10px;
-  left: 20px;
-  font-size:18px; 
-  position:relative;
-  border-bottom:1px solid rgb(158, 142, 76);
-}
-
-.day-tooltip-label {
-  margin-top: 45px;
-  position: relative;
-}
-
-.day-tooltip-container {
-  margin-top: -55px;
-  right: 3px;
-  font-family: monospace;
-  position: relative;
-}
-
-.graph-description {
-  @extend .skills-container;
-  height: 500px;
-  margin: 0px;
-  top: 525px;
-  bottom: 0px;
-  position: absolute;
-  
-  padding: 10px;
-  z-index: 5;
-}
-
-.graph-desc-section {
-  height: 100%;
-  position: relative; 
-}
-
-#graph-para {
-  top: 50px;
-  height: 150px;
-  color: $cream-color;
-}
-
-.contribution-info {
-  height: 200px;
-  top: 20px;
-  position: relative;
-  @include border(2px solid, $dim-gold-color, left);
-  z-index: 5;
-
-  &:nth-child(2), &:nth-child(4) {
-    border: none;
-  }
-
-}
-
-.contribution-text-left {
-  @extend .gold-text;
-  color: $cream-color;
-  text-align: left;
-}
-
-.contribution-text-right {
-  @extend .gold-text;
-  color: $cream-color;
-  text-align: right;
-
-  & > a {
-    color: $cream-color;
-  }
-}
-
-.block-center {
-  @extend .gold-text;
-  height: 50px;
-  top: 10px;
-  position: relative;
-  @include border(1px solid, $gold-color, bottom);
-  text-align: center;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .projects-title-section {
@@ -623,115 +419,26 @@ a:hover, a:focus, a:active {
   @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
-.block-title-section {
-  @extend .projects-title-section;
 
-}
-
-
-
-.graph-title-section {
-  @extend .projects-title-section;
-
-}
-
-.block-container {
-  background-color: $dark-background;
-  width: 100%;
-  height: 2800px;
-  @include border(1px solid, $gold-color, left right top bottom);  
+.main-container {
+  @extend .container;
   position: relative;
-  @include prefix(box-shadow, -13px 20px 35px 10px rgba(0,0,0,0.75), webkit moz ms o);
-  z-index: -2;
+  z-index: -3;
+  margin: auto;
+  right: 10px;
+
 }
 
-.projects-container {
-  @extend .block-container;
-  height: 1350px;
-  @include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
-}
-
-.graph-container {
-  @extend .block-container;
-  height: 1180px;
-}
-
-
-
-.main-blocks {
-  background-color: #333030;
-  background-repeat: no-repeat;
-  top: 20px;
-  height: 125px;
-  width: 125px;
-  border-radius: 5px;
-  margin-top: 10px;
-  padding: 0px;
-  @include border(1px solid, $gold-color, top left right bottom);
-  @include prefix(box-shadow, inset 0px 0px 9px 1px rgba(0,0,0,0.85), webkit moz ms o);
-  text-align: center;
+.skills-container {
+  width: 90%;
+  height: 600px;
+  left: 5%;
   position: relative;
-}
-
-.block-group {
-  position: relative;
-  padding-top: 4.5%;
-}
-
-.block-titles {
-  @include border(1px solid, $gold-color, bottom);
-  height: 50px;
-  left: 34%;
-  text-align: center;
-}
-
-.projects-block-title {
-  text-align: center;
-  @include border(1px solid, $gold-color, bottom);
-}
-
-.block-name-def {
-  @extend .gold-text;
-  color: $cream-color;
-  top: 20px;
-  right: 5px;
-  position: relative;
-  text-align: center;
-
-}
-
-.block-name-tm {
-  @extend .block-name-def;
-  right: 13px;
-}
-
-.block-para {
-  @extend .gold-text;
-  color: $cream-color;
-  width: 300px;
-  top: 20px;
-  right: 70px;
-  font-size: 17px;
-  position: relative;
-  white-space: normal;
-
+  background-image: url($rock-background);
+  @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
 
-
-.tool-container {
-  height: 300px;
-  padding-left: 23px;
-  border-radius: 10px;
-  white-space: nowrap;
-}
-
-.skills-list {
-  top: 10%;
-  left: 10%;
-  position: relative;
-  color: $cream-color;
-}
 
 .project-site-container {
   @extend .skills-container;
@@ -762,7 +469,6 @@ a:hover, a:focus, a:active {
   height: 186px;
   top: 74px;
   
-
 }
 
 .site-container-txt {
@@ -802,24 +508,210 @@ a:hover, a:focus, a:active {
 
 }
 
-.project-desc-container {
-  @extend .skills-container;
-  @include border(1px solid, $dim-gold-color, top left bottom right);
-  border-radius: 10px;
-  height: 200px;
-  margin-top: 100px;
+
+
+
+// -------- Github Graph Section -------- //
+
+.d3-container {
+  height: 900px;
+  top: 20px;
   position: relative;
-  box-shadow: none;
+  z-index: -5;
 }
 
-.tools-desc-container {
-  @extend .project-desc-container;
+.animation-container {
+  background-color: $dark-background;
+  width: 100%;
+  height: 900px;
+  position: relative;
+  display: flex;
+  z-index: 2;
+
+}
+
+.tooltip {
+  @extend .gold-text;
+  font-size: 15px;
+  height: 50px;
+  width: 150px;
+  border-radius: 5px;
+  @include border(1px solid, $gold-color, top left right bottom);
+  background-image: url($rock-background);
+  position: absolute;
+  text-align: center;
+  transition: all 0.25s ease-in;
+  pointer-events: none;
+  @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
+}
+
+.repoTooltip {
+  @extend .tooltip;
+  height: 88px;
+  width: 180px;
+
+  & > :nth-child(1) {
+    font-size: 17px;  
+  }
+
+  & > :nth-child(2) {
+    color: #3ECF84;
+  }
+}
+
+.tooltip1 {     
+  text-align: center; 
+  width: 152px;          
+  height: 152px;         
+  padding: 2px;       
+  font: 12px sans-serif;
+  color: $gold-color;
+  background-image: url($rock-background);
+  @include border(2px solid, $gold-color, top left right bottom);
+  border-radius: 50%;
+  pointer-events: none;
+  text-align: center;
+  @include prefix(box-shadow, inset 0px 0px 35px 5px rgba(0,0,0,0.75), webkit moz ms o);
+}
+
+.tooltip2 {
+  @extend .tooltip;
+  position: absolute;
+  line-height: 50px;
+  vertical-align: middle;
+  opacity: 1;
+}
+
+.tooltipText {
+  font-size: 16px;
+}
+
+.graph-circle {
+  width: 410px;          
+  height: 410px;
+  z-index: -3;
+  border-radius: 50%;
+  position: absolute;
+  @include border(2px solid, $gold-color, top left right bottom);
+  background-color: #111;
+  @include prefix(box-shadow, -6px 12px 29px 3px rgba(0,0,0,0.75), webkit moz ms o);
+
+}
+
+.pie {
+  z-index: 2;
+  cursor: pointer;
+  position: relative;
+}
+
+.line {
+  height: 2px;
+  width: 250px;
+  z-index: 3;
+  position: absolute;
+  pointer-events: none;
+  @include border(1px solid, $gold-color, bottom);
+  @include prefix(box-shadow, -7px 6px 24px 5px rgba(0,0,0,0.75), webkit moz ms o);
+}
+
+.day-tooltip {
+  margin-top: -10px;
+  font-family: monospace;
+  position: relative;
+
+  & > span {
+
+    color: #3ECF84;
+  }
+}
+
+.day-tooltip-title {
+  width: 105px;
+  top:10px;
+  left: 20px;
+  font-size:18px; 
+  position:relative;
+  border-bottom:1px solid rgb(158, 142, 76);
+}
+
+.day-tooltip-label {
+  margin-top: 45px;
+  position: relative;
+}
+
+.day-tooltip-container {
+  margin-top: -55px;
+  right: 3px;
+  font-family: monospace;
+  position: relative;
+}
+
+.graph-description {
+  @extend .skills-container;
+  height: 500px;
+  margin: 0px;
+  top: 525px;
+  bottom: 0px;
+  position: absolute;
+  
+  padding: 10px;
+  z-index: 5;
+}
+
+.graph-desc-section {
+  height: 100%;
+  position: relative;
+  
+  & > div {
+    @extend .gold-text;
+    height: 50px;
+    top: 10px;
+    position: relative;
+    @include border(1px solid, $gold-color, bottom);
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
+
+#graph-para {
+  top: 50px;
+  height: 150px;
+  color: $cream-color;
+}
+
+.contribution-info {
+  height: 200px;
+  top: 20px;
+  position: relative;
+  @include border(2px solid, $dim-gold-color, left);
+  z-index: 5;
+
+  &:nth-child(2), &:nth-child(4) {
+    border: none;
+  }
+
+}
+
+.contribution-text-left {
   @extend .gold-text;
   color: $cream-color;
-  margin-top: 0px;
-  font-size: 19px;
-  padding: 10px;
+  text-align: left;
 }
+
+.contribution-text-right {
+  @extend .gold-text;
+  color: $cream-color;
+  text-align: right;
+
+  & > a {
+    color: $cream-color;
+  }
+}
+
+// -------- Graph Label Iterations -------- //
 
 $skillList: "frameworks", "dev-tools", "design-tools", "preprocessors";
 
@@ -843,81 +735,6 @@ $skillList: "frameworks", "dev-tools", "design-tools", "preprocessors";
     }
 
   }
-}
-
-
-.seperator {
-  position: relative;
-  margin-top: 5%;
-}
-
-.title-text {
-  font-family: "Open Sans";
-  font-weight: 500;
-  font-size: 28px;
-  color: $cream-color;
-  position: relative;
-  top: 25%;
-}
-
-.block-href {
-
-  &:hover {
-    text-decoration: none;
-
-  }
-  &:active {
-    text-decoration: none;
-
-  }
-  &:focus {
-    text-decoration: none;
-
-  }
-}
-
-
-.img-text {
-  position: relative;
-  bottom: 100px;
-  z-index: 0; 
-  transition: all 0.5s ease-in;
-}
-
-.fullOpacity {
-  opacity: 1;
-  visibility: visible;
-
-}
-
-.noOpacity {
-  opacity: 0;
-  visibility: collapse;
-}
-
-
-.frameworks {
-  position: relative;
-  left: 8.5%;
-
-}
-
-.dev-tools {
-  position: relative;
-  left: 4%;
-}
-
-.preprocessors {
-  position: relative;
-  left: 13.5%;
-}
-
-.month-labels {
-  width: 500px;
-  height: 500px;
-  position: relative;
-  left: 317px;
-  transform: rotate(210deg);
 }
 
 $toolList: "darkreader", "tmtheme", "angular", "jquery", 
@@ -997,20 +814,155 @@ $dayMap: (
 }
 
 
+// -------- Tools Section -------- //
 
+.tool-container {
+  height: 300px;
+  padding-left: 23px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
 
+.block-container {
+  background-color: $dark-background;
+  width: 100%;
+  height: 2800px;
+  @include border(1px solid, $gold-color, left right top bottom);  
+  position: relative;
+  @include prefix(box-shadow, -13px 20px 35px 10px rgba(0,0,0,0.75), webkit moz ms o);
+  z-index: -2;
+}
 
+.projects-container {
+  @extend .block-container;
+  height: 1350px;
+  @include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
+}
 
+.graph-container {
+  @extend .block-container;
+  height: 1180px;
+}
 
+.block-group {
+  position: relative;
+  padding-top: 4.5%;
+}
 
+.block-titles {
+  @include border(1px solid, $gold-color, bottom);
+  height: 50px;
+  left: 34%;
+  text-align: center;
+}
 
+.projects-block-title {
+  text-align: center;
+  @include border(1px solid, $gold-color, bottom);
+}
 
+.block-name-def {
+  @extend .gold-text;
+  top: 20px;
+  right: 5px;
+  position: relative;
+  text-align: center;
+}
 
+.block-name-tm {
+  @extend .block-name-def;
+  right: 13px;
+}
 
+.block-para {
+  @extend .gold-text;
+  color: $cream-color;
+  width: 300px;
+  top: 20px;
+  right: 70px;
+  font-size: 17px;
+  position: relative;
+  white-space: normal;
+}
 
+.skills-list {
+  top: 10%;
+  left: 10%;
+  position: relative;
+  color: $gold-color;
+}
 
+.project-desc-container {
+  @extend .skills-container;
+  @include border(1px solid, $dim-gold-color, top left bottom right);
+  border-radius: 10px;
+  height: 200px;
+  margin-top: 100px;
+  position: relative;
+  box-shadow: none;
+}
 
+.tools-desc-container {
+  @extend .project-desc-container;
+  @extend .gold-text;
+  color: $cream-color;
+  margin-top: 0px;
+  font-size: 19px;
+  padding: 10px;
+}
 
+.frameworks {
+  position: relative;
+  left: 8.5%;
 
+}
 
+.dev-tools {
+  position: relative;
+  left: 4%;
+}
 
+.preprocessors {
+  position: relative;
+  left: 13.5%;
+}
+
+.month-labels {
+  width: 500px;
+  height: 500px;
+  position: relative;
+  left: 317px;
+  transform: rotate(210deg);
+}
+
+.title-text {
+  font-family: "Open Sans";
+  font-weight: 500;
+  font-size: 28px;
+  color: $gold-color;
+  position: relative;
+  top: 25%;
+}
+
+.block-href {
+
+  &:hover {
+    text-decoration: none;
+
+  }
+  &:active {
+    text-decoration: none;
+
+  }
+  &:focus {
+    text-decoration: none;
+
+  }
+}
+
+.img-text {
+  position: relative;
+  bottom: 100px;
+  z-index: 0; 
+  transition: all 0.5s ease-in;
+}
