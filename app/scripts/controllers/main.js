@@ -14,6 +14,7 @@
 	  	.controller('MainCtrl', function ($http, $q, $scope) {
 	  		
 
+	  		// -------- Block Template Instance Data -------- //
 
 	  		$scope.darkreader = {
 
@@ -478,7 +479,7 @@
 	  		};
 
 
-
+	  		
 		  	function add(a, b) {
 		      	return a + b;
 		  	}
@@ -628,8 +629,6 @@
 			  fadeOut2();
 			});
 			
-			
-
 			function fitToContainer(canvas){
 			  canvas.style.width='100%';
 			  canvas.style.height='100%';
@@ -649,20 +648,12 @@
 			var ctx = canvas.getContext("2d"),
 			    painting = false;
 
-			function changeFillStyle() {
-
-
-
-			}
-
 			function numRound (value,dec){
 		        value=Math.floor(value * dec + 0.05) / dec;
 		        return(value);
 		    }
 
 			function drawCircle(e) {
-
-
 
 				let pos = getMousePos(canvas, e),
 			        posx = pos.x,
@@ -671,10 +662,10 @@
 		            y = posy,
 		            radius = 30,
 		            startAngle = 0,
-		            endAngle = Math.PI * 2;
-		        let rgbR = numRound((posx * 0.1) + 70, 1);
-				let rgbG = numRound((posy * 0.1) + 100, 1);
-				let rgbB = numRound((posy * 0.1) * 5, 1);
+		            endAngle = Math.PI * 2,
+		            rgbR = numRound((posx * 0.1) + 70, 1),
+				    rgbG = numRound((posy * 0.1) + 100, 1),
+				    rgbB = numRound((posy * 0.1) * 5, 1);
 	
 		        ctx.fillStyle = 'rgba(' + rgbR + ',' + rgbG + ',' + rgbB + ',1)';
 		        ctx.beginPath();
@@ -684,18 +675,17 @@
 			}
 
 			var clicked = false;
+			var scrolling = false;
 
 			function fadeOut() {
 
 			    ctx.fillStyle = "rgba(24,24,24,0.2)";
 			    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-
 			    if (painting) {
 			    	var screenFill = setTimeout(function(){
 					  fadeOut();
 					},30);
-
 			    }
 
 			    mainControlSection.onmousedown = function (e) {
@@ -719,10 +709,8 @@
 
 				canvas.onmousedown = function (e) {
 
-
 					clearTimeout(screenFill);
 					clicked = true;
-					
 				};
 
 				
@@ -733,9 +721,7 @@
 						var screenFill = setTimeout(function(){
 						  fadeOut();
 						},30);
-
 					}
-					
 				};
 
 				canvas.onmouseleave = function(e) {
@@ -745,6 +731,16 @@
 						painting = false;
 					//},700);
 			
+				};
+
+				canvas.onwheel = function(e) {
+
+					if (painting) {
+						scrolling = true;
+						clearTimeout(screenFill);
+
+					}
+
 				};
 
 				
@@ -757,7 +753,18 @@
 
 			canvas.onmousemove = function (e) {
 
-				drawCircle(e);
+				
+				if (scrolling) {
+
+					var screenFill = setTimeout(function(){
+					  fadeOut();
+					},30);
+					scrolling = false;
+
+				} else {
+
+					drawCircle(e);
+				}
 
 			};
 
@@ -1200,6 +1207,9 @@
 
 			return [currStreak, longestStreak];
 		}
+
+
+		
 
 	});
 })();
