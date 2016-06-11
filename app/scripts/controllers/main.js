@@ -859,6 +859,11 @@
 		    drawCss("tooltip2", 265, 80, "Repositories");
 		    drawCss("tooltip2", 165, 880, "Days");
 
+		    function stylePos(element, top, left) {
+				return element.style("top", (top) + "px")
+					.style("left", (left) + "px");
+			}
+
 			function outerRing (sAng, eAng, color, data, midData, i) {
 
 				if (i < 52) {
@@ -943,9 +948,33 @@
 				}
 			}
 
-			function stylePos(element, top, left) {
-				return element.style("top", (top) + "px")
-					.style("left", (left) + "px");
+			function middleRing(sAng, eAng, color, data) {
+
+				let ringCont = [];
+				for (let i = 0; i <= 6; i++) {
+
+					sAng = sAng + 50;
+					eAng = eAng + 50;
+
+					let color1 = color[0] + (data[i] * 50);
+					let color2 = color[1] + (data[i] * 50);
+					let color3 = color[2] + (data[i] * 50);
+					let alpha = (data[i] * 0.2) + 0.05;
+
+					let ring = svgContainer.append("path")
+					    .attr("d", arc(145, 165, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
+					    .attr("transform", "translate(200,250)")
+					    .style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")")
+					    .style("position", "relative")
+						.style("z-index", "2")
+						.style("opacity", 0.3);
+
+						sAng = sAng + 1.5;
+						eAng = eAng + 1.5;
+
+					ringCont.push(ring);
+				}
+				return ringCont;
 			}
 
 			function innerRing (data, nameArr, color, i){
@@ -1018,37 +1047,6 @@
 				}
 			}
 			
-			function middleRing(sAng, eAng, color, data) {
-
-				let ringCont = [];
-
-				for (let i = 0; i <= 6; i++) {
-
-					sAng = sAng + 50;
-					eAng = eAng + 50;
-
-					let color1 = color[0] + (data[i] * 50);
-					let color2 = color[1] + (data[i] * 50);
-					let color3 = color[2] + (data[i] * 50);
-					let alpha = (data[i] * 0.2) + 0.05;
-
-					let ring = svgContainer.append("path")
-					    .attr("d", arc(145, 165, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
-					    .attr("transform", "translate(200,250)")
-					    .style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")")
-					    .style("position", "relative")
-						.style("z-index", "2")
-						.style("opacity", 0.3);
-
-						sAng = sAng + 1.5;
-						eAng = eAng + 1.5;
-
-					ringCont.push(ring);
-				}
-
-				return ringCont;
-			}
-
 			// -------- Data Sorting Functions -------- // 
 
 			function getDayCommits(inputArr) {
@@ -1075,7 +1073,6 @@
 		  			}
 		  			outputRepos[i] = (weekCurrTotal[i].reduce(add, 0));
 		  		}
-
 		  		return [outputRepos, outputDays];
 	  		}
 
@@ -1088,14 +1085,11 @@
 		  			let weekCurr = inputArr[i];
 
 		  			if (daySums[i] === undefined) {
-
 		  				daySums[i] = [];
 		  			}
 
 		  			for (let j=0; j < weekCurr.length; j++) {
-
 		  				let dayCurr = weekCurr[j];
-
 		  				for (let l=0; l < dayCurr.length; l++) {
 
 		  					daySums[i].push(dayCurr[l]);
@@ -1128,24 +1122,18 @@
 		  			for (let l=0; l < daySumsCurr.length; l++) {
 
 		  				if (l % 7 === 0) {
-
 			  				j = 0;
-
 			  			} else {
-
 			  				j++;
 			  			}
 
 		  				dayArrCurr = dayArr[i];
-
 		  				if (dayArrCurr[j] === undefined) {
 
 		  					dayArrCurr[j] = daySumsCurr[l];
-
 		  				} else {
 
 		  					dayArrCurr[j] = (dayArrCurr[j] + daySumsCurr[l]);
-
 		  				}
 		  			}
 		  		}
@@ -1155,7 +1143,6 @@
 	  		function streakData(inputArr) {
 
 	  			let streakArr = [];
-
 	  			for (var i=0; i < inputArr.length; i++) {
 
 	  				let currInputArr = inputArr[i];
@@ -1185,7 +1172,6 @@
 						} else {
 
 							if (currStreak > longestStreak) {
-
 								longestStreak = currStreak;
 							}
 
@@ -1196,20 +1182,12 @@
 					} else {
 
 						if (endCurrStreak === false) {
-
-
 							currStreak = streakCounter;
 						}
-
 						streakCounter++;
 					}
 				}
-
 			return [currStreak, longestStreak];
 		}
-
-
-		
-
 	});
 })();
