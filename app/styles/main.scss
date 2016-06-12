@@ -208,6 +208,9 @@ a:hover, a:focus, a:active {
   background-image: url($rock-background);
 }
 
+$i: 2;
+$loopCount: 1;
+
 .padding {
   margin-top: 0px;
   height: 200px;
@@ -218,29 +221,17 @@ a:hover, a:focus, a:active {
   position: absolute;
   @include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
 
-  &:nth-child(4) {
-    margin-top: 1050px;
+  @while $i < 14 {
+
+    &:nth-child(#{$i}) {
+      margin-top: ($loopCount * 1100) + px;
+    }
+
+    $loopCount: $loopCount + 1;
+    $i: $i + 2;
   }
 
-  &:nth-child(6) {
-    margin-top: 2150px;
-  }
-
-  &:nth-child(8) {
-    margin-top: 3250px;
-  }
-
-  &:nth-child(10) {
-    margin-top: 4450px;
-  }
-
-  &:nth-child(12) {
-    margin-top: 5550px;
-  }
-
-  &:nth-child(14) {
-    margin-top: 6550px;
-  }
+  
 }
 
 .decoration {
@@ -254,8 +245,10 @@ a:hover, a:focus, a:active {
   @include prefix(box-shadow, inset 0px 0px 20px 5px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
-.container-parallax {
+$i: 3;
+$loopCount: 0;
 
+.container-parallax {
   margin-top: -1000px;
   background-color: $dark-background;
   background-image: url('/images/darklinepat2.png');
@@ -264,31 +257,14 @@ a:hover, a:focus, a:active {
   width: 100%;
   z-index: -5;
 
-  &:nth-child(3) {
-    margin-top: -50px;
-    //background-image: url('/images/royalpat.png');
-  }
+  @while $i < 13 {
 
-  &:nth-child(5) {
-    margin-top: 950px;
+    &:nth-child(#{$i}) {
+      margin-top: -50 + ($loopCount * 1000) + px;
+    }
 
-  }
-
-  &:nth-child(7) {
-    margin-top: 1950px;
-    //background-image: url('/images/eyepat.png');
-  }
-
-  &:nth-child(9) {
-    margin-top: 2950px;
-  }
-
-  &:nth-child(11) {
-    margin-top: 3950px;
-  }
-
-  &:nth-child(13) {
-    margin-top: 4950px;
+    $loopCount: $loopCount + 1;
+    $i: $i + 2;
   }
 }
 
