@@ -1,20 +1,22 @@
-<div class="tool-container col-lg-2 col-md-2 col-sm-2 col-xs-2">
-	<p class="{{blockInfo.attr.nameClass}}" ng-hide="{{blockInfo.binding.nameHide}}">{{blockInfo.text.nameTxt}}</p>
-	<div class="main-blocks">
-		<a class="block-href" ng-href="{{blockInfo.attr.href}}">
-		    <div ng-href="{{blockInfo.attr.href}}" id="{{blockInfo.attr.id}}" ng-init="changeVar = false" ng-mouseover="changeVar = true" ng-mouseleave="changeVar = false"></div>
-		    <span class="img-text gold-text" ng-class="{noOpacity: !changeVar, fullOpacity: changeVar}">
-		    	<p>{{blockInfo.text.txt1}}</p>
-		    	<p>{{blockInfo.text.txt2}}</p>
-		    </span>
-		</a>
+<div>
+	<div class="tool-container col-lg-2 col-md-2 col-sm-2 col-xs-2">
+		<p class="{{blockInfo.attr.nameClass}}" ng-hide="{{blockInfo.binding.nameHide}}">{{blockInfo.text.nameTxt}}</p>
+		<div class="main-blocks">
+			<a class="block-href" ng-href="{{blockInfo.attr.href}}">
+			    <div ng-href="{{blockInfo.attr.href}}" id="{{blockInfo.attr.id}}" ng-init="changeVar = false" ng-mouseover="changeVar = true" ng-mouseleave="changeVar = false"></div>
+			    <span class="img-text gold-text" ng-class="{noOpacity: !changeVar, fullOpacity: changeVar}">
+			    	<p>{{blockInfo.text.txt1}}</p>
+			    	<p>{{blockInfo.text.txt2}}</p>
+			    </span>
+			</a>
 
+		</div>
+		<ul class="skills-list">
+			<li ng-hide="{{blockInfo.binding.skill1Hide}}">{{blockInfo.skills.skill1}}</li>
+			<li ng-hide="{{blockInfo.binding.skill2Hide}}">{{blockInfo.skills.skill2}}</li>
+			<li ng-hide="{{blockInfo.binding.skill3Hide}}">{{blockInfo.skills.skill3}}</li>
+			<li ng-hide="{{blockInfo.binding.skill4Hide}}">{{blockInfo.skills.skill4}}</li>
+		</ul>
+		<div class="block-para" ng-hide="{{blockInfo.binding.paraHide}}">{{blockInfo.text.paraTxt}}</div>
 	</div>
-	<ul class="skills-list">
-		<li ng-hide="{{blockInfo.binding.skill1Hide}}">{{blockInfo.skills.skill1}}</li>
-		<li ng-hide="{{blockInfo.binding.skill2Hide}}">{{blockInfo.skills.skill2}}</li>
-		<li ng-hide="{{blockInfo.binding.skill3Hide}}">{{blockInfo.skills.skill3}}</li>
-		<li ng-hide="{{blockInfo.binding.skill4Hide}}">{{blockInfo.skills.skill4}}</li>
-	</ul>
-	<div class="block-para" ng-hide="{{blockInfo.binding.paraHide}}">{{blockInfo.text.paraTxt}}</div>
 </div>
