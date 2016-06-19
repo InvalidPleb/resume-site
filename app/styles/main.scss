@@ -275,10 +275,9 @@ $loopCount: 0;
   background-color: $dark-background;
   height: 800px;
   z-index: 5;
-  margin-top: 2%;
-  margin-left: 15%;
-  margin-right: 15%;
-  margin-bottom: 2%;
+  padding: 0px;
+  right: 10px;
+  top: 10px;
   position: relative;
   @include border(1px solid, $gold-color, left right bottom top);
   @include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
@@ -311,8 +310,10 @@ $loopCount: 0;
 .name-text {
   @extend .block-title-section-text;
   color: $bright-gold-color;
+  padding: 0px;
   font-size: 50px;
   top: 0;
+  margin: 0px;
   &:nth-child(2) {
     margin-top: 0px;
   }
@@ -331,7 +332,8 @@ $loopCount: 0;
 
 .sphere-container {
   @extend .name-text;
-  top: 100px; 
+  top: 100px;
+  right: 25px;
   pointer-events: none;
 
   &:nth-child(3) {
@@ -404,6 +406,7 @@ $loopCount: 0;
   z-index: -3;
   margin: auto;
   right: 10px;
+  padding: 0px;
 
 }
 
@@ -822,7 +825,6 @@ $dayMap: (
 
 .block-container {
   background-color: $dark-background;
-  width: 100%;
   height: 2800px;
   @include border(1px solid, $gold-color, left right top bottom);  
   position: relative;
@@ -968,16 +970,127 @@ $dayMap: (
 
 @media (min-width:1200px) and (max-width:1550px) {
 
+  .block-name-def {
+    right: 10px;
+  }
+
+
 }
 
 @media (min-width:992px) and (max-width:1199px) {
 
-}
+  .sphere-container {
+    left: 30px;
+
+  }
+  .block-name-def {
+    right: 0px;
+  }
+
+  .skills-container {
+    height: 650px;
+  }
+
+  .graph-description {
+
+    height: 500px;
+
+  }
+
+  #frameworks {
+    height: 250px;
+
+  }
+
+  #dev-tools {
+    height: 250px;
+
+  }
+
+  #design-tools {
+    height: 270px;
+
+  }
+
+
+  #tools {
+    height: 2900px;
+  }
+
+
+  }
 @media (min-width:875px) and (max-width:991px) {
+
+  .title-text {
+    width: 250px;
+    right: 20px;
+  }
+
+  .skills-container {
+    height: 710px;
+  }
+
+  .sphere-container {
+    left: 145px;
+
+  }
+
+  #frameworks {
+    height: 320px;
+
+  }
+
+  #dev-tools {
+    height: 320px;
+
+  }
+
+  #design-tools {
+    height: 350px;
+
+  }
+
+  #preprocessors {
+    height: 250px;
+  }
+
+  #tools {
+    height: 3150px;
+  }
+
+  .block-name-def {
+    right: 0px;
+    left: 15px;
+  }
+
+  .frameworks {
+  
+    left: 5%;
+
+  }
+
+  .dev-tools {
+    
+    left: 0.5%;
+  }
+
+  .preprocessors {
+    
+    left: 8%;
+  }
 
 }
 
 @media (min-width:762px) and (max-width:874px) {
+
+  .container{
+    left: 10px;
+  }
+
+  .sphere-container {
+    left: 145px;
+
+  }
 
   @-moz-document url-prefix() {
 
@@ -986,8 +1099,21 @@ $dayMap: (
 
 @media (min-width:600px) and (max-width:761px) {
 
+  .container {
+    left: 10px;
+  }
+
+  .sphere-container {
+    left: 145px;
+
+  }
+
 }
 
 @media (min-width:0px) and (max-width:599px) {
+
+  .container {
+    left: 10px;
+  }
 
 }
