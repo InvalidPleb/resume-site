@@ -208,6 +208,17 @@ a:hover, a:focus, a:active {
   background-image: url($rock-background);
 }
 
+.decoration {
+
+  height: 45px;
+  width: 100%;
+  top: 40%;
+  position: relative;
+  @include border(2px solid, $gold-color, bottom top);
+  background-image: url('/images/royalpat.png');
+  @include prefix(box-shadow, inset 0px 0px 20px 5px rgba(0,0,0,0.75), webkit moz ms o);
+}
+
 $i: 2;
 $loopCount: 1;
 
@@ -232,17 +243,6 @@ $loopCount: 1;
   }
 
   
-}
-
-.decoration {
-
-  height: 45px;
-  width: 100%;
-  top: 40%;
-  position: relative;
-  @include border(2px solid, $gold-color, bottom top);
-  background-image: url('/images/royalpat.png');
-  @include prefix(box-shadow, inset 0px 0px 20px 5px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
 $i: 3;
@@ -964,4 +964,30 @@ $dayMap: (
   bottom: 100px;
   z-index: 0; 
   transition: all 0.5s ease-in;
+}
+
+@media (min-width:1200px) and (max-width:1550px) {
+
+}
+
+@media (min-width:992px) and (max-width:1199px) {
+
+}
+@media (min-width:875px) and (max-width:991px) {
+
+}
+
+@media (min-width:762px) and (max-width:874px) {
+
+  @-moz-document url-prefix() {
+
+  }
+}
+
+@media (min-width:600px) and (max-width:761px) {
+
+}
+
+@media (min-width:0px) and (max-width:599px) {
+
 }
