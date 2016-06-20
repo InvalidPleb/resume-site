@@ -22,7 +22,7 @@
 	  			attr:   {
 			  				id: "darkreader",
 			  				href: "https://github.com/alexanderby/darkreader",
-			  				nameClass: "block-name-def",
+			  				nameClass: "block-name-dark",
 	  					},
 
 	  			binding: {

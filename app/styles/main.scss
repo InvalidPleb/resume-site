@@ -223,7 +223,7 @@ $i: 2;
 $loopCount: 1;
 
 .padding {
-  margin-top: 0px;
+  margin-top: 50px;
   height: 200px;
   width: 100%;
   background-image: url($rock-background);
@@ -249,7 +249,7 @@ $i: 3;
 $loopCount: 0;
 
 .container-parallax {
-  margin-top: -1000px;
+  margin-top: -950px;
   background-color: $dark-background;
   background-image: url('/images/darklinepat2.png');
   position: absolute;
@@ -835,6 +835,7 @@ $dayMap: (
 .projects-container {
   @extend .block-container;
   height: 1350px;
+  top: 50px;
   @include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
@@ -873,6 +874,11 @@ $dayMap: (
   right: 13px;
 }
 
+.block-name-dark {
+  @extend .block-name-def;
+
+}
+
 .block-para {
   @extend .gold-text;
   color: $cream-color;
@@ -886,7 +892,7 @@ $dayMap: (
 
 .skills-list {
   top: 10%;
-  left: 10%;
+  left: 12%;
   position: relative;
   color: $gold-color;
 }
@@ -979,6 +985,21 @@ $dayMap: (
 
 @media (min-width:992px) and (max-width:1199px) {
 
+
+
+  .site-container {
+    right: 10px;
+  }
+
+  .site-container-tablet {
+    right: 45px;
+    
+  }
+
+  .site-container-mobile {
+    
+  }
+
   .sphere-container {
     left: 30px;
 
@@ -992,9 +1013,7 @@ $dayMap: (
   }
 
   .graph-description {
-
     height: 500px;
-
   }
 
   #frameworks {
@@ -1012,42 +1031,54 @@ $dayMap: (
 
   }
 
-
   #tools {
     height: 2900px;
   }
 
-
+  .project-desc-container {
+    height: 220px;
   }
-@media (min-width:875px) and (max-width:991px) {
 
   .title-text {
-    width: 250px;
-    right: 20px;
+    width: 350px;
+    right: 40px;
+  }
+
+
+}
+@media (min-width:875px) and (max-width:991px) {
+
+  #graph-para {
+    height: 190px;
+  }
+
+  .title-text {
+    width: 350px;
+    right: 70px;
   }
 
   .skills-container {
     height: 710px;
   }
 
+  .graph-description {
+    height: 510px;
+  }
+
   .sphere-container {
     left: 145px;
-
   }
 
   #frameworks {
     height: 320px;
-
   }
 
   #dev-tools {
     height: 320px;
-
   }
 
   #design-tools {
     height: 350px;
-
   }
 
   #preprocessors {
@@ -1060,28 +1091,92 @@ $dayMap: (
 
   .block-name-def {
     right: 0px;
-    left: 15px;
+    left: 20px;
   }
 
   .frameworks {
-  
     left: 5%;
-
   }
 
   .dev-tools {
-    
     left: 0.5%;
   }
 
   .preprocessors {
-    
     left: 8%;
   }
+
+
+  .site-container {
+    top: 20px;
+    right: -120px;
+  }
+
+  .site-container-tablet {
+    top: 360px;
+    right: 38%;
+    
+  }
+
+  .site-container-mobile {
+    top: 165px;
+    right: 0%;
+    
+  }
+
+  .runner-calc-text {
+    height: 300px;
+    top: 150px;
+
+  }
+
+  #runner-calc-container {
+    height: 1050px;
+
+  }
+
+  #projects {
+    height: 1650px;
+  }
+
+  .block-para {
+    right: 80px;
+    padding-left: 20px;
+  }
+
+  .block-name-dark {
+    left: 10px;
+
+  }
+
+  .block-name-tm {
+    left: -10px;
+  }
+
+  
+
 
 }
 
 @media (min-width:762px) and (max-width:874px) {
+
+  #tools {
+    height: 3150px;
+  }
+
+  .title-text {
+    width: 350px;
+    right: 70px;
+  }
+
+  .block-name-def {
+    right: 0px;
+    left: 20px;
+  }
+
+  .skills-container {
+    height: 710px;
+  }
 
   .container{
     left: 10px;
@@ -1089,8 +1184,87 @@ $dayMap: (
 
   .sphere-container {
     left: 145px;
+  }
+
+  .frameworks {
+    left: 5%;
+  }
+
+  .dev-tools {
+    left: 0.5%;
+  }
+
+  .preprocessors {
+    left: 8%;
+  }
+
+  #frameworks {
+    height: 320px;
+  }
+
+  #dev-tools {
+    height: 300px;
+  }
+
+  #design-tools {
+    height: 350px;
+  }
+
+  #preprocessors {
+    height: 250px;
+  }
+
+  #graph-para {
+    height: 180px;
+  }
+
+  .site-container {
+    top: 20px;
+    right: -120px;
+  }
+
+  .site-container-tablet {
+    top: 360px;
+    right: 38%;
+    
+  }
+
+  .site-container-mobile {
+    top: 165px;
+    right: 0%;
+    
+  }
+
+  .runner-calc-text {
+    height: 300px;
+    top: 150px;
 
   }
+
+  #runner-calc-container {
+    height: 1050px;
+
+  }
+
+  #projects {
+    height: 1650px;
+  }
+
+  .block-para {
+    right: 80px;
+    padding-left: 20px;
+  }
+
+  .block-name-dark {
+    left: 10px;
+
+  }
+
+  .block-name-tm {
+    left: -10px;
+  }
+
+
 
   @-moz-document url-prefix() {
 
