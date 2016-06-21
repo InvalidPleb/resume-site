@@ -19,7 +19,7 @@
 
 	  		$scope.darkreader = {
 
-	  			attr:   {
+	  			attr:  {
 			  				id: "darkreader",
 			  				href: "https://github.com/alexanderby/darkreader",
 			  				nameClass: "block-name-dark",
@@ -490,8 +490,6 @@
 			  link.focus();
 			}
 
-
-
 			// -------- Github AJAX -------- //
 
 		  	var githubGet = 'https://api.github.com';
@@ -791,10 +789,9 @@
 
 		  	var svgContainer = d3.select(".animation-container")
 		  		.append("svg")
+		  		.attr("class", "svg-container")
 				.attr("width", 400)
-				.attr("height", 500)
-				.style("position", "relative")
-				.style("right", "152px");
+				.attr("height", 500);
 
 			var pie = d3.layout.pie()
 				.value(function (d) {
@@ -827,16 +824,10 @@
 			}
 
 			var defCenterTooltip = d3.select(".animation-container").append("div")	
-						.attr("class", "tooltip1")
-						.style('position','absolute')
-						.style("left", (492) + "px")
-		            	.style("top", (174) + "px");
+						.attr("class", "tooltip1");
 
 		    var graphCircle = d3.select(".animation-container").append("div")	
-						.attr("class", "graph-circle")
-						.style('position','absolute')
-						.style("left", (363) + "px")
-		            	.style("top", (45) + "px");
+						.attr("class", "graph-circle");
 
 
 		    function drawCss(cssClass, top, left, text) {
@@ -889,9 +880,7 @@
 					let g = svgContainer.append('svg:g');
 
 					let centerTooltip = d3.select(".animation-container").append("div")	
-						.attr("class", "tooltip1")
-						.style('position','absolute')	
-						.style("opacity", 0)
+						.attr("class", "tooltip1-hover")
 						.html(function() {
 							return "<p class=\"day-tooltip-title\">Week " + (i + 1) + "</p>" +
 								"<p class=\"day-tooltip-label\"> &nbsp; &nbsp; Day &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Commits</p>" +
@@ -1110,7 +1099,7 @@
 
 		  		let j = 0;
 
-		  		for (let i=0; (i < inputArr.length); i++) {
+		  		for (let i=0; i < inputArr.length; i++) {
 
 		  			if (dayArr[i] === undefined) {
 
