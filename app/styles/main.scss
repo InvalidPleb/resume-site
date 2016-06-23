@@ -543,7 +543,7 @@ $loopCount: 0;
   }
 }
 
-.tooltip1 {     
+.pie-tooltip {     
   text-align: center; 
   width: 152px;          
   height: 152px;
@@ -561,18 +561,10 @@ $loopCount: 0;
   @include prefix(box-shadow, inset 0px 0px 35px 5px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
-.tooltip1-hover {
-  @extend .tooltip1;
+.pie-tooltip-hover {
+  @extend .pie-tooltip;
   opacity: 0;
   
-}
-
-.tooltip2 {
-  @extend .tooltip;
-  position: absolute;
-  line-height: 50px;
-  vertical-align: middle;
-  opacity: 1;
 }
 
 .tooltipText {
@@ -607,6 +599,43 @@ $loopCount: 0;
   pointer-events: none;
   @include border(1px solid, $gold-color, bottom);
   @include prefix(box-shadow, -7px 6px 24px 5px rgba(0,0,0,0.75), webkit moz ms o);
+
+}
+
+.line-title {
+  @extend .tooltip;
+  position: absolute;
+  line-height: 50px;
+  vertical-align: middle;
+  opacity: 1;
+}
+
+$lineMap: (
+  1: (190, 710),
+  2: (290, 200),
+  3: (75, 265),
+);
+
+$lineTitleMap: (
+  1: (50, 150),
+  2: (265, 80),
+  3: (165, 880),
+);
+
+@each $num, $values in $lineMap {
+
+  .line:nth-child(#{$num}) {
+    top: nth($values, 1) + px;
+    left: nth($values, 2) + px;
+  }
+}
+
+@each $num, $values in $lineTitleMap {
+
+  .line-title:nth-child(#{$num}) {
+    top: nth($values, 1) + px;
+    left: nth($values, 2) + px;
+  }
 }
 
 .day-tooltip {
@@ -996,12 +1025,9 @@ $dayMap: (
     right: 10px;
   }
 
-
 }
 
 @media (min-width:992px) and (max-width:1199px) {
-
-
 
   .site-container {
     right: 10px;
@@ -1069,13 +1095,41 @@ $dayMap: (
     left: 278px;
   }
 
-  .tooltip1 {
+  .pie-tooltip {
     left: 407px;  
   }
 
-  .tooltip1-hover {
-    margin-left: -85px;
+  .day-tooltip {
 
+  }
+
+  $lineMap: (
+    1: (190, 640),
+    2: (290, 200),
+    3: (75, 265),
+  );
+
+  $lineTitleMap: (
+    1: (50, 150),
+    2: (265, 80),
+    3: (165, 830),
+  );
+
+  @each $num, $values in $lineMap {
+
+    .line:nth-child(#{$num}) {
+      top: nth($values, 1) + px;
+      left: nth($values, 2) - 15 + px;
+      width: 180px;
+    }
+  }
+
+  @each $num, $values in $lineTitleMap {
+
+    .line-title:nth-child(#{$num}) {
+      top: nth($values, 1) + px;
+      left: nth($values, 2) - 40 + px;
+    }
   }
 
   @each $month, $values in $monthMap {
@@ -1089,8 +1143,8 @@ $dayMap: (
   @each $day, $values in $dayMap {
 
     ##{$day} {
-      left: nth($values, 1) - 80;  
-      top: nth($values, 2) + 0;
+      left: nth($values, 1) - 84;  
+      top: nth($values, 2) + 1;
     }
   }
 

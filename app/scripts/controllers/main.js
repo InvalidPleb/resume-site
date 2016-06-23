@@ -824,10 +824,18 @@
 			}
 
 			var defCenterTooltip = d3.select(".animation-container").append("div")	
-						.attr("class", "tooltip1");
+						.attr("class", "pie-tooltip");
 
 		    var graphCircle = d3.select(".animation-container").append("div")	
 						.attr("class", "graph-circle");
+
+
+			function htmlMidData(i, data) {
+				let dayArray = ["S", "M", "T", "W", "T", "F", "S",];
+				return "<p class=\"day-tooltip\">" + dayArray[i] +"|<span>" + data[i] + "</span></p>";
+			}
+
+			/*
 
 
 		    function drawCss(cssClass, top, left, text) {
@@ -840,10 +848,7 @@
 							});
 		    }
 
-		    function htmlMidData(i, data) {
-				let dayArray = ["S", "M", "T", "W", "T", "F", "S",];
-				return "<p class=\"day-tooltip\">" + dayArray[i] +"|<span>" + data[i] + "</span></p>";
-			}
+		   
 
 		    drawCss("line", 190, 710, "");
 		    drawCss("line", 290, 200, "");
@@ -851,6 +856,8 @@
 		    drawCss("tooltip2", 50, 150, "Weeks");
 		    drawCss("tooltip2", 265, 80, "Repositories");
 		    drawCss("tooltip2", 165, 880, "Days");
+
+		    */
 
 		    function stylePos(element, top, left) {
 				return element.style("top", (top) + "px")
@@ -880,7 +887,7 @@
 					let g = svgContainer.append('svg:g');
 
 					let centerTooltip = d3.select(".animation-container").append("div")	
-						.attr("class", "tooltip1-hover")
+						.attr("class", "pie-tooltip-hover")
 						.html(function() {
 							return "<p class=\"day-tooltip-title\">Week " + (i + 1) + "</p>" +
 								"<p class=\"day-tooltip-label\"> &nbsp; &nbsp; Day &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Commits</p>" +
@@ -1003,24 +1010,48 @@
 							});
 							
 							if (i === 1) {
-								stylePos(tooltip, 60, 420);
+								stylePos(tooltip, 50, 420);
 							}
 							if (i === 2) {
-								stylePos(tooltip, 90, 380);
+								stylePos(tooltip, 60, 320);
 							}
 							if (i === 3) {
-								stylePos(tooltip, 230, 680);
+								stylePos(tooltip, 190, 670);
 							}
 							if (i === 4) {
-								stylePos(tooltip, 200, 320);
+								stylePos(tooltip, 270, 300);
 							}
 							if (i === 5) {
-								stylePos(tooltip, 60, 480);
+								stylePos(tooltip, 40, 480);
 							}
 							if (i === 6) {
-								stylePos(tooltip, 60, 520);
+								stylePos(tooltip, 40, 520);
 							}
 						   	
+						   	/*
+
+						   	if (i === 1) {
+								stylePos(tooltip, 50, 360);
+							}
+							if (i === 2) {
+								stylePos(tooltip, 90, 240);
+							}
+							if (i === 3) {
+								stylePos(tooltip, 230, 590);
+							}
+							if (i === 4) {
+								stylePos(tooltip, 270, 210);
+							}
+							if (i === 5) {
+								stylePos(tooltip,40, 390);
+							}
+							if (i === 6) {
+								stylePos(tooltip, 40, 420);
+							}
+
+							*/
+
+
 						    d3.select(this).style("fill", "rgba(" + color + "," + (alpha + 0.3) + ")");
 						}).on("mouseout", function () {
 							tooltip.style("opacity", 0);
