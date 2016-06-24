@@ -490,6 +490,17 @@
 			  link.focus();
 			}
 
+			function setArr(arr, num) {
+				arr = [];
+			  	for (let i=0; i < num; i++) {arr.push(i);}
+			  	return arr;
+			}
+
+			$scope.weeks = setArr($scope.weeks, 52);
+			$scope.days = setArr($scope.days, 7);
+			$scope.dayNames = ["S", "M", "T", "W", "T", "F", "S",];
+
+			
 			// -------- Github AJAX -------- //
 
 		  	var githubGet = 'https://api.github.com';
@@ -591,6 +602,8 @@
 		  			}
 
 		  		};
+
+		  		console.log($scope.dataObj.commits.days);
 
 		  		outerRing(-1, 5.5, [0,105, 0], gotParsedCommits[0], gotParsedCommits[1], 0);
 				middleRing(0, 50, [0,105, 0], [1,1,1,1,1,1,1]);
@@ -831,33 +844,8 @@
 
 
 			function htmlMidData(i, data) {
-				let dayArray = ["S", "M", "T", "W", "T", "F", "S",];
 				return "<p class=\"day-tooltip\">" + dayArray[i] +"|<span>" + data[i] + "</span></p>";
 			}
-
-			/*
-
-
-		    function drawCss(cssClass, top, left, text) {
-		    	return d3.select(".animation-container").append("div")	
-						.attr("class", cssClass)
-						.style("left", (left) + "px")
-		            	.style("top", (top) + "px")
-		            	.html(function() {
-							    return "<p class=\"tooltipText\">" + text + "</p>";
-							});
-		    }
-
-		   
-
-		    drawCss("line", 190, 710, "");
-		    drawCss("line", 290, 200, "");
-		    drawCss("line", 75, 265, "");
-		    drawCss("tooltip2", 50, 150, "Weeks");
-		    drawCss("tooltip2", 265, 80, "Repositories");
-		    drawCss("tooltip2", 165, 880, "Days");
-
-		    */
 
 		    function stylePos(element, top, left) {
 				return element.style("top", (top) + "px")
@@ -883,24 +871,7 @@
 					let alpha = (data[i] * 0.1) + 0.05;
 					let dayRing;
 					let midDataInd = midData[i];
-
 					let g = svgContainer.append('svg:g');
-
-					let centerTooltip = d3.select(".animation-container").append("div")	
-						.attr("class", "pie-tooltip-hover")
-						.html(function() {
-							return "<p class=\"day-tooltip-title\">Week " + (i + 1) + "</p>" +
-								"<p class=\"day-tooltip-label\"> &nbsp; &nbsp; Day &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Commits</p>" +
-								"<div class=\"day-tooltip-container\">" + 
-										htmlMidData(0, midDataInd) +
-										htmlMidData(1, midDataInd) +
-										htmlMidData(2, midDataInd) +
-										htmlMidData(3, midDataInd) +
-										htmlMidData(4, midDataInd) +
-										htmlMidData(5, midDataInd) +
-										htmlMidData(6, midDataInd) +
-								"</div>";	
-					});
 
 					g.append("path")
 					    .attr("d", arc(170, 200, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
@@ -910,12 +881,7 @@
 					    .style("z-index", "2")
 					    .on("mouseover", function () {
 						    d3.select(this).style("fill", "rgb(89, 74, 41)");
-						    centerTooltip.style("left", ((d3.select(this).attr("cx") + 492) + "px"))
-		            			.style("top", ((d3.select(this).attr("cy") + 174) + "px"));
-						    centerTooltip.transition()		
-		            			.duration(200)		
-		            			.style("opacity", 0.9);
-		            		
+						    $(".pie-tooltip-hover:nth-child(" + i + ")").css("opacity", "1");
 		            		dayRing = middleRing(0, 50, colorArr, midDataInd);
 
 		            		for (let j = 0; j < dayRing.length; j++) {
@@ -923,13 +889,11 @@
 		            			.duration(200)		
 		            			.style("opacity", 0.9);
 		            		}
-		   
 						})
 						.on("mouseout", function () {
 						    d3.select(this).style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")");
-						    centerTooltip.transition()		
-		            			.duration(200)		
-		            			.style("opacity", 0);
+						    $(".pie-tooltip-hover:nth-child(" + i + ")").css("opacity", "0");
+	
 		            		for (let j = 0; j < dayRing.length; j++) {
 		            			dayRing[j].transition()		
 		            			.duration(200)		
@@ -941,7 +905,6 @@
 					sAng = sAng + 0.5;
 					eAng = eAng + 0.5;
 					i++;
-
 					return outerRing(sAng, eAng, colorArr, data, midData, i);
 				}
 			}
@@ -975,21 +938,16 @@
 				return ringCont;
 			}
 
+			
+
 			function innerRing (data, nameArr, color, i){
 
 				if (i < data.length) {
 
 					let repoName = nameArr[i].slice(12,nameArr[i].length);
-	
-					let tooltip = d3.select(".d3-container")
-						.append("div")
-					    .attr("class", "repoTooltip")				
-					    .style("opacity", 0);
-
 					let pieD = pie(data);
 					let sAng = pieD[i].startAngle;
 					let eAng = pieD[i].endAngle;
-
 					let alpha = 0.6;
 
 					var pieCurve = svgContainer.append("path")
@@ -997,74 +955,21 @@
 					    .attr("transform", "translate(200,250)")
 					    .attr("class", "pie")
 					    .style("fill", "rgba(" + color + "," + alpha + ")")
+
 					    .on("mouseover", function () {
-					    	tooltip.style("opacity", 1)
-							
-							.style("left", (300) + "px")
-                			.style("top", (-500) + "px")
-                			.style("cursor", "pointer")
-                			.html(function() {
-							    return "<p class=\"repo-name\">" + repoName + "</p>" + 
-							    "<p>" + data[i - 1] + " commits</p>" +
-							    "<p>Click to view on Github</p>";
-							});
-							
-							if (i === 1) {
-								stylePos(tooltip, 50, 420);
-							}
-							if (i === 2) {
-								stylePos(tooltip, 60, 320);
-							}
-							if (i === 3) {
-								stylePos(tooltip, 190, 670);
-							}
-							if (i === 4) {
-								stylePos(tooltip, 270, 300);
-							}
-							if (i === 5) {
-								stylePos(tooltip, 40, 480);
-							}
-							if (i === 6) {
-								stylePos(tooltip, 40, 520);
-							}
-						   	
-						   	/*
 
-						   	if (i === 1) {
-								stylePos(tooltip, 50, 360);
-							}
-							if (i === 2) {
-								stylePos(tooltip, 90, 240);
-							}
-							if (i === 3) {
-								stylePos(tooltip, 230, 590);
-							}
-							if (i === 4) {
-								stylePos(tooltip, 270, 210);
-							}
-							if (i === 5) {
-								stylePos(tooltip,40, 390);
-							}
-							if (i === 6) {
-								stylePos(tooltip, 40, 420);
-							}
-
-							*/
-
-
+					    	$(".repoTooltip:nth-child(" + i + ")").css("opacity", "1");
 						    d3.select(this).style("fill", "rgba(" + color + "," + (alpha + 0.3) + ")");
+
 						}).on("mouseout", function () {
-							tooltip.style("opacity", 0);
-							
-						   	
+
+							$(".repoTooltip").css("opacity", "0");
 						    d3.select(this).style("fill", "rgba(" + color + "," + alpha + ")");
+
 						}).on("click", function() {
-
 							openLink("https://github.com/InvalidPleb/" + repoName);
-
 						});
 					i++;
-
 					return innerRing(data, repoContainer, colorObj[i], i);
 				}
 			}

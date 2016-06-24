@@ -55,7 +55,6 @@
         <div class="block-title-section-text">My live Github activity</div>
     </div>
     <div class="d3-container">
-
         <div class="animation-container">
             <div class="month-labels">
                 <div id="january">Jan</div>
@@ -94,6 +93,49 @@
                 </div>
                 <div class="line-title">
                     <p class="tooltipText">Days</p>
+                </div>
+            </div>
+            <div>
+                <div class="repoTooltip">
+                    <p class="repo-name">Dark Reader</p>
+                    <p> {{dataObj.repositories.darkReader}} commits</p>
+                    <p>Click to view on Github</p>
+                </div>
+                <div class="repoTooltip">
+                    <p class="repo-name">Resume</p>
+                    <p> {{dataObj.repositories.resumeSite}} commits</p>
+                    <p>Click to view on Github</p>
+                </div>
+                <div class="repoTooltip">
+                    <p class="repo-name">Runner Calculator</p>
+                    <p> {{dataObj.repositories.runnerCalc}} commits</p>
+                    <p>Click to view on Github</p>
+                </div>
+                <div class="repoTooltip">
+                    <p class="repo-name">Sips</p>
+                    <p> {{dataObj.repositories.sips}} commits</p>
+                    <p>Click to view on Github</p>
+                </div>
+                
+                <div class="repoTooltip">
+                    <p class="repo-name">Sublime Text Themes</p>
+                    <p> {{dataObj.repositories.sublimeText}} commits</p>
+                    <p>Click to view on Github</p>
+                </div>
+                <div class="repoTooltip">
+                    <p class="repo-name">TmTheme</p>
+                    <p> {{dataObj.repositories.tmTheme}} commits</p>
+                    <p>Click to view on Github</p>
+                </div>
+            </div>
+            <div>
+                <div class="pie-tooltip-hover" ng-repeat="week in weeks track by $index">
+                    <p class="day-tooltip-title">Week {{week + 1}}</p>
+                    <p class="day-tooltip-label"> &nbsp; &nbsp; Day &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Commits</p>
+                    <div class="day-tooltip-container">
+                        <p class="day-tooltip" ng-repeat="day in days track by $index"> {{dayNames[day]}} |<span>{{dataObj.commits.days[week][day]}}</span></p>
+                    </div>
+                    
                 </div>
             </div>
         </div>

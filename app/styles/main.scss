@@ -407,6 +407,7 @@ $loopCount: 0;
   margin: auto;
   right: 10px;
   padding: 0px;
+  overflow: hidden;
 
 }
 
@@ -529,10 +530,23 @@ $loopCount: 0;
   @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
+$repoTooltipMap: (
+  1: (50, 420),
+  2: (60, 320),
+  3: (190, 670),
+  4: (270, 300),
+  5: (40, 480),
+  6: (40, 520),
+);
+
 .repoTooltip {
   @extend .tooltip;
   height: 88px;
   width: 180px;
+  left: 0px;
+  top: 0px;
+  cursor: pointer;
+  opacity: 0;
 
   & > :nth-child(1) {
     font-size: 17px;  
@@ -541,6 +555,15 @@ $loopCount: 0;
   & > :nth-child(2) {
     color: $teal-color;
   }
+
+  @each $num, $values in $repoTooltipMap {
+
+    &:nth-child(#{$num}) {
+      top: nth($values, 1) + px;
+      left: nth($values, 2) + px;
+    }
+  }
+
 }
 
 .pie-tooltip {     
@@ -549,6 +572,7 @@ $loopCount: 0;
   height: 152px;
   left: 492px;
   top: 174px;
+  z-index: 5;
   position: absolute;
   padding: 2px;       
   font: 12px sans-serif;
@@ -564,6 +588,7 @@ $loopCount: 0;
 .pie-tooltip-hover {
   @extend .pie-tooltip;
   opacity: 0;
+  z-index: 6;
   
 }
 
@@ -1115,6 +1140,15 @@ $dayMap: (
     3: (165, 830),
   );
 
+  $repoTooltipMap: (
+    1: (50, 360),
+    2: (90, 240),
+    3: (230, 590),
+    4: (270, 210),
+    5: (40, 390),
+    6: (40, 420),
+  );
+
   @each $num, $values in $lineMap {
 
     .line:nth-child(#{$num}) {
@@ -1145,6 +1179,14 @@ $dayMap: (
     ##{$day} {
       left: nth($values, 1) - 84;  
       top: nth($values, 2) + 1;
+    }
+  }
+
+  @each $num, $values in $repoTooltipMap {
+
+    .repoTooltip:nth-child(#{$num}) {
+      top: nth($values, 1) + px;
+      left: nth($values, 2) + px;
     }
   }
 
