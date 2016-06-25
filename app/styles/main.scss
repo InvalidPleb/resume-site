@@ -559,8 +559,8 @@ $repoTooltipMap: (
   @each $num, $values in $repoTooltipMap {
 
     &:nth-child(#{$num}) {
-      top: nth($values, 1) + px;
-      left: nth($values, 2) + px;
+      top: nth($values, 1) + 10px;
+      left: nth($values, 2) + 30px;
     }
   }
 
@@ -570,7 +570,7 @@ $repoTooltipMap: (
   text-align: center; 
   width: 152px;          
   height: 152px;
-  left: 492px;
+  left: 506px;
   top: 174px;
   z-index: 5;
   position: absolute;
@@ -599,7 +599,7 @@ $repoTooltipMap: (
 .graph-circle {
   width: 410px;          
   height: 410px;
-  left: 363px;
+  left: 378px;
   top: 45px;
   z-index: -3;
   border-radius: 50%;
@@ -813,30 +813,30 @@ $toolList: "darkreader", "tmtheme", "angular", "jquery",
 
 $monthMap: (
 
-  january: (230px, 85px, 15deg),
-  february: (273px, 195px, 42deg),
-  march: (243px, 315px, 70.5deg),
-  april: (127px, 410px, 105deg),
-  may: (1px, 436px, 130deg),
-  june: (-165px, 382px, 162deg),
-  july: (-280px, 242px, 195deg),
-  august: (-328px, 82px, 223deg),
-  september: (-293px, -100px, 255deg),
-  october: (-186px, -240px, 285deg),
-  november: (-48px, -315px, 312deg),
-  december: (105px, -307px, 342deg)
+  Jan: (230px, 85px, 15deg),
+  Feb: (273px, 195px, 42deg),
+  Mar: (243px, 315px, 70.5deg),
+  Apr: (127px, 410px, 105deg),
+  May: (1px, 436px, 130deg),
+  Jun: (-165px, 382px, 162deg),
+  Jul: (-280px, 242px, 195deg),
+  Aug: (-328px, 82px, 223deg),
+  Sep: (-293px, -100px, 255deg),
+  Oct: (-186px, -240px, 285deg),
+  Nov: (-48px, -315px, 312deg),
+  Dec: (105px, -307px, 342deg)
 
 );
 
 $dayMap: (
 
-  sunday: (206px, 200px, 75deg),
-  monday: (180px, 305px, 130deg),
-  tuesday: (60px, 342px, 180deg),
-  wednesday: (-60px, 260px, 230deg),
-  thursday: (-93px, 105px, 282deg),
-  friday: (-10px, -26px, 330deg),
-  saturday: (120px, -53px, 25deg)
+  Sun: (206px, 200px, 75deg),
+  Mon: (180px, 305px, 130deg),
+  Tue: (60px, 342px, 180deg),
+  Wed: (-60px, 260px, 230deg),
+  Thu: (-93px, 105px, 282deg),
+  Fri: (-10px, -26px, 330deg),
+  Sat: (120px, -53px, 25deg)
 
 );
 
@@ -872,14 +872,14 @@ $dayMap: (
 @each $month, $values in $monthMap {
 
   ##{$month} {
-    @include monthLabel(nth($values, 1), nth($values, 2), nth($values, 3)); 
+    @include monthLabel(nth($values, 1) - 15px, nth($values, 2) + 8px, nth($values, 3)); 
   }
 }
 
 @each $day, $values in $dayMap {
 
   ##{$day} {
-    @include dayLabel(nth($values, 1), nth($values, 2), nth($values, 3)); 
+    @include dayLabel(nth($values, 1) + 7px, nth($values, 2), nth($values, 3)); 
   }
 }
 
@@ -1007,6 +1007,8 @@ $dayMap: (
 .month-labels {
   width: 500px;
   height: 500px;
+  min-width: 500px;
+  min-height: 500px;
   position: relative;
   left: 317px;
   transform: rotate(210deg);
@@ -1112,7 +1114,7 @@ $dayMap: (
   }
 
   .svg-container {
-    right: 237px;
+    right: 251px;
     position: relative;
   }
 
@@ -1122,10 +1124,6 @@ $dayMap: (
 
   .pie-tooltip {
     left: 407px;  
-  }
-
-  .day-tooltip {
-
   }
 
   $lineMap: (
@@ -1177,8 +1175,8 @@ $dayMap: (
   @each $day, $values in $dayMap {
 
     ##{$day} {
-      left: nth($values, 1) - 84;  
-      top: nth($values, 2) + 1;
+      left: nth($values, 1) - 92;  
+      top: nth($values, 2) - 2;
     }
   }
 
@@ -1193,6 +1191,10 @@ $dayMap: (
 
 }
 @media (min-width:875px) and (max-width:991px) {
+
+  .tools-desc-container {
+    left: 35px;
+  }
 
   #graph-para {
     height: 190px;
@@ -1298,6 +1300,87 @@ $dayMap: (
   .block-name-tm {
     left: -10px;
   }
+
+  .svg-container {
+    right: 359px;
+    min-width: 400px;
+    position: relative;
+  }
+
+  .graph-circle {
+    left: 170px;
+  }
+
+  .pie-tooltip {
+    left: 299px;  
+  }
+
+  .month-labels {
+    left: 108px;
+  }
+
+  $lineMap: (
+    1: (190, 640),
+    2: (290, 200),
+    3: (75, 265),
+  );
+
+  $lineTitleMap: (
+    1: (50, 150),
+    2: (265, 80),
+    3: (165, 830),
+  );
+
+  $repoTooltipMap: (
+    1: (50, 360),
+    2: (90, 240),
+    3: (230, 590),
+    4: (270, 210),
+    5: (40, 390),
+    6: (40, 420),
+  );
+
+  @each $num, $values in $lineMap {
+
+    .line:nth-child(#{$num}) {
+      top: nth($values, 1) + px;
+      left: nth($values, 2) - 125 + px;
+      width: 180px;
+    }
+  }
+
+  @each $num, $values in $lineTitleMap {
+
+    .line-title:nth-child(#{$num}) {
+      width: 100px;
+      top: nth($values, 1) + px;
+      left: nth($values, 2) - 65 + px;
+    }
+
+  }
+
+  .line-title:nth-child(3) {
+    left: 625px;
+  }
+
+
+  @each $day, $values in $dayMap {
+
+    ##{$day} {
+      left: nth($values, 1) - 200;  
+      top: nth($values, 2) - 2;
+    }
+  }
+
+  @each $num, $values in $repoTooltipMap {
+
+    .repoTooltip:nth-child(#{$num}) {
+      top: nth($values, 1) + px;
+      left: nth($values, 2) - 110px;
+    }
+  }
+
+
 
   
 
@@ -1408,6 +1491,86 @@ $dayMap: (
 
   .block-name-tm {
     left: -10px;
+  }
+
+
+  .svg-container {
+    right: 359px;
+    min-width: 400px;
+    position: relative;
+  }
+
+  .graph-circle {
+    left: 170px;
+  }
+
+  .pie-tooltip {
+    left: 299px;  
+  }
+
+  .month-labels {
+    left: 108px;
+  }
+
+  $lineMap: (
+    1: (190, 640),
+    2: (290, 200),
+    3: (75, 265),
+  );
+
+  $lineTitleMap: (
+    1: (50, 150),
+    2: (265, 80),
+    3: (165, 830),
+  );
+
+  $repoTooltipMap: (
+    1: (50, 360),
+    2: (90, 240),
+    3: (230, 590),
+    4: (270, 210),
+    5: (40, 390),
+    6: (40, 420),
+  );
+
+  @each $num, $values in $lineMap {
+
+    .line:nth-child(#{$num}) {
+      top: nth($values, 1) + px;
+      left: nth($values, 2) - 125 + px;
+      width: 180px;
+    }
+  }
+
+  @each $num, $values in $lineTitleMap {
+
+    .line-title:nth-child(#{$num}) {
+      width: 100px;
+      top: nth($values, 1) + px;
+      left: nth($values, 2) - 65 + px;
+    }
+
+  }
+
+  .line-title:nth-child(3) {
+    left: 625px;
+  }
+
+
+  @each $day, $values in $dayMap {
+
+    ##{$day} {
+      left: nth($values, 1) - 200;  
+      top: nth($values, 2) - 2;
+    }
+  }
+
+  @each $num, $values in $repoTooltipMap {
+
+    .repoTooltip:nth-child(#{$num}) {
+      top: nth($values, 1) + px;
+      left: nth($values, 2) - 110px;
+    }
   }
 
 

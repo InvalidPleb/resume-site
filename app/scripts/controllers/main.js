@@ -495,9 +495,11 @@
 			  	for (let i=0; i < num; i++) {arr.push(i);}
 			  	return arr;
 			}
-
+			$scope.months = setArr($scope.months, 12);
 			$scope.weeks = setArr($scope.weeks, 52);
 			$scope.days = setArr($scope.days, 7);
+			$scope.repos = setArr($scope.repos, 6);
+
 			$scope.dayNames = ["S", "M", "T", "W", "T", "F", "S",];
 
 			
@@ -583,6 +585,24 @@
 
 		  			repositories: {
 
+		  				names: [
+		  					"Dark Reader",
+		  					"Resume",
+		  					"Runner Calculator",
+		  					"sips",
+		  					"Sublime Text Themes",
+		  					"TmTheme Editor"
+		  					],
+
+		  				commits: [
+			  				repoCommits[0],
+			  				repoCommits[1],
+			  				repoCommits[2],
+			                repoCommits[3],
+			  				repoCommits[4],
+			  	            repoCommits[5],
+		  					],
+
 		  				darkReader: repoCommits[0],
 		  				resumeSite: repoCommits[1],
 		  				runnerCalc: repoCommits[2],
@@ -599,11 +619,33 @@
 			  				sublimeText: "https://github.com/InvalidPleb/sublime-text-themes",
 			  				tmTheme: "https://github.com/aziz/tmTheme-Editor",
 		  				}
-		  			}
+		  			},
 
+		  			months: [
+			  				"Jan",
+			  				"Feb",
+			  				"Mar",
+			  				"Apr",
+			  				"May",
+			  				"Jun",
+			  				"Jul",
+			  				"Aug",
+			  				"Sep",
+			  				"Oct",
+			  				"Nov",
+			  				"Dec"
+			  				],
+
+			  		days: [
+			  				"Sun",
+			  				"Mon",
+			  				"Tue",
+			  				"Wed",
+			  				"Thu",
+			  				"Fri",
+			  				"Sat"
+			  				]
 		  		};
-
-		  		console.log($scope.dataObj.commits.days);
 
 		  		outerRing(-1, 5.5, [0,105, 0], gotParsedCommits[0], gotParsedCommits[1], 0);
 				middleRing(0, 50, [0,105, 0], [1,1,1,1,1,1,1]);
