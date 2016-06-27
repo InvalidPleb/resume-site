@@ -407,7 +407,7 @@ $loopCount: 0;
   margin: auto;
   right: 10px;
   padding: 0px;
-  overflow: hidden;
+  
 
 }
 
@@ -1048,6 +1048,10 @@ $dayMap: (
 
 @media (min-width:1200px) and (max-width:1550px) {
 
+  .main-container {
+    overflow: hidden;
+  }
+
   .block-name-def {
     right: 10px;
   }
@@ -1055,6 +1059,10 @@ $dayMap: (
 }
 
 @media (min-width:992px) and (max-width:1199px) {
+
+  .main-container {
+    overflow: hidden;
+  }
 
   .site-container {
     right: 10px;
@@ -1191,6 +1199,10 @@ $dayMap: (
 
 }
 @media (min-width:875px) and (max-width:991px) {
+
+  .main-container {
+    overflow: hidden;
+  }
 
   .tools-desc-container {
     left: 35px;
@@ -1389,6 +1401,10 @@ $dayMap: (
 
 @media (min-width:762px) and (max-width:874px) {
 
+  .main-container {
+    overflow: hidden;
+  }
+
   #tools {
     height: 3150px;
   }
@@ -1582,6 +1598,10 @@ $dayMap: (
 
 @media (min-width:600px) and (max-width:761px) {
 
+  .main-container {
+    overflow: hidden;
+  }
+
   .container {
     left: 10px;
   }
@@ -1594,6 +1614,10 @@ $dayMap: (
 }
 
 @media (min-width:0px) and (max-width:599px) {
+
+  .main-container {
+    overflow: hidden;
+  }
 
   .container {
     left: 10px;

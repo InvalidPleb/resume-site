@@ -17,6 +17,12 @@
 
 	  		// -------- Block Template Instance Data -------- //
 
+	  		/* 
+
+	  			These objects contain the data for each block directive instance
+
+	  		*/
+
 	  		$scope.darkreader = {
 
 	  			attr:  {
@@ -480,6 +486,13 @@
 	  		};
 
 
+	  		/* 
+
+	  			These objects contain the data for each block directive instance
+
+	  		*/
+
+
 	  		
 		  	function add(a, b) {
 		      	return a + b;
@@ -495,11 +508,11 @@
 			  	for (let i=0; i < num; i++) {arr.push(i);}
 			  	return arr;
 			}
+
 			$scope.months = setArr($scope.months, 12);
 			$scope.weeks = setArr($scope.weeks, 52);
 			$scope.days = setArr($scope.days, 7);
 			$scope.repos = setArr($scope.repos, 6);
-
 			$scope.dayNames = ["S", "M", "T", "W", "T", "F", "S",];
 
 			
@@ -541,22 +554,13 @@
 		  	$q.all([calls]).then(function(){
 		  		
 		        function hideScreen () {
-		          // Checking if user browser has a firefox only feature
-		          if (typeof InstallTrigger !== 'undefined') {
 		            setTimeout(function() {
 		              $('.loadingScreen').fadeOut(500);
 		              $('.loading').fadeOut(500);
 		            }, 200);
-		          } else {
-		            setTimeout(function() {
-		              $('.loadingScreen').fadeOut(500);
-		              $('.loading').fadeOut(500);
-		            }, 200);
-		          }
 		        }
 		        hideScreen();
 			    
-
 		  		var gotDayCommits = getDayCommits(commitDaily);
 		  		var repoCommits = gotDayCommits[0];
 		  		var dayCommits = gotDayCommits[1];
@@ -570,6 +574,13 @@
 		  		var allDayCommits = gotParsedCommits[1];
 		  		var streakArr = streakData(allDayCommits);
 		  		var gotStreaks = getStreaks(streakArr);
+
+
+		  		/* 
+
+	  				This object contains the data for the Github graph
+
+	  			*/
 
 		  		$scope.dataObj = {
 
@@ -673,13 +684,14 @@
 		  	// -------- Canvas -------- //
 
 
-		  	var canvas = document.getElementById("canvas");
-		  	var mainControlSection = document.getElementById("mainControlSection");
-		  	var sphere = document.getElementsByClassName("sphere");
-		  	var sphereTxt = document.getElementsByClassName("sphere-text");
-			//var context = canvas.getContext("2d");
+		  	var canvas = document.getElementById("canvas"),
+		  	    mainControlSection = document.getElementById("mainControlSection"),
+		  	    sphere = document.getElementsByClassName("sphere"),
+		  	    sphereTxt = document.getElementsByClassName("sphere-text"),
+		  	    ctx = canvas.getContext("2d"),
+			    painting = false;
 
-			$( window ).resize(function() {
+			$(window).resize(function() {
 			  fitToContainer(canvas);
 			  fadeOut2();
 			});
@@ -690,6 +702,7 @@
 			  canvas.width  = canvas.offsetWidth;
 			  canvas.height = canvas.offsetHeight;
 			}
+
 			fitToContainer(canvas);
 
 			function getMousePos(canvas, evt) {
@@ -700,8 +713,7 @@
 			    };
 			}
 
-			var ctx = canvas.getContext("2d"),
-			    painting = false;
+			
 
 			function numRound (value,dec){
 		        value=Math.floor(value * dec + 0.05) / dec;
@@ -726,7 +738,6 @@
 		        ctx.beginPath();
 		        ctx.arc(x, y, radius, startAngle, endAngle, true);
 		        ctx.fill();
-
 			}
 
 			var clicked = false;
@@ -781,11 +792,8 @@
 
 				canvas.onmouseleave = function(e) {
 					
-					//setTimeout(function(){
-						clearTimeout(screenFill);
-						painting = false;
-					//},700);
-			
+					clearTimeout(screenFill);
+					painting = false;
 				};
 
 				canvas.onwheel = function(e) {
@@ -793,12 +801,8 @@
 					if (painting) {
 						scrolling = true;
 						clearTimeout(screenFill);
-
 					}
-
 				};
-
-				
 			}
 
 			function fadeOut2() {
@@ -808,19 +812,14 @@
 
 			canvas.onmousemove = function (e) {
 
-				
 				if (scrolling) {
-
 					var screenFill = setTimeout(function(){
 					  fadeOut();
 					},30);
 					scrolling = false;
-
 				} else {
-
 					drawCircle(e);
 				}
-
 			};
 
 			canvas.onmouseup = function (e) {
@@ -828,9 +827,7 @@
 				var screenFill = setTimeout(function(){
 				  fadeOut();
 				},30);
-
 				clicked = false;
-
 			};
 
 			
