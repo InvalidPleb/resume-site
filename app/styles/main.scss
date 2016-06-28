@@ -204,8 +204,10 @@ a:hover, a:focus, a:active {
 
 // -------- Background & Parallax -------- //
 
+
 .main-body {
   background-image: url($rock-background);
+  overflow-x: hidden;
 }
 
 .decoration {
@@ -949,6 +951,14 @@ $dayMap: (
 
 }
 
+.block-name-def-cscript {
+  @extend .block-name-def;
+}
+
+.block-name-def-sass {
+  @extend .block-name-def;
+}
+
 .block-para {
   @extend .gold-text;
   color: $cream-color;
@@ -1083,6 +1093,14 @@ $dayMap: (
   }
   .block-name-def {
     right: 0px;
+  }
+
+  .block-name-def-cscript {
+    right: -6px;
+  }
+
+  .block-name-def-sass {
+    right: -3px;
   }
 
   .skills-container {
@@ -1254,6 +1272,14 @@ $dayMap: (
     left: 20px;
   }
 
+  .block-name-def-cscript {
+    left: 6px;
+  }
+
+  .block-name-def-sass {
+    left: 23px;
+  }
+
   .frameworks {
     left: 5%;
   }
@@ -1405,20 +1431,6 @@ $dayMap: (
     overflow: hidden;
   }
 
-  #tools {
-    height: 3150px;
-  }
-
-  .title-text {
-    width: 350px;
-    right: 70px;
-  }
-
-  .block-name-def {
-    right: 0px;
-    left: 20px;
-  }
-
   .skills-container {
     height: 710px;
   }
@@ -1491,6 +1503,36 @@ $dayMap: (
 
   }
 
+  #tools {
+    height: 3150px;
+  }
+
+  .title-text {
+    width: 350px;
+    right: 70px;
+  }
+
+  .block-name-def {
+    right: 0px;
+    left: 20px;
+  }
+
+  .block-name-def-cscript {
+    left: 6px;
+  }
+
+  .block-name-def-sass {
+    left: 23px;
+  }
+
+  .block-name-dark {
+    left: 10px;
+  }
+
+  .block-name-tm {
+    left: -10px;
+  }
+
   #projects {
     height: 1650px;
   }
@@ -1499,16 +1541,6 @@ $dayMap: (
     right: 80px;
     padding-left: 20px;
   }
-
-  .block-name-dark {
-    left: 10px;
-
-  }
-
-  .block-name-tm {
-    left: -10px;
-  }
-
 
   .svg-container {
     right: 359px;
@@ -1588,18 +1620,19 @@ $dayMap: (
       left: nth($values, 2) - 110px;
     }
   }
-
-
-
-  @-moz-document url-prefix() {
-
-  }
 }
 
 @media (min-width:600px) and (max-width:761px) {
 
+  #greeting-section {
+    width: 600px;
+  }
+
   .main-container {
     overflow: hidden;
+    margin-left: 2%;
+    margin-right:auto;
+    margin-left:auto;
   }
 
   .container {
@@ -1609,6 +1642,150 @@ $dayMap: (
   .sphere-container {
     left: 145px;
 
+  }
+
+  .block-container {
+    width: 600px;
+    margin-right:auto;
+    margin-left:auto;
+  }
+
+
+  .graph-container {
+    height: 1500px;
+
+  }
+
+  #tools {
+    height: 3350px;
+  }
+
+  .title-text {
+    width: 250px;
+    right: 45px;
+  }
+
+  .block-name-def {
+    right: 0px;
+    left: 17px;
+  }
+
+  .block-name-def-cscript {
+    left: 6px;
+  }
+
+  .block-name-def-sass {
+    left: 33px;
+  }
+
+  .skills-container {
+    height: 770px;
+  }
+
+  .frameworks {
+    left: 5%;
+
+    & > :nth-child(1), :nth-child(3), :nth-child(5) {
+      margin-right: -170px; 
+    }
+  }
+
+  .dev-tools {
+    left: 0.5%;
+
+    & > :nth-child(1), :nth-child(3), :nth-child(5) {
+
+      margin-right: -230px; 
+    }
+  }
+
+  .preprocessors {
+    left: 8%;
+  }
+
+  #frameworks {
+    height: 380px;
+  }
+
+  #dev-tools {
+    height: 370px;
+  }
+
+  #design-tools {
+    height: 430px;
+  }
+
+  #preprocessors {
+    height: 310px;
+  }
+
+  #graph-para {
+    height: 180px;
+  }
+
+  .site-container {
+    top: 20px;
+    right: -120px;
+  }
+
+  .site-container-tablet {
+    top: 360px;
+    right: 38%;
+    
+  }
+
+  .site-container-mobile {
+    top: 165px;
+    right: 0%;
+    
+  }
+
+  .runner-calc-text {
+    height: 300px;
+    top: 150px;
+
+  }
+
+  #runner-calc-container {
+    height: 1050px;
+
+  }
+
+  #projects {
+    height: 1650px;
+  }
+
+  .block-para {
+    right: 80px;
+    padding-left: 20px;
+  }
+
+  .block-name-dark {
+    left: 10px;
+
+  }
+
+  .block-name-tm {
+    left: -10px;
+  }
+
+
+  .svg-container {
+    right: 359px;
+    min-width: 400px;
+    position: relative;
+  }
+
+  .graph-circle {
+    left: 170px;
+  }
+
+  .pie-tooltip {
+    left: 299px;  
+  }
+
+  .month-labels {
+    left: 108px;
   }
 
 }

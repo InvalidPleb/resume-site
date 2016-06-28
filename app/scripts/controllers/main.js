@@ -325,7 +325,7 @@
 	  			attr:   {
 			  				id: "sass",
 			  				href: "",
-			  				nameClass: "block-name-def",
+			  				nameClass: "block-name-def-sass",
 	  					},
 
 	  			binding: {
@@ -358,7 +358,7 @@
 	  			attr:   {
 			  				id: "cscript",
 			  				href: "",
-			  				nameClass: "block-name-def",
+			  				nameClass: "block-name-def-cscript",
 	  					},
 
 	  			binding: {
