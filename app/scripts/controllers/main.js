@@ -697,8 +697,8 @@
 			});
 			
 			function fitToContainer(canvas){
-			  canvas.style.width='100%';
-			  canvas.style.height='100%';
+			  canvas.style.width ='100%';
+			  canvas.style.height ='100%';
 			  canvas.width  = canvas.offsetWidth;
 			  canvas.height = canvas.offsetHeight;
 			}
@@ -713,102 +713,148 @@
 			    };
 			}
 
-			
-
 			function numRound (value,dec){
 		        value=Math.floor(value * dec + 0.05) / dec;
 		        return(value);
 		    }
 
-			function drawCircle(e) {
+		    function getRandomArbitrary(min, max) {
+			  return Math.random() * (max - min) + min;
+			}
 
-				let pos = getMousePos(canvas, e),
-			        posx = pos.x,
-			        posy = pos.y,
-			        x = posx,
-		            y = posy,
-		            radius = 30,
-		            startAngle = 0,
+			var painting = false;
+
+			function drawCircle(x, y, rad, i) {
+
+				if (i === 20) {
+
+					i = 0;
+				}
+
+				if (i === 0) {
+
+					var posx = getRandomArbitrary(0, canvas.width),
+			            posy = getRandomArbitrary(0, canvas.height);
+				} else {
+
+					var posx = x,
+					    posy = y;
+				}
+
+				i++;
+
+				//pos = getMousePos(canvas, e),
+				if (rad < 100) {
+					painting = true;
+					rad = rad + 4;
+					setTimeout(function(){
+						drawCircle(x, y, rad, i);
+					}, 60);
+
+				} else {
+
+					painting = false;
+					
+					x = getRandomArbitrary(0, canvas.width);
+					y = getRandomArbitrary(0, canvas.height);
+					fadeOut();
+					setTimeout(function(){
+						setTimeout(function(){
+							drawCircle(x, y, rad, i);
+						}, 60);
+					}, 1000);
+					rad = 0;
+				}
+
+			    let startAngle = 0,
 		            endAngle = Math.PI * 2,
-		            rgbR = numRound((posx * 0.1) + 70, 1),
-				    rgbG = numRound((posy * 0.1) + 100, 1),
-				    rgbB = numRound((posy * 0.1) * 5, 1);
+		            rgbR = numRound((x * 0.1) + 70, 1),
+				    rgbG = numRound((y * 0.1) + 100, 1),
+				    rgbB = numRound((y * 0.1) * 5, 1);
 	
 		        ctx.fillStyle = 'rgba(' + rgbR + ',' + rgbG + ',' + rgbB + ',1)';
 		        ctx.beginPath();
-		        ctx.arc(x, y, radius, startAngle, endAngle, true);
+		        ctx.arc(x, y, rad, startAngle, endAngle, true);
 		        ctx.fill();
+
 			}
 
-			var clicked = false;
-			var scrolling = false;
+			drawCircle(getRandomArbitrary(0, canvas.width), getRandomArbitrary(0, canvas.height), 10, 0);
 
 			function fadeOut() {
 
 			    ctx.fillStyle = "rgba(24,24,24,0.2)";
 			    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-			    if (painting) {
+			    if (!painting) {
 			    	var screenFill = setTimeout(function(){
 					  fadeOut();
-					},30);
+					},90);
+
 			    }
+			}
 
-			    mainControlSection.onmousedown = function (e) {
+			fadeOut();
+			    	
+		    /*
 
-			    	clearTimeout(screenFill);
-					clicked = true;
-			    };
+		    var clicked = false;
+			var scrolling = false;
 
-			    sphere.onmousedown = function (e) {
+		    mainControlSection.onmousedown = function (e) {
 
-			    	clearTimeout(screenFill);
-					clicked = true;
-			    };
+		    	clearTimeout(screenFill);
+				clicked = true;
+		    };
 
-			    sphereTxt.onmousedown = function (e) {
+		    sphere.onmousedown = function (e) {
 
-			    	clearTimeout(screenFill);
-					clicked = true;
-			    };
+		    	clearTimeout(screenFill);
+				clicked = true;
+		    };
+
+		    sphereTxt.onmousedown = function (e) {
+
+		    	clearTimeout(screenFill);
+				clicked = true;
+		    };
 
 
-				canvas.onmousedown = function (e) {
+			canvas.onmousedown = function (e) {
 
-					clearTimeout(screenFill);
-					clicked = true;
-				};
+				clearTimeout(screenFill);
+				clicked = true;
+			};
 
+			
+			canvas.onmouseenter = function(e) {
+
+				painting = true;
+				if (!clicked) {
+					var screenFill = setTimeout(function(){
+					  fadeOut();
+					},30);
+				}
+			};
+
+			canvas.onmouseleave = function(e) {
 				
-				canvas.onmouseenter = function(e) {
+				clearTimeout(screenFill);
+				painting = false;
+			};
 
-					painting = true;
-					if (!clicked) {
-						var screenFill = setTimeout(function(){
-						  fadeOut();
-						},30);
-					}
-				};
+			canvas.onwheel = function(e) {
 
-				canvas.onmouseleave = function(e) {
-					
+				if (painting) {
+					scrolling = true;
 					clearTimeout(screenFill);
-					painting = false;
-				};
+				}
+			};
 
-				canvas.onwheel = function(e) {
-
-					if (painting) {
-						scrolling = true;
-						clearTimeout(screenFill);
-					}
-				};
-			}
-
-			function fadeOut2() {
-			    ctx.fillStyle = "rgba(24,24,24,1)";
-			    ctx.fillRect(0, 0, canvas.width, canvas.height);
-			}
+			*/
+	
+			/*
+			
 
 			canvas.onmousemove = function (e) {
 
@@ -818,9 +864,11 @@
 					},30);
 					scrolling = false;
 				} else {
-					drawCircle(e);
+					drawCircle();
 				}
 			};
+
+			/*
 
 			canvas.onmouseup = function (e) {
 
@@ -830,12 +878,7 @@
 				clicked = false;
 			};
 
-			
-
-			canvas.style.webkitFilter = "blur(10px)";
-
-			fadeOut();
-			fadeOut2();
+			*/
 
 		  	// -------------- Github Graph -------------- //
 

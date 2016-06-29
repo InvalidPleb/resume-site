@@ -307,6 +307,7 @@ $loopCount: 0;
   z-index: -1;
   cursor: pointer;
   position: absolute;
+  @include prefix(filter, blur(20px), webkit moz ms o);
 }
 
 .name-text {
@@ -638,9 +639,9 @@ $repoTooltipMap: (
 }
 
 $lineMap: (
-  1: (190, 710),
-  2: (290, 200),
-  3: (75, 265),
+  1: (180, 720),
+  2: (280, 210),
+  3: (65, 275),
 );
 
 $lineTitleMap: (
@@ -1884,30 +1885,274 @@ $dayMap: (
       left: nth($values, 2) - 180px;
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 @media (min-width:0px) and (max-width:599px) {
 
+  #greeting-section {
+    width: 600px;
+  }
+
   .main-container {
     overflow: hidden;
+    margin-left: 2%;
+    margin-right:auto;
+    margin-left:auto;
   }
 
   .container {
     left: 10px;
+  }
+
+  .sphere-container {
+    left: 100px;
+
+  }
+
+  .sphere-shadow {
+    margin: 15px;
+    right: 80px;
+
+  }
+
+  .block-container {
+    width: 600px;
+    margin-right:auto;
+    margin-left:auto;
+  }
+
+  #tools {
+    height: 3350px;
+  }
+
+  .projects-block-title {
+
+    top: 5px;
+
+  }
+
+  .title-text {
+    width: 350px;
+    right: 95px;
+  }
+
+  .block-name-def {
+    right: 0px;
+    left: 17px;
+  }
+
+  .block-name-def-cscript {
+    left: 6px;
+  }
+
+  .block-name-def-sass {
+    left: 33px;
+  }
+
+  .skills-container {
+    height: 770px;
+  }
+
+  .graph-description {
+    height: 560px;
+  }
+
+  #github {
+    height: 1230px;
+  }
+
+  .frameworks {
+    left: 5%;
+
+    & > :nth-child(1), :nth-child(3), :nth-child(5) {
+      margin-right: -170px; 
+    }
+  }
+
+  .dev-tools {
+    left: 0.5%;
+
+    & > :nth-child(1), :nth-child(3), :nth-child(5) {
+
+      margin-right: -230px; 
+    }
+  }
+
+  .preprocessors {
+    left: 8%;
+  }
+
+  #frameworks {
+    height: 380px;
+  }
+
+  #dev-tools {
+    height: 370px;
+  }
+
+  #design-tools {
+    height: 430px;
+  }
+
+  #preprocessors {
+    height: 310px;
+  }
+
+  #graph-para {
+    height: 230px;
+  }
+
+  .contribution-text-left {
+    width: 130px;
+    position: relative;
+    font-size: 20px;
+  
+  }
+
+  .contribution-text-right {
+    width: 130px;
+    right: 15px;
+    position: relative;
+    font-size: 20px;
+
+  }
+
+  .site-container {
+    top: 20px;
+    right: -11%;
+  }
+
+
+  .graph-container {
+
+    height: 1280px;
+
+  }
+
+  .site-container-tablet {
+    top: 111px;
+    right: -10%;
+    
+  }
+
+  .site-container-mobile {
+    top: 125px;
+    right: -20%;
+    
+  }
+
+  .runner-calc-text {
+    height: 300px;
+    top: 100px;
+
+  }
+
+  #runner-calc-container {
+    height: 1050px;
+
+  }
+
+  #projects {
+    height: 1650px;
+  }
+
+  .block-para {
+    right: 80px;
+    padding-left: 20px;
+    width: 250px;
+  }
+
+  .block-name-dark {
+    left: 10px;
+
+  }
+
+  .block-name-tm {
+    left: -10px;
+  }
+
+
+  .svg-container {
+    right: 435px;
+    min-width: 400px;
+    position: relative;
+  }
+
+  .graph-circle {
+    left: 94px;
+  }
+
+  .pie-tooltip {
+    left: 223px;  
+  }
+
+  .month-labels {
+    left: 31px;
+  }
+
+  $lineMap: (
+    1: (190, 640),
+    2: (290, 200),
+    3: (75, 265),
+  );
+
+  $lineTitleMap: (
+    1: (50, 150),
+    2: (265, 80),
+    3: (165, 830),
+  );
+
+  $repoTooltipMap: (
+    1: (50, 360),
+    2: (90, 240),
+    3: (230, 590),
+    4: (270, 210),
+    5: (40, 390),
+    6: (40, 420),
+  );
+
+  @each $num, $values in $lineMap {
+
+    .line:nth-child(#{$num}) {
+      top: nth($values, 1) + px;
+      left: nth($values, 2) - 155 + px;
+      width: 140px;
+    }
+  }
+
+  .line:nth-child(1) {
+    left: 445px;
+  }
+
+  @each $num, $values in $lineTitleMap {
+
+    .line-title:nth-child(#{$num}) {
+      width: 100px;
+      top: nth($values, 1) + px;
+      left: nth($values, 2) - 100 + px;
+    }
+
+  }
+
+  .line-title:nth-child(3) {
+    left: 515px;
+  }
+
+
+  @each $day, $values in $dayMap {
+
+    ##{$day} {
+      left: nth($values, 1) - 276;  
+      top: nth($values, 2) - 2;
+    }
+  }
+
+  @each $num, $values in $repoTooltipMap {
+
+    .repoTooltip:nth-child(#{$num}) {
+      top: nth($values, 1) + px;
+      left: nth($values, 2) - 180px;
+    }
   }
 
 }
