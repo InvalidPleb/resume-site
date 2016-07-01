@@ -744,7 +744,7 @@
 				i++;
 
 				//pos = getMousePos(canvas, e),
-				if (rad < 100) {
+				if (rad < getRandomArbitrary(50, 550)) {
 					painting = true;
 					rad = rad + 4;
 					setTimeout(function(){
@@ -762,7 +762,7 @@
 						setTimeout(function(){
 							drawCircle(x, y, rad, i);
 						}, 60);
-					}, 1000);
+					}, 2000);
 					rad = 0;
 				}
 
@@ -781,6 +781,7 @@
 
 			drawCircle(getRandomArbitrary(0, canvas.width), getRandomArbitrary(0, canvas.height), 10, 0);
 
+
 			function fadeOut() {
 
 			    ctx.fillStyle = "rgba(24,24,24,0.2)";
@@ -796,90 +797,6 @@
 
 			fadeOut();
 			    	
-		    /*
-
-		    var clicked = false;
-			var scrolling = false;
-
-		    mainControlSection.onmousedown = function (e) {
-
-		    	clearTimeout(screenFill);
-				clicked = true;
-		    };
-
-		    sphere.onmousedown = function (e) {
-
-		    	clearTimeout(screenFill);
-				clicked = true;
-		    };
-
-		    sphereTxt.onmousedown = function (e) {
-
-		    	clearTimeout(screenFill);
-				clicked = true;
-		    };
-
-
-			canvas.onmousedown = function (e) {
-
-				clearTimeout(screenFill);
-				clicked = true;
-			};
-
-			
-			canvas.onmouseenter = function(e) {
-
-				painting = true;
-				if (!clicked) {
-					var screenFill = setTimeout(function(){
-					  fadeOut();
-					},30);
-				}
-			};
-
-			canvas.onmouseleave = function(e) {
-				
-				clearTimeout(screenFill);
-				painting = false;
-			};
-
-			canvas.onwheel = function(e) {
-
-				if (painting) {
-					scrolling = true;
-					clearTimeout(screenFill);
-				}
-			};
-
-			*/
-	
-			/*
-			
-
-			canvas.onmousemove = function (e) {
-
-				if (scrolling) {
-					var screenFill = setTimeout(function(){
-					  fadeOut();
-					},30);
-					scrolling = false;
-				} else {
-					drawCircle();
-				}
-			};
-
-			/*
-
-			canvas.onmouseup = function (e) {
-
-				var screenFill = setTimeout(function(){
-				  fadeOut();
-				},30);
-				clicked = false;
-			};
-
-			*/
-
 		  	// -------------- Github Graph -------------- //
 
 		  	var svgContainer = d3.select(".animation-container")
