@@ -485,17 +485,29 @@
 	  					}
 	  		};
 
-			// -------- Github AJAX -------- //
 
+	  		function pageDirect(start, end) {
+	  			return $(start).click(function() {
+				    $('html,body').animate({
+				        scrollTop: $(end).offset().top
+				    },'slow');
+				});
+	  		}
+
+	  		pageDirect("#project-sphere", "#projects");
+	  		pageDirect("#github-sphere", "#github");
+	  		pageDirect("#tools-sphere", "#tools");
+	  		pageDirect("#contact-sphere", "#contact");
+
+			// -------- Github AJAX -------- //
 		  	var repoContainer = [];
 		  	var commitDaily = [];
 
-		  	function getGithubStuff() {
-		  		return $http.get('https://api.github.com' + '/users/InvalidPleb/repos')
-			  		.then(function(res){
-			  			pushCalledRepo(res.data, repoContainer);
-			  			return getCommits(repoContainer[0], 0, repoContainer.length);
-			  		});
+		  	function pushCalledRepo (res, repo) {
+		  		for (let i = 0; i < res.length; i++) {
+		  			repo.push(res[i].full_name);
+		  		}
+		  		return repo;
 		  	}
 		  	
 		  	function getCommits (repo, repoNum, maxRepos) {
@@ -509,11 +521,12 @@
 			  		});
 		  	}
 
-		  	function pushCalledRepo (res, repo) {
-		  		for (let i = 0; i < res.length; i++) {
-		  			repo.push(res[i].full_name);
-		  		}
-		  		return repo;
+		  	function getGithubStuff() {
+		  		return $http.get('https://api.github.com' + '/users/InvalidPleb/repos')
+			  		.then(function(res){
+			  			pushCalledRepo(res.data, repoContainer);
+			  			return getCommits(repoContainer[0], 0, repoContainer.length);
+			  		});
 		  	}
 
 		  	// -------- AJAX Callback -------- //
