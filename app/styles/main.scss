@@ -307,7 +307,7 @@ $loopCount: 0;
   z-index: -1;
   cursor: pointer;
   position: absolute;
-  @include prefix(filter, blur(20px), webkit moz ms o);
+  @include prefix(filter, blur(10px), webkit moz ms o);
 }
 
 .name-text {

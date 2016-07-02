@@ -485,53 +485,21 @@
 	  					}
 	  		};
 
-
-	  		/* 
-
-	  			These objects contain the data for each block directive instance
-
-	  		*/
-
-
-	  		
-		  	function add(a, b) {
-		      	return a + b;
-		  	}
-
-		  	function openLink(url) {
-			  var link = window.open(url, '_blank');
-			  link.focus();
-			}
-
-			function setArr(arr, num) {
-				arr = [];
-			  	for (let i=0; i < num; i++) {arr.push(i);}
-			  	return arr;
-			}
-
-			$scope.months = setArr($scope.months, 12);
-			$scope.weeks = setArr($scope.weeks, 52);
-			$scope.days = setArr($scope.days, 7);
-			$scope.repos = setArr($scope.repos, 6);
-			$scope.dayNames = ["S", "M", "T", "W", "T", "F", "S",];
-
-			
 			// -------- Github AJAX -------- //
 
-		  	var githubGet = 'https://api.github.com';
 		  	var repoContainer = [];
 		  	var commitDaily = [];
 
 		  	function getGithubStuff() {
-		  		return $http.get(githubGet + '/users/InvalidPleb/repos')
+		  		return $http.get('https://api.github.com' + '/users/InvalidPleb/repos')
 			  		.then(function(res){
-			  			pushCalledRepo(res.data);
+			  			pushCalledRepo(res.data, repoContainer);
 			  			return getCommits(repoContainer[0], 0, repoContainer.length);
 			  		});
 		  	}
 		  	
 		  	function getCommits (repo, repoNum, maxRepos) {
-		  		return $http.get(githubGet +'/repos/' + repo + '/stats/commit_activity')
+		  		return $http.get('https://api.github.com' + '/repos/' + repo + '/stats/commit_activity')
 		  			.then(function(res){
 		  				commitDaily.push(res.data);
 			  			repoNum++;
@@ -541,11 +509,11 @@
 			  		});
 		  	}
 
-		  	function pushCalledRepo (res) {
+		  	function pushCalledRepo (res, repo) {
 		  		for (let i = 0; i < res.length; i++) {
-		  			repoContainer.push(res[i].full_name);
+		  			repo.push(res[i].full_name);
 		  		}
-
+		  		return repo;
 		  	}
 
 		  	// -------- AJAX Callback -------- //
@@ -561,26 +529,29 @@
 		        }
 		        hideScreen();
 			    
-		  		var gotDayCommits = getDayCommits(commitDaily);
-		  		var repoCommits = gotDayCommits[0];
-		  		var dayCommits = gotDayCommits[1];
+		  		var gotDayCommits = getDayCommits(commitDaily),
+		  		    repoCommits = gotDayCommits[0],
+		  		    dayCommits = gotDayCommits[1];
 		  		
 		  		repoCommits.push(1);
 		  		repoCommits.unshift(3);
 
-		  		var daySums = sumDayCommits(dayCommits);
-		  		var gotParsedCommits = parseCommits(daySums);
-		  		var allWeekCommits = gotParsedCommits[0];
-		  		var allDayCommits = gotParsedCommits[1];
-		  		var streakArr = streakData(allDayCommits);
-		  		var gotStreaks = getStreaks(streakArr);
+		  		var daySums = sumDayCommits(dayCommits),
+		  		    gotParsedCommits = parseCommits(daySums),
+		  		    allWeekCommits = gotParsedCommits[0],
+		  		    allDayCommits = gotParsedCommits[1],
+		  		    streakArr = streakData(allDayCommits),
+		  		    gotStreaks = getStreaks(streakArr);
+
+		  		$scope.months = setArr($scope.months, 12);
+				$scope.weeks = setArr($scope.weeks, 52);
+				$scope.days = setArr($scope.days, 7);
+				$scope.repos = setArr($scope.repos, 6);
+				$scope.dayNames = ["S", "M", "T", "W", "T", "F", "S",];
 
 
-		  		/* 
-
-	  				This object contains the data for the Github graph
-
-	  			*/
+		  		
+	  			// This object contains the data for the Github graph
 
 		  		$scope.dataObj = {
 
@@ -664,20 +635,33 @@
 
 		  	});
 
+			// -------- General Functions -------- //
+
+			function add(a, b) {
+		      	return a + b;
+		  	}
+
+		  	function openLink(url) {
+				let link = window.open(url, '_blank');
+				return link.focus();
+			}
+
+			function setArr(arr, num) {
+				arr = [];
+			  	for (let i=0; i < num; i++) {arr.push(i);}
+			  	return arr;
+			}
+
 		  	// -------- Background Parallax -------- //
 
 
 		  	function parallax(image, offsetX, offsetY) {
 		  		let ypos = window.pageYOffset;
-		  		image.css('transform', 'translate3d(' + (ypos * offsetX) + 'px,' + (ypos * offsetY) + 'px,0px)');
+		  		return image.css('transform', 'translate3d(' + (ypos * offsetX) + 'px,' + (ypos * offsetY) + 'px,0px)');
 		  	}
 
-
-
 		  	$(window).scroll(function(){
-		  		//parallax($('.container-parallax'), 0, -0.4);
-		  		parallax($('.padding'), 0, -0.4);
-		  		//parallax($('.decoration'), -0.1, 0);
+		  		return parallax($('.padding'), 0, -0.4);
 		  	});
 
 		  	
@@ -693,7 +677,7 @@
 
 			$(window).resize(function() {
 			  fitToContainer(canvas);
-			  fadeOut2();
+			  //fadeOut2();
 			});
 			
 			function fitToContainer(canvas){
@@ -735,6 +719,7 @@
 
 					var posx = getRandomArbitrary(0, canvas.width),
 			            posy = getRandomArbitrary(0, canvas.height);
+
 				} else {
 
 					var posx = x,
@@ -781,23 +766,24 @@
 
 			drawCircle(getRandomArbitrary(0, canvas.width), getRandomArbitrary(0, canvas.height), 10, 0);
 
-
 			function fadeOut() {
 
-			    ctx.fillStyle = "rgba(24,24,24,0.2)";
+			    ctx.fillStyle = "rgba(24,24,24,0.3)";
 			    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 			    if (!painting) {
 			    	var screenFill = setTimeout(function(){
 					  fadeOut();
-					},90);
+					},60);
 
 			    }
 			}
-
 			fadeOut();
 			    	
 		  	// -------------- Github Graph -------------- //
+
+
+		  	// Setting up D3
 
 		  	var svgContainer = d3.select(".animation-container")
 		  		.append("svg")
@@ -810,6 +796,21 @@
 					return d;
 			});
 
+			var defCenterTooltip = d3.select(".animation-container").append("div")	
+						.attr("class", "pie-tooltip");
+
+		    var graphCircle = d3.select(".animation-container").append("div")	
+						.attr("class", "graph-circle");
+
+			function arc (inRad, outRad, sAng, eAng) {
+				return d3.svg.arc()
+					.innerRadius(inRad)
+				    .outerRadius(outRad)
+				    .startAngle(sAng)
+				    .endAngle(eAng);
+			}
+
+		    // Obj containing RGB colors used in graph
 			var colorObj = {
 				0: [133, 130, 116],
 				1: [117,113,22],
@@ -820,39 +821,14 @@
 				6: [47, 177, 122],
 				7: [149, 199, 111],
 				8: [184, 209, 58],
-				9: [229, 119, 55],
+				9: [0,105, 0],
 			};
 
-			var colorArr = [0,105, 0];
 
-			function arc (inRad, outRad, sAng, eAng) {
-
-				return d3.svg.arc()
-					.innerRadius(inRad)
-				    .outerRadius(outRad)
-				    .startAngle(sAng)
-				    .endAngle(eAng);
-
-			}
-
-			var defCenterTooltip = d3.select(".animation-container").append("div")	
-						.attr("class", "pie-tooltip");
-
-		    var graphCircle = d3.select(".animation-container").append("div")	
-						.attr("class", "graph-circle");
-
-
-			function htmlMidData(i, data) {
-				return "<p class=\"day-tooltip\">" + dayArray[i] +"|<span>" + data[i] + "</span></p>";
-			}
-
-		    function stylePos(element, top, left) {
-				return element.style("top", (top) + "px")
-					.style("left", (left) + "px");
-			}
-
+			// Recursive function to draw the outer ring
 			function outerRing (sAng, eAng, color, data, midData, i) {
 
+				// Each outer ring segment / function call stands for a week
 				if (i < 52) {
 
 					if (sAng === -1 && eAng === 5.5) {
@@ -864,6 +840,7 @@
 						eAng = eAng + 6.42;
 					}
 
+					// Increasing shade and opacity of color relative to input data
 					let color1 = color[0] + (data[i] * 13);
 					let color2 = color[1] + (data[i] * 13);
 					let color3 = color[2] + (data[i] * 13);
@@ -872,6 +849,7 @@
 					let midDataInd = midData[i];
 					let g = svgContainer.append('svg:g');
 
+					// Drawing the pie segment
 					g.append("path")
 					    .attr("d", arc(170, 200, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
 					    .attr("transform", "translate(200,250)")
@@ -881,7 +859,9 @@
 					    .on("mouseover", function () {
 						    d3.select(this).style("fill", "rgb(89, 74, 41)");
 						    $(".pie-tooltip-hover:nth-child(" + i + ")").css("opacity", "1");
-		            		dayRing = middleRing(0, 50, colorArr, midDataInd);
+
+						    // Drawing the day rings
+		            		dayRing = middleRing(0, 50, colorObj[9], midDataInd);
 
 		            		for (let j = 0; j < dayRing.length; j++) {
 		            			dayRing[j].transition()		
@@ -893,6 +873,7 @@
 						    d3.select(this).style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")");
 						    $(".pie-tooltip-hover:nth-child(" + i + ")").css("opacity", "0");
 	
+							// Hiding the day rings
 		            		for (let j = 0; j < dayRing.length; j++) {
 		            			dayRing[j].transition()		
 		            			.duration(200)		
@@ -904,10 +885,12 @@
 					sAng = sAng + 0.5;
 					eAng = eAng + 0.5;
 					i++;
-					return outerRing(sAng, eAng, colorArr, data, midData, i);
+					return outerRing(sAng, eAng, colorObj[9], data, midData, i);
 				}
 			}
 
+
+			// Recursive function to draw the day rings
 			function middleRing(sAng, eAng, color, data) {
 
 				let ringCont = [];
@@ -916,11 +899,13 @@
 					sAng = sAng + 50;
 					eAng = eAng + 50;
 
+					// Increasing shade and opacity of color relative to input data
 					let color1 = color[0] + (data[i] * 50);
 					let color2 = color[1] + (data[i] * 50);
 					let color3 = color[2] + (data[i] * 50);
 					let alpha = (data[i] * 0.2) + 0.05;
 
+					// Drawing the day ring segment
 					let ring = svgContainer.append("path")
 					    .attr("d", arc(145, 165, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
 					    .attr("transform", "translate(200,250)")
@@ -929,16 +914,15 @@
 						.style("z-index", "2")
 						.style("opacity", 0.3);
 
-						sAng = sAng + 1.5;
-						eAng = eAng + 1.5;
-
+					sAng = sAng + 1.5;
+					eAng = eAng + 1.5;
 					ringCont.push(ring);
 				}
 				return ringCont;
 			}
 
 			
-
+			// Recursive function to draw the inner pie chart
 			function innerRing (data, nameArr, color, i){
 
 				if (i < data.length) {
@@ -949,6 +933,7 @@
 					let eAng = pieD[i].endAngle;
 					let alpha = 0.6;
 
+					// Drawing the pie segment
 					var pieCurve = svgContainer.append("path")
 					    .attr("d", arc(80, 140, sAng, eAng))
 					    .attr("transform", "translate(200,250)")
@@ -957,15 +942,19 @@
 
 					    .on("mouseover", function () {
 
+					    	// Showing tooltips
 					    	$(".repoTooltip:nth-child(" + i + ")").css("opacity", "1");
 						    d3.select(this).style("fill", "rgba(" + color + "," + (alpha + 0.3) + ")");
 
 						}).on("mouseout", function () {
 
+							// Hiding tooltips
 							$(".repoTooltip").css("opacity", "0");
 						    d3.select(this).style("fill", "rgba(" + color + "," + alpha + ")");
 
 						}).on("click", function() {
+
+							// Opens a link to the repository that is represented by the pie segment
 							openLink("https://github.com/InvalidPleb/" + repoName);
 						});
 					i++;
@@ -982,7 +971,7 @@
 		  		let outputDays = [];
 		  		let outputRepos = [];
 
-		  		for (let i=0; i < inputArrSlice.length; i++) {
+		  		for (let i=0, n=inputArrSlice.length; i < n; i++) {
 
 		  			let weekCurr = inputArrSlice[i];
 		  			weekCurrTotal[i] = [];
@@ -1006,7 +995,7 @@
 
 		  		let daySums = [];
 
-		  		for (let i=0; i < inputArr.length; i++) {
+		  		for (let i=0, n=inputArr.length; i < n; i++) {
 
 		  			let weekCurr = inputArr[i];
 
@@ -1014,9 +1003,9 @@
 		  				daySums[i] = [];
 		  			}
 
-		  			for (let j=0; j < weekCurr.length; j++) {
+		  			for (let j=0, n=weekCurr.length; j < n; j++) {
 		  				let dayCurr = weekCurr[j];
-		  				for (let l=0; l < dayCurr.length; l++) {
+		  				for (let l=0, m=dayCurr.length; l < m; l++) {
 
 		  					daySums[i].push(dayCurr[l]);
 		  				}
@@ -1034,7 +1023,7 @@
 
 		  		let j = 0;
 
-		  		for (let i=0; i < inputArr.length; i++) {
+		  		for (let i=0, n=inputArr.length; i < n; i++) {
 
 		  			if (dayArr[i] === undefined) {
 
@@ -1045,7 +1034,7 @@
 		  			daySumsCurr = inputArr[i];
 		  			weekCommits.push(inputArr[i].reduce(add, 0));
 
-		  			for (let l=0; l < daySumsCurr.length; l++) {
+		  			for (let l=0, m=daySumsCurr.length; l < m; l++) {
 
 		  				if (l % 7 === 0) {
 			  				j = 0;
@@ -1069,15 +1058,14 @@
 	  		function streakData(inputArr) {
 
 	  			let streakArr = [];
-	  			for (var i=0; i < inputArr.length; i++) {
+	  			for (let i=0, n=inputArr.length; i < n; i++) {
 
 	  				let currInputArr = inputArr[i];
 
-	  				for (var j=0; j < currInputArr.length; j++) {
+	  				for (let j=0, m=currInputArr.length; j < m; j++) {
 
 	  					streakArr.push(currInputArr[j]);
 	  				}
-
 	  			}
 	  			return streakArr;
 	  		}
@@ -1089,7 +1077,7 @@
 				let currStreak = 0;
 				let endCurrStreak = false;
 
-				for (var i = (inputArr.length - 1); i > 0; i--) {
+				for (let i = (inputArr.length - 1); i > 0; i--) {
 
 					if (inputArr[i] === 0) {
 
@@ -1100,7 +1088,6 @@
 							if (currStreak > longestStreak) {
 								longestStreak = currStreak;
 							}
-
 							endCurrStreak = true;
 							streakCounter = 0;
 						}
@@ -1113,7 +1100,7 @@
 						streakCounter++;
 					}
 				}
-			return [currStreak, longestStreak];
-		}
-	});
+				return [currStreak, longestStreak];
+			}
+		});
 })();
