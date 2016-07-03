@@ -524,6 +524,7 @@
 		  	function getGithubStuff() {
 		  		return $http.get('https://api.github.com' + '/users/InvalidPleb/repos')
 			  		.then(function(res){
+
 			  			pushCalledRepo(res.data, repoContainer);
 			  			return getCommits(repoContainer[0], 0, repoContainer.length);
 			  		});
@@ -983,6 +984,11 @@
 		  		let weekCurrTotal = [];
 		  		let outputDays = [];
 		  		let outputRepos = [];
+
+		  		var b = inputArrSlice[0];
+
+		  		var c = b[0];
+		  		b.unshift(c);
 
 		  		for (let i=0, n=inputArrSlice.length; i < n; i++) {
 
