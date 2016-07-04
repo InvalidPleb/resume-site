@@ -13,7 +13,6 @@
 	angular.module('resumeApp')
 
 	  	.controller('MainCtrl', function ($http, $q, $scope) {
-	  		
 
 	  		// -------- Block Template Instance Data -------- //
 
@@ -578,19 +577,34 @@
 	  					}
 	  		};
 
+	  		var affixElement = '#navbar-main';
+			$(affixElement).affix({
+			  offset: {
+			    // Distance of between element and top page
+			    top: function () {
+			      return (this.top = $(affixElement).offset().top);
+			    }
+			  }
+			});
 
-	  		function pageDirect(start, end) {
+	  		function pageDirect(start, end, offset) {
+	  			let top = $(end).offset().top;
+	  			console.log(top + 50);
 	  			return $(start).click(function() {
+
 				    $('html,body').animate({
-				        scrollTop: $(end).offset().top
+				        scrollTop: (top - offset)
 				    },'slow');
 				});
 	  		}
 
-	  		pageDirect("#project-sphere", "#projects");
-	  		pageDirect("#github-sphere", "#github");
-	  		pageDirect("#tools-sphere", "#tools");
-	  		pageDirect("#contact-sphere", "#contact");
+	  		pageDirect("#project-sphere", "#projects", 55);
+	  		pageDirect("#github-sphere", "#github", 55);
+	  		pageDirect("#tools-sphere", "#tools", 55);
+	  		pageDirect("#contact-sphere", "#contact", 55);
+	  		pageDirect("#home", "#greeting-section", 100);
+
+
 
 			// -------- Github AJAX -------- //
 		  	var repoContainer = [];
@@ -871,7 +885,7 @@
 
 			}
 
-			drawCircle(getRandomArbitrary(0, canvas.width), getRandomArbitrary(0, canvas.height), 10, 0);
+			//drawCircle(getRandomArbitrary(0, canvas.width), getRandomArbitrary(0, canvas.height), 10, 0);
 
 			function fadeOut() {
 
@@ -885,7 +899,7 @@
 
 			    }
 			}
-			fadeOut();
+			//fadeOut();
 			    	
 		  	// -------------- Github Graph -------------- //
 

@@ -1,4 +1,7 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+@import url(https://fonts.googleapis.com/css?family=Lora);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700);
 @import "compass/css3";
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
@@ -36,7 +39,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   left: $left;
   top: $top;
 
-  font-family: "Open Sans";
+  font-family: "Lora";
   font-weight: 500;
   font-size: 18px;
   color: #84783b;
@@ -52,7 +55,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   top: $top;
   z-index: 5;
 
-  font-family: "Open Sans";
+  font-family: "Lora";
   font-weight: 500;
   font-size: 18px;
   color: #84783b;
@@ -112,7 +115,7 @@ a:hover, a:focus, a:active {
 // -------- General Classes --------- //
 
 .gold-text {
-  font-family: "Open Sans";
+  font-family: "Lora";
   font-weight: 500;
   font-size: 22px;
   color: $gold-color;
@@ -123,7 +126,7 @@ a:hover, a:focus, a:active {
 }
 
 .block-title-section-text {
-  font-family: "Open Sans";
+  font-family: "Lora";
   font-weight: 500;
   font-size: 40px;
   color: $bright-gold-color;
@@ -217,7 +220,7 @@ a:hover, a:focus, a:active {
   top: 40%;
   position: relative;
   @include border(2px solid, $gold-color, bottom top);
-  background-image: url('/images/royalpat.png');
+  //background-image: url('/images/royalpat.png');
   @include prefix(box-shadow, inset 0px 0px 20px 5px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
@@ -253,7 +256,7 @@ $loopCount: 0;
 .container-parallax {
   margin-top: -950px;
   background-color: $dark-background;
-  background-image: url('/images/darklinepat2.png');
+  //background-image: url('/images/darklinepat2.png');
   position: absolute;
   height: 1000px;
   width: 100%;
@@ -270,6 +273,35 @@ $loopCount: 0;
   }
 }
 
+#navbar-main {
+  z-index: 6;
+  top: 0px;
+  height: 55px;
+  position: absolute;
+  width: 100%;
+  border-radius: 0px;
+  @include border(1px solid, $dark-background, bottom);
+  @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
+  transition: all .25s cubic-bezier(.17,.67,.83,.67);
+  /* Added `.affix-top` class css when the element is top */
+  &.affixed-top {
+    background: black;
+    position: none;
+  }
+  /* Added `.affix` class css when the element is >= 170px (Look: line 8 html) */
+  &.affix {
+    top: 0;
+    left: 0;
+    right: 0;
+    background: $grey-background;
+    position: fixed;
+    @include border(1px solid, $gold-color, bottom);
+
+    
+    
+  }
+  
+}
 
 // -------- Top Greeting Section -------- //
 
@@ -279,7 +311,7 @@ $loopCount: 0;
   z-index: 5;
   padding: 0px;
   right: 10px;
-  top: 10px;
+  top: 80px;
   position: relative;
   @include border(1px solid, $gold-color, left right bottom top);
   @include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
@@ -903,6 +935,7 @@ $dayMap: (
 .block-container {
   background-color: $dark-background;
   height: 2800px;
+  top: 120px;
   @include border(1px solid, $gold-color, left right top bottom);  
   position: relative;
   @include prefix(box-shadow, -13px 20px 35px 10px rgba(0,0,0,0.75), webkit moz ms o);
@@ -912,7 +945,6 @@ $dayMap: (
 .projects-container {
   @extend .block-container;
   height: 1350px;
-  top: 50px;
   @include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
@@ -939,7 +971,7 @@ $dayMap: (
 }
 
 .title-text {
-  font-family: "Open Sans";
+  font-family: "Lora";
   font-weight: 500;
   font-size: 28px;
   color: $gold-color;
