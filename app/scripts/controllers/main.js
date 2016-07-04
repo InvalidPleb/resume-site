@@ -17,12 +17,6 @@
 
 	  		// -------- Block Template Instance Data -------- //
 
-	  		/* 
-
-	  			These objects contain the data for each block directive instance
-
-	  		*/
-
 	  		$scope.darkreader = {
 
 	  			attr:  {
@@ -462,8 +456,8 @@
 
 	  			binding: {
 
-	  						nameHide: "false",
-	  						paraHide: "true",
+	  						nameHide: "true",
+	  						paraHide: "false",
 	  						skill1Hide: "false",
 				  			skill2Hide: "false",
 				  			skill3Hide: "true",
@@ -473,6 +467,105 @@
 	  			skills: {
 	  						skill1: "Data Visualization",
 				  			skill2: "SVG Manipulation",
+				  			skill3: "",
+				  			skill4: "",
+	  					},
+
+	  			text:   {
+	  						nameTxt: "D3",
+	  						paraTxt: "",
+				  			txt1: "",
+				  			txt2: "",
+	  					}
+	  		};
+
+	  		$scope.gmail = {
+
+	  			attr:   {
+			  				id: "gmail",
+			  				href: "",
+			  				nameClass: "block-name-def",
+	  					},
+
+	  			binding: {
+
+	  						nameHide: "true",
+	  						paraHide: "false",
+	  						skill1Hide: "true",
+				  			skill2Hide: "true",
+				  			skill3Hide: "true",
+				  			skill4Hide: "true",
+	  					},
+
+	  			skills: {
+	  						skill1: "",
+				  			skill2: "",
+				  			skill3: "",
+				  			skill4: "",
+	  					},
+
+	  			text:   {
+	  						nameTxt: "D3",
+	  						paraTxt: "",
+				  			txt1: "",
+				  			txt2: "",
+	  					}
+	  		};
+
+	  		$scope.linkedin = {
+
+	  			attr:   {
+			  				id: "linkedin",
+			  				href: "",
+			  				nameClass: "block-name-def",
+	  					},
+
+	  			binding: {
+
+	  						nameHide: "true",
+	  						paraHide: "false",
+	  						skill1Hide: "true",
+				  			skill2Hide: "true",
+				  			skill3Hide: "true",
+				  			skill4Hide: "true",
+	  					},
+
+	  			skills: {
+	  						skill1: "",
+				  			skill2: "",
+				  			skill3: "",
+				  			skill4: "",
+	  					},
+
+	  			text:   {
+	  						nameTxt: "D3",
+	  						paraTxt: "",
+				  			txt1: "",
+				  			txt2: "",
+	  					}
+	  		};
+
+	  		$scope.githubsocial = {
+
+	  			attr:   {
+			  				id: "githubsocial",
+			  				href: "",
+			  				nameClass: "block-name-def",
+	  					},
+
+	  			binding: {
+
+	  						nameHide: "true",
+	  						paraHide: "true",
+	  						skill1Hide: "true",
+				  			skill2Hide: "true",
+				  			skill3Hide: "true",
+				  			skill4Hide: "true",
+	  					},
+
+	  			skills: {
+	  						skill1: "",
+				  			skill2: "",
 				  			skill3: "",
 				  			skill4: "",
 	  					},
@@ -985,10 +1078,14 @@
 		  		let outputDays = [];
 		  		let outputRepos = [];
 
+		  		/*
+
 		  		var b = inputArrSlice[0];
 
 		  		var c = b[0];
 		  		b.unshift(c);
+
+		  		*/
 
 		  		for (let i=0, n=inputArrSlice.length; i < n; i++) {
 

@@ -4,6 +4,8 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower 
 
+// -------- Mixins -------- //
+
 @mixin border($style, $color, $sides) {
     @if ($style != "") {
         @if ($sides == "") {
@@ -29,7 +31,6 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 }
 
 @mixin monthLabel($left, $top, $deg){
-
   position: relative;
   margin: 0px 0px 0px 60px;
   left: $left;
@@ -46,7 +47,6 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 }
 
 @mixin dayLabel($left, $top, $deg) {
-
   position: relative;
   left: $left;
   top: $top;
@@ -815,7 +815,8 @@ $skillList: "frameworks", "dev-tools", "design-tools", "preprocessors";
 
 $toolList: "darkreader", "tmtheme", "angular", "jquery", 
            "bootstrap", "git", "yeoman", "grunt", "bower", 
-           "sass", "cscript", "gimp", "balsamiq", "d3";
+           "sass", "cscript", "gimp", "balsamiq", "d3", "gmail", 
+           "linkedin", "githubsocial";
 
 $monthMap: (
 
@@ -1066,6 +1067,9 @@ $dayMap: (
   transition: all 0.5s ease-in;
 }
 
+
+// -------- Responsive Media Queries -------- //
+
 @media (min-width:1200px) and (max-width:1550px) {
 
   .main-container {
@@ -1090,17 +1094,12 @@ $dayMap: (
 
   .site-container-tablet {
     right: 45px;
-    
-  }
-
-  .site-container-mobile {
-    
   }
 
   .sphere-container {
     left: 30px;
-
   }
+
   .block-name-def {
     right: 0px;
   }
