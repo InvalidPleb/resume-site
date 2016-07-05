@@ -580,16 +580,29 @@
 	  		var affixElement = '#navbar-main';
 			$(affixElement).affix({
 			  offset: {
-			    // Distance of between element and top page
 			    top: function () {
-			      return (this.top = $(affixElement).offset().top);
+			      return (this.top = $(affixElement).offset().top + 1);
 			    }
 			  }
 			});
 
+			$(window).scroll(function(e){
+				let scrolled = true;
+				if (this.scrollY === 0) {
+					$('.navbar-text').css('height', '69px');
+					$('.navbar-text').css('padding-top', '20px');
+					scrolled = true;
+				} else if (scrolled) {
+					$('.navbar-text').css('height', '49px');
+					$('.navbar-text').css('padding-top', '12px');
+					scrolled = !scrolled;
+				}
+			});
+
+			
+
 	  		function pageDirect(start, end, offset) {
 	  			let top = $(end).offset().top;
-	  			console.log(top + 50);
 	  			return $(start).click(function() {
 
 				    $('html,body').animate({
@@ -597,6 +610,8 @@
 				    },'slow');
 				});
 	  		}
+
+	  		
 
 	  		pageDirect("#project-sphere", "#projects", 55);
 	  		pageDirect("#github-sphere", "#github", 55);

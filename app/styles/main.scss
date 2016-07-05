@@ -39,8 +39,8 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   left: $left;
   top: $top;
 
-  font-family: "Lora";
-  font-weight: 500;
+  font-family: "Times New Roman";
+  //font-weight: 500;
   font-size: 18px;
   color: #84783b;
 
@@ -55,8 +55,8 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   top: $top;
   z-index: 5;
 
-  font-family: "Lora";
-  font-weight: 500;
+  font-family: "Times New Roman";
+  //font-weight: 500;
   font-size: 18px;
   color: #84783b;
 
@@ -115,7 +115,7 @@ a:hover, a:focus, a:active {
 // -------- General Classes --------- //
 
 .gold-text {
-  font-family: "Lora";
+  font-family: "Times New Roman";
   font-weight: 500;
   font-size: 22px;
   color: $gold-color;
@@ -126,7 +126,7 @@ a:hover, a:focus, a:active {
 }
 
 .block-title-section-text {
-  font-family: "Lora";
+  font-family: "Times New Roman";
   font-weight: 500;
   font-size: 40px;
   color: $bright-gold-color;
@@ -231,9 +231,8 @@ $loopCount: 1;
   margin-top: 50px;
   height: 200px;
   width: 100%;
-  background-image: url($rock-background);
-  @include border(2px solid, $gold-color, top bottom);
   z-index: -3;
+  background-image: url($rock-background);
   position: absolute;
   @include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
 
@@ -244,10 +243,8 @@ $loopCount: 1;
     }
 
     $loopCount: $loopCount + 1;
-    $i: $i + 2;
+    $i: $i + 1;
   }
-
-  
 }
 
 $i: 3;
@@ -274,11 +271,13 @@ $loopCount: 0;
 }
 
 #navbar-main {
-  z-index: 6;
-  top: 0px;
-  height: 55px;
-  position: absolute;
+  top: 1px;
+  height: 70px;
   width: 100%;
+  z-index: 6;
+  font-size: 16px;
+  position: absolute;
+  background-color: $dark-background;
   border-radius: 0px;
   @include border(1px solid, $dark-background, bottom);
   @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
@@ -290,17 +289,41 @@ $loopCount: 0;
   }
   /* Added `.affix` class css when the element is >= 170px (Look: line 8 html) */
   &.affix {
+    height: 50px;
     top: 0;
     left: 0;
     right: 0;
     background: $grey-background;
     position: fixed;
     @include border(1px solid, $gold-color, bottom);
-
-    
-    
   }
   
+}
+
+.navbar-nav {
+  list-style: none;
+  padding: none;
+}
+
+.navbar-text {
+  height: 69px;
+  bottom: 1px;
+  margin: 0;
+  padding: 20px 30px 0px 30px;
+  color: $bright-gold-color;
+  cursor: pointer;
+  transition: all .25s cubic-bezier(.17,.67,.83,.67);
+
+  &:hover {
+    @include border(0px solid, $gold-color, top left bottom right);
+    background-color: $gold-color !important;
+    color: white;
+  }
+}
+
+#home {
+  margin-top: -1px;
+  font-size: 20px;
 }
 
 // -------- Top Greeting Section -------- //
@@ -971,7 +994,7 @@ $dayMap: (
 }
 
 .title-text {
-  font-family: "Lora";
+  font-family: "Times New Roman";
   font-weight: 500;
   font-size: 28px;
   color: $gold-color;
