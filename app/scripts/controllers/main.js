@@ -12,7 +12,20 @@
 	 
 	angular.module('resumeApp')
 
-	  	.controller('MainCtrl', function ($http, $q, $scope) {
+		.directive("scroll", function ($window) {
+		    return function(scope, element, attrs) {
+		        angular.element($window).bind("scroll", function() {
+		            if (this.pageYOffset === 0) {
+		                scope.navText = true;
+		            } else {
+		                scope.navText = false;
+		            }
+		            scope.$apply();
+		        });
+		    };
+		})
+
+	  	.controller('MainCtrl', function($http, $q, $scope) {
 
 	  		// -------- Block Template Instance Data -------- //
 
@@ -455,7 +468,7 @@
 
 	  			binding: {
 
-	  						nameHide: "true",
+	  						nameHide: "false",
 	  						paraHide: "false",
 	  						skill1Hide: "false",
 				  			skill2Hide: "false",
@@ -577,65 +590,21 @@
 	  					}
 	  		};
 
-	  		var affixElement = '#navbar-main';
-			$(affixElement).affix({
-			  offset: {
-			    top: function () {
-			      return (this.top = $(affixElement).offset().top + 1);
-			    }
-			  }
-			});
-
-			$(window).scroll(function(e){
-				let scrolled = true;
-				if (this.scrollY === 0) {
-					$('.navbar-text').css('height', '69px');
-					$('.navbar-text').css('padding-top', '20px');
-					scrolled = true;
-				} else if (scrolled) {
-					$('.navbar-text').css('height', '49px');
-					$('.navbar-text').css('padding-top', '12px');
-					scrolled = !scrolled;
-				}
-			});
-
-			
-
-	  		function pageDirect(start, end, offset) {
-	  			let top = $(end).offset().top;
-	  			return $(start).click(function() {
-
-				    $('html,body').animate({
-				        scrollTop: (top - offset)
-				    },'slow');
-				});
-	  		}
-
-	  		
-
-	  		pageDirect("#project-sphere", "#projects", 55);
-	  		pageDirect("#github-sphere", "#github", 55);
-	  		pageDirect("#tools-sphere", "#tools", 55);
-	  		pageDirect("#contact-sphere", "#contact", 55);
-	  		pageDirect("#home", "#greeting-section", 100);
-
-
-
 			// -------- Github AJAX -------- //
 		  	var repoContainer = [];
-		  	var commitDaily = [];
+		  	var commitDaily = {};
 
-		  	function pushCalledRepo (res, repo) {
+		  	function pushCalledRepo(res, repo) {
 		  		for (let i = 0; i < res.length; i++) {
 		  			repo.push(res[i].full_name);
 		  		}
 		  		return repo;
 		  	}
 		  	
-		  	function getCommits (repo, repoNum, maxRepos) {
+		  	function getCommits(repo, repoNum, maxRepos) {
 		  		return $http.get('https://api.github.com' + '/repos/' + repo + '/stats/commit_activity')
 		  			.then(function(res){
-		  				commitDaily.push(res.data);
+		  				commitDaily[repoNum] = res.data;
 			  			repoNum++;
 			  			if (repoNum < maxRepos) {
 			  				return getCommits(repoContainer[repoNum], repoNum, maxRepos);
@@ -646,7 +615,6 @@
 		  	function getGithubStuff() {
 		  		return $http.get('https://api.github.com' + '/users/InvalidPleb/repos')
 			  		.then(function(res){
-
 			  			pushCalledRepo(res.data, repoContainer);
 			  			return getCommits(repoContainer[0], 0, repoContainer.length);
 			  		});
@@ -657,14 +625,8 @@
 			var calls = getGithubStuff();
 		  	$q.all([calls]).then(function(){
 		  		
-		        function hideScreen () {
-		            setTimeout(function() {
-		              $('.loadingScreen').fadeOut(500);
-		              $('.loading').fadeOut(500);
-		            }, 200);
-		        }
-		        hideScreen();
-			    
+		        $scope.loading = false;
+
 		  		var gotDayCommits = getDayCommits(commitDaily),
 		  		    repoCommits = gotDayCommits[0],
 		  		    dayCommits = gotDayCommits[1];
@@ -686,9 +648,7 @@
 				$scope.dayNames = ["S", "M", "T", "W", "T", "F", "S",];
 
 
-		  		
 	  			// This object contains the data for the Github graph
-
 		  		$scope.dataObj = {
 
 		  			commits: {
@@ -790,7 +750,6 @@
 
 		  	// -------- Background Parallax -------- //
 
-
 		  	function parallax(image, offsetX, offsetY) {
 		  		let ypos = window.pageYOffset;
 		  		return image.css('transform', 'translate3d(' + (ypos * offsetX) + 'px,' + (ypos * offsetY) + 'px,0px)');
@@ -800,10 +759,27 @@
 		  		return parallax($('.padding'), 0, -0.4);
 		  	});
 
+
+		  	// -------- Nav Functions --------- //
+
+	  		function pageDirect(start, end, offset) {
+	  			let top = $(end).offset().top;
+	  			return $(start).click(function() {
+				    $('html,body').animate({
+				        scrollTop: (top - offset)
+				    },'slow');
+				});
+	  		}
+
+	  		pageDirect("#project-sphere", "#projects", 55);
+	  		pageDirect("#github-sphere", "#github", 55);
+	  		pageDirect("#tools-sphere", "#tools", 55);
+	  		pageDirect("#contact-sphere", "#contact", 55);
+	  		pageDirect("#home", "#greeting-section", 100);
+
 		  	
 		  	// -------- Canvas -------- //
-
-
+		  	
 		  	var canvas = document.getElementById("canvas"),
 		  	    mainControlSection = document.getElementById("mainControlSection"),
 		  	    sphere = document.getElementsByClassName("sphere"),
@@ -813,7 +789,6 @@
 
 			$(window).resize(function() {
 			  fitToContainer(canvas);
-			  //fadeOut2();
 			});
 			
 			function fitToContainer(canvas){
@@ -833,7 +808,7 @@
 			    };
 			}
 
-			function numRound (value,dec){
+			function numRound(value,dec){
 		        value=Math.floor(value * dec + 0.05) / dec;
 		        return(value);
 		    }
@@ -847,17 +822,13 @@
 			function drawCircle(x, y, rad, i) {
 
 				if (i === 20) {
-
 					i = 0;
 				}
 
 				if (i === 0) {
-
 					var posx = getRandomArbitrary(0, canvas.width),
 			            posy = getRandomArbitrary(0, canvas.height);
-
 				} else {
-
 					var posx = x,
 					    posy = y;
 				}
@@ -928,7 +899,7 @@
 				.attr("height", 500);
 
 			var pie = d3.layout.pie()
-				.value(function (d) {
+				.value(function(d) {
 					return d;
 			});
 
@@ -938,7 +909,7 @@
 		    var graphCircle = d3.select(".animation-container").append("div")	
 						.attr("class", "graph-circle");
 
-			function arc (inRad, outRad, sAng, eAng) {
+			function arc(inRad, outRad, sAng, eAng) {
 				return d3.svg.arc()
 					.innerRadius(inRad)
 				    .outerRadius(outRad)
@@ -962,7 +933,7 @@
 
 
 			// Recursive function to draw the outer ring
-			function outerRing (sAng, eAng, color, data, midData, i) {
+			function outerRing(sAng, eAng, color, data, dayData, i) {
 
 				// Each outer ring segment / function call stands for a week
 				if (i < 52) {
@@ -977,27 +948,25 @@
 					}
 
 					// Increasing shade and opacity of color relative to input data
-					let color1 = color[0] + (data[i] * 13);
-					let color2 = color[1] + (data[i] * 13);
-					let color3 = color[2] + (data[i] * 13);
-					let alpha = (data[i] * 0.1) + 0.05;
-					let dayRing;
-					let midDataInd = midData[i];
-					let g = svgContainer.append('svg:g');
+					let color1 = color[0] + (data[i] * 13),
+					    color2 = color[1] + (data[i] * 13),
+					    color3 = color[2] + (data[i] * 13),
+					    alpha = (data[i] * 0.1) + 0.05,
+					    dayRing,
+					    dayDataInd = dayData[i],
+					    g = svgContainer.append('svg:g');
 
 					// Drawing the pie segment
 					g.append("path")
 					    .attr("d", arc(170, 200, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
 					    .attr("transform", "translate(200,250)")
 					    .style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")")
-					    .style("position", "relative")
-					    .style("z-index", "2")
 					    .on("mouseover", function () {
 						    d3.select(this).style("fill", "rgb(89, 74, 41)");
 						    $(".pie-tooltip-hover:nth-child(" + i + ")").css("opacity", "1");
 
 						    // Drawing the day rings
-		            		dayRing = middleRing(0, 50, colorObj[9], midDataInd);
+		            		dayRing = middleRing(0, 50, colorObj[9], dayDataInd);
 
 		            		for (let j = 0; j < dayRing.length; j++) {
 		            			dayRing[j].transition()		
@@ -1021,13 +990,13 @@
 					sAng = sAng + 0.5;
 					eAng = eAng + 0.5;
 					i++;
-					return outerRing(sAng, eAng, colorObj[9], data, midData, i);
+					return outerRing(sAng, eAng, colorObj[9], data, dayData, i);
 				}
 			}
 
 
 			// Recursive function to draw the day rings
-			function middleRing(sAng, eAng, color, data) {
+			function middleRing(sAng, eAng, colorObj, data) {
 
 				let ringCont = [];
 				for (let i = 0; i <= 6; i++) {
@@ -1036,18 +1005,16 @@
 					eAng = eAng + 50;
 
 					// Increasing shade and opacity of color relative to input data
-					let color1 = color[0] + (data[i] * 50);
-					let color2 = color[1] + (data[i] * 50);
-					let color3 = color[2] + (data[i] * 50);
-					let alpha = (data[i] * 0.2) + 0.05;
+					let color1 = colorObj[0] + (data[i] * 50),
+					    color2 = colorObj[1] + (data[i] * 50),
+					    color3 = colorObj[2] + (data[i] * 50),
+					    alpha = (data[i] * 0.2) + 0.05;
 
 					// Drawing the day ring segment
 					let ring = svgContainer.append("path")
 					    .attr("d", arc(145, 165, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
 					    .attr("transform", "translate(200,250)")
 					    .style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")")
-					    .style("position", "relative")
-						.style("z-index", "2")
 						.style("opacity", 0.3);
 
 					sAng = sAng + 1.5;
@@ -1059,15 +1026,15 @@
 
 			
 			// Recursive function to draw the inner pie chart
-			function innerRing (data, nameArr, color, i){
+			function innerRing(data, nameArr, color, i){
 
 				if (i < data.length) {
 
-					let repoName = nameArr[i].slice(12,nameArr[i].length);
-					let pieD = pie(data);
-					let sAng = pieD[i].startAngle;
-					let eAng = pieD[i].endAngle;
-					let alpha = 0.6;
+					let repoName = nameArr[i].slice(12,nameArr[i].length),
+					    pieD = pie(data),
+					    sAng = pieD[i].startAngle,
+					    eAng = pieD[i].endAngle,
+					    alpha = 0.6;
 
 					// Drawing the pie segment
 					var pieCurve = svgContainer.append("path")
@@ -1102,10 +1069,14 @@
 
 			function getDayCommits(inputArr) {
 
-	  			let inputArrSlice = inputArr.slice(1, 5);
-		  		let weekCurrTotal = [];
-		  		let outputDays = [];
-		  		let outputRepos = [];
+	  			let inputArrSlice = [],
+		  		    weekCurrTotal = [],
+		  		    outputDays = [],
+		  		    outputRepos = [];
+
+		  		inputArrSlice[0] = inputArr[1];
+				inputArrSlice[1] = inputArr[2];
+				inputArrSlice[2] = inputArr[3];
 
 		  		/*
 
@@ -1161,12 +1132,11 @@
 
 	  		function parseCommits(inputArr) {
 
-	  			let dayArr = [];
-	  			let weekCommits = [];
-		  		let daySumsCurr = [];
-		  		let dayArrCurr = [];
-
-		  		let j = 0;
+	  			let dayArr = [],
+	  			    weekCommits = [],
+		  		    daySumsCurr = [],
+		  		    dayArrCurr = [],
+		  		    j = 0;
 
 		  		for (let i=0, n=inputArr.length; i < n; i++) {
 
@@ -1217,10 +1187,10 @@
 
 	  		function getStreaks(inputArr) {
 
-				let streakCounter = 0;
-				let longestStreak = 0;
-				let currStreak = 0;
-				let endCurrStreak = false;
+				let streakCounter = 0,
+				    longestStreak = 0,
+				    currStreak = 0,
+				    endCurrStreak = false;
 
 				for (let i = (inputArr.length - 1); i > 0; i--) {
 
