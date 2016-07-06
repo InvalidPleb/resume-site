@@ -20,7 +20,7 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
+        controller: 'GraphCtrl',
         controllerAs: 'main'
       })
       .when('/about', {
@@ -31,24 +31,4 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  })
-  .directive('mainBlock', function(){
-    return {
-        scope: {
-          blockInfo: '=info'
-        },
-        restrict: 'AEC',
-        templateUrl: '/views/blockdir.html',
-        replace: true
-      };
-  })
-  .directive('toolBlock', function(){
-    return {
-        scope: {
-          toolInfo: '=info'
-        },
-        restrict: 'AEC',
-        templateUrl: '/views/tooldir.html',
-        replace: true
-      };
   });

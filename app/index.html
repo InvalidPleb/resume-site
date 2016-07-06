@@ -20,7 +20,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <nav scroll class="navbar navbar-inverse navbar-main" ng-class="{true: 'navbar-main', false: 'navbar-main-float'}[navText]">
+    <nav class="navbar navbar-inverse navbar-main" ng-class="{true: 'navbar-main', false: 'navbar-main-float'}[navText]" scroll>
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -33,7 +33,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav">
-            <li><a id="project-sphere" class="navbar-text" ng-class="{true: 'navbar-text', false: 'navbar-text-float'}[navText]">Work</a></li>
+            <li><a  id="project-sphere" nav-scroll ng-model="projects" class="navbar-text" ng-class="{true: 'navbar-text', false: 'navbar-text-float'}[navText]">Work</a></li>
             <li><a id="github-sphere" class="navbar-text" ng-class="{true: 'navbar-text', false: 'navbar-text-float'}[navText]">Development</a></li>
             <li><a id="tools-sphere" class="navbar-text" ng-class="{true: 'navbar-text', false: 'navbar-text-float'}[navText]">Tools</a></li>
             <li><a id="contact-sphere" class="navbar-text" ng-class="{true: 'navbar-text', false: 'navbar-text-float'}[navText]">Contact</a></li>
@@ -42,7 +42,7 @@
         <!--/.nav-collapse -->
       </div>
     </nav>
-    <section id="mainControlSection" style="pointer-events:all;">
+    <section id="mainControlSection" style="pointer-events:all;" ng-controller="CanvasCtrl">
       <div id="greeting-section" class="container">
         <canvas id="canvas"></canvas>
         <div>
@@ -124,9 +124,9 @@
       </div>
       <!-- <div class="container-parallax"></div> -->
     </div>
-
-    <div class="main-container">
-      <div ng-view="" class="index "></div>
+    
+    <div id="projects" class="main-container">
+      <div ng-view="" class="index " ng-controller="BlockCtrl"></div>
     </div>
     
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->

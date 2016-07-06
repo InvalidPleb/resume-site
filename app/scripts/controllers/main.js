@@ -12,6 +12,27 @@
 	 
 	angular.module('resumeApp')
 
+		.directive('mainBlock', function(){
+		    return {
+		        scope: {
+		          blockInfo: '=info'
+		        },
+		        restrict: 'AEC',
+		        templateUrl: '/views/blockdir.html',
+		        replace: true
+		    };
+		})
+		.directive('toolBlock', function(){
+		    return {
+		        scope: {
+		          toolInfo: '=info'
+		        },
+		        restrict: 'AEC',
+		        templateUrl: '/views/tooldir.html',
+		        replace: true
+		    };
+		})
+
 		.directive("scroll", function ($window) {
 		    return function(scope, element, attrs) {
 		        angular.element($window).bind("scroll", function() {
@@ -25,10 +46,49 @@
 		    };
 		})
 
-	  	.controller('MainCtrl', function($http, $q, $scope) {
+	    .factory('maths', function() {
+	    	return {
+	    		add: function(a, b) {
+	    				return a + b;
+	    		     },
+	    		getRandom: function(min, max) {
+						  	return Math.random() * (max - min) + min;
+						},
+				numRound: function(value,dec){
+					        value=Math.floor(value * dec + 0.05) / dec;
+					        return(value);
+		    			},
+				setArr: function(arr, num) {
+							arr = [];
+						  	for (let i=0; i < num; i++) {arr.push(i);}
+						  	return arr;
+						},
+			    openLink: function(url) {
+							let link = window.open(url, '_blank');
+							return link.focus();
+						},
+			};
+	    })
 
-	  		// -------- Block Template Instance Data -------- //
+	    .directive("navScroll", 
+	      function() {
+	        return {
+	          restrict: "A",
+	          link: function(scope, element, attrs) {
+	          	let top = $('#' + attrs.ngModel + '').offset().top;
+	  			return $(element).click(function() {
+				    $('html,body').animate({
+				        scrollTop: (top - 55)
+				    },'slow');
+				});
+	          }
+	        };
+	      })
 
+
+	    .controller('BlockCtrl', function($scope, $rootScope) {
+
+	    	// -------- Block Template Instance Data -------- //
 	  		$scope.darkreader = {
 
 	  			attr:  {
@@ -590,6 +650,10 @@
 	  					}
 	  		};
 
+	    })
+
+	  	.controller('GraphCtrl', function($http, $q, $scope, maths) {
+
 			// -------- Github AJAX -------- //
 		  	var repoContainer = [];
 		  	var commitDaily = {};
@@ -622,6 +686,8 @@
 
 		  	// -------- AJAX Callback -------- //
 
+		  	
+
 			var calls = getGithubStuff();
 		  	$q.all([calls]).then(function(){
 		  		
@@ -641,10 +707,10 @@
 		  		    streakArr = streakData(allDayCommits),
 		  		    gotStreaks = getStreaks(streakArr);
 
-		  		$scope.months = setArr($scope.months, 12);
-				$scope.weeks = setArr($scope.weeks, 52);
-				$scope.days = setArr($scope.days, 7);
-				$scope.repos = setArr($scope.repos, 6);
+		  		$scope.months = maths.setArr($scope.months, 12);
+				$scope.weeks = maths.setArr($scope.weeks, 52);
+				$scope.days = maths.setArr($scope.days, 7);
+				$scope.repos = maths.setArr($scope.repos, 6);
 				$scope.dayNames = ["S", "M", "T", "W", "T", "F", "S",];
 
 
@@ -656,7 +722,7 @@
 		  				days: allDayCommits,
 		  				weeks: allWeekCommits,
 		  				thisWeek: allWeekCommits[51],
-		  				thisYear: allWeekCommits.reduce(add, 0),
+		  				thisYear: allWeekCommits.reduce(maths.add, 0),
 		  				currStreak: gotStreaks[0],
 		  				longestStreak: gotStreaks[1],
 		  			},
@@ -731,163 +797,8 @@
 
 		  	});
 
-			// -------- General Functions -------- //
 
-			function add(a, b) {
-		      	return a + b;
-		  	}
-
-		  	function openLink(url) {
-				let link = window.open(url, '_blank');
-				return link.focus();
-			}
-
-			function setArr(arr, num) {
-				arr = [];
-			  	for (let i=0; i < num; i++) {arr.push(i);}
-			  	return arr;
-			}
-
-		  	// -------- Background Parallax -------- //
-
-		  	function parallax(image, offsetX, offsetY) {
-		  		let ypos = window.pageYOffset;
-		  		return image.css('transform', 'translate3d(' + (ypos * offsetX) + 'px,' + (ypos * offsetY) + 'px,0px)');
-		  	}
-
-		  	$(window).scroll(function(){
-		  		return parallax($('.padding'), 0, -0.4);
-		  	});
-
-
-		  	// -------- Nav Functions --------- //
-
-	  		function pageDirect(start, end, offset) {
-	  			let top = $(end).offset().top;
-	  			return $(start).click(function() {
-				    $('html,body').animate({
-				        scrollTop: (top - offset)
-				    },'slow');
-				});
-	  		}
-
-	  		pageDirect("#project-sphere", "#projects", 55);
-	  		pageDirect("#github-sphere", "#github", 55);
-	  		pageDirect("#tools-sphere", "#tools", 55);
-	  		pageDirect("#contact-sphere", "#contact", 55);
-	  		pageDirect("#home", "#greeting-section", 100);
-
-		  	
-		  	// -------- Canvas -------- //
-		  	
-		  	var canvas = document.getElementById("canvas"),
-		  	    mainControlSection = document.getElementById("mainControlSection"),
-		  	    sphere = document.getElementsByClassName("sphere"),
-		  	    sphereTxt = document.getElementsByClassName("sphere-text"),
-		  	    ctx = canvas.getContext("2d"),
-			    painting = false;
-
-			$(window).resize(function() {
-			  fitToContainer(canvas);
-			});
-			
-			function fitToContainer(canvas){
-			  canvas.style.width ='100%';
-			  canvas.style.height ='100%';
-			  canvas.width  = canvas.offsetWidth;
-			  canvas.height = canvas.offsetHeight;
-			}
-
-			fitToContainer(canvas);
-
-			function getMousePos(canvas, evt) {
-			    let rect = canvas.getBoundingClientRect();
-			    return {
-			      x: evt.clientX - rect.left,
-			      y: evt.clientY - rect.top
-			    };
-			}
-
-			function numRound(value,dec){
-		        value=Math.floor(value * dec + 0.05) / dec;
-		        return(value);
-		    }
-
-		    function getRandomArbitrary(min, max) {
-			  return Math.random() * (max - min) + min;
-			}
-
-			var painting = false;
-
-			function drawCircle(x, y, rad, i) {
-
-				if (i === 20) {
-					i = 0;
-				}
-
-				if (i === 0) {
-					var posx = getRandomArbitrary(0, canvas.width),
-			            posy = getRandomArbitrary(0, canvas.height);
-				} else {
-					var posx = x,
-					    posy = y;
-				}
-
-				i++;
-
-				//pos = getMousePos(canvas, e),
-				if (rad < getRandomArbitrary(50, 550)) {
-					painting = true;
-					rad = rad + 4;
-					setTimeout(function(){
-						drawCircle(x, y, rad, i);
-					}, 60);
-
-				} else {
-
-					painting = false;
-					
-					x = getRandomArbitrary(0, canvas.width);
-					y = getRandomArbitrary(0, canvas.height);
-					fadeOut();
-					setTimeout(function(){
-						setTimeout(function(){
-							drawCircle(x, y, rad, i);
-						}, 60);
-					}, 2000);
-					rad = 0;
-				}
-
-			    let startAngle = 0,
-		            endAngle = Math.PI * 2,
-		            rgbR = numRound((x * 0.1) + 70, 1),
-				    rgbG = numRound((y * 0.1) + 100, 1),
-				    rgbB = numRound((y * 0.1) * 5, 1);
-	
-		        ctx.fillStyle = 'rgba(' + rgbR + ',' + rgbG + ',' + rgbB + ',1)';
-		        ctx.beginPath();
-		        ctx.arc(x, y, rad, startAngle, endAngle, true);
-		        ctx.fill();
-
-			}
-
-			//drawCircle(getRandomArbitrary(0, canvas.width), getRandomArbitrary(0, canvas.height), 10, 0);
-
-			function fadeOut() {
-
-			    ctx.fillStyle = "rgba(24,24,24,0.3)";
-			    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-			    if (!painting) {
-			    	var screenFill = setTimeout(function(){
-					  fadeOut();
-					},60);
-
-			    }
-			}
-			//fadeOut();
-			    	
-		  	// -------------- Github Graph -------------- //
+			// -------------- Github Graph -------------- //
 
 
 		  	// Setting up D3
@@ -1058,13 +969,15 @@
 						}).on("click", function() {
 
 							// Opens a link to the repository that is represented by the pie segment
-							openLink("https://github.com/InvalidPleb/" + repoName);
+							maths.openLink("https://github.com/InvalidPleb/" + repoName);
 						});
 					i++;
 					return innerRing(data, repoContainer, colorObj[i], i);
 				}
 			}
-			
+
+
+
 			// -------- Data Sorting Functions -------- // 
 
 			function getDayCommits(inputArr) {
@@ -1102,7 +1015,7 @@
 		  				}
 		  				weekCurrTotal[i].push(weekCurr[j].total);
 		  			}
-		  			outputRepos[i] = (weekCurrTotal[i].reduce(add, 0));
+		  			outputRepos[i] = (weekCurrTotal[i].reduce(maths.add, 0));
 		  		}
 		  		return [outputRepos, outputDays];
 	  		}
@@ -1147,7 +1060,7 @@
 		  			}
 
 		  			daySumsCurr = inputArr[i];
-		  			weekCommits.push(inputArr[i].reduce(add, 0));
+		  			weekCommits.push(inputArr[i].reduce(maths.add, 0));
 
 		  			for (let l=0, m=daySumsCurr.length; l < m; l++) {
 
@@ -1217,5 +1130,119 @@
 				}
 				return [currStreak, longestStreak];
 			}
+
+		})
+
+		.controller('CanvasCtrl', function($scope, maths) {
+
+			// -------- Canvas -------- //
+		  	var canvas = document.getElementById("canvas"),
+		  	    mainControlSection = document.getElementById("mainControlSection"),
+		  	    sphere = document.getElementsByClassName("sphere"),
+		  	    sphereTxt = document.getElementsByClassName("sphere-text"),
+		  	    ctx = canvas.getContext("2d"),
+			    painting = false;
+
+			$(window).resize(function() {
+			  fitToContainer(canvas);
+			});
+			
+			function fitToContainer(canvas){
+			  canvas.style.width ='100%';
+			  canvas.style.height ='100%';
+			  canvas.width  = canvas.offsetWidth;
+			  canvas.height = canvas.offsetHeight;
+			}
+
+			fitToContainer(canvas);
+
+			function getMousePos(canvas, evt) {
+			    let rect = canvas.getBoundingClientRect();
+			    return {
+			      x: evt.clientX - rect.left,
+			      y: evt.clientY - rect.top
+			    };
+			}
+
+			var painting = false;
+
+			function drawCircle(x, y, rad, i) {
+
+				if (i === 20) {
+					i = 0;
+				}
+
+				if (i === 0) {
+					var posx = maths.getRandom(0, canvas.width),
+			            posy = maths.getRandom(0, canvas.height);
+				} else {
+					var posx = x,
+					    posy = y;
+				}
+
+				i++;
+
+				//pos = getMousePos(canvas, e),
+				if (rad < maths.getRandom(50, 550)) {
+					painting = true;
+					rad = rad + 4;
+					setTimeout(function(){
+						drawCircle(x, y, rad, i);
+					}, 60);
+
+				} else {
+
+					painting = false;
+					
+					x = maths.getRandom(0, canvas.width);
+					y = maths.getRandom(0, canvas.height);
+					fadeOut();
+					setTimeout(function(){
+						setTimeout(function(){
+							drawCircle(x, y, rad, i);
+						}, 60);
+					}, 2000);
+					rad = 0;
+				}
+
+			    let startAngle = 0,
+		            endAngle = Math.PI * 2,
+		            rgbR = maths.numRound((x * 0.1) + 70, 1),
+				    rgbG = maths.numRound((y * 0.1) + 100, 1),
+				    rgbB = maths.numRound((y * 0.1) * 5, 1);
+
+		        ctx.fillStyle = 'rgba(' + rgbR + ',' + rgbG + ',' + rgbB + ',1)';
+		        ctx.beginPath();
+		        ctx.arc(x, y, rad, startAngle, endAngle, true);
+		        ctx.fill();
+
+			}
+			//drawCircle(maths.getRandom(0, canvas.width), maths.getRandom(0, canvas.height), 10, 0);
+			function fadeOut() {
+
+			    ctx.fillStyle = "rgba(24,24,24,0.3)";
+			    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+			    if (!painting) {
+			    	var screenFill = setTimeout(function(){
+					  fadeOut();
+					},60);
+
+			    }
+			}
+			//fadeOut();
+
+		  	// -------- Background Parallax -------- //
+
+		  	function parallax(image, offsetX, offsetY) {
+		  		let ypos = window.pageYOffset;
+		  		return image.css('transform', 'translate3d(' + (ypos * offsetX) + 'px,' + (ypos * offsetY) + 'px,0px)');
+		  	}
+
+		  	$(window).scroll(function(){
+		  		return parallax($('.padding'), 0, -0.4);
+		  	});
+
 		});
+
 })();
