@@ -29,14 +29,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a id="home" class="navbar-text navbar-brand" ng-class="{true: 'navbar-text', false: 'navbar-text-float'}[navText]">Tucker Tatum</a>
+          <a id="home" nav-scroll ng-model="home" class="navbar-text navbar-brand" ng-class="{true: 'navbar-text', false: 'navbar-text-float'}[navText]">Tucker Tatum</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav">
             <li><a  id="project-sphere" nav-scroll ng-model="projects" class="navbar-text" ng-class="{true: 'navbar-text', false: 'navbar-text-float'}[navText]">Work</a></li>
-            <li><a id="github-sphere" class="navbar-text" ng-class="{true: 'navbar-text', false: 'navbar-text-float'}[navText]">Development</a></li>
-            <li><a id="tools-sphere" class="navbar-text" ng-class="{true: 'navbar-text', false: 'navbar-text-float'}[navText]">Tools</a></li>
-            <li><a id="contact-sphere" class="navbar-text" ng-class="{true: 'navbar-text', false: 'navbar-text-float'}[navText]">Contact</a></li>
+            <li><a id="github-sphere" nav-scroll ng-model="github" class="navbar-text" ng-class="{true: 'navbar-text', false: 'navbar-text-float'}[navText]">Development</a></li>
+            <li><a id="tools-sphere" nav-scroll ng-model="tools" class="navbar-text" ng-class="{true: 'navbar-text', false: 'navbar-text-float'}[navText]">Tools</a></li>
+            <li><a id="contact-sphere" nav-scroll ng-model="contact" class="navbar-text" ng-class="{true: 'navbar-text', false: 'navbar-text-float'}[navText]">Contact</a></li>
           </ul>
         </div>
         <!--/.nav-collapse -->
@@ -125,8 +125,271 @@
       <!-- <div class="container-parallax"></div> -->
     </div>
     
-    <div id="projects" class="main-container">
-      <div ng-view="" class="index " ng-controller="BlockCtrl"></div>
+    <div class="main-container">
+      <div class="index" ng-controller="BlockCtrl">
+        <section id="projects" class="projects-container">
+          <div class="projects-title-section">
+              <div class="block-title-section-text">My projects</div>
+          </div>
+          <div id="runner-calc-container" class="seperator project-site-container">
+              <div class="row">
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+                  <div class="projects-block-title col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                      <div class="title-text">Runner Calculator</div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+              </div>
+              <div class="row">
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+                  <div class="site-container col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                      <div id="runner-calc-desktop"></div>
+                      <p class="site-container-txt">Large</p>
+                  </div>
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+                  <div class="site-container-tablet col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                      <div id="runner-calc-tablet"></div>
+                      <p class="site-container-txt-tablet">Medium</p>
+                  </div>
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+                  <div class="site-container-mobile col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                      <div id="runner-calc-mobile"></div>
+                      <p class="site-container-txt-mobile">Small</p>
+                  </div>
+              </div>
+              <div class="runner-calc-text project-desc-container"> 
+                  <p>&nbsp; &nbsp; &nbsp; &nbsp;</p>
+              </div>
+          </div>
+          <div class="seperator skills-container" style="height: 350px;">
+              <div class="row">
+                  
+                  <div class="block-titles col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                      <div class="title-text">Projects I've contributed to</div>
+                  </div>
+              </div>
+              <div class="row preprocessors">
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+                  <main-block info="darkreader"></main-block>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+                  <main-block info="tmtheme"></main-block>
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+              </div>
+          </div>
+      </section>
+      <section id="github" class="graph-container">
+          <div class="projects-title-section">
+              <div class="block-title-section-text">My live Github activity</div>
+          </div>
+      </section>
+      <section class="graph-container" ng-controller="GraphCtrl">
+          <div class="loadingScreen fadable" ng-hide="loading == false" ng-model="loading">
+              <div class="loading"></div>
+          </div>
+          <div class="projects-title-section">
+              <div class="block-title-section-text">My live Github activity</div>
+          </div>
+          <div class="d3-container">
+              <div class="animation-container">
+                  <div class="month-labels">
+                      <div id="{{dataObj.months[month]}}" ng-repeat="month in months track by $index">{{dataObj.months[month]}}</div>
+                  </div>
+                  <div class="day-labels">
+                      <div id="{{dataObj.days[graphDays]}}" ng-repeat="graphDays in days track by $index">{{dataObj.days[graphDays]}}</div>
+                  </div>
+                  <div>
+                      <div class="line" ng-repeat="lines in [0, 1, 2] track by $index"></div>
+                  </div>
+                  <div>
+                      <div class="line-title">
+                          <p class="tooltipText">Weeks</p>
+                      </div>
+                      <div class="line-title">
+                          <p class="tooltipText">Repositories</p>
+                      </div>
+                      <div class="line-title">
+                          <p class="tooltipText">Days</p>
+                      </div>
+                  </div>
+                  <div>
+                      <div class="repoTooltip" ng-repeat="repo in repos track by $index">
+                          <p class="repo-name">{{dataObj.repositories.names[repo]}}</p>
+                          <p> {{dataObj.repositories.commits[repo]}} commits</p>
+                          <p>Click to view on Github</p>
+                      </div>
+                  </div>
+                  <div>
+                      <div class="pie-tooltip-hover" ng-repeat="week in weeks track by $index">
+                          <p class="day-tooltip-title">Week {{week + 1}}</p>
+                          <p class="day-tooltip-label"> &nbsp; &nbsp; Day &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Commits</p>
+                          <div class="day-tooltip-container">
+                              <p class="day-tooltip" ng-repeat="day in days track by $index"> {{dayNames[day]}} |<span>{{dataObj.commits.days[week][day]}}</span></p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="graph-description col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="row">
+                      <div class="col-lg-2 col-md-0 col-sm-0 col-xs-0"></div>
+                      <div class="graph-desc-section col-lg-4 col-md-6 col-sm-6 col-xs-6">
+                          <div class="block-center">
+                              <span>Contributions</span>
+                          </div>
+                      </div>
+                      <div class="graph-desc-section col-lg-4 col-md-6 col-sm-6 col-xs-6">
+                          <div class="block-center">
+                              <span>Repositories</span>
+                          </div>
+                      </div>
+                      <div class="col-lg-2 col-md-0 col-sm-0 col-xs-0"></div>
+                  </div>
+                  <div class="row contribution-container">
+                      <div class="col-lg-2 col-md-0 col-sm-0 col-xs-0"></div>
+                      <div class="contribution-info col-lg-2 col-md-3 col-sm-3 col-xs-3">
+                          <p class="contribution-text-right">This week</p>
+                          <p class="contribution-text-right">This year</p>
+                          <p class="contribution-text-right">Current Streak</p>
+                          <p class="contribution-text-right">Longest Streak</p>
+                      </div>
+                      <div class="contribution-info col-lg-2 col-md-3 col-sm-3 col-xs-3">
+                          <p class="contribution-text-left"><span>{{dataObj.commits.thisWeek}}</span> commits</p>
+                          <p class="contribution-text-left"><span>{{dataObj.commits.thisYear}}</span> commits</p>
+                          <p class="contribution-text-left"><span>{{dataObj.commits.currStreak}}</span> days</p>
+                          <p class="contribution-text-left"><span>{{dataObj.commits.longestStreak}}</span> days</p>
+                      </div>
+                      <div class="contribution-info col-lg-2 col-md-3 col-sm-3 col-xs-3">
+                          <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.runnerCalc}}">Runner Calc</a></p>
+                          <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.sips}}">Sips</a></p>
+                          <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.resumeSite}}">Resume</a></p>
+                          <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.darkReader}}">Dark Reader</a></p>
+                          <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.tmTheme}}">TmTheme</a></p>
+                      </div>
+                      <div class="contribution-info col-lg-2 col-md-3 col-sm-3 col-xs-3">
+                          <p class="contribution-text-left"><span>{{dataObj.repositories.runnerCalc}}</span> commits</p>
+                          <p class="contribution-text-left"><span>{{dataObj.repositories.sips}}</span> commits</p>
+                          <p class="contribution-text-left"><span>{{dataObj.repositories.resumeSite}}</span> commits</p>
+                          <p class="contribution-text-left"><span>{{dataObj.repositories.darkReader}}</span> commits</p>
+                          <p class="contribution-text-left"><span>{{dataObj.repositories.tmTheme}}</span> commit</p>
+                      </div>
+                      <div class="col-lg-2 col-md-0 col-sm-0 col-xs-0"></div>
+                  </div>
+                  <div id="graph-para" class="row tools-desc-container">
+                      <p>&nbsp; &nbsp; &nbsp; &nbsp; I've been pushing my code to Github every day for almost a year in order to make all of my development activity public. The graph above visually displays some of that information using D3.js and is populated upon refresh with live data requested from the Github API. You can hover over the outer week ring to reveal the daily data for that week, and over the inner pie chart to see information about my specific repositories. </p>
+                      <p>&nbsp; &nbsp; &nbsp; &nbsp; </p>
+                  </div>   
+              </div>
+          </div>
+      </section>
+
+      <!-- Tools Section-->
+      <section id="tools" class="block-container" >
+          <div class="projects-title-section">
+              <div class="block-title-section-text">Tools I use</div>
+          </div>
+        <div class="block-group">
+          
+          <div class="skills-container">
+              <div class="row">
+                  <div class="block-titles col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                      <div class="title-text">Frameworks</div>
+                  </div>
+              </div>
+              <div class="row frameworks">
+                  <main-block info="angular"></main-block>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-1"></div>
+                  <main-block info="jQuery"></main-block>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-1"></div>
+                  <main-block info="bootstrap"></main-block>
+              </div>
+              <div id="frameworks" class="tools-desc-container">
+                  <p >&nbsp; &nbsp; &nbsp; &nbsp; I use Angular.js and JQuery as my javascript frameworks of choice, although I mostly use jQuery in the form of jqLite, which is compact version of it built into Angular. I started using jQuery soon after I began learning web development and a couple months after that I began using Angular to replace much of the functionality of jQuery in my code. Angular's data binding, services, directives, and single-page application capabilities gave me a lot more power as a new developer than I otherwise would have with jQuery or plain JS.</p>
+                  <p>&nbsp; &nbsp; &nbsp; &nbsp; I also use Bootstrap for its easy table layouts and occasionally for its built-in classes, but I usually tend to write my own CSS classes in lieu of the ones it offers.</p>
+              </div>
+          </div>
+          <div class="seperator"></div>
+          <div class="skills-container">
+              <div class="row">
+                  <div class="block-titles col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                      <div class="title-text">Development Tools</div>
+                  </div>
+              </div>
+              <div class="row dev-tools">
+                  <main-block info="git"></main-block>
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0"></div>
+                  <main-block info="yeoman"></main-block>
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0"></div>
+                  <main-block info="grunt"></main-block>
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0"></div>
+                  <main-block info="bower"></main-block>
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0"></div>
+              </div>
+              <div id="dev-tools" class="tools-desc-container">
+                  <p>&nbsp; &nbsp; &nbsp; &nbsp; With its popularity and synchronization with Github, as well as fact that I develop on GNU/Linux, Git was an easy choice as my version control system. Yeoman was one of the tools that taught me the most about web development because it sets up the basic structure of the app directory and many of the files that are needed to make the app, including files that new developers might not even know about. Yeoman also introduced me to Grunt and Bower, which are very powerful time and bite savers. Grunt's workflow automation greatly sped up my development time and enabled me to use a bunch of useful Grunt tasks like autoprefixer and JSHint as well as preprocessors such as Sass and CoffeeScript with ease.</p>
+              </div>
+          </div>
+          <div class="seperator"></div>
+          <div class="skills-container">
+              <div class="row">
+                  <div class="block-titles col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                      <div class="title-text">Design Tools</div>
+                  </div>
+              </div>
+              <div class="row frameworks">
+                  <main-block info="gimp"></main-block>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-1"></div>
+                  <main-block info="balsamiq"></main-block>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-1"></div>
+                  <main-block info="d3"></main-block>
+              </div>
+              <div id="design-tools" class="tools-desc-container">
+                  <p>&nbsp; &nbsp; &nbsp; &nbsp; I use Gimp for the majority of my image editing needs, but for my design workflow I also use Balsamiq. My workflow begins with brainstorming rough Balsamiq mockups until I get a basic idea of what the layout of the project will be. I then recreate it in Gimp and start playing around with the specifics of the design, such as the colors, text, shadows, etc. I then do a final recreation of the layout in the browser and make any minor adjustments needed. I like to do the majority of my designing outside of the browser so that the limitations of HTML/CSS don't dictate the outcome of the design too much.</p>
+                  <p>&nbsp; &nbsp; &nbsp; &nbsp; I use D3 for data visualization such as the circular Github graph in the section above. It's a great tool and does some tricks that are normally difficult to do with just CSS/JS.</p>
+              </div>
+          </div>
+          <div class="seperator"></div>
+          <div class="skills-container">
+              <div class="row">
+                  <div class="block-titles col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                      <div class="title-text">Preprocessors</div>
+                  </div>
+              </div>
+              <div class="row preprocessors">
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-1"></div>
+                  <main-block info="sass"></main-block>
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-3"></div>
+                  <main-block info="cscript"></main-block>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-2"></div>
+              </div>
+              <div id="preprocessors" class="tools-desc-container">
+                  <p>&nbsp; &nbsp; &nbsp; &nbsp; I recently started using Sass and have found it a great tool that makes CSS a ton less tedious and repetitive and a lot more like a Turing-complete programming language. CoffeeScript's syntax is a lot of fun to program in and has cut down significantly on my number of lines of code in some of my projects. I love these tools but am also paradoxically swayed by the argument that the more external libraries I use the greater the chance my app will be dependent upon deprecated libraries in the future. For that reason I don't always compile my code from these languages.</p>
+              </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section-->
+      <section id="contact" class="contacts-container" >
+          <div class="projects-title-section">
+              <div class="block-title-section-text">Contact me</div>
+          </div>
+          <div class="block-group">
+              <div class="contact-type-container">
+                  <div class="row frameworks">
+                      <main-block info="gmail"></main-block>
+                      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-1"></div>
+                      <main-block info="linkedin"></main-block>
+                      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-1"></div>
+                      <main-block info="githubsocial"></main-block>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+
+
+
+
+
+      </div>
     </div>
     
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->

@@ -654,6 +654,19 @@
 
 	  	.controller('GraphCtrl', function($http, $q, $scope, maths) {
 
+	  		/*
+			$(window).scroll(function(e){
+					if (window.scrollY === 0) {
+						$('.navbar-text').css('height', '69px');
+						$('.navbar-text').css('padding-top', '23px');
+					} else {
+						$('.navbar-text').css('height', '49px');
+						$('.navbar-text').css('padding-top', '12px');
+					}
+				});
+
+			*/
+
 			// -------- Github AJAX -------- //
 		  	var repoContainer = [];
 		  	var commitDaily = {};
@@ -690,6 +703,8 @@
 
 			var calls = getGithubStuff();
 		  	$q.all([calls]).then(function(){
+
+		  		console.log("yo");
 		  		
 		        $scope.loading = false;
 
