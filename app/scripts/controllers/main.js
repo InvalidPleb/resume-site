@@ -46,6 +46,20 @@
 		    };
 		})
 
+		.directive("navScroll", function() {
+        	return {
+	          	restrict: "A",
+	          	link: function(scope, element, attrs) {
+	          		let top = $('#' + attrs.ngModel + '').offset().top;
+	  				return $(element).click(function() {
+				    	$('html,body').animate({
+				        scrollTop: (top - 55)
+				    	},'slow');
+					});
+	          	}
+        	};
+	    })
+
 	    .factory('maths', function() {
 	    	return {
 	    		add: function(a, b) {
@@ -70,21 +84,147 @@
 			};
 	    })
 
-	    .directive("navScroll", 
-	      function() {
-	        return {
-	          restrict: "A",
-	          link: function(scope, element, attrs) {
-	          	let top = $('#' + attrs.ngModel + '').offset().top;
-	  			return $(element).click(function() {
-				    $('html,body').animate({
-				        scrollTop: (top - 55)
-				    },'slow');
-				});
-	          }
-	        };
-	      })
+	    .factory('dataParse', function(maths) {
+	    	return {
+	    		getDayCommits: function (inputArr) {
 
+						  			let inputArrSlice = [],
+							  		    weekCurrTotal = [],
+							  		    outputDays = [],
+							  		    outputRepos = [];
+
+							  		for (let i=0; i < 4; i++) {
+							  			inputArrSlice[i] = inputArr[i+1];
+							  		}
+							  		
+							  		for (let i=0, n=inputArrSlice.length; i < n; i++) {
+
+							  			let weekCurr = inputArrSlice[i];
+							  			weekCurrTotal[i] = [];
+
+							  			for (let j=0; j < 52; j++) {
+
+							  				if (outputDays[j] === undefined) {
+							  					outputDays[j] = [];
+							  					outputDays[j].push(weekCurr[j].days);
+							  				} else {
+							  					outputDays[j].push(weekCurr[j].days);
+							  				}
+							  				weekCurrTotal[i].push(weekCurr[j].total);
+							  			}
+							  			outputRepos[i] = (weekCurrTotal[i].reduce(maths.add, 0));
+							  		}
+							  		return [outputRepos, outputDays];
+						  		},
+				sumDayCommits: function(inputArr) {
+
+							  		let daySums = [];
+
+							  		for (let i=0, n=inputArr.length; i < n; i++) {
+
+							  			let weekCurr = inputArr[i];
+
+							  			if (daySums[i] === undefined) {
+							  				daySums[i] = [];
+							  			}
+
+							  			for (let j=0, n=weekCurr.length; j < n; j++) {
+							  				let dayCurr = weekCurr[j];
+							  				for (let l=0, m=dayCurr.length; l < m; l++) {
+
+							  					daySums[i].push(dayCurr[l]);
+							  				}
+							  			}
+							  		}
+							  		return daySums;
+						  		},
+				parseCommits: function(inputArr) {
+
+					  			let dayArr = [],
+					  			    weekCommits = [],
+						  		    daySumsCurr = [],
+						  		    dayArrCurr = [],
+						  		    j = 0;
+
+						  		for (let i=0, n=inputArr.length; i < n; i++) {
+
+						  			if (dayArr[i] === undefined) {
+
+						  				dayArr[i] = [];
+
+						  			}
+
+						  			daySumsCurr = inputArr[i];
+						  			weekCommits.push(inputArr[i].reduce(maths.add, 0));
+
+						  			for (let l=0, m=daySumsCurr.length; l < m; l++) {
+
+						  				if (l % 7 === 0) {
+							  				j = 0;
+							  			} else {
+							  				j++;
+							  			}
+
+						  				dayArrCurr = dayArr[i];
+						  				if (dayArrCurr[j] === undefined) {
+
+						  					dayArrCurr[j] = daySumsCurr[l];
+						  				} else {
+
+						  					dayArrCurr[j] = (dayArrCurr[j] + daySumsCurr[l]);
+						  				}
+						  			}
+						  		}
+						  		return [weekCommits, dayArr];
+					  		},
+			    streakData: function(inputArr) {
+
+					  			let streakArr = [];
+					  			for (let i=0, n=inputArr.length; i < n; i++) {
+
+					  				let currInputArr = inputArr[i];
+
+					  				for (let j=0, m=currInputArr.length; j < m; j++) {
+
+					  					streakArr.push(currInputArr[j]);
+					  				}
+					  			}
+					  			return streakArr;
+					  		},
+				getStreaks: function(inputArr) {
+
+								let streakCounter = 0,
+								    longestStreak = 0,
+								    currStreak = 0,
+								    endCurrStreak = false;
+
+								for (let i = (inputArr.length - 1); i > 0; i--) {
+
+									if (inputArr[i] === 0) {
+
+										if (streakCounter === 0) {
+
+										} else {
+
+											if (currStreak > longestStreak) {
+												longestStreak = currStreak;
+											}
+											endCurrStreak = true;
+											streakCounter = 0;
+										}
+
+									} else {
+
+										if (endCurrStreak === false) {
+											currStreak = streakCounter;
+										}
+										streakCounter++;
+									}
+								}
+								return [currStreak, longestStreak];
+							},
+	    	}
+	    })
 
 	    .controller('BlockCtrl', function($scope, $rootScope) {
 
@@ -652,7 +792,7 @@
 
 	    })
 
-	  	.controller('GraphCtrl', function($http, $q, $scope, maths) {
+	  	.controller('GraphCtrl', function($http, $q, $scope, maths, dataParse) {
 
 	  		/*
 			$(window).scroll(function(e){
@@ -708,19 +848,19 @@
 		  		
 		        $scope.loading = false;
 
-		  		var gotDayCommits = getDayCommits(commitDaily),
+		  		var gotDayCommits = dataParse.getDayCommits(commitDaily),
 		  		    repoCommits = gotDayCommits[0],
 		  		    dayCommits = gotDayCommits[1];
 		  		
 		  		repoCommits.push(1);
 		  		repoCommits.unshift(3);
 
-		  		var daySums = sumDayCommits(dayCommits),
-		  		    gotParsedCommits = parseCommits(daySums),
+		  		var daySums = dataParse.sumDayCommits(dayCommits),
+		  		    gotParsedCommits = dataParse.parseCommits(daySums),
 		  		    allWeekCommits = gotParsedCommits[0],
 		  		    allDayCommits = gotParsedCommits[1],
-		  		    streakArr = streakData(allDayCommits),
-		  		    gotStreaks = getStreaks(streakArr);
+		  		    streakArr = dataParse.streakData(allDayCommits),
+		  		    gotStreaks = dataParse.getStreaks(streakArr);
 
 		  		$scope.months = maths.setArr($scope.months, 12);
 				$scope.weeks = maths.setArr($scope.weeks, 52);
@@ -990,162 +1130,6 @@
 					return innerRing(data, repoContainer, colorObj[i], i);
 				}
 			}
-
-
-
-			// -------- Data Sorting Functions -------- // 
-
-			function getDayCommits(inputArr) {
-
-	  			let inputArrSlice = [],
-		  		    weekCurrTotal = [],
-		  		    outputDays = [],
-		  		    outputRepos = [];
-
-		  		inputArrSlice[0] = inputArr[1];
-				inputArrSlice[1] = inputArr[2];
-				inputArrSlice[2] = inputArr[3];
-
-		  		/*
-
-		  		var b = inputArrSlice[0];
-
-		  		var c = b[0];
-		  		b.unshift(c);
-
-		  		*/
-
-		  		for (let i=0, n=inputArrSlice.length; i < n; i++) {
-
-		  			let weekCurr = inputArrSlice[i];
-		  			weekCurrTotal[i] = [];
-
-		  			for (let j=0; j < 52; j++) {
-
-		  				if (outputDays[j] === undefined) {
-		  					outputDays[j] = [];
-		  					outputDays[j].push(weekCurr[j].days);
-		  				} else {
-		  					outputDays[j].push(weekCurr[j].days);
-		  				}
-		  				weekCurrTotal[i].push(weekCurr[j].total);
-		  			}
-		  			outputRepos[i] = (weekCurrTotal[i].reduce(maths.add, 0));
-		  		}
-		  		return [outputRepos, outputDays];
-	  		}
-
-	  		function sumDayCommits(inputArr) {
-
-		  		let daySums = [];
-
-		  		for (let i=0, n=inputArr.length; i < n; i++) {
-
-		  			let weekCurr = inputArr[i];
-
-		  			if (daySums[i] === undefined) {
-		  				daySums[i] = [];
-		  			}
-
-		  			for (let j=0, n=weekCurr.length; j < n; j++) {
-		  				let dayCurr = weekCurr[j];
-		  				for (let l=0, m=dayCurr.length; l < m; l++) {
-
-		  					daySums[i].push(dayCurr[l]);
-		  				}
-		  			}
-		  		}
-		  		return daySums;
-	  		}
-
-	  		function parseCommits(inputArr) {
-
-	  			let dayArr = [],
-	  			    weekCommits = [],
-		  		    daySumsCurr = [],
-		  		    dayArrCurr = [],
-		  		    j = 0;
-
-		  		for (let i=0, n=inputArr.length; i < n; i++) {
-
-		  			if (dayArr[i] === undefined) {
-
-		  				dayArr[i] = [];
-
-		  			}
-
-		  			daySumsCurr = inputArr[i];
-		  			weekCommits.push(inputArr[i].reduce(maths.add, 0));
-
-		  			for (let l=0, m=daySumsCurr.length; l < m; l++) {
-
-		  				if (l % 7 === 0) {
-			  				j = 0;
-			  			} else {
-			  				j++;
-			  			}
-
-		  				dayArrCurr = dayArr[i];
-		  				if (dayArrCurr[j] === undefined) {
-
-		  					dayArrCurr[j] = daySumsCurr[l];
-		  				} else {
-
-		  					dayArrCurr[j] = (dayArrCurr[j] + daySumsCurr[l]);
-		  				}
-		  			}
-		  		}
-		  		return [weekCommits, dayArr];
-	  		}
-
-	  		function streakData(inputArr) {
-
-	  			let streakArr = [];
-	  			for (let i=0, n=inputArr.length; i < n; i++) {
-
-	  				let currInputArr = inputArr[i];
-
-	  				for (let j=0, m=currInputArr.length; j < m; j++) {
-
-	  					streakArr.push(currInputArr[j]);
-	  				}
-	  			}
-	  			return streakArr;
-	  		}
-
-	  		function getStreaks(inputArr) {
-
-				let streakCounter = 0,
-				    longestStreak = 0,
-				    currStreak = 0,
-				    endCurrStreak = false;
-
-				for (let i = (inputArr.length - 1); i > 0; i--) {
-
-					if (inputArr[i] === 0) {
-
-						if (streakCounter === 0) {
-
-						} else {
-
-							if (currStreak > longestStreak) {
-								longestStreak = currStreak;
-							}
-							endCurrStreak = true;
-							streakCounter = 0;
-						}
-
-					} else {
-
-						if (endCurrStreak === false) {
-							currStreak = streakCounter;
-						}
-						streakCounter++;
-					}
-				}
-				return [currStreak, longestStreak];
-			}
-
 		})
 
 		.controller('CanvasCtrl', function($scope, maths) {
