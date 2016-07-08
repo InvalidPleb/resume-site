@@ -41,6 +41,28 @@
 		            } else {
 		                scope.navText = false;
 		            }
+
+
+
+		            let projects = $('#projects').offset().top,
+		                development = $('#github').offset().top,
+		                tools = $('#tools').offset().top,
+		                contact = $('#contact').offset().top,    
+	  				    elementOff = ($(element).offset().top + 75);
+
+
+
+	  				if (elementOff > projects && elementOff < development) {
+	  					window.location.hash = '#/' + 'projects';
+	  				} else if (elementOff > development && elementOff < tools) {
+	  					window.location.hash = '#/' + 'development';
+	  				} else if (elementOff > tools && elementOff < (contact - 500)) {
+	  					window.location.hash = '#/' + 'tools';
+	  				} else if (elementOff > (contact - 500)) {
+	  					window.location.hash = '#/' + 'contact';
+	  				} else {
+	  					window.location.hash = '#/';
+	  				}
 		            scope.$apply();
 		        });
 		    };
@@ -53,7 +75,7 @@
 	          		let top = $('#' + attrs.ngModel + '').offset().top;
 	  				return $(element).click(function() {
 				    	$('html,body').animate({
-				        scrollTop: (top - 55)
+				        	scrollTop: (top - 55)
 				    	},'slow');
 					});
 	          	}
@@ -96,7 +118,7 @@
 							  		for (let i=0; i < 4; i++) {
 							  			inputArrSlice[i] = inputArr[i+1];
 							  		}
-							  		
+
 							  		for (let i=0, n=inputArrSlice.length; i < n; i++) {
 
 							  			let weekCurr = inputArrSlice[i];
@@ -223,10 +245,12 @@
 								}
 								return [currStreak, longestStreak];
 							},
-	    	}
+	    	};
 	    })
 
 	    .controller('BlockCtrl', function($scope, $rootScope) {
+
+	    	console.log('yo1');
 
 	    	// -------- Block Template Instance Data -------- //
 	  		$scope.darkreader = {
@@ -793,19 +817,7 @@
 	    })
 
 	  	.controller('GraphCtrl', function($http, $q, $scope, maths, dataParse) {
-
-	  		/*
-			$(window).scroll(function(e){
-					if (window.scrollY === 0) {
-						$('.navbar-text').css('height', '69px');
-						$('.navbar-text').css('padding-top', '23px');
-					} else {
-						$('.navbar-text').css('height', '49px');
-						$('.navbar-text').css('padding-top', '12px');
-					}
-				});
-
-			*/
+	  		console.log('yo2');
 
 			// -------- Github AJAX -------- //
 		  	var repoContainer = [];
@@ -838,8 +850,6 @@
 		  	}
 
 		  	// -------- AJAX Callback -------- //
-
-		  	
 
 			var calls = getGithubStuff();
 		  	$q.all([calls]).then(function(){
@@ -1133,6 +1143,7 @@
 		})
 
 		.controller('CanvasCtrl', function($scope, maths) {
+			console.log('yo3');
 
 			// -------- Canvas -------- //
 		  	var canvas = document.getElementById("canvas"),
