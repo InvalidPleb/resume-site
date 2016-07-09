@@ -32,7 +32,7 @@
 		        replace: true
 		    };
 		})
-
+		
 		.directive("scroll", function ($window) {
 		    return function(scope, element, attrs) {
 		        angular.element($window).bind("scroll", function() {
@@ -41,16 +41,19 @@
 		            } else {
 		                scope.navText = false;
 		            }
+		            scope.$apply();
+		        });
+		    };
+		})
 
-
-
+		.directive("scrollChangeHash", function ($window) {
+		    return function(scope, element, attrs) {
+		        angular.element($window).bind("scroll", function() {
 		            let projects = $('#projects').offset().top,
 		                development = $('#github').offset().top,
 		                tools = $('#tools').offset().top,
 		                contact = $('#contact').offset().top,    
 	  				    elementOff = ($(element).offset().top + 75);
-
-
 
 	  				if (elementOff > projects && elementOff < development) {
 	  					window.location.hash = '#/' + 'projects';
@@ -63,7 +66,6 @@
 	  				} else {
 	  					window.location.hash = '#/';
 	  				}
-		            scope.$apply();
 		        });
 		    };
 		})
@@ -250,15 +252,15 @@
 
 	    .controller('BlockCtrl', function($scope, $rootScope) {
 
-	    	console.log('yo1');
-
 	    	// -------- Block Template Instance Data -------- //
+
 	  		$scope.darkreader = {
 
 	  			attr:  {
 			  				id: "darkreader",
 			  				href: "https://github.com/alexanderby/darkreader",
 			  				nameClass: "block-name-dark",
+			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2"
 	  					},
 
 	  			binding: {
@@ -291,6 +293,7 @@
 			  				id: "tmtheme",
 			  				href: "https://github.com/aziz/tmTheme-Editor",
 			  				nameClass: "block-name-tm",
+			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2"
 	  					},
 
 	  			binding: {
@@ -319,12 +322,113 @@
 	  		};
 
 
+	  		$scope.html = {
+
+	  			attr:  {
+			  				id: "html",
+			  				href: "",
+			  				nameClass: "block-name-def",
+			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2 col-centered"
+	  					},
+
+	  			binding: {
+	  						nameHide: "false",
+				  			paraHide: "true",
+	  						skill1Hide: "true",
+				  			skill2Hide: "true",
+				  			skill3Hide: "true",
+				  			skill4Hide: "true",
+	  					},
+
+	  			skills: {
+	  						skill1: "",
+				  			skill2: "",
+				  			skill3: "",
+				  			skill4: ""
+	  					},
+
+	  			text:   {
+	  						nameTxt: "HTML",
+	  						paraTxt: "",
+				  			txt1: "",
+				  			txt2: "",
+	  					}
+	  		};
+
+	  		$scope.javascript = {
+
+	  			attr:  {
+			  				id: "javascript",
+			  				href: "",
+			  				nameClass: "block-name-def",
+			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2 col-centered"
+	  					},
+
+	  			binding: {
+	  						nameHide: "false",
+				  			paraHide: "true",
+	  						skill1Hide: "true",
+				  			skill2Hide: "true",
+				  			skill3Hide: "true",
+				  			skill4Hide: "true",
+	  					},
+
+	  			skills: {
+	  						skill1: "",
+				  			skill2: "",
+				  			skill3: "",
+				  			skill4: ""
+	  					},
+
+	  			text:   {
+	  						nameTxt: "Javascript",
+	  						paraTxt: "",
+				  			txt1: "",
+				  			txt2: "",
+	  					}
+	  		};
+
+	  		$scope.css = {
+
+	  			attr:  {
+			  				id: "CSS",
+			  				href: "",
+			  				nameClass: "block-name-def",
+			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2 col-centered"
+	  					},
+
+	  			binding: {
+	  						nameHide: "false",
+				  			paraHide: "true",
+	  						skill1Hide: "true",
+				  			skill2Hide: "true",
+				  			skill3Hide: "true",
+				  			skill4Hide: "true",
+	  					},
+
+	  			skills: {
+	  						skill1: "",
+				  			skill2: "",
+				  			skill3: "",
+				  			skill4: ""
+	  					},
+
+	  			text:   {
+	  						nameTxt: "CSS",
+	  						paraTxt: "",
+				  			txt1: "",
+				  			txt2: "",
+	  					}
+	  		};
+
+
 	  		$scope.angular = {
 
 	  			attr:   {
 			  				id: "angular",
 			  				href: "",
 			  				nameClass: "block-name-def",
+			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2"
 	  					},
 
 	  			binding: {
@@ -358,6 +462,7 @@
 			  				id: "jquery",
 			  				href: "",
 			  				nameClass: "block-name-def",
+			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2"
 	  					},
 
 	  			binding: {
@@ -391,6 +496,7 @@
 			  				id: "bootstrap",
 			  				href: "",
 			  				nameClass: "block-name-def",
+			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2"
 	  					},
 
 	  			binding: {
@@ -424,6 +530,7 @@
 			  				id: "git",
 			  				href: "",
 			  				nameClass: "block-name-def",
+			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2"
 	  					},
 
 	  			binding: {
@@ -457,6 +564,7 @@
 			  				id: "yeoman",
 			  				href: "",
 			  				nameClass: "block-name-def",
+			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2"
 	  					},
 
 	  			binding: {
@@ -490,6 +598,7 @@
 			  				id: "grunt",
 			  				href: "",
 			  				nameClass: "block-name-def",
+			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2"
 	  					},
 
 	  			binding: {
@@ -523,6 +632,7 @@
 			  				id: "bower",
 			  				href: "",
 			  				nameClass: "block-name-def",
+			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2"
 	  					},
 
 	  			binding: {
@@ -556,6 +666,7 @@
 			  				id: "sass",
 			  				href: "",
 			  				nameClass: "block-name-def-sass",
+			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2"
 	  					},
 
 	  			binding: {
@@ -589,6 +700,7 @@
 			  				id: "cscript",
 			  				href: "",
 			  				nameClass: "block-name-def-cscript",
+			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2"
 	  					},
 
 	  			binding: {
@@ -622,6 +734,7 @@
 			  				id: "gimp",
 			  				href: "",
 			  				nameClass: "block-name-def",
+			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2"
 	  					},
 
 	  			binding: {
@@ -655,6 +768,7 @@
 			  				id: "balsamiq",
 			  				href: "",
 			  				nameClass: "block-name-def",
+			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2"
 	  					},
 
 	  			binding: {
@@ -688,6 +802,7 @@
 			  				id: "d3",
 			  				href: "",
 			  				nameClass: "block-name-def",
+			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2"
 	  					},
 
 	  			binding: {
@@ -721,6 +836,7 @@
 			  				id: "gmail",
 			  				href: "",
 			  				nameClass: "block-name-def",
+			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2"
 	  					},
 
 	  			binding: {
@@ -754,6 +870,7 @@
 			  				id: "linkedin",
 			  				href: "",
 			  				nameClass: "block-name-def",
+			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2"
 	  					},
 
 	  			binding: {
@@ -787,6 +904,7 @@
 			  				id: "githubsocial",
 			  				href: "",
 			  				nameClass: "block-name-def",
+			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2"
 	  					},
 
 	  			binding: {
@@ -817,7 +935,6 @@
 	    })
 
 	  	.controller('GraphCtrl', function($http, $q, $scope, maths, dataParse) {
-	  		console.log('yo2');
 
 			// -------- Github AJAX -------- //
 		  	var repoContainer = [];
@@ -849,14 +966,18 @@
 			  		});
 		  	}
 
+		  	$scope.loading = false;
+
 		  	// -------- AJAX Callback -------- //
+
+		  	/*
 
 			var calls = getGithubStuff();
 		  	$q.all([calls]).then(function(){
 
 		  		console.log("yo");
 		  		
-		        $scope.loading = false;
+		        
 
 		  		var gotDayCommits = dataParse.getDayCommits(commitDaily),
 		  		    repoCommits = gotDayCommits[0],
@@ -961,6 +1082,8 @@
 				innerRing(repoCommits, repoContainer, colorObj[0], 0);
 
 		  	});
+
+*/
 
 
 			// -------------- Github Graph -------------- //
@@ -1143,7 +1266,6 @@
 		})
 
 		.controller('CanvasCtrl', function($scope, maths) {
-			console.log('yo3');
 
 			// -------- Canvas -------- //
 		  	var canvas = document.getElementById("canvas"),

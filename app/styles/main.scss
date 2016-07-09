@@ -168,6 +168,11 @@ a:hover, a:focus, a:active {
   margin-top: 5%;
 }
 
+.col-centered {
+  float: none;
+  margin: 0 auto;
+}
+
 // -------- Angular Class Modifications -------- //
 
 .fadable {
@@ -786,7 +791,6 @@ $lineTitleMap: (
   top: 525px;
   bottom: 0px;
   position: absolute;
-  
   padding: 10px;
   z-index: 5;
 }
@@ -821,6 +825,8 @@ $lineTitleMap: (
 #graph-para {
   top: 50px;
   height: 150px;
+  margin-left: 10px;
+  margin-right: 10px; 
   color: $cream-color;
 }
 
@@ -951,7 +957,6 @@ $dayMap: (
 // -------- Tools Section -------- //
 
 .tool-container {
-  height: 300px;
   padding-left: 23px;
   border-radius: 10px;
   white-space: nowrap;
@@ -959,8 +964,8 @@ $dayMap: (
 
 .block-container {
   background-color: $dark-background;
-  height: 2800px;
   top: 120px;
+  padding-bottom: 30px;
   @include border(1px solid, $gold-color, left right top bottom);  
   position: relative;
   @include prefix(box-shadow, -13px 20px 35px 10px rgba(0,0,0,0.75), webkit moz ms o);
@@ -969,13 +974,13 @@ $dayMap: (
 
 .projects-container {
   @extend .block-container;
-  height: 1350px;
   @include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
 .graph-container {
   @extend .block-container;
-  height: 1180px;
+  padding-bottom: 180px;
+
 }
 
 .contacts-container {
@@ -1040,7 +1045,7 @@ $dayMap: (
   @extend .gold-text;
   color: $cream-color;
   width: 300px;
-  top: 20px;
+  top: -30px;
   right: 70px;
   font-size: 17px;
   position: relative;
@@ -1048,8 +1053,9 @@ $dayMap: (
 }
 
 .skills-list {
-  top: 10%;
   left: 12%;
+  margin-top: 20%;
+  padding-bottom: 20px;
   position: relative;
   color: $gold-color;
 }
@@ -1059,7 +1065,6 @@ $dayMap: (
   @include border(1px solid, $dim-gold-color, top left bottom right);
   color: $cream-color;
   border-radius: 10px;
-  margin-top: 100px;
   position: relative;
   box-shadow: none;
 }
@@ -1068,7 +1073,6 @@ $dayMap: (
   @extend .project-desc-container;
   @extend .gold-text;
   color: $cream-color;
-  margin-top: 0px;
   font-size: 19px;
   padding: 10px;
 }
