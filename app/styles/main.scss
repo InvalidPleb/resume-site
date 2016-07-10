@@ -876,8 +876,8 @@ $skillList: "frameworks", "dev-tools", "design-tools", "preprocessors";
 
 $toolList: "darkreader", "tmtheme", "angular", "jquery", 
            "bootstrap", "git", "yeoman", "grunt", "bower", 
-           "sass", "cscript", "gimp", "balsamiq", "d3", "gmail", 
-           "linkedin", "githubsocial";
+           "sass", "cscript", "gimp", "balsamiq", "d3", "email", 
+           "linkedin", "githubsocial", "html", "javascript", "css";
 
 $monthMap: (
 
@@ -920,7 +920,7 @@ $dayMap: (
       @include fadeImg('/images/' + $tool + '.png');
       margin: -1px 0px 0px -1px;
     }
-  } @else if $tool == "sass" {
+  } @else if $tool == "sass" or $tool == "html" or $tool == "githubsocial" or $tool == "linkedin" {
     ##{$tool} {
       @include fadeImg('/images/' + $tool + '.png');
       margin: 2px 0px 0px 2px;
@@ -929,6 +929,16 @@ $dayMap: (
     ##{$tool} {
       @include fadeImg('/images/' + $tool + '.png');
       margin: 6px 0px 0px 3px;
+    }
+  } @else if $tool == "javascript" or $tool == "css"{
+    ##{$tool} {
+      @include fadeImg('/images/' + $tool + '.png');
+      margin: 10px 0px 0px 7px;
+    }
+  } @else if $tool == "email"{
+    ##{$tool} {
+      @include fadeImg('/images/' + $tool + '.png');
+      margin: 6px 0px 0px 6px;
     }
   } @else {
     ##{$tool} {

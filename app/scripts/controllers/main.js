@@ -402,7 +402,7 @@
 	  		$scope.css = {
 
 	  			attr:  {
-			  				id: "CSS",
+			  				id: "css",
 			  				href: "",
 			  				nameClass: "block-name-def",
 			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2 col-centered"
@@ -841,10 +841,10 @@
 	  					}
 	  		};
 
-	  		$scope.gmail = {
+	  		$scope.email = {
 
 	  			attr:   {
-			  				id: "gmail",
+			  				id: "email",
 			  				href: "",
 			  				nameClass: "block-name-def",
 			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2"
@@ -852,8 +852,8 @@
 
 	  			binding: {
 
-	  						nameHide: "true",
-	  						paraHide: "false",
+	  						nameHide: "false",
+	  						paraHide: "true",
 	  						skill1Hide: "true",
 				  			skill2Hide: "true",
 				  			skill3Hide: "true",
@@ -868,7 +868,7 @@
 	  					},
 
 	  			text:   {
-	  						nameTxt: "D3",
+	  						nameTxt: "E-Mail",
 	  						paraTxt: "",
 				  			txt1: "",
 				  			txt2: "",
@@ -886,7 +886,7 @@
 
 	  			binding: {
 
-	  						nameHide: "true",
+	  						nameHide: "false",
 	  						paraHide: "false",
 	  						skill1Hide: "true",
 				  			skill2Hide: "true",
@@ -902,7 +902,7 @@
 	  					},
 
 	  			text:   {
-	  						nameTxt: "D3",
+	  						nameTxt: "Linkedin",
 	  						paraTxt: "",
 				  			txt1: "",
 				  			txt2: "",
@@ -920,7 +920,7 @@
 
 	  			binding: {
 
-	  						nameHide: "true",
+	  						nameHide: "false",
 	  						paraHide: "true",
 	  						skill1Hide: "true",
 				  			skill2Hide: "true",
@@ -936,7 +936,7 @@
 	  					},
 
 	  			text:   {
-	  						nameTxt: "D3",
+	  						nameTxt: "Github",
 	  						paraTxt: "",
 				  			txt1: "",
 				  			txt2: "",
