@@ -506,11 +506,6 @@ $loopCount: 0;
   @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
-.project-site-container {
-  @extend .skills-container;
-  height: 700px;
-}
-
 .contact-type-container {
   @extend .skills-container;
   height: 300px;
@@ -577,6 +572,10 @@ $loopCount: 0;
 #runner-calc-mobile {
   @extend #runner-calc-desktop;
 
+}
+
+.runner-calc-text {
+  margin-top: 100px;
 }
 
 
@@ -817,14 +816,13 @@ $lineTitleMap: (
   & > span {
 
     color: $bright-gold-color;
-
   }
   
 }
 
 #graph-para {
-  top: 50px;
   height: 150px;
+  margin-top: 50px;
   margin-left: 10px;
   margin-right: 10px; 
   color: $cream-color;
@@ -832,7 +830,7 @@ $lineTitleMap: (
 
 .contribution-info {
   height: 200px;
-  top: 20px;
+  margin-top: 20px;
   position: relative;
   @include border(2px solid, $dim-gold-color, left);
   z-index: 5;
@@ -959,6 +957,7 @@ $dayMap: (
 .tool-container {
   padding-left: 23px;
   border-radius: 10px;
+  position: relative;
   white-space: nowrap;
 }
 
@@ -990,7 +989,7 @@ $dayMap: (
 
 .block-group {
   position: relative;
-  padding-top: 4.5%;
+  margin-top: 60px;
 }
 
 .block-titles {
@@ -1017,8 +1016,8 @@ $dayMap: (
 
 .block-name-def {
   @extend .gold-text;
-  top: 20px;
   right: 5px;
+  top: 20px;
   position: relative;
   text-align: center;
 }
@@ -1030,7 +1029,6 @@ $dayMap: (
 
 .block-name-dark {
   @extend .block-name-def;
-
 }
 
 .block-name-def-cscript {
@@ -1347,7 +1345,6 @@ $dayMap: (
 
   #runner-calc-container {
     height: 1050px;
-
   }
 
   #projects {

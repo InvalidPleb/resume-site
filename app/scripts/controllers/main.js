@@ -54,7 +54,6 @@
 		                tools = $('#tools').offset().top,
 		                contact = $('#contact').offset().top,    
 	  				    elementOff = ($(element).offset().top + 75);
-
 	  				if (elementOff > projects && elementOff < development) {
 	  					window.location.hash = '#/' + 'projects';
 	  				} else if (elementOff > development && elementOff < tools) {
@@ -74,11 +73,23 @@
         	return {
 	          	restrict: "A",
 	          	link: function(scope, element, attrs) {
+
 	          		let top = $('#' + attrs.ngModel + '').offset().top;
 	  				return $(element).click(function() {
-				    	$('html,body').animate({
-				        	scrollTop: (top - 55)
-				    	},'slow');
+
+	  					function animation(offset) {
+	  						$('html,body').animate({
+					        	scrollTop: (top + offset)
+					    	},'slow');
+	  					}
+
+				    	if (attrs.ngModel === 'tools') {
+				    		animation(615);
+				    	} else if (attrs.ngModel === 'contact') {
+				    		animation(1510);
+				    	} else {
+				    		animation(-55);
+				    	}
 					});
 	          	}
         	};
