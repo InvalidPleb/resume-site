@@ -118,7 +118,7 @@ a:hover, a:focus, a:active {
   font-family: "Times New Roman";
   font-weight: 500;
   font-size: 22px;
-  color: $gold-color;
+  color: $bright-gold-color;
 }
 
 .no-pe {
@@ -1000,11 +1000,9 @@ $dayMap: (
 }
 
 .title-text {
-  font-family: "Times New Roman";
-  font-weight: 500;
+  @extend .gold-text;
   font-size: 28px;
   text-align: center;
-  color: $gold-color;
   position: relative;
   top: 25%;
 }
@@ -1022,21 +1020,21 @@ $dayMap: (
   text-align: center;
 }
 
-.block-name-tm {
+.block-name-def-tm {
   @extend .block-name-def;
   right: 13px;
 }
 
-.block-name-dark {
+.block-name-def-cscript, 
+.block-name-def-dark, 
+.block-name-def-sass, {
   @extend .block-name-def;
 }
 
-.block-name-def-cscript {
+.block-name-def-soc {
   @extend .block-name-def;
-}
 
-.block-name-def-sass {
-  @extend .block-name-def;
+
 }
 
 .block-para {
@@ -1055,7 +1053,7 @@ $dayMap: (
   margin-top: 20%;
   padding-bottom: 20px;
   position: relative;
-  color: $gold-color;
+  color: $bright-gold-color;
 }
 
 .project-desc-container {
@@ -1077,8 +1075,7 @@ $dayMap: (
 
 .frameworks {
   position: relative;
-  left: 8.5%;
-
+  left: 8.5%
 }
 
 .dev-tools {

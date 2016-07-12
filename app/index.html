@@ -20,7 +20,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <nav class="navbar navbar-inverse navbar-main" ng-class="{true: 'navbar-main', false: 'navbar-main-float'}[navText]"  scroll-change-hash scroll>
+    <nav class="navbar navbar-inverse navbar-main" ng-class="{true: 'navbar-main', false: 'navbar-main-float'}[navText]"  scroll-change-hash scroll-change>
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -42,7 +42,7 @@
         <!--/.nav-collapse -->
       </div>
     </nav>
-    <section id="mainControlSection" style="pointer-events:all;" ng-controller="CanvasCtrl">
+    <section id="mainControlSection" style="pointer-events:all;" ng-controller="CanvasCtrl as canvas">
       <div id="greeting-section" class="container">
         <canvas id="canvas"></canvas>
         <div>
@@ -94,7 +94,7 @@
     </div>
     
     <div class="main-container">
-      <div class="index" ng-controller="BlockCtrl">
+      <div class="index" ng-controller="BlockCtrl as block">
         <section id="projects" class="projects-container">
           <div class="projects-title-section">
               <div class="block-title-section-text">My projects</div>
@@ -179,7 +179,7 @@
             </div>
           </div>
         </section>
-        <section class="graph-container" ng-controller="GraphCtrl">
+        <section class="graph-container" ng-controller="GraphCtrl as graph">
           <div class="loadingScreen fadable" ng-hide="loading == false" ng-model="loading">
             <div class="loading"></div>
             </div>
@@ -361,12 +361,13 @@
             </div>
           </div> 
         </section>
-        <section id="contact" class="contacts-container" >
+        <section id="contact" class="projects-container" >
           <div class="projects-title-section">
             <div class="block-title-section-text">Contact me</div>
           </div>
           <div class="block-group">
             <div class="contact-type-container">
+              <div class="skills-container">
                 <div class="row frameworks">
                     <main-block info="email"></main-block>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-1"></div>
@@ -374,6 +375,7 @@
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-1"></div>
                     <main-block info="githubsocial"></main-block>
                 </div>
+              </div>
             </div>
           </div>
         </section>
