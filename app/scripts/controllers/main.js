@@ -261,7 +261,7 @@
 	    	};
 	    })
 
-	    .controller('BlockCtrl', function($scope, $rootScope) {
+	    .controller('BlockCtrl', function($scope) {
 
 	    	// -------- Block Template Instance Data -------- //
 

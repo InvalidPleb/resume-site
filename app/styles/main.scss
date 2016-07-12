@@ -506,11 +506,6 @@ $loopCount: 0;
   @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
-.contact-type-container {
-  @extend .skills-container;
-  height: 300px;
-}
-
 .site-container {
   @extend .main-blocks;
   width: 350px;
@@ -992,11 +987,6 @@ $dayMap: (
 
 }
 
-.contacts-container {
-  @extend .block-container;
-  height: 500px;
-}
-
 .block-group {
   position: relative;
   margin-top: 60px;
@@ -1013,10 +1003,10 @@ $dayMap: (
   font-family: "Times New Roman";
   font-weight: 500;
   font-size: 28px;
+  text-align: center;
   color: $gold-color;
   position: relative;
   top: 25%;
-  right: 10px;
 }
 
 .projects-block-title {
