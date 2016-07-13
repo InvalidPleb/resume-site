@@ -7,6 +7,78 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower 
 
+/* 
+
+-------- Property Ordering Template --------
+
+@extend
+@include mixins (all non-mixin @includes are positioned normally)
+
+-- Dimensions --
+
+height
+width
+z-index
+
+-- Positioning --
+
+bottom
+left
+right
+top
+
+-- Spacing --
+
+margin
+padding
+white-space
+
+-- Visibility / Display --
+
+display
+float
+list-style
+opacity
+overflow
+position
+visibility
+vertical-align
+
+-- Background / Filter --
+
+background color
+background image
+filter
+
+-- Border --
+
+border
+border-color
+border-radius
+box-shadow
+outline
+
+-- Text --
+
+color
+font family
+font size
+font weight
+letter-spacing
+line-height
+text-align
+
+-- Animation / Events--
+
+animation
+cursor
+keyframes
+pointer-events
+transition
+
+
+*/
+
 // -------- Mixins -------- //
 
 @mixin border($style, $color, $sides) {
@@ -34,48 +106,42 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 }
 
 @mixin monthLabel($left, $top, $deg){
-  position: relative;
-  margin: 0px 0px 0px 60px;
   left: $left;
   top: $top;
-
-  font-family: "Times New Roman";
-  //font-weight: 500;
-  font-size: 18px;
+  margin: 0px 0px 0px 60px;
+  position: relative;
   color: #84783b;
-
+  font-family: "Times New Roman";
+  font-size: 18px;
   @include prefix(transform, rotate($deg), webkit moz ms o);
   @include prefix(user-select, none, webkit moz ms o);
   -webkit-touch-callout: none;
 }
 
 @mixin dayLabel($left, $top, $deg) {
-  position: relative;
   left: $left;
   top: $top;
   z-index: 5;
-
-  font-family: "Times New Roman";
-  //font-weight: 500;
-  font-size: 18px;
+  position: relative;
   color: #84783b;
-
+  font-family: "Times New Roman";
+  font-size: 18px;
   @include prefix(transform, rotate($deg), webkit moz ms o);
   @include prefix(user-select, none, webkit moz ms o);
   -webkit-touch-callout: none;
 }
 
 @mixin fadeImg($img) {
-  background-image: url($img);
-  opacity: 1;
-  width: 125px;
   height: 125px;
+  width: 125px;
+  z-index: 1;
+  opacity: 1;
+  -webkit-backface-visibility: hidden;
+  position: relative;
+  background-image: url($img);
+  background-repeat: no-repeat;
   border-radius: 5px;
   transition: all 0.5s ease-in;
-  position: relative;
-  z-index: 1;
-  -webkit-backface-visibility: hidden;
-  background-repeat: no-repeat;
   
   &:hover {
     opacity: 0;
@@ -95,30 +161,30 @@ $rock-background: '/images/rock-background.png';
 // -------- Element Selectors -------- //
 
 * {
-  padding: 0px;
   margin: 0px;
+  padding: 0px;
 }
 
 body {
+  z-index: -10;
   padding: 0;
   position: relative;
-  z-index: -10;
+  
 }
 
 a:hover, a:focus, a:active {
+  border-bottom: 2px solid $gold-color;
   color: $gold-color;
   text-decoration: none;
-  border-bottom: 2px solid $gold-color;
-
 }
 
 // -------- General Classes --------- //
 
 .gold-text {
+  color: $bright-gold-color;
   font-family: "Times New Roman";
   font-weight: 500;
-  font-size: 22px;
-  color: $bright-gold-color;
+  font-size: 22px; 
 }
 
 .no-pe {
@@ -126,35 +192,33 @@ a:hover, a:focus, a:active {
 }
 
 .block-title-section-text {
-  font-family: "Times New Roman";
-  font-weight: 500;
-  font-size: 40px;
-  color: $bright-gold-color;
-  position: relative;
-  text-align: center;
   top: 20%;
-
+  position: relative;
+  color: $bright-gold-color;
+  font-family: "Times New Roman";
+  font-size: 40px;
+  text-align: center;
+  
 }
 
 .main-blocks {
-  background-color: #333030;
-  background-repeat: no-repeat;
   top: 20px;
   height: 125px;
   width: 125px;
-  border-radius: 5px;
   margin-top: 10px;
   padding: 0px;
+  position: relative;
+  background-color: #333030;
+  background-repeat: no-repeat;
   @include border(1px solid, $gold-color, top left right bottom);
+  border-radius: 5px;
   @include prefix(box-shadow, inset 0px 0px 9px 1px rgba(0,0,0,0.85), webkit moz ms o);
   text-align: center;
-  position: relative;
 }
 
 .fullOpacity {
   opacity: 1;
   visibility: visible;
-
 }
 
 .noOpacity {
@@ -164,13 +228,13 @@ a:hover, a:focus, a:active {
 
 
 .seperator {
-  position: relative;
   margin-top: 5%;
+  position: relative;
 }
 
 .col-centered {
-  float: none;
   margin: 0 auto;
+  float: none;
 }
 
 // -------- Angular Class Modifications -------- //
@@ -178,34 +242,36 @@ a:hover, a:focus, a:active {
 .fadable {
     transition: 0s linear all;
 }
+
 .fadable.ng-hide-remove {
-    opacity: 0;
-    display: block !important;
-    transition: 0.5s linear all;
+  display: block !important;
+  opacity: 0;
+  transition: 0.5s linear all;
 }
+
 .fadable.ng-hide-remove.ng-hide-remove-active {
-    opacity: .8;
+  opacity: .8;
 }
 .fadable.ng-hide-add {
-    opacity: .8;
-    display: block !important;
-    transition: 0.5s linear all;
+  display: block !important;
+  opacity: .8;
+  transition: 0.5s linear all;
 }
 .fadable.ng-hide-add.ng-hide-add-active {
-    opacity: 0;
+  opacity: 0;
 }
 
 
 // -------- Loading Overlay -------- //
 
 .loading {
-  width: 60px;
   height: 60px;
+  width: 60px;
   z-index: 4;
-  top: 0px;
-  right: 0px;
   bottom: 20%;
   left: 0px;
+  right: 0px;
+  top: 0px;
   margin: auto;
   position: absolute;
   border: 5px solid #FFF;
@@ -220,13 +286,13 @@ a:hover, a:focus, a:active {
 }
 
 .loadingScreen {
-  width: 100%;
   height: 100%;
+  width: 100%;
   z-index: 3;
-  top: 0px;
-  right: 0px;
   bottom: 0px;
   left: 0px;
+  right: 0px;
+  top: 0px;
   margin: auto;
   position: absolute;
   background-color: $dark-background;
@@ -241,7 +307,6 @@ a:hover, a:focus, a:active {
 }
 
 .decoration {
-
   height: 45px;
   width: 100%;
   top: 40%;
@@ -255,12 +320,12 @@ $i: 2;
 $loopCount: 1;
 
 .padding {
-  margin-top: 50px;
   height: 200px;
   width: 100%;
   z-index: -3;
-  background-image: url($rock-background);
+  margin-top: 50px;
   position: absolute;
+  background-image: url($rock-background);
   @include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
 
   @while $i < 14 {
@@ -278,14 +343,14 @@ $i: 3;
 $loopCount: 0;
 
 .container-parallax {
-  margin-top: -950px;
-  background-color: $dark-background;
-  //background-image: url('/images/darklinepat2.png');
-  position: absolute;
   height: 1000px;
   width: 100%;
   z-index: -5;
-
+  margin-top: -950px;
+  position: absolute;
+  background-color: $dark-background;
+  //background-image: url('/images/darklinepat2.png');
+  
   @while $i < 13 {
 
     &:nth-child(#{$i}) {
@@ -298,33 +363,34 @@ $loopCount: 0;
 }
 
 .navbar-main {
-  top: 1px;
   height: 70px;
   width: 100%;
   z-index: 6;
-  font-size: 16px;
+  top: 1px;
   position: absolute;
   background-color: $dark-background;
   border-radius: 0px;
   @include border(1px solid, $dark-background, bottom);
   @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
+  font-size: 16px;
   transition: all .25s cubic-bezier(.17,.67,.83,.67);
 }
 
 .navbar-main-float {
   @extend .navbar-main;
   height: 50px;
-  top: -1px;
   left: 0;
   right: 0;
-  background: $grey-background;
+  top: -1px;
   position: fixed;
+  background: $grey-background;
   @include border(1px solid, $gold-color, bottom);
 }
 
 .navbar-nav {
-  list-style: none;
   padding: none;
+  list-style: none;
+  
 }
 
 .navbar-text {
@@ -337,8 +403,8 @@ $loopCount: 0;
   transition: all .25s cubic-bezier(.17,.67,.83,.67);
 
   &:hover {
-    @include border(0px solid, $gold-color, top left bottom right);
     background-color: $gold-color !important;
+    @include border(0px solid, $gold-color, top left bottom right);
     color: white;
   }
 }
@@ -357,13 +423,13 @@ $loopCount: 0;
 // -------- Top Greeting Section -------- //
 
 #greeting-section {
-  background-color: $dark-background;
   height: 800px;
   z-index: 5;
-  padding: 0px;
   right: 10px;
   top: 80px;
+  padding: 0px;
   position: relative;
+  background-color: $dark-background;
   @include border(1px solid, $gold-color, left right bottom top);
   @include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
 
@@ -373,11 +439,10 @@ $loopCount: 0;
   }
 
   & > div > span {
-    top:20px;
     left:20px;
-    font-size:14px;
+    top:20px;
     position:relative;
-
+    font-size:14px;
   }
 }
 
@@ -388,18 +453,19 @@ $loopCount: 0;
 
 #canvas {
   z-index: -1;
-  cursor: pointer;
   position: absolute;
   @include prefix(filter, blur(10px), webkit moz ms o);
+  cursor: pointer;
 }
 
 .name-text {
   @extend .block-title-section-text;
-  color: $bright-gold-color;
-  padding: 0px;
-  font-size: 50px;
   top: 0;
   margin: 0px;
+  padding: 0px;
+  color: $bright-gold-color;
+  font-size: 50px;
+
   &:nth-child(2) {
     margin-top: 0px;
   }
@@ -428,15 +494,16 @@ $loopCount: 0;
 }
 
 .sphere {
-  pointer-events:all;
-  width: 110px;
   height: 110px;
+  width: 110px;
   margin-bottom: 10px;
+  position: relative;
   background-color: $bright-gold-color;
   border-radius: 50%;
-  cursor: pointer;
-  position: relative;
   @include prefix(box-shadow, inset 45px -25px 40px rgba(0,0,0,.5), webkit moz ms o);
+
+  cursor: pointer;
+  pointer-events:all;
   transition: all .25s cubic-bezier(.17,.67,.83,.67);
 
   &:hover {
@@ -445,10 +512,10 @@ $loopCount: 0;
 }
 
 .sphere-shadow {
-  width: 110px;
   height: 110px;
-  top: 50px;
+  width: 110px;
   right: 120px;
+  top: 50px;
   margin-left: 50px;
   padding: 0px;
   position: relative;
@@ -471,8 +538,8 @@ $loopCount: 0;
 // -------- Projects Section -------- //
 
 .index {
-  position: relative;
   z-index: -5;
+  position: relative;
 }
 
 .projects-title-section {
@@ -488,13 +555,11 @@ $loopCount: 0;
 
 .main-container {
   @extend .container;
-  position: relative;
+  right: 10px;
   z-index: -3;
   margin: auto;
-  right: 10px;
   padding: 0px;
-  
-
+  position: relative;
 }
 
 .skills-container {
@@ -508,8 +573,8 @@ $loopCount: 0;
 
 .site-container {
   @extend .main-blocks;
-  width: 350px;
   height: 250px;
+  width: 350px;
   top: 10px;
   position: relative;
   @include border(1px solid, $dim-gold-color, top bottom left right);
@@ -518,16 +583,16 @@ $loopCount: 0;
 
 .site-container-tablet {
   @extend .site-container;
-  width: 250px;
   height: 200px;
+  width: 250px;
   top: 59.5px;
   
 }
 
 .site-container-mobile {
   @extend .site-container;
-  width: 90px;
   height: 186px;
+  width: 90px;
   top: 74px;
   
 }
@@ -549,24 +614,21 @@ $loopCount: 0;
 }
 
 #runner-calc-desktop {
-  //background-image: url('/images/runnercalc345.png');
-  top: 1px;
-  left: 2px;
-  width: 345px;
   height: 246px;
-  border-radius: 10px;
+  width: 345px;
+  left: 2px;
+  top: 1px;
   position: relative;
+  //background-image: url('/images/runnercalc345.png');
+  border-radius: 10px;
 }
 
 #runner-calc-tablet {
   @extend #runner-calc-desktop;
-  
-
 }
 
 #runner-calc-mobile {
   @extend #runner-calc-desktop;
-
 }
 
 .runner-calc-text {
@@ -578,19 +640,18 @@ $loopCount: 0;
 
 .d3-container {
   height: 900px;
+  z-index: -5;
   top: 20px;
   position: relative;
-  z-index: -5;
 }
 
 .animation-container {
-  background-color: $dark-background;
-  width: 100%;
   height: 900px;
-  position: relative;
-  display: flex;
+  width: 100%;
   z-index: 2;
-
+  display: flex;
+  position: relative;
+  background-color: $dark-background;
 }
 
 .svg-container {
@@ -600,17 +661,19 @@ $loopCount: 0;
 
 .tooltip {
   @extend .gold-text;
-  font-size: 15px;
   height: 50px;
   width: 150px;
-  border-radius: 5px;
-  @include border(1px solid, $gold-color, top left right bottom);
-  background-image: url($rock-background);
   position: absolute;
-  text-align: center;
-  transition: all 0.25s ease-in;
-  pointer-events: none;
+  background-image: url($rock-background);
   @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
+  @include border(1px solid, $gold-color, top left right bottom);
+  border-radius: 5px;
+  font-size: 15px;
+  text-align: center;
+  pointer-events: none;
+  transition: all 0.25s ease-in;
+  
+  
 }
 
 $repoTooltipMap: (
@@ -628,9 +691,9 @@ $repoTooltipMap: (
   width: 180px;
   left: 0px;
   top: 0px;
-  cursor: pointer;
   opacity: 0;
-
+  cursor: pointer;
+  
   & > :nth-child(1) {
     font-size: 17px;  
   }
@@ -642,37 +705,35 @@ $repoTooltipMap: (
   @each $num, $values in $repoTooltipMap {
 
     &:nth-child(#{$num}) {
-      top: nth($values, 1) + 10px;
       left: nth($values, 2) + 30px;
+      top: nth($values, 1) + 10px; 
     }
   }
 
 }
 
 .pie-tooltip {     
-  text-align: center; 
-  width: 152px;          
   height: 152px;
+  width: 152px; 
+  z-index: 5;         
   left: 506px;
   top: 174px;
-  z-index: 5;
+  padding: 2px;     
   position: absolute;
-  padding: 2px;       
-  font: 12px sans-serif;
-  color: $gold-color;
   background-image: url($rock-background);
   @include border(2px solid, $gold-color, top left right bottom);
   border-radius: 50%;
-  pointer-events: none;
-  text-align: center;
   @include prefix(box-shadow, inset 0px 0px 35px 5px rgba(0,0,0,0.75), webkit moz ms o);
+  color: $gold-color;
+  font: 12px sans-serif;
+  text-align: center;
+  pointer-events: none;
 }
 
 .pie-tooltip-hover {
   @extend .pie-tooltip;
-  opacity: 0;
   z-index: 6;
-  
+  opacity: 0;
 }
 
 .tooltipText {
@@ -680,23 +741,22 @@ $repoTooltipMap: (
 }
 
 .graph-circle {
-  width: 410px;          
   height: 410px;
+  width: 410px;
+  z-index: -3;          
   left: 378px;
   top: 45px;
-  z-index: -3;
-  border-radius: 50%;
   position: absolute;
-  @include border(2px solid, $gold-color, top left right bottom);
   background-color: #111;
+  @include border(2px solid, $gold-color, top left right bottom);
+  border-radius: 50%;
   @include prefix(box-shadow, -6px 12px 29px 3px rgba(0,0,0,0.75), webkit moz ms o);
-
 }
 
 .pie {
   z-index: 2;
-  cursor: pointer;
   position: relative;
+  cursor: pointer;
 }
 
 .line {
@@ -704,18 +764,18 @@ $repoTooltipMap: (
   width: 250px;
   z-index: 3;
   position: absolute;
-  pointer-events: none;
   @include border(1px solid, $gold-color, bottom);
   @include prefix(box-shadow, -7px 6px 24px 5px rgba(0,0,0,0.75), webkit moz ms o);
+  pointer-events: none;
 
 }
 
 .line-title {
   @extend .tooltip;
   position: absolute;
-  line-height: 50px;
-  vertical-align: middle;
   opacity: 1;
+  vertical-align: middle;
+  line-height: 50px;
 }
 
 $lineMap: (
@@ -733,23 +793,23 @@ $lineTitleMap: (
 @each $num, $values in $lineMap {
 
   .line:nth-child(#{$num}) {
-    top: nth($values, 1) + px;
     left: nth($values, 2) + px;
+    top: nth($values, 1) + px;
   }
 }
 
 @each $num, $values in $lineTitleMap {
 
   .line-title:nth-child(#{$num}) {
-    top: nth($values, 1) + px;
     left: nth($values, 2) + px;
+    top: nth($values, 1) + px;
   }
 }
 
 .day-tooltip {
   margin-top: -10px;
-  font-family: monospace;
   position: relative;
+  font-family: monospace;
 
   & > span {
 
@@ -759,11 +819,11 @@ $lineTitleMap: (
 
 .day-tooltip-title {
   width: 105px;
-  top:10px;
   left: 20px;
-  font-size:18px; 
+  top:10px;
   position:relative;
   border-bottom:1px solid rgb(158, 142, 76);
+  font-size:18px;
 }
 
 .day-tooltip-label {
@@ -772,21 +832,21 @@ $lineTitleMap: (
 }
 
 .day-tooltip-container {
-  margin-top: -55px;
   right: 3px;
-  font-family: monospace;
+  margin-top: -55px;
   position: relative;
+  font-family: monospace;
 }
 
 .graph-description {
   @extend .skills-container;
   height: 500px;
-  margin: 0px;
-  top: 525px;
-  bottom: 0px;
-  position: absolute;
-  padding: 10px;
   z-index: 5;
+  bottom: 0px;
+  top: 525px;
+  margin: 0px;
+  padding: 10px;
+  position: absolute;
 }
 
 .graph-desc-section {
@@ -797,19 +857,18 @@ $lineTitleMap: (
     @extend .gold-text;
     height: 50px;
     top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
     position: relative;
     @include border(1px solid, $gold-color, bottom);
     text-align: center;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
   }
 
 }
 
 .block-center {
   & > span {
-
     color: $bright-gold-color;
   }
   
@@ -817,9 +876,9 @@ $lineTitleMap: (
 
 #graph-para {
   height: 150px;
-  margin-top: 50px;
   margin-left: 10px;
   margin-right: 10px; 
+  margin-top: 50px;
   color: $cream-color;
 }
 
@@ -842,9 +901,7 @@ $lineTitleMap: (
   text-align: left;
 
   & > span {
-
     color: $teal-color;
-
   }
 }
 
@@ -858,9 +915,7 @@ $lineTitleMap: (
   }
 
   & > span {
-
     color: $teal-color;
-
   }
 }
 
@@ -961,19 +1016,19 @@ $dayMap: (
 
 .tool-container {
   padding-left: 23px;
-  border-radius: 10px;
   position: relative;
   white-space: nowrap;
+  border-radius: 10px;
 }
 
 .block-container {
-  background-color: $dark-background;
+  z-index: -2;
   top: 120px;
   padding-bottom: 30px;
-  @include border(1px solid, $gold-color, left right top bottom);  
   position: relative;
+  background-color: $dark-background;
+  @include border(1px solid, $gold-color, left right top bottom);  
   @include prefix(box-shadow, -13px 20px 35px 10px rgba(0,0,0,0.75), webkit moz ms o);
-  z-index: -2;
 }
 
 .projects-container {
@@ -988,28 +1043,28 @@ $dayMap: (
 }
 
 .block-group {
-  position: relative;
   margin-top: 60px;
+  position: relative;
 }
 
 .block-titles {
-  @include border(1px solid, $gold-color, bottom);
   height: 50px;
   left: 34%;
+  @include border(1px solid, $gold-color, bottom);
   text-align: center;
 }
 
 .title-text {
   @extend .gold-text;
+  top: 25%;
+  position: relative;
   font-size: 28px;
   text-align: center;
-  position: relative;
-  top: 25%;
 }
 
 .projects-block-title {
-  text-align: center;
   @include border(1px solid, $gold-color, bottom);
+  text-align: center;
 }
 
 .block-name-def {
@@ -1033,8 +1088,6 @@ $dayMap: (
 
 .block-name-def-soc {
   @extend .block-name-def;
-
-
 }
 
 .block-para {
@@ -1058,43 +1111,43 @@ $dayMap: (
 
 .project-desc-container {
   @extend .gold-text;
-  @include border(1px solid, $dim-gold-color, top left bottom right);
-  color: $cream-color;
-  border-radius: 10px;
   position: relative;
+  color: $cream-color;
+  @include border(1px solid, $dim-gold-color, top left bottom right);
+  border-radius: 10px;
   box-shadow: none;
 }
 
 .tools-desc-container {
-  @extend .project-desc-container;
   @extend .gold-text;
+  @extend .project-desc-container;
+  padding: 10px;
   color: $cream-color;
   font-size: 19px;
-  padding: 10px;
 }
 
 .frameworks {
+  left: 8.5%;
   position: relative;
-  left: 8.5%
 }
 
 .dev-tools {
-  position: relative;
   left: 4%;
+  position: relative;
 }
 
 .preprocessors {
-  position: relative;
   left: 12.5%;
+  position: relative;
 }
 
 .month-labels {
-  width: 500px;
   height: 500px;
-  min-width: 500px;
-  min-height: 500px;
-  position: relative;
+  width: 500px;
   left: 317px;
+  min-height: 500px;
+  min-width: 500px;
+  position: relative;
   transform: rotate(210deg);
 }
 
@@ -1102,22 +1155,21 @@ $dayMap: (
 
   &:hover {
     text-decoration: none;
-
   }
+
   &:active {
     text-decoration: none;
-
   }
+
   &:focus {
     text-decoration: none;
-
   }
 }
 
 .img-text {
-  position: relative;
   bottom: 100px;
-  z-index: 0; 
+  z-index: 0;
+  position: relative;
   transition: all 0.5s ease-in;
 }
 
@@ -1216,17 +1268,17 @@ $dayMap: (
   @each $num, $values in $lineMap {
 
     .line:nth-child(#{$num}) {
-      top: nth($values, 1) + px;
-      left: nth($values, 2) - 15 + px;
       width: 180px;
+      left: nth($values, 2) - 15 + px;
+      top: nth($values, 1) + px;
     }
   }
 
   @each $num, $values in $lineTitleMap {
 
     .line-title:nth-child(#{$num}) {
-      top: nth($values, 1) + px;
       left: nth($values, 2) - 40 + px;
+      top: nth($values, 1) + px;
     }
   }
 
@@ -1249,8 +1301,8 @@ $dayMap: (
   @each $num, $values in $repoTooltipMap {
 
     .repoTooltip:nth-child(#{$num}) {
-      top: nth($values, 1) + px;
       left: nth($values, 2) + px;
+      top: nth($values, 1) + px;
     }
   }
 
@@ -1292,8 +1344,8 @@ $dayMap: (
   }
 
   .block-name-def {
-    right: 0px;
     left: 20px;
+    right: 0px;
   }
 
   .block-name-def-cscript {
@@ -1316,7 +1368,6 @@ $dayMap: (
     left: 8%;
   }
 
-
   .site-container {
     top: 20px;
     right: -120px;
@@ -1325,19 +1376,16 @@ $dayMap: (
   .site-container-tablet {
     top: 360px;
     right: 38%;
-    
   }
 
   .site-container-mobile {
     top: 165px;
     right: 0%;
-    
   }
 
   .runner-calc-text {
     height: 300px;
     top: 150px;
-
   }
 
   #runner-calc-container {
@@ -1355,7 +1403,6 @@ $dayMap: (
 
   .block-name-dark {
     left: 10px;
-
   }
 
   .block-name-tm {
@@ -1363,8 +1410,8 @@ $dayMap: (
   }
 
   .svg-container {
-    right: 359px;
     min-width: 400px;
+    right: 359px;
     position: relative;
   }
 
@@ -1448,7 +1495,6 @@ $dayMap: (
   .main-container {
     overflow: hidden;
   }
-
 
   .container{
     left: 10px;
