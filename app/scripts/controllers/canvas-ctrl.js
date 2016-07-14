@@ -6,7 +6,6 @@ angular
 
 CanvasCtrl.$inject = ['$scope', 'maths'];
 
-
 function CanvasCtrl($scope, maths) {
 
 	// -------- Canvas -------- //

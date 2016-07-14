@@ -1,10 +1,10 @@
-$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
-@import url(https://fonts.googleapis.com/css?family=Lora);
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
-@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700);
-@import "compass/css3";
+$icon-font-path: '../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/';
+@import url(//fonts.googleapis.com/css?family=Lora);
+@import url(//fonts.googleapis.com/css?family=Open+Sans);
+@import url(//fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700);
+@import 'compass/css3';
 // bower:scss
-@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import 'bootstrap-sass-official/assets/stylesheets/_bootstrap.scss';
 // endbower 
 
 /* 
@@ -12,7 +12,13 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 -------- Property Ordering Template --------
 
 @extend
-@include mixins (all non-mixin @includes are positioned normally)
+@include
+
+all @includes offering property shorthand are positioned in the normal property's position
+
+e.g. @include prefix(box-shadow, inset 0px 0px 9px 1px rgba(0,0,0,0.85), webkit moz ms o)
+goes in box shadow's position
+
 
 -- Dimensions --
 
@@ -82,8 +88,8 @@ transition
 // -------- Mixins -------- //
 
 @mixin border($style, $color, $sides) {
-    @if ($style != "") {
-        @if ($sides == "") {
+    @if ($style != '') {
+        @if ($sides == '') {
             border: $style $color;
         } @else {
             @each $side in $sides {
@@ -111,7 +117,7 @@ transition
   margin: 0px 0px 0px 60px;
   position: relative;
   color: #84783b;
-  font-family: "Times New Roman";
+  font-family: 'Times New Roman';
   font-size: 18px;
   @include prefix(transform, rotate($deg), webkit moz ms o);
   @include prefix(user-select, none, webkit moz ms o);
@@ -124,7 +130,7 @@ transition
   z-index: 5;
   position: relative;
   color: #84783b;
-  font-family: "Times New Roman";
+  font-family: 'Times New Roman';
   font-size: 18px;
   @include prefix(transform, rotate($deg), webkit moz ms o);
   @include prefix(user-select, none, webkit moz ms o);
@@ -143,9 +149,9 @@ transition
   border-radius: 5px;
   transition: all 0.5s ease-in;
   
-  &:hover {
-    opacity: 0;
-  }
+  //&:hover {
+    //opacity: 0;
+  //}
 }
 
 $dark-background: #181819;
@@ -172,7 +178,9 @@ body {
   
 }
 
-a:hover, a:focus, a:active {
+a:hover, 
+a:focus, 
+a:active {
   border-bottom: 2px solid $gold-color;
   color: $gold-color;
   text-decoration: none;
@@ -182,7 +190,7 @@ a:hover, a:focus, a:active {
 
 .gold-text {
   color: $bright-gold-color;
-  font-family: "Times New Roman";
+  font-family: 'Times New Roman';
   font-weight: 500;
   font-size: 22px; 
 }
@@ -195,7 +203,7 @@ a:hover, a:focus, a:active {
   top: 20%;
   position: relative;
   color: $bright-gold-color;
-  font-family: "Times New Roman";
+  font-family: 'Times New Roman';
   font-size: 40px;
   text-align: center;
   
@@ -400,6 +408,7 @@ $loopCount: 0;
   padding: 23px 30px 0px 30px;
   color: $bright-gold-color;
   cursor: pointer;
+  @include prefix(user-select, none, webkit moz ms o);
   transition: all .25s cubic-bezier(.17,.67,.83,.67);
 
   &:hover {
@@ -921,13 +930,34 @@ $lineTitleMap: (
 
 // -------- Graph Label Iterations -------- //
 
-$skillList: "frameworks", "dev-tools", "design-tools", "preprocessors";
+$skillList: 'frameworks', 'dev-tools', 'design-tools', 'preprocessors';
 
 
-$toolList: "darkreader", "tmtheme", "angular", "jquery", 
-           "bootstrap", "git", "yeoman", "grunt", "bower", 
-           "sass", "cscript", "gimp", "balsamiq", "d3", "email", 
-           "linkedin", "githubsocial", "html", "javascript", "css";
+$toolMap: (
+
+  darkreader: (#446D7F), 
+  tmtheme: (#FFF), 
+  angular: (#B63032), 
+  jquery: (#208AFF),
+  bootstrap: (#72395f), 
+  git: (#FA4700), 
+  yeoman: (#A07902), 
+  grunt: (#FBA919), 
+  bower: (#664535), 
+  gimp: (#FFF), 
+  balsamiq: (#565454), 
+  d3: (#E57D4A),
+  sass: (#CD669A), 
+  cscript: (#1480AF),
+  email: (#DEDDE0), 
+  linkedin: (#0274B3),
+  githubsocial: (#000),
+  htmlBlock: (#F16428),
+  javascript: (#FFD83A),
+  css: (#369CD6)
+
+);
+
 
 $monthMap: (
 
@@ -958,34 +988,34 @@ $dayMap: (
 
 );
 
-@each $tool in $toolList {
+@each $tool, $value in $toolMap {
 
-  @if $tool == "darkreader" {
+  @if $tool == 'darkreader' {
     ##{$tool} {
       @include fadeImg('/images/' + $tool + '.png');
       margin: 0px 0px 0px 2px;
     }
-  } @else if $tool == "bootstrap" {
+  } @else if $tool == 'bootstrap' {
     ##{$tool} {
       @include fadeImg('/images/' + $tool + '.png');
       margin: -1px 0px 0px -1px;
     }
-  } @else if $tool == "sass" or $tool == "html" or $tool == "githubsocial" or $tool == "linkedin" {
+  } @else if $tool == 'sass' or $tool == 'html' or $tool == 'githubsocial' or $tool == 'linkedin' {
     ##{$tool} {
       @include fadeImg('/images/' + $tool + '.png');
       margin: 2px 0px 0px 2px;
     }
-  } @else if $tool == "d3" {
+  } @else if $tool == 'd3' {
     ##{$tool} {
       @include fadeImg('/images/' + $tool + '.png');
       margin: 6px 0px 0px 3px;
     }
-  } @else if $tool == "javascript" or $tool == "css"{
+  } @else if $tool == 'javascript' or $tool == 'css'{
     ##{$tool} {
       @include fadeImg('/images/' + $tool + '.png');
       margin: 10px 0px 0px 7px;
     }
-  } @else if $tool == "email"{
+  } @else if $tool == 'email'{
     ##{$tool} {
       @include fadeImg('/images/' + $tool + '.png');
       margin: 6px 0px 0px 6px;
@@ -1171,6 +1201,12 @@ $dayMap: (
   z-index: 0;
   position: relative;
   transition: all 0.5s ease-in;
+}
+
+@each $tool, $values in $toolMap {
+  .#{$tool + '-cont'} {
+    border: 1px solid $values;
+  }
 }
 
 

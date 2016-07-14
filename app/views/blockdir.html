@@ -1,7 +1,7 @@
 <div>
 	<div class="{{blockInfo.attr.bsCol}} tool-container">
 		<p class="{{blockInfo.attr.nameClass}}" ng-hide="{{blockInfo.binding.nameHide}}">{{blockInfo.text.nameTxt}}</p>
-		<div class="main-blocks">
+		<div class="main-blocks {{blockInfo.attr.blockClass}}">
 			<a class="block-href" ng-href="{{blockInfo.attr.href}}">
 			    <div ng-href="{{blockInfo.attr.href}}" id="{{blockInfo.attr.id}}" ng-init="changeVar = false" ng-mouseover="changeVar = true" ng-mouseleave="changeVar = false"></div>
 			    <span class="img-text gold-text" ng-class="{noOpacity: !changeVar, fullOpacity: changeVar}">
