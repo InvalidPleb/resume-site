@@ -12,8 +12,6 @@ function GraphCtrl($http, $q, $scope, maths, dataParse) {
   	var repoContainer = [];
   	var commitDaily = {};
 
-  	console.log()
-
   	function pushCalledRepo(res, repo) {
   		for (let i = 0; i < res.length; i++) {
   			repo.push(res[i].full_name);
@@ -40,16 +38,15 @@ function GraphCtrl($http, $q, $scope, maths, dataParse) {
 	  		});
   	}
 
-  	$scope.loading = false;
+  	
 
   	// -------- AJAX Callback -------- //
-
-  	/*
+  	
 
 	var calls = getGithubStuff();
   	$q.all([calls]).then(function(){
 
-  		console.log("yo");
+  		$scope.loading = false;
   		
   		var gotDayCommits = dataParse.getDayCommits(commitDaily),
   		    repoCommits = gotDayCommits[0],
@@ -72,7 +69,7 @@ function GraphCtrl($http, $q, $scope, maths, dataParse) {
 		$scope.dayNames = ["S", "M", "T", "W", "T", "F", "S",];
 
 
-			// This object contains the data for the Github graph
+		// This object contains the data for the Github graph
   		$scope.dataObj = {
 
   			commits: {
@@ -153,13 +150,31 @@ function GraphCtrl($http, $q, $scope, maths, dataParse) {
 		middleRing(0, 50, [0,105, 0], [1,1,1,1,1,1,1]);
 		innerRing(repoCommits, repoContainer, colorObj[0], 0);
 
+		var dayRing;
+
+		$('.line-title:nth-child(3)').mouseover(function(){
+			$('.line:nth-child(1)').stop().animate({borderColor:"#3ECF84"},"fast");
+			let dayRingInd = gotParsedCommits[1];
+			dayRing = middleRing(0, 50, colorObj[9], dayRingInd[49]);
+			for (let j = 0; j < dayRing.length; j++) {
+				dayRing[j].transition().duration(200).style("opacity", 0.9);
+			}
+		}).mouseout(function(){
+			$('.line:nth-child(1)').stop().animate({borderColor:"#9E8E4C"},"fast");
+			for (let j = 0; j < dayRing.length; j++) {
+				dayRing[j].transition()		
+				.duration(200)		
+				.style("opacity", 0.1)
+				.remove();
+			}
+		});
+
   	});
 
-*/
+
 
 
 	// -------------- Github Graph -------------- //
-
 
   	// Setting up D3
 
@@ -228,10 +243,12 @@ function GraphCtrl($http, $q, $scope, maths, dataParse) {
 			    g = svgContainer.append('svg:g');
 
 			// Drawing the pie segment
-			g.append("path")
+			let week = g.append("path")
 			    .attr("d", arc(170, 200, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
 			    .attr("transform", "translate(200,250)")
 			    .style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")")
+			    .style("cursor", "pointer")
+
 			    .on("mouseover", function () {
 				    d3.select(this).style("fill", "rgb(89, 74, 41)");
 				    $(".pie-tooltip-hover:nth-child(" + i + ")").css("opacity", "1");
@@ -260,6 +277,22 @@ function GraphCtrl($http, $q, $scope, maths, dataParse) {
 
 			sAng = sAng + 0.5;
 			eAng = eAng + 0.5;
+
+
+			if (i === 49) {
+
+				$('.line-title:nth-child(1)').mouseover(function(){
+					$('.line:nth-child(3)').stop().animate({borderColor:"#3ECF84"},"fast");
+		
+					$('.graph-circle').stop().animate({borderColor:"#3ECF84"},"fast");
+					week.style("fill", "rgba(62,207,132, 1)");
+				}).mouseout(function(){
+					$('.line:nth-child(3)').stop().animate({borderColor:"#9E8E4C"},"fast");
+					$('.graph-circle').stop().animate({borderColor:"#9E8E4C"},"fast");
+					week.style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")");
+				});
+			}
+
 			i++;
 			return outerRing(sAng, eAng, colorObj[9], data, dayData, i);
 		}
@@ -331,6 +364,23 @@ function GraphCtrl($http, $q, $scope, maths, dataParse) {
 					// Opens a link to the repository that is represented by the pie segment
 					maths.openLink("https://github.com/InvalidPleb/" + repoName);
 				});
+
+			if (i === 1) {
+
+				$('.line-title:nth-child(2)').mouseover(function(){
+					$('.line:nth-child(2)').stop().animate({borderColor:"#3ECF84"},"fast");
+					pieCurve.style("fill", "rgba(" + color + "," + (alpha + 0.3) + ")");
+				}).mouseout(function(){
+					$('.line:nth-child(2)').stop().animate({borderColor:"#9E8E4C"},"fast");
+					pieCurve.style("fill", "rgba(" + color + "," + alpha + ")");
+				});
+
+
+			}
+
+
+				
+
 			i++;
 			return innerRing(data, repoContainer, colorObj[i], i);
 		}

@@ -681,13 +681,14 @@ $loopCount: 0;
   text-align: center;
   pointer-events: none;
   transition: all 0.25s ease-in;
+  @include prefix(user-select, none, webkit moz ms o);
   
   
 }
 
 $repoTooltipMap: (
   1: (50, 420),
-  2: (60, 320),
+  2: (70, 320),
   3: (190, 670),
   4: (270, 300),
   5: (40, 480),
@@ -737,16 +738,13 @@ $repoTooltipMap: (
   font: 12px sans-serif;
   text-align: center;
   pointer-events: none;
+  @include prefix(user-select, none, webkit moz ms o);
 }
 
 .pie-tooltip-hover {
   @extend .pie-tooltip;
   z-index: 6;
   opacity: 0;
-}
-
-.tooltipText {
-  font-size: 16px;
 }
 
 .graph-circle {
@@ -783,19 +781,42 @@ $repoTooltipMap: (
   @extend .tooltip;
   position: absolute;
   opacity: 1;
-  vertical-align: middle;
+  background-image: none;
+  background-color: $dark-background;
   line-height: 50px;
+  pointer-events: all;
+  cursor: pointer;
+  overflow: hidden;
+  &:hover {
+    height: 100px;
+    background-color: $grey-background;
+    border-color: $teal-color;
+  }
+
+  & > :nth-child(2) {
+    top: 0px;
+    padding: 5px;
+    position: relative;
+    color: $teal-color;
+    line-height: 20px;
+  }
+}
+
+
+.tooltipText {
+  font-size: 16px;
+  pointer-events: none;
 }
 
 $lineMap: (
   1: (180, 720),
-  2: (280, 210),
+  2: (240, 210),
   3: (65, 275),
 );
 
 $lineTitleMap: (
   1: (50, 150),
-  2: (265, 80),
+  2: (225, 80),
   3: (165, 880),
 );
 
@@ -803,7 +824,7 @@ $lineTitleMap: (
 
   .line:nth-child(#{$num}) {
     left: nth($values, 2) + px;
-    top: nth($values, 1) + px;
+    top: nth($values, 1) + 5 + px;
   }
 }
 
@@ -811,7 +832,7 @@ $lineTitleMap: (
 
   .line-title:nth-child(#{$num}) {
     left: nth($values, 2) + px;
-    top: nth($values, 1) + px;
+    top: nth($values, 1) - 5 + px;
   }
 }
 
@@ -856,6 +877,7 @@ $lineTitleMap: (
   margin: 0px;
   padding: 10px;
   position: absolute;
+  @include prefix(user-select, all, webkit moz ms o);
 }
 
 .graph-desc-section {
@@ -1069,6 +1091,7 @@ $dayMap: (
 .graph-container {
   @extend .block-container;
   padding-bottom: 180px;
+  @include prefix(user-select, none, webkit moz ms o);
 
 }
 

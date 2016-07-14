@@ -97,12 +97,9 @@ function navScroll($rootScope) {
               } else {
                 animation(-55);
               }
-
-              console.log(element.offset());
-
               $rootScope.navScrollClick = element;
             }
-            
+
           });
         }
   };
