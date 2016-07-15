@@ -8,6 +8,8 @@ CanvasCtrl.$inject = ['$scope', 'maths'];
 
 function CanvasCtrl($scope, maths) {
 
+	/*
+
 	// -------- Canvas -------- //
   	var canvas = document.getElementById("canvas"),
   	    mainControlSection = document.getElementById("mainControlSection"),
@@ -16,9 +18,29 @@ function CanvasCtrl($scope, maths) {
   	    ctx = canvas.getContext("2d"),
 	    painting = false;
 
+	   */
+
 	$(window).resize(function() {
-	  fitToContainer(canvas);
+		for (let i=0; i <= 7; i++) {
+			fitToContainer(document.getElementById("canvasPad" + i));
+			
+		}
+	  	
 	});
+
+	/*
+
+	$(document).ready(function() {
+	   for (let i=0; i <= 7; i++) {
+			let  canvas = document.getElementById("canvasPad" + i);
+			drawCircle(canvas, maths.getRandom(0, canvas.width), maths.getRandom(0, canvas.height), 10, 0);
+		}
+	});
+
+	*/
+	
+
+	
 	
 	function fitToContainer(canvas){
 	  canvas.style.width ='100%';
@@ -39,7 +61,9 @@ function CanvasCtrl($scope, maths) {
 
 	var painting = false;
 
-	function drawCircle(x, y, rad, i) {
+	function drawCircle(canvas, x, y, rad, i) {
+
+		var ctx = canvas.getContext("2d");
 
 		if (i === 20) {
 			i = 0;
@@ -60,7 +84,7 @@ function CanvasCtrl($scope, maths) {
 			painting = true;
 			rad = rad + 4;
 			setTimeout(function(){
-				drawCircle(x, y, rad, i);
+				drawCircle(canvas, x, y, rad, i);
 			}, 60);
 
 		} else {
@@ -69,10 +93,10 @@ function CanvasCtrl($scope, maths) {
 			
 			x = maths.getRandom(0, canvas.width);
 			y = maths.getRandom(0, canvas.height);
-			fadeOut();
+			fadeOut(canvas);
 			setTimeout(function(){
 				setTimeout(function(){
-					drawCircle(x, y, rad, i);
+					drawCircle(canvas, x, y, rad, i);
 				}, 60);
 			}, 2000);
 			rad = 0;
@@ -90,15 +114,17 @@ function CanvasCtrl($scope, maths) {
         ctx.fill();
 
 	}
-	//drawCircle(maths.getRandom(0, canvas.width), maths.getRandom(0, canvas.height), 10, 0);
-	function fadeOut() {
+	
+	function fadeOut(canvas) {
+
+		var ctx = canvas.getContext("2d");
 
 	    ctx.fillStyle = "rgba(24,24,24,0.3)";
 	    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 	    if (!painting) {
 	    	var screenFill = setTimeout(function(){
-			  fadeOut();
+			  fadeOut(canvas);
 			},60);
 
 	    }

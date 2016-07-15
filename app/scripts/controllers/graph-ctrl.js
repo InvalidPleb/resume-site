@@ -378,9 +378,6 @@ function GraphCtrl($http, $q, $scope, maths, dataParse) {
 
 			}
 
-
-				
-
 			i++;
 			return innerRing(data, repoContainer, colorObj[i], i);
 		}

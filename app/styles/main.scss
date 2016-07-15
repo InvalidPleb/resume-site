@@ -467,6 +467,19 @@ $loopCount: 0;
   cursor: pointer;
 }
 
+$i: 0;
+
+@while $i < 8 {
+  ##{canvasPad + $i} {
+    @include prefix(filter, blur(10px), webkit moz ms o); 
+  }
+
+  $i: $i + 1;
+
+}
+
+
+
 .name-text {
   @extend .block-title-section-text;
   top: 0;
@@ -573,7 +586,8 @@ $loopCount: 0;
 
 .skills-container {
   width: 90%;
-  left: 5%;
+  margin: 0 auto;
+  margin-top: 50px;
   padding: 0px 20px 20px 20px;
   position: relative;
   background-image: url($rock-background);
@@ -868,15 +882,19 @@ $lineTitleMap: (
   font-family: monospace;
 }
 
+
+
 .graph-description {
-  @extend .skills-container;
-  height: 500px;
+  width: 90%;
   z-index: 5;
   bottom: 0px;
   top: 525px;
-  margin: 0px;
+  left: 5%;
   padding: 10px;
+  padding-bottom: 500px;
   position: absolute;
+  background-image: url($rock-background);
+  @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
   @include prefix(user-select, all, webkit moz ms o);
 }
 
@@ -1102,8 +1120,13 @@ $dayMap: (
 
 .block-titles {
   height: 50px;
-  left: 34%;
-  @include border(1px solid, $gold-color, bottom);
+  top: 20px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  padding-bottom: 40px;
+  float: none;
+  //@include prefix(box-shadow, -10px 10px 28px -9px rgba(0,0,0,0.75), webkit moz ms o);
+  //@include border(1px solid, $gold-color, bottom);
   text-align: center;
 }
 

@@ -78,28 +78,11 @@ function navScroll($rootScope) {
     return {
         restrict: "A",
         link: function(scope, element, attrs) {
-          let top = $('#' + attrs.ngModel + '').offset().top;
           return $(element).click(function() {
-
-
-            function animation(offset) {
-              $('html,body').animate({
-                  scrollTop: (top + offset)
-              },'slow');
-            }
-
             if ($rootScope.navScrollClick !== element) {
-
-              if (attrs.ngModel === 'tools') {
-                animation(615);
-              } else if (attrs.ngModel === 'contact') {
-                animation(1510);
-              } else {
-                animation(-55);
-              }
+              $(window).scrollTo($('#' + attrs.ngModel + ''), 800, {offset:-55});
               $rootScope.navScrollClick = element;
             }
-
           });
         }
   };
