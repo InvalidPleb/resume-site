@@ -40,8 +40,16 @@ function scrollChange($window) {
           angular.element($window).bind("scroll", function() {
               if (this.pageYOffset === 0) {
                   scope.navText = true;
+                  $('.navbar-text').css('height', '72px');
+                  $('.navbar-text').css('padding-top', '23px');
+                  $('.nav-btn-dirty').css('height', '70px');
+                  $('.nav-btn-clean').css('height', '70px');
               } else {
                   scope.navText = false;
+                  $('.navbar-text').css('height', '52px');
+                  $('.navbar-text').css('padding-top', '14px');
+                  $('.nav-btn-dirty').css('height', '50px');
+                  $('.nav-btn-clean').css('height', '50px');
               }
               scope.$apply();
           });
@@ -53,11 +61,12 @@ function scrollChangeHash($window) {
     return {
         link: function(scope, element, attrs) {
           angular.element($window).bind("scroll", function() {
-              let projects = $('#projects').offset().top,
-                  development = $('#github').offset().top,
-                  tools = $('#tools').offset().top,
-                  contact = $('#contact').offset().top,    
-              elementOff = ($(element).offset().top + 75);
+              let projects = $('#projects-section').offset().top,
+                  development = $('#github-section').offset().top,
+                  tools = $('#tools-section').offset().top,
+                  contact = $('#contact-section').offset().top,    
+                  elementOff = ($(element).offset().top + 75);
+
           if (elementOff > projects && elementOff < development) {
             window.location.hash = '#/' + 'projects';
           } else if (elementOff > development && elementOff < tools) {
@@ -69,7 +78,7 @@ function scrollChangeHash($window) {
           } else {
             window.location.hash = '#/';
           }
-          });
+        });
       }
     };
 }
@@ -80,7 +89,13 @@ function navScroll($rootScope) {
         link: function(scope, element, attrs) {
           return $(element).click(function() {
             if ($rootScope.navScrollClick !== element) {
-              $(window).scrollTo($('#' + attrs.ngModel + ''), 800, {offset:-55});
+              if (attrs.id !== 'home') {
+                scope.navSpan = attrs.id;
+                $(window).scrollTo($('#' + attrs.id + '-section'), 800, {offset:-55});
+              } else {
+                scope.navSpan = attrs.id;
+                $(window).scrollTo(0, 800, {offset:-55});
+              }
               $rootScope.navScrollClick = element;
             }
           });

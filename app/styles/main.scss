@@ -154,6 +154,8 @@ transition
   //}
 }
 
+// -------- Variables -------- //
+
 $dark-background: #181819;
 $grey-background: #262626;
 $gold-color: #9E8E4C;
@@ -320,7 +322,7 @@ a:active {
   top: 40%;
   position: relative;
   @include border(2px solid, $gold-color, bottom top);
-  //background-image: url('/images/royalpat.png');
+  background-image: url('/images/metal-pat-2.png');
   @include prefix(box-shadow, inset 0px 0px 20px 5px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
@@ -402,17 +404,20 @@ $loopCount: 0;
 }
 
 .navbar-text {
-  height: 69px;
-  bottom: 1px;
+  height: 72px;
+  z-index: 2;
   margin: 0;
+  margin-top: -2px;
   padding: 23px 30px 0px 30px;
-  color: $bright-gold-color;
+  position: relative;
+  color: white;
   cursor: pointer;
   @include prefix(user-select, none, webkit moz ms o);
   transition: all .25s cubic-bezier(.17,.67,.83,.67);
 
+
   &:hover {
-    background-color: $gold-color !important;
+    background-color: $bright-gold-color !important;
     @include border(0px solid, $gold-color, top left bottom right);
     color: white;
   }
@@ -420,7 +425,7 @@ $loopCount: 0;
 
 .navbar-text-float {
   @extend .navbar-text;
-  height: 49px;
+  height: 50px;
   padding-top: 12px;
 }
 
@@ -429,6 +434,19 @@ $loopCount: 0;
   font-size: 20px;
 }
 
+.nav-btn-dirty {
+  @extend .navbar-text;
+  margin-top: -2px;
+  z-index: 1;
+  padding: 0px;
+  background-color: $bright-gold-color;
+  color: white;
+}
+
+.nav-btn-clean {
+  @extend .nav-btn-dirty;
+  background-color: transparent;
+}
 // -------- Top Greeting Section -------- //
 
 #greeting-section {

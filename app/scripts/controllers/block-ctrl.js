@@ -6,13 +6,14 @@ angular
 
 BlockCtrl.$inject = ['$scope'];
 
+
 function BlockCtrl($scope) {
 
 	// -------- Block Template Instance Data -------- //
 		$scope.darkreader = {
 
 			attr:  {	
-						blockClass: 'darkreader-cont',
+						blockClass: "darkreader-cont",
 		  				id: "darkreader",
 		  				href: "https://github.com/alexanderby/darkreader",
 		  				nameClass: "block-name-def-dark",

@@ -29,14 +29,35 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a id="home" nav-scroll ng-model="home" class="navbar-text navbar-brand" ng-class="{true: 'navbar-text', false: 'navbar-text-float'}[navText]">Tucker Tatum</a>
+          <div class="nav-btn-clean" ng-class="{home: 'nav-btn-dirty', projects: 'nav-btn-clean', github: 'nav-btn-clean', tools: 'nav-btn-clean', contact: 'nav-btn-clean'}[navSpan]" ng-model="navSpan">
+            <a id="home" nav-scroll class="navbar-text navbar-brand">Tucker Tatum</a>
+          </div>
         </div>
+
+      
+
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav">
-            <li><a  id="project-sphere" nav-scroll ng-model="projects" class="navbar-text" ng-class="{true: 'navbar-text', false: 'navbar-text-float'}[navText]">Work</a></li>
-            <li><a id="github-sphere" nav-scroll ng-model="github" class="navbar-text" ng-class="{true: 'navbar-text', false: 'navbar-text-float'}[navText]">Development</a></li>
-            <li><a id="tools-sphere" nav-scroll ng-model="tools" class="navbar-text" ng-class="{true: 'navbar-text', false: 'navbar-text-float'}[navText]">Tools</a></li>
-            <li><a id="contact-sphere" nav-scroll ng-model="contact" class="navbar-text" ng-class="{true: 'navbar-text', false: 'navbar-text-float'}[navText]">Contact</a></li>
+            <li>
+              <div class="nav-btn-clean" ng-class="{home: 'nav-btn-clean', projects: 'nav-btn-dirty', github: 'nav-btn-clean', tools: 'nav-btn-clean', contact: 'nav-btn-clean'}[navSpan]" ng-model="navSpan">
+                <a id="projects" nav-scroll class="navbar-text" >Work</a>
+              </div>
+            </li>
+            <li>
+              <div class="nav-btn-clean" ng-class="{home: 'nav-btn-clean', projects: 'nav-btn-clean', github: 'nav-btn-dirty', tools: 'nav-btn-clean', contact: 'nav-btn-clean'}[navSpan]" ng-model="navSpan">
+                <a id="github" nav-scroll class="navbar-text" >Development</a>
+              </div>
+            </li>
+            <li>
+              <div class="nav-btn-clean" ng-class="{home: 'nav-btn-clean', projects: 'nav-btn-clean', github: 'nav-btn-clean', tools: 'nav-btn-dirty', contact: 'nav-btn-clean'}[navSpan]" ng-model="navSpan">
+                <a id="tools" nav-scroll class="navbar-text" >Tools</a>
+              </div>
+            </li>
+            <li>
+              <div class="nav-btn-clean" ng-class="{home: 'nav-btn-clean', projects: 'nav-btn-clean', github: 'nav-btn-clean', tools: 'nav-btn-clean', contact: 'nav-btn-dirty'}[navSpan]" ng-model="navSpan">
+                <a id="contact" nav-scroll class="navbar-text" >Contact</a>
+              </div>
+            </li>
           </ul>
         </div>
         <!--/.nav-collapse -->
@@ -71,7 +92,7 @@
     
     <div class="main-container">
       <div class="index" ng-controller="BlockCtrl as block">
-        <section id="projects" class="projects-container">
+        <section id="projects-section" class="projects-container">
           <div class="projects-title-section">
               <div class="block-title-section-text">My projects</div>
           </div>
@@ -120,7 +141,7 @@
               </div>
           </div> 
         </section>
-        <section id="github" class="projects-container">
+        <section id="github-section" class="projects-container">
           <div class="projects-title-section">
             <div class="block-title-section-text">Clean, modular, &amp; scalable code</div>
           </div>
@@ -257,7 +278,7 @@
                 </div>
             </div>
         </section>
-        <section id="tools" class="block-container">
+        <section id="tools-section" class="block-container">
           <div class="projects-title-section">
               <div class="block-title-section-text">Tools I use</div>
           </div>
@@ -340,7 +361,7 @@
             </div>
           </div> 
         </section>
-        <section id="contact" class="projects-container" >
+        <section id="contact-section" class="projects-container" >
           <div class="projects-title-section">
             <div class="block-title-section-text">Contact me</div>
           </div>
