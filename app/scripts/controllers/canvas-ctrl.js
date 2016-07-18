@@ -8,17 +8,10 @@ CanvasCtrl.$inject = ['$scope', 'maths'];
 
 function CanvasCtrl($scope, maths) {
 
-	/*
+	
 
 	// -------- Canvas -------- //
-  	var canvas = document.getElementById("canvas"),
-  	    mainControlSection = document.getElementById("mainControlSection"),
-  	    sphere = document.getElementsByClassName("sphere"),
-  	    sphereTxt = document.getElementsByClassName("sphere-text"),
-  	    ctx = canvas.getContext("2d"),
-	    painting = false;
-
-	   */
+  	var canvas = document.getElementById("canvas");
 
 	$(window).resize(function() {
 		for (let i=0; i <= 7; i++) {
@@ -27,20 +20,6 @@ function CanvasCtrl($scope, maths) {
 		}
 	  	
 	});
-
-	/*
-
-	$(document).ready(function() {
-	   for (let i=0; i <= 7; i++) {
-			let  canvas = document.getElementById("canvasPad" + i);
-			drawCircle(canvas, maths.getRandom(0, canvas.width), maths.getRandom(0, canvas.height), 10, 0);
-		}
-	});
-
-	*/
-	
-
-	
 	
 	function fitToContainer(canvas){
 	  canvas.style.width ='100%';
