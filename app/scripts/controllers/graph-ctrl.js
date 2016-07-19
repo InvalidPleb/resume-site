@@ -69,6 +69,30 @@ function GraphCtrl($http, $q, $scope, maths, dataParse) {
 		$scope.dayNames = ["S", "M", "T", "W", "T", "F", "S",];
 
 
+		var dayRing;
+
+		$('.line-title:nth-child(3)').mouseover(function(){
+			$('.line:nth-child(1)').stop().animate({borderColor:"#3ECF84"},"fast");
+			let dayRingInd = gotParsedCommits[1];
+			dayRing = middleRing(0, 50, colorObj[9], dayRingInd[49]);
+			for (let j = 0; j < dayRing.length; j++) {
+				dayRing[j].transition().duration(200).style("opacity", 0.9);
+			}
+		}).mouseout(function(){
+			$('.line:nth-child(1)').stop().animate({borderColor:"#9E8E4C"},"fast");
+			for (let j = 0; j < dayRing.length; j++) {
+				dayRing[j].transition()		
+				.duration(200)		
+				.style("opacity", 0.1)
+				.remove();
+			}
+		});
+
+		 outerRing(-1, 5.5, [0,105, 0], gotParsedCommits[0], gotParsedCommits[1], 0);
+		middleRing(0, 50, [0,105, 0], [1,1,1,1,1,1,1]);
+		innerRing(repoCommits, repoContainer, colorObj[0], 0);
+
+
 		// This object contains the data for the Github graph
   		$scope.dataObj = {
 
@@ -145,30 +169,6 @@ function GraphCtrl($http, $q, $scope, maths, dataParse) {
 	  				"Sat"
 	  				]
   		};
-
-  		outerRing(-1, 5.5, [0,105, 0], gotParsedCommits[0], gotParsedCommits[1], 0);
-		middleRing(0, 50, [0,105, 0], [1,1,1,1,1,1,1]);
-		innerRing(repoCommits, repoContainer, colorObj[0], 0);
-
-		var dayRing;
-
-		$('.line-title:nth-child(3)').mouseover(function(){
-			$('.line:nth-child(1)').stop().animate({borderColor:"#3ECF84"},"fast");
-			let dayRingInd = gotParsedCommits[1];
-			dayRing = middleRing(0, 50, colorObj[9], dayRingInd[49]);
-			for (let j = 0; j < dayRing.length; j++) {
-				dayRing[j].transition().duration(200).style("opacity", 0.9);
-			}
-		}).mouseout(function(){
-			$('.line:nth-child(1)').stop().animate({borderColor:"#9E8E4C"},"fast");
-			for (let j = 0; j < dayRing.length; j++) {
-				dayRing[j].transition()		
-				.duration(200)		
-				.style("opacity", 0.1)
-				.remove();
-			}
-		});
-
   	});
 
 
