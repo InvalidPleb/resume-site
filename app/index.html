@@ -29,7 +29,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <div class="nav-btn-clean" ng-class="{home: 'nav-btn-dirty', projects: 'nav-btn-clean', github: 'nav-btn-clean', tools: 'nav-btn-clean', contact: 'nav-btn-clean'}[navSpan]" ng-model="navSpan">
+          <div id="home-cont" class="nav-btn-clean" ng-class="{home: 'nav-btn-dirty', projects: 'nav-btn-clean', github: 'nav-btn-clean', tools: 'nav-btn-clean', contact: 'nav-btn-clean'}[navSpan]" ng-model="navSpan">
             <a id="home" nav-scroll class="navbar-text navbar-brand">Tucker Tatum</a>
           </div>
         </div>
@@ -83,9 +83,10 @@
       </div>
     </section>
     <div id="background" ng-controller="CanvasCtrl as canvas">
-      <div class="padding" ng-repeat="pads in [0, 1, 2, 3, 4, 5, 6, 7] track by $index">
-        <div class="decoration">
-          <canvas ng-attr-id="{{'canvasPad' + $index}}" style="height:100%;width:100%;"></canvas>
+      <div ng-repeat="pads in [0, 1, 2, 3, 4, 5, 6, 7] track by $index">
+        <div id="container-background-{{$index}}" class="container-parallax"></div>
+        <div id="padding-{{$index}}" class="padding">
+          <div class="decoration"></div>
         </div>
       </div>
     </div>
@@ -171,11 +172,13 @@
                   <main-block info="css"></main-block>
               </div>
               <div class="tools-desc-container">
-                  <p></p>
+                  <p>&nbsp; &nbsp; &nbsp; &nbsp; </p>
               </div>
             </div>
           </div>
         </section>
+
+
         <section class="graph-container" ng-controller="GraphCtrl as graph">
           <div class="loadingScreen fadable" ng-hide="loading == false" ng-model="loading">
             <div class="loading"></div>
@@ -183,7 +186,7 @@
             <div class="projects-title-section">
               <div class="block-title-section-text">My live Github activity</div>
             </div>
-            
+  
             <div class="d3-container">
                 <div class="animation-container">
                     <div class="month-labels">
@@ -241,6 +244,8 @@
                         </div>
                         <div class="col-lg-2 col-md-0 col-sm-0 col-xs-0"></div>
                     </div>
+
+
                     <div class="row">
                         <div class="col-lg-2 col-md-0 col-sm-0 col-xs-0"></div>
                         <div class="contribution-info col-lg-2 col-md-3 col-sm-3 col-xs-3">
@@ -255,17 +260,20 @@
                             <p class="contribution-text-left"><span>{{dataObj.commits.currStreak}}</span> days</p>
                             <p class="contribution-text-left"><span>{{dataObj.commits.longestStreak}}</span> days</p>
                         </div>
+
+
                         <div class="contribution-info col-lg-2 col-md-3 col-sm-3 col-xs-3">
                             <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.runnerCalc}}">Runner Calc</a></p>
-                            <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.sips}}">Sips</a></p>
                             <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.resumeSite}}">Resume</a></p>
+                            <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.sips}}">Sips</a></p>
                             <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.darkReader}}">Dark Reader</a></p>
                             <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.tmTheme}}">TmTheme</a></p>
                         </div>
                         <div class="contribution-info col-lg-2 col-md-3 col-sm-3 col-xs-3">
                             <p class="contribution-text-left"><span>{{dataObj.repositories.runnerCalc}}</span> commits</p>
-                            <p class="contribution-text-left"><span>{{dataObj.repositories.sips}}</span> commits</p>
                             <p class="contribution-text-left"><span>{{dataObj.repositories.resumeSite}}</span> commits</p>
+                            <p class="contribution-text-left"><span>{{dataObj.repositories.sips}}</span> commits</p>
+                            
                             <p class="contribution-text-left"><span>{{dataObj.repositories.darkReader}}</span> commits</p>
                             <p class="contribution-text-left"><span>{{dataObj.repositories.tmTheme}}</span> commit</p>
                         </div>

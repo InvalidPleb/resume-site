@@ -164,9 +164,10 @@ $bright-gold-color: #c9b564;
 $cream-color: #c9c5b7;
 $teal-color: #3ECF84;
 $rock-background: '/images/rock-background.png';
+$code-background: '/images/codebackground-2.png';
 
 
-// -------- Element Selectors -------- //
+// -------- Generic Element Selectors -------- //
 
 * {
   margin: 0px;
@@ -188,7 +189,7 @@ a:active {
   text-decoration: none;
 }
 
-// -------- General Classes --------- //
+// -------- General-Use Classes --------- //
 
 .gold-text {
   color: $bright-gold-color;
@@ -314,6 +315,7 @@ a:active {
 .main-body {
   background-image: url($rock-background);
   overflow-x: hidden;
+
 }
 
 .decoration {
@@ -326,9 +328,6 @@ a:active {
   @include prefix(box-shadow, inset 0px 0px 20px 5px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
-$i: 2;
-$loopCount: 1;
-
 .padding {
   height: 200px;
   width: 100%;
@@ -337,20 +336,18 @@ $loopCount: 1;
   position: absolute;
   background-image: url($rock-background);
   @include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
-
-  @while $i < 14 {
-
-    &:nth-child(#{$i}) {
-      margin-top: ($loopCount * 1100) + px;
-    }
-
-    $loopCount: $loopCount + 1;
-    $i: $i + 1;
-  }
 }
 
-$i: 3;
-$loopCount: 0;
+$i: 2;
+
+@while $i < 8 {
+
+ ##{padding- + $i} {
+    margin-top: ($i * 1100) + px;
+  }
+
+  $i: $i + 1;
+}
 
 .container-parallax {
   height: 1000px;
@@ -358,18 +355,18 @@ $loopCount: 0;
   z-index: -5;
   margin-top: -950px;
   position: absolute;
-  background-color: $dark-background;
-  //background-image: url('/images/darklinepat2.png');
-  
-  @while $i < 13 {
+  background-image: url($code-background);
+  @include prefix(filter, blur(2px), webkit moz ms o);
+}
 
-    &:nth-child(#{$i}) {
-      margin-top: -50 + ($loopCount * 1000) + px;
-    }
+$i: 1;
 
-    $loopCount: $loopCount + 1;
-    $i: $i + 2;
+@while $i < 8 {
+
+  ##{container-background- + $i} {
+    margin-top: -1000 + ($i * 1000) + px;
   }
+  $i: $i + 1;
 }
 
 .navbar-main {
@@ -417,7 +414,7 @@ $loopCount: 0;
 
 
   &:hover {
-    background-color: $bright-gold-color !important;
+    background-color: $bright-gold-color;
     @include border(0px solid, $gold-color, top left bottom right);
     color: white;
   }
@@ -434,11 +431,16 @@ $loopCount: 0;
   font-size: 20px;
 }
 
+#home-cont {
+  padding-left: 15px;
+}
+
 .nav-btn-dirty {
   @extend .navbar-text;
   margin-top: -2px;
   z-index: 1;
   padding: 0px;
+  //padding-left: 15px;
   background-color: $bright-gold-color;
   color: white;
 }
@@ -495,8 +497,6 @@ $i: 0;
   $i: $i + 1;
 
 }
-
-
 
 .name-text {
   @extend .block-title-section-text;
@@ -719,12 +719,12 @@ $i: 0;
 }
 
 $repoTooltipMap: (
-  1: (50, 420),
-  2: (70, 320),
-  3: (190, 670),
-  4: (270, 300),
-  5: (40, 480),
-  6: (40, 520),
+  1: (50, 420), // Dark Reader
+  2: (280, 290), // Resume 
+  3: (190, 670), // Runner Calc
+  4: (70, 320), // Sips
+  5: (40, 480), // SublimeTxt
+  6: (40, 520), // TmTheme
 );
 
 .repoTooltip {
@@ -841,15 +841,15 @@ $repoTooltipMap: (
 }
 
 $lineMap: (
-  1: (180, 720),
-  2: (240, 210),
-  3: (65, 275),
+  1: (65, 275), // Weeks
+  2: (180, 720), // Days
+  3: (280, 210), // Repos
 );
 
 $lineTitleMap: (
-  1: (50, 150),
-  2: (225, 80),
-  3: (165, 880),
+  1: (50, 150), // Weeks
+  2: (165, 880), // Days
+  3: (265, 80), // Repos
 );
 
 @each $num, $values in $lineMap {

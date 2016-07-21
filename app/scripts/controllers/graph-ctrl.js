@@ -72,14 +72,14 @@ function GraphCtrl($http, $q, $scope, maths, dataParse) {
 		var dayRing;
 
 		$('.line-title:nth-child(3)').mouseover(function(){
-			$('.line:nth-child(1)').stop().animate({borderColor:"#3ECF84"},"fast");
+			$('.line:nth-child(3)').stop().animate({borderColor:"#3ECF84"},"fast");
 			let dayRingInd = gotParsedCommits[1];
 			dayRing = middleRing(0, 50, colorObj[9], dayRingInd[49]);
 			for (let j = 0; j < dayRing.length; j++) {
 				dayRing[j].transition().duration(200).style("opacity", 0.9);
 			}
 		}).mouseout(function(){
-			$('.line:nth-child(1)').stop().animate({borderColor:"#9E8E4C"},"fast");
+			$('.line:nth-child(3)').stop().animate({borderColor:"#9E8E4C"},"fast");
 			for (let j = 0; j < dayRing.length; j++) {
 				dayRing[j].transition()		
 				.duration(200)		
@@ -282,12 +282,12 @@ function GraphCtrl($http, $q, $scope, maths, dataParse) {
 			if (i === 49) {
 
 				$('.line-title:nth-child(1)').mouseover(function(){
-					$('.line:nth-child(3)').stop().animate({borderColor:"#3ECF84"},"fast");
+					$('.line:nth-child(1)').stop().animate({borderColor:"#3ECF84"},"fast");
 		
 					$('.graph-circle').stop().animate({borderColor:"#3ECF84"},"fast");
 					week.style("fill", "rgba(62,207,132, 1)");
 				}).mouseout(function(){
-					$('.line:nth-child(3)').stop().animate({borderColor:"#9E8E4C"},"fast");
+					$('.line:nth-child(1)').stop().animate({borderColor:"#9E8E4C"},"fast");
 					$('.graph-circle').stop().animate({borderColor:"#9E8E4C"},"fast");
 					week.style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")");
 				});
