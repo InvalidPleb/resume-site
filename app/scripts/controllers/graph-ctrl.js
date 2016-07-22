@@ -71,15 +71,15 @@ function GraphCtrl($http, $q, $scope, maths, dataParse) {
 
 		var dayRing;
 
-		$('.line-title:nth-child(3)').mouseover(function(){
-			$('.line:nth-child(3)').stop().animate({borderColor:"#3ECF84"},"fast");
+		$('.line-title:nth-child(2)').mouseover(function(){
+			$('.line:nth-child(2)').stop().animate({borderColor:"#3ECF84"},"fast");
 			let dayRingInd = gotParsedCommits[1];
 			dayRing = middleRing(0, 50, colorObj[9], dayRingInd[49]);
 			for (let j = 0; j < dayRing.length; j++) {
 				dayRing[j].transition().duration(200).style("opacity", 0.9);
 			}
 		}).mouseout(function(){
-			$('.line:nth-child(3)').stop().animate({borderColor:"#9E8E4C"},"fast");
+			$('.line:nth-child(2)').stop().animate({borderColor:"#9E8E4C"},"fast");
 			for (let j = 0; j < dayRing.length; j++) {
 				dayRing[j].transition()		
 				.duration(200)		
@@ -88,7 +88,7 @@ function GraphCtrl($http, $q, $scope, maths, dataParse) {
 			}
 		});
 
-		 outerRing(-1, 5.5, [0,105, 0], gotParsedCommits[0], gotParsedCommits[1], 0);
+		outerRing(-1, 5.5, [0,105, 0], gotParsedCommits[0], gotParsedCommits[1], 0);
 		middleRing(0, 50, [0,105, 0], [1,1,1,1,1,1,1]);
 		innerRing(repoCommits, repoContainer, colorObj[0], 0);
 
@@ -283,13 +283,12 @@ function GraphCtrl($http, $q, $scope, maths, dataParse) {
 
 				$('.line-title:nth-child(1)').mouseover(function(){
 					$('.line:nth-child(1)').stop().animate({borderColor:"#3ECF84"},"fast");
-		
 					$('.graph-circle').stop().animate({borderColor:"#3ECF84"},"fast");
-					week.style("fill", "rgba(62,207,132, 1)");
+					week.style("fill", "rgba(62,207,132, 1)").style("transition", "all .25s cubic-bezier(.17,.67,.83,.67)");
 				}).mouseout(function(){
 					$('.line:nth-child(1)').stop().animate({borderColor:"#9E8E4C"},"fast");
 					$('.graph-circle').stop().animate({borderColor:"#9E8E4C"},"fast");
-					week.style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")");
+					week.style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")").style("transition", "all .25s cubic-bezier(.17,.67,.83,.67)");
 				});
 			}
 
@@ -367,12 +366,12 @@ function GraphCtrl($http, $q, $scope, maths, dataParse) {
 
 			if (i === 1) {
 
-				$('.line-title:nth-child(2)').mouseover(function(){
-					$('.line:nth-child(2)').stop().animate({borderColor:"#3ECF84"},"fast");
-					pieCurve.style("fill", "rgba(" + color + "," + (alpha + 0.3) + ")");
+				$('.line-title:nth-child(3)').mouseover(function(){
+					$('.line:nth-child(3)').stop().animate({borderColor:"#3ECF84"},"fast");
+					pieCurve.style("fill", "rgba(62,207,132, 1)").style("transition", "all .25s cubic-bezier(.17,.67,.83,.67)");
 				}).mouseout(function(){
-					$('.line:nth-child(2)').stop().animate({borderColor:"#9E8E4C"},"fast");
-					pieCurve.style("fill", "rgba(" + color + "," + alpha + ")");
+					$('.line:nth-child(3)').stop().animate({borderColor:"#9E8E4C"},"fast");
+					pieCurve.style("fill", "rgba(" + color + "," + alpha + ")").style("transition", "all .25s cubic-bezier(.17,.67,.83,.67)");
 				});
 
 
