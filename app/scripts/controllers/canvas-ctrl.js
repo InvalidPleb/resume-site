@@ -10,10 +10,10 @@
 
 	function CanvasCtrl($scope, maths) {
 
-		
-
 		// -------- Canvas -------- //
 	  	var canvas = document.getElementById("canvas");
+
+	  	/*
 
 		$(window).resize(function() {
 			for (let i=0; i <= 7; i++) {
@@ -22,6 +22,8 @@
 			}
 		  	
 		});
+
+	*/
 		
 		function fitToContainer(canvas){
 		  canvas.style.width ='100%';
@@ -30,7 +32,7 @@
 		  canvas.height = canvas.offsetHeight;
 		}
 
-		fitToContainer(canvas);
+		//fitToContainer(canvas);
 
 		function getMousePos(canvas, evt) {
 		    let rect = canvas.getBoundingClientRect();
@@ -114,6 +116,8 @@
 
 	  	// -------- Background Parallax -------- //
 
+	  	
+
 	  	function parallax(image, offsetX, offsetY) {
 	  		let ypos = window.pageYOffset;
 	  		return image.css('transform', 'translate3d(' + (ypos * offsetX) + 'px,' + (ypos * offsetY) + 'px,0px)');
@@ -122,6 +126,7 @@
 	  	$(window).scroll(function(){
 	  		return parallax($('.padding'), 0, -0.4);
 	  	});
+
 
 	}
 

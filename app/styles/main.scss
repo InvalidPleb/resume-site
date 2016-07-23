@@ -614,7 +614,7 @@ $i: 0;
 
 .site-container {
   @extend .main-blocks;
-  height: 250px;
+  height: 230px;
   width: 350px;
   top: 10px;
   position: relative;
@@ -624,17 +624,17 @@ $i: 0;
 
 .site-container-tablet {
   @extend .site-container;
-  height: 200px;
+  height: 180px;
   width: 250px;
-  top: 59.5px;
+  top: 62px;
   
 }
 
 .site-container-mobile {
   @extend .site-container;
-  height: 186px;
-  width: 90px;
-  top: 74px;
+  height: 180px;
+  width: 125px;
+  top: 63px;
   
 }
 
@@ -646,30 +646,37 @@ $i: 0;
 
 .site-container-txt-tablet {
   @extend .site-container-txt;
-  top: -29px;
+  top: 20px;
 }
 
 .site-container-txt-mobile {
   @extend .site-container-txt;
-  top: -45px;
+  top: 20px;
 }
 
 #runner-calc-desktop {
-  height: 246px;
+  height: 225px;
   width: 345px;
   left: 2px;
   top: 1px;
   position: relative;
-  //background-image: url('/images/runnercalc345.png');
+  background-image: url('/images/runnercalc-lg.png');
   border-radius: 10px;
 }
 
 #runner-calc-tablet {
   @extend #runner-calc-desktop;
+  height: 175px;
+  width: 245px;
+  background-image: url('/images/runnercalc-md.png');
 }
 
 #runner-calc-mobile {
   @extend #runner-calc-desktop;
+  height: 175px;
+  width: 120px;
+  top: 2px;
+  background-image: url('/images/runnercalc-sm.png');
 }
 
 .runner-calc-text {
@@ -720,7 +727,7 @@ $i: 0;
 
 $repoTooltipMap: (
   1: (50, 420), // Dark Reader
-  2: (280, 290), // Resume 
+  2: (210, 290), // Resume 
   3: (190, 670), // Runner Calc
   4: (70, 320), // Sips
   5: (40, 480), // SublimeTxt
