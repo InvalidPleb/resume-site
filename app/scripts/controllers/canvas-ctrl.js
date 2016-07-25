@@ -23,7 +23,7 @@
 		  	
 		});
 
-	*/
+		*/
 		
 		function fitToContainer(canvas){
 		  canvas.style.width ='100%';

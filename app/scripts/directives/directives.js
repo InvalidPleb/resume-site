@@ -68,17 +68,22 @@
                     tools = $('#tools-section').offset().top,
                     contact = $('#contact-section').offset().top,    
                     elementOff = ($(element).offset().top + 75);
-
+            console.log();
             if (elementOff > projects && elementOff < development) {
               window.location.hash = '#/' + 'projects';
+              scope.navSpan = 'projects';
             } else if (elementOff > development && elementOff < tools) {
               window.location.hash = '#/' + 'development';
+              scope.navSpan = 'github';
             } else if (elementOff > tools && elementOff < (contact - 500)) {
               window.location.hash = '#/' + 'tools';
+              scope.navSpan = 'tools';
             } else if (elementOff > (contact - 500)) {
               window.location.hash = '#/' + 'contact';
+              scope.navSpan = 'contact';
             } else {
               window.location.hash = '#/';
+              scope.navSpan = 'home';
             }
           });
         }

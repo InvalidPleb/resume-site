@@ -457,14 +457,15 @@ $i: 1;
   right: 10px;
   top: 80px;
   padding: 0px;
+  display: block;
   position: relative;
   background-color: $dark-background;
   @include border(1px solid, $gold-color, left right bottom top);
   @include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
 
   & > div {
-    pointer-events:none;
-    @include prefix(user-select, none, webkit moz ms o);
+    margin-left: 5%;
+    padding-bottom: 50px;
   }
 
   & > div > span {
@@ -477,7 +478,10 @@ $i: 1;
 
 .greeting-para {
   top: 45px;
+  padding-left: 20%;
+  padding-right: 20%;
   position: relative;
+  text-align: left;
 }
 
 #canvas {
@@ -505,6 +509,8 @@ $i: 0;
   padding: 0px;
   color: $bright-gold-color;
   font-size: 50px;
+  text-align: center;
+
 
   &:nth-child(2) {
     margin-top: 0px;
@@ -1122,7 +1128,7 @@ $dayMap: (
   padding-bottom: 30px;
   position: relative;
   background-color: $dark-background;
-  @include border(1px solid, $gold-color, left right top bottom);  
+  @include border(1px solid, $gold-color, left right top bottom);
   @include prefix(box-shadow, -13px 20px 35px 10px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
@@ -1152,6 +1158,7 @@ $dayMap: (
   float: none;
   @include prefix(box-shadow, -10px 10px 28px -9px rgba(0,0,0,0.75), webkit moz ms o);
   @include border(1px solid, $gold-color, top left bottom right);
+  border-radius: 3px;
   text-align: center;
 }
 
