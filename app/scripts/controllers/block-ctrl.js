@@ -480,13 +480,13 @@
 							nameHide: "false",
 							paraHide: "true",
 							skill1Hide: "false",
-				  			skill2Hide: "true",
+				  			skill2Hide: "false",
 				  			skill3Hide: "true",
 				  			skill4Hide: "true",
 						},
 
 				skills: {
-							skill1: "Simple JS Syntax",
+							skill1: "Simplified Syntax",
 				  			skill2: "Indentation",
 				  			skill3: "",
 				  			skill4: "",

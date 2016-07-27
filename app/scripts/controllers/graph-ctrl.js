@@ -47,7 +47,7 @@
 
 	  	// -------- AJAX Callback -------- //
 
-	  	/*
+	  	
 	  	
 
 		var calls = vm.getGithubStuff();
@@ -178,7 +178,7 @@
 	  		};
 	  	});
 
-*/
+
 
 
 

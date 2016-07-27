@@ -22,6 +22,8 @@
 
     <nav class="navbar navbar-inverse navbar-main" ng-class="{true: 'navbar-main', false: 'navbar-main-float'}[navText]"  scroll-change-hash scroll-change>
       <div class="container">
+
+        
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -29,6 +31,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+
+
           <div id="home-cont" class="nav-btn-clean" ng-class="{home: 'nav-btn-dirty', projects: 'nav-btn-clean', github: 'nav-btn-clean', tools: 'nav-btn-clean', contact: 'nav-btn-clean'}[navSpan]" ng-model="navSpan">
             <a id="home" nav-scroll class="navbar-text navbar-brand">Tucker Tatum</a>
           </div>
@@ -315,13 +319,13 @@
                 </div>
                 <div class="row dev-tools">
                     <main-block info="git"></main-block>
-                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0"></div>
+                    <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>
                     <main-block info="yeoman"></main-block>
-                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0"></div>
+                    <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>
                     <main-block info="grunt"></main-block>
-                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0"></div>
+                    <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>
                     <main-block info="bower"></main-block>
-                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0"></div>
+                    <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>
                 </div>
                 <div id="dev-tools" class="tools-desc-container">
                     <p>&nbsp; &nbsp; &nbsp; &nbsp; With its popularity and synchronization with Github, as well as fact that I develop on GNU/Linux, Git was an easy choice as my version control system. Yeoman was one of the tools that taught me the most about web development because it sets up the basic structure of the app directory and many of the files that are needed to make the app, including files that new developers might not even know about. Yeoman also introduced me to Grunt and Bower, which are very powerful time and bite savers. Grunt's workflow automation greatly sped up my development time and enabled me to use a bunch of useful Grunt tasks like autoprefixer and JSHint as well as preprocessors such as Sass and CoffeeScript with ease.</p>

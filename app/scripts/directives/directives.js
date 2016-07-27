@@ -64,40 +64,33 @@
           link: function(scope, element, attrs) {
             angular.element($window).bind("scroll", function() {
 
+              let projects = $('#projects-section').offset().top,
+                  github = $('#github-section').offset().top,
+                  tools = $('#tools-section').offset().top,
+                  contact = $('#contact-section').offset().top,    
+                  elementOff = ($(element).offset().top + 75);
 
-              function checkPos() {
-
+              if (elementOff > projects && elementOff < github) {
+                window.location.hash = '#/' + 'projects';
+                scope.navSpan = 'projects';
+                $rootScope.navScrollClick = scope.navSpan;
+              } else if (elementOff > github && elementOff < tools) {
+                window.location.hash = '#/' + 'development';
+                scope.navSpan = 'github';
+                $rootScope.navScrollClick = scope.navSpan;
+              } else if (elementOff > tools && elementOff < (contact - 500)) {
+                window.location.hash = '#/' + 'tools';
+                scope.navSpan = 'tools';
+                $rootScope.navScrollClick = scope.navSpan;
+              } else if (elementOff > (contact - 500)) {
+                window.location.hash = '#/' + 'contact';
+                scope.navSpan = 'contact';
+                $rootScope.navScrollClick = scope.navSpan;
+              } else {
+                window.location.hash = '#/';
+                scope.navSpan = 'home';
+                $rootScope.navScrollClick = scope.navSpan;
               }
-
-                let projects = $('#projects-section').offset().top,
-                    github = $('#github-section').offset().top,
-                    tools = $('#tools-section').offset().top,
-                    contact = $('#contact-section').offset().top,    
-                    elementOff = ($(element).offset().top + 75);
-
-
-
-            if (elementOff > projects && elementOff < github) {
-              window.location.hash = '#/' + 'projects';
-              scope.navSpan = 'projects';
-              $rootScope.navScrollClick = scope.navSpan;
-            } else if (elementOff > github && elementOff < tools) {
-              window.location.hash = '#/' + 'development';
-              scope.navSpan = 'github';
-              $rootScope.navScrollClick = scope.navSpan;
-            } else if (elementOff > tools && elementOff < (contact - 500)) {
-              window.location.hash = '#/' + 'tools';
-              scope.navSpan = 'tools';
-              $rootScope.navScrollClick = scope.navSpan;
-            } else if (elementOff > (contact - 500)) {
-              window.location.hash = '#/' + 'contact';
-              scope.navSpan = 'contact';
-              $rootScope.navScrollClick = scope.navSpan;
-            } else {
-              window.location.hash = '#/';
-              scope.navSpan = 'home';
-              $rootScope.navScrollClick = scope.navSpan;
-            }
           });
         }
       };

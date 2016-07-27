@@ -1306,7 +1306,7 @@ $dayMap: (
   }
 
   .block-name-def {
-    right: 0px;
+    right: -10px;
   }
 
   .block-name-def-cscript {
@@ -1563,8 +1563,7 @@ $dayMap: (
   }
 
   .block-name-def {
-    left: 8px;
-    right: 0px;
+    right: -6px;
   }
 
   .block-name-def-cscript {
@@ -1612,7 +1611,11 @@ $dayMap: (
 
 @media (min-width:762px) and (max-width:874px) {
 
+
+  // -------- Projects Section -------- //
+
   .main-container {
+    padding-bottom: 130px;
     overflow: hidden;
   }
 
@@ -1623,8 +1626,6 @@ $dayMap: (
   #projects {
     height: 1650px;
   }
-
-
 
   .site-container {
     top: 20px;
@@ -1641,20 +1642,15 @@ $dayMap: (
     right: 5%;
   }
 
- 
-  
-
   .runner-calc-text {
-    height: 300px;
     top: 150px;
-
   }
 
   #runner-calc-container {
-    height: 1050px;
-
+    padding-bottom: 160px;
   }
 
+  // -------- Github Graph Section -------- //
 
   .svg-container {
     right: 359px;
@@ -1687,24 +1683,24 @@ $dayMap: (
   }
 
   $lineMap: (
-    1: (75, 265),
-    2: (190, 640),
-    3: (290, 200),
+    1: (75, 265), // Weeks
+    2: (190, 640), // Days
+    3: (290, 200), // Repos
   );
 
   $lineTitleMap: (
-    1: (50, 150),
-    2: (165, 680),
-    3: (265, 80),
+    1: (50, 150), // Weeks
+    2: (165, 680), // Days
+    3: (265, 80), // Repos
   );
 
   $repoTooltipMap: (
-    1: (50, 360),
-    2: (90, 240),
-    3: (230, 590),
-    4: (270, 210),
-    5: (40, 390),
-    6: (40, 420),
+    1: (50, 360), // Darkreader
+    2: (270, 210), // Resume
+    3: (230, 590), // Runner Calc
+    4: (90, 240), // Sips
+    5: (40, 390), // Sublime Text
+    6: (40, 420), // TmTheme
   );
 
   @each $num, $values in $lineMap {
@@ -1743,10 +1739,15 @@ $dayMap: (
   }
 
 
-
+  // -------- Tools Section -------- //
   
   #tools {
     height: 3150px;
+  }
+  
+  .tool-container {
+    width: 125px;
+    padding: 0px;
   }
 
   .title-text {
@@ -1759,25 +1760,29 @@ $dayMap: (
     padding-right: 270px;
   }
 
+  .block-para {
+    top: -10px;
+  }
+
   .block-name-def {
     right: 0px;
-    left: 20px;
+    left: 0px;
   }
 
   .block-name-def-cscript {
-    left: 6px;
+    left: 0px;
   }
 
   .block-name-def-sass {
-    left: 23px;
+    left: 3px;
   }
 
-  .block-name-dark {
-    left: 10px;
-  }
-
-  .block-name-tm {
+  .block-name-def-tm {
     left: -10px;
+  }
+
+  .block-name-def-dark {
+    left: 7px;
   }
 
   .frameworks {
@@ -1785,18 +1790,21 @@ $dayMap: (
   }
 
   .dev-tools {
-    left: 0.5%;
+    left: 4%;
+  }
+
+  .dev-tools > div > .tool-container {
+    margin-right: 40px;
   }
 
   .preprocessors {
-    left: 8%;
+    left: 10%;
   }
 
   .block-para {
     right: 80px;
     padding-left: 20px;
   }
-
 }
 
 @media (min-width:600px) and (max-width:761px) {
@@ -1806,6 +1814,7 @@ $dayMap: (
   }
 
   .main-container {
+    padding-bottom: 150px;
     overflow: hidden;
     margin-left: 2%;
     margin-right:auto;
@@ -1816,81 +1825,65 @@ $dayMap: (
     left: 10px;
   }
 
-  .sphere-container {
-    left: 100px;
+  // -------- Projects Section -------- //
 
-  }
-
-  .sphere-shadow {
-    margin: 15px;
-    right: 80px;
-
-  }
-
-  .block-container {
-    width: 600px;
-    margin-right:auto;
-    margin-left:auto;
-  }
-
-  #tools {
-    height: 3350px;
+  #projects {
+    height: 1650px;
   }
 
   .projects-block-title {
-
     top: 5px;
+  }
+
+  .site-container {
+    top: 20px;
+    right: -9%;
+  }
+
+  .site-container-tablet {
+    top: 111px;
+    right: -7%;
+    
+  }
+
+  .site-container-mobile {
+    top: 111px;
+    right: -15%;
+    
+  }
+
+  .runner-calc-text {
+    top: 100px;
+    padding-bottom: 0px;
 
   }
 
-  .title-text {
-    width: 350px;
-    right: 95px;
+  #runner-calc-container {
+    padding-bottom: 130px;
+
   }
 
-  .block-name-def {
-    right: 0px;
-    left: 17px;
-  }
-
-  .block-name-def-cscript {
-    left: 6px;
-  }
-
-  .block-name-def-sass {
-    left: 33px;
+   // -------- Github Graph Section -------- //
+  
+  .svg-container {
+    right: 435px;
+    min-width: 400px;
+    position: relative;
   }
 
   .graph-description {
-    height: 560px;
+    padding-bottom: 570px;
+  }
+
+  .graph-container {
+    padding-bottom: 250px;
   }
 
   #github {
     height: 1230px;
   }
 
-  .frameworks {
-    left: 5%;
-
-    & > :nth-child(1), :nth-child(3), :nth-child(5) {
-      margin-right: -170px; 
-    }
-  }
-
-  .dev-tools {
-    left: 0.5%;
-
-    & > :nth-child(1), :nth-child(3), :nth-child(5) {
-
-      margin-right: -230px; 
-    }
-  }
-
-  .preprocessors {
-    left: 8%;
-  }
-
-  #graph-para {
+   #graph-para {
     height: 230px;
   }
 
@@ -1898,7 +1891,6 @@ $dayMap: (
     width: 130px;
     position: relative;
     font-size: 20px;
-  
   }
 
   .contribution-text-right {
@@ -1906,68 +1898,6 @@ $dayMap: (
     right: 15px;
     position: relative;
     font-size: 20px;
-
-  }
-
-  .site-container {
-    top: 20px;
-    right: -11%;
-  }
-
-
-  .graph-container {
-
-    height: 1280px;
-
-  }
-
-  .site-container-tablet {
-    top: 111px;
-    right: -10%;
-    
-  }
-
-  .site-container-mobile {
-    top: 125px;
-    right: -20%;
-    
-  }
-
-  .runner-calc-text {
-    height: 300px;
-    top: 100px;
-
-  }
-
-  #runner-calc-container {
-    height: 1050px;
-
-  }
-
-  #projects {
-    height: 1650px;
-  }
-
-  .block-para {
-    right: 80px;
-    padding-left: 20px;
-    width: 250px;
-  }
-
-  .block-name-dark {
-    left: 10px;
-
-  }
-
-  .block-name-tm {
-    left: -10px;
-  }
-
-
-  .svg-container {
-    right: 435px;
-    min-width: 400px;
-    position: relative;
   }
 
   .graph-circle {
@@ -1983,15 +1913,15 @@ $dayMap: (
   }
 
   $lineMap: (
-    1: (190, 640),
-    2: (290, 200),
-    3: (75, 265),
+    1: (75, 265),
+    2: (190, 600),
+    3: (290, 200),
   );
 
   $lineTitleMap: (
     1: (50, 150),
-    2: (265, 80),
-    3: (165, 830),
+    2: (165, 625),
+    3: (265, 80),
   );
 
   $repoTooltipMap: (
@@ -2012,10 +1942,6 @@ $dayMap: (
     }
   }
 
-  .line:nth-child(1) {
-    left: 445px;
-  }
-
   @each $num, $values in $lineTitleMap {
 
     .line-title:nth-child(#{$num}) {
@@ -2025,11 +1951,6 @@ $dayMap: (
     }
 
   }
-
-  .line-title:nth-child(3) {
-    left: 515px;
-  }
-
 
   @each $day, $values in $dayMap {
 
@@ -2046,6 +1967,110 @@ $dayMap: (
       left: nth($values, 2) - 180px;
     }
   }
+
+  
+  // -------- Tools Section -------- //
+
+  #tools {
+    height: 3350px;
+  }
+
+  .tool-container {
+    width: 125px;
+    padding: 0px;
+  }
+
+  .block-container {
+    width: 600px;
+    margin-right:auto;
+    margin-left:auto;
+  }
+
+  .block-titles {
+    padding-left: 60px;
+    padding-right: 270px;
+  }
+  
+  .title-text {
+    width: 350px;
+    right: 70px;
+  }
+
+  .block-para {
+    top: -10px;
+    left: -40px;
+    padding-right: 20px;
+  }
+
+  .block-name-def {
+    right: 0px;
+    left: -2px;
+  }
+
+  .block-name-def-cscript {
+    left: 1px;
+  }
+
+  .block-name-def-sass {
+    left: 1px;
+  }
+
+  .block-name-def-tm {
+    left: -10px;
+  }
+
+  .block-name-def-dark {
+    left: 7px;
+  }
+
+  .frameworks {
+    left: 7%;
+
+    & > :nth-child(1), :nth-child(3), :nth-child(5) {
+      //margin-right: -170px; 
+    }
+  }
+
+  .dev-tools {
+    left: 1%;
+
+    & > :nth-child(1), :nth-child(3), :nth-child(5) {
+      //margin-right: -230px; 
+    }
+  }
+
+  .dev-tools > div > .tool-container {
+    margin-right: 7px;
+  }
+
+  .preprocessors {
+    left: 6%;
+  }
+
+  .skills-list {
+    width: 150px;
+    left: -13px;
+    text-align: center;
+    list-style: none;
+
+  }
+
+ 
+  .block-para {
+    right: 80px;
+    padding-left: 20px;
+    width: 250px;
+  }
+
+  .block-name-dark {
+    left: 10px;
+
+  }
+
+  .block-name-tm {
+    left: -10px;
+  }
+
 }
 
 @media (min-width:0px) and (max-width:599px) {
