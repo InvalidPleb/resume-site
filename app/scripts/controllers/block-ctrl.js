@@ -451,10 +451,10 @@
 						},
 
 				skills: {
-							skill1: "Simple CSS Syntax",
+							skill1: "Expressive Syntax",
 				  			skill2: "Variables",
 				  			skill3: "Inheritance",
-				  			skill4: "",
+				  			skill4: "Iteration",
 						},
 
 				text:   {
@@ -487,7 +487,7 @@
 
 				skills: {
 							skill1: "Simple JS Syntax",
-				  			skill2: "",
+				  			skill2: "Indentation",
 				  			skill3: "",
 				  			skill4: "",
 						},

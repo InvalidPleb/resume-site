@@ -63,8 +63,8 @@
     </nav>
     <section id="mainControlSection" style="pointer-events:all;" ng-controller="CanvasCtrl as canvas">
       <div id="greeting-section" class="container">
-        <!-- <canvas id="canvas"></canvas> -->
-        <div class="skills-container col-lg-12 col-md-12 col-sm-12 col-xs-12">
+         <canvas id="canvas"></canvas>
+        <div class="">
           <span class="gold-text">&nbsp; &nbsp; &nbsp; &nbsp;</span>
           <div class="name-text row">
             <span>Tucker Tatum</span>
@@ -78,9 +78,9 @@
         </div>
       </div>
     </section>
-    <div id="background" ng-controller="CanvasCtrl as canvas">
+    <div ng-controller="CanvasCtrl as canvas">
+      <div id="background"></div>
       <div ng-repeat="pads in [0, 1, 2, 3, 4, 5, 6, 7] track by $index">
-        <div id="container-background-{{$index}}" class="container-parallax"></div>
         <div id="padding-{{$index}}" class="padding">
           <div class="decoration"></div>
         </div>

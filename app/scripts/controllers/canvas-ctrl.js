@@ -13,17 +13,16 @@
 		// -------- Canvas -------- //
 	  	var canvas = document.getElementById("canvas");
 
-	  	/*
+	  	
 
 		$(window).resize(function() {
-			for (let i=0; i <= 7; i++) {
-				fitToContainer(document.getElementById("canvasPad" + i));
+			
+			fitToContainer(document.getElementById("canvas"));
 				
-			}
-		  	
 		});
 
-		*/
+
+
 		
 		function fitToContainer(canvas){
 		  canvas.style.width ='100%';
@@ -32,7 +31,7 @@
 		  canvas.height = canvas.offsetHeight;
 		}
 
-		//fitToContainer(canvas);
+		fitToContainer(canvas);
 
 		function getMousePos(canvas, evt) {
 		    let rect = canvas.getBoundingClientRect();

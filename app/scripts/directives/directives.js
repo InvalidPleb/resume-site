@@ -11,7 +11,7 @@
     .directive('scrollChangeHash', scrollChangeHash);
 
   scrollChange.$inject = ['$window'];
-  scrollChangeHash.$inject = ['$window'];
+  scrollChangeHash.$inject = ['$rootScope', '$window'];
   navScroll.$inject = ['$rootScope'];
 
   function mainBlock() {
@@ -59,31 +59,44 @@
       };
   }
 
-  function scrollChangeHash($window) {
+  function scrollChangeHash($rootScope, $window) {
       return {
           link: function(scope, element, attrs) {
             angular.element($window).bind("scroll", function() {
+
+
+              function checkPos() {
+
+              }
+
                 let projects = $('#projects-section').offset().top,
-                    development = $('#github-section').offset().top,
+                    github = $('#github-section').offset().top,
                     tools = $('#tools-section').offset().top,
                     contact = $('#contact-section').offset().top,    
                     elementOff = ($(element).offset().top + 75);
-            console.log();
-            if (elementOff > projects && elementOff < development) {
+
+
+
+            if (elementOff > projects && elementOff < github) {
               window.location.hash = '#/' + 'projects';
               scope.navSpan = 'projects';
-            } else if (elementOff > development && elementOff < tools) {
+              $rootScope.navScrollClick = scope.navSpan;
+            } else if (elementOff > github && elementOff < tools) {
               window.location.hash = '#/' + 'development';
               scope.navSpan = 'github';
+              $rootScope.navScrollClick = scope.navSpan;
             } else if (elementOff > tools && elementOff < (contact - 500)) {
               window.location.hash = '#/' + 'tools';
               scope.navSpan = 'tools';
+              $rootScope.navScrollClick = scope.navSpan;
             } else if (elementOff > (contact - 500)) {
               window.location.hash = '#/' + 'contact';
               scope.navSpan = 'contact';
+              $rootScope.navScrollClick = scope.navSpan;
             } else {
               window.location.hash = '#/';
               scope.navSpan = 'home';
+              $rootScope.navScrollClick = scope.navSpan;
             }
           });
         }
@@ -95,7 +108,7 @@
           restrict: "A",
           link: function(scope, element, attrs) {
             return $(element).click(function() {
-              if ($rootScope.navScrollClick !== element) {
+              if ($rootScope.navScrollClick !== attrs.id) {
                 if (attrs.id !== 'home') {
                   scope.navSpan = attrs.id;
                   $(window).scrollTo($('#' + attrs.id + '-section'), 800, {offset:-55});
@@ -103,7 +116,7 @@
                   scope.navSpan = attrs.id;
                   $(window).scrollTo(0, 800, {offset:-55});
                 }
-                $rootScope.navScrollClick = element;
+                $rootScope.navScrollClick = attrs.id;
               }
             });
           }
