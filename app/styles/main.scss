@@ -248,7 +248,7 @@ a:active {
   float: none;
 }
 
-// -------- Angular Class Modifications -------- //
+// -------- Angular & Bootstrap Class Modifications -------- //
 
 .fadable {
     transition: 0s linear all;
@@ -270,6 +270,22 @@ a:active {
 }
 .fadable.ng-hide-add.ng-hide-add-active {
   opacity: 0;
+}
+
+.navbar-collapse.collapse {
+  display: block!important;
+}
+
+.navbar-nav>li, .navbar-nav {
+  float: left !important;
+}
+
+.navbar-nav.navbar-right:last-child {
+  margin-right: -15px !important;
+}
+
+.navbar-right {
+  float: right!important;
 }
 
 
@@ -1609,18 +1625,25 @@ $dayMap: (
 
 }
 
-@media (min-width:762px) and (max-width:874px) {
-
+@media (min-width:768px) and (max-width:874px) {
 
   // -------- Projects Section -------- //
 
+  
+
+  .container {
+    left: 10px;
+  }
+
   .main-container {
+    right: 0px;
+    left: 0px;
     padding-bottom: 130px;
     overflow: hidden;
   }
 
-  .container {
-    left: 10px;
+  #greeting-section {
+    left: 0px;
   }
 
   #projects {
@@ -1744,7 +1767,7 @@ $dayMap: (
   #tools {
     height: 3150px;
   }
-  
+
   .tool-container {
     width: 125px;
     padding: 0px;
@@ -1807,7 +1830,33 @@ $dayMap: (
   }
 }
 
-@media (min-width:600px) and (max-width:761px) {
+@media (min-width:600px) and (max-width:767px) {
+
+  #home-cont {
+    top: 0px;
+    width: 205px;
+  }
+
+  .nav > li {
+    float: left;
+  }
+
+  #navbar {
+    width: 515px;
+    margin-top: -73px;
+    margin-left: 175px;
+
+  }
+
+
+  .navbar-text {
+    top: -2px;
+    display: block;
+  }
+
+  .nav-btn-dirty {
+    top: 2px;
+  }
 
   #greeting-section {
     width: 600px;

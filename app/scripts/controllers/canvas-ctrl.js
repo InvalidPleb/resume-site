@@ -21,9 +21,6 @@
 				
 		});
 
-
-
-		
 		function fitToContainer(canvas){
 		  canvas.style.width ='100%';
 		  canvas.style.height ='100%';
