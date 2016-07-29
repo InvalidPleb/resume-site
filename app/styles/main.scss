@@ -1845,17 +1845,19 @@ $dayMap: (
     width: 515px;
     margin-top: -73px;
     margin-left: 175px;
-
   }
-
 
   .navbar-text {
     top: -2px;
     display: block;
+    font-size: 14px;
+    padding-left: 25px;
+    padding-right: 25px;
   }
 
   .nav-btn-dirty {
     top: 2px;
+    padding: 0px;
   }
 
   #greeting-section {

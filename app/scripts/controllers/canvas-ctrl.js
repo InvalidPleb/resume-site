@@ -13,8 +13,6 @@
 		// -------- Canvas -------- //
 	  	var canvas = document.getElementById("canvas");
 
-	  	
-
 		$(window).resize(function() {
 			
 			fitToContainer(document.getElementById("canvas"));
@@ -111,8 +109,6 @@
 		//fadeOut();
 
 	  	// -------- Background Parallax -------- //
-
-	  	
 
 	  	function parallax(image, offsetX, offsetY) {
 	  		let ypos = window.pageYOffset;

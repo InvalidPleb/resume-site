@@ -10,9 +10,11 @@
     .directive('scrollChange', scrollChange)
     .directive('scrollChangeHash', scrollChangeHash);
 
-  scrollChange.$inject = ['$window'];
-  scrollChangeHash.$inject = ['$rootScope', '$window'];
   navScroll.$inject = ['$rootScope'];
+  scrollChangeHash.$inject = ['$rootScope', '$window'];
+  scrollChange.$inject = ['$window'];
+  
+  
 
   function mainBlock() {
       return {
@@ -36,27 +38,24 @@
       };
   }
 
-  function scrollChange($window) {
+  function navScroll($rootScope) {
       return {
+          restrict: "A",
           link: function(scope, element, attrs) {
-            angular.element($window).bind("scroll", function() {
-                if (this.pageYOffset === 0) {
-                    scope.navText = true;
-                    $('.navbar-text').css('height', '72px');
-                    $('.navbar-text').css('padding-top', '23px');
-                    $('.nav-btn-dirty').css('height', '70px');
-                    $('.nav-btn-clean').css('height', '70px');
+            return $(element).click(function() {
+              if ($rootScope.navScrollClick !== attrs.id) {
+                if (attrs.id !== 'home') {
+                  scope.navSpan = attrs.id;
+                  $(window).scrollTo($('#' + attrs.id + '-section'), 800, {offset:-55});
                 } else {
-                    scope.navText = false;
-                    $('.navbar-text').css('height', '52px');
-                    $('.navbar-text').css('padding-top', '14px');
-                    $('.nav-btn-dirty').css('height', '50px');
-                    $('.nav-btn-clean').css('height', '50px');
+                  scope.navSpan = attrs.id;
+                  $(window).scrollTo(0, 800, {offset:-55});
                 }
-                scope.$apply();
+                $rootScope.navScrollClick = attrs.id;
+              }
             });
-        }
-      };
+          }
+    };
   }
 
   function scrollChangeHash($rootScope, $window) {
@@ -96,23 +95,26 @@
       };
   }
 
-  function navScroll($rootScope) {
+  function scrollChange($window) {
       return {
-          restrict: "A",
           link: function(scope, element, attrs) {
-            return $(element).click(function() {
-              if ($rootScope.navScrollClick !== attrs.id) {
-                if (attrs.id !== 'home') {
-                  scope.navSpan = attrs.id;
-                  $(window).scrollTo($('#' + attrs.id + '-section'), 800, {offset:-55});
+            angular.element($window).bind("scroll", function() {
+                if (this.pageYOffset === 0) {
+                    scope.navText = true;
+                    $('.navbar-text').css('height', '72px');
+                    $('.navbar-text').css('padding-top', '23px');
+                    $('.nav-btn-dirty').css('height', '70px');
+                    $('.nav-btn-clean').css('height', '70px');
                 } else {
-                  scope.navSpan = attrs.id;
-                  $(window).scrollTo(0, 800, {offset:-55});
+                    scope.navText = false;
+                    $('.navbar-text').css('height', '52px');
+                    $('.navbar-text').css('padding-top', '14px');
+                    $('.nav-btn-dirty').css('height', '50px');
+                    $('.nav-btn-clean').css('height', '50px');
                 }
-                $rootScope.navScrollClick = attrs.id;
-              }
+                scope.$apply();
             });
-          }
-    };
+        }
+      };
   }
 })();
