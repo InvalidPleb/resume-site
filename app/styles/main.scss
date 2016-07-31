@@ -611,6 +611,7 @@ $i: 0;
   z-index: -3;
   margin: auto;
   padding: 0px;
+  padding-bottom: 50px;
   position: relative;
 }
 
@@ -1337,10 +1338,6 @@ $dayMap: (
     height: 500px;
   }
 
-  #tools {
-    //height: 2900px;
-  }
-
   .title-text {
     width: 350px;
     right: 40px;
@@ -1551,10 +1548,6 @@ $dayMap: (
   }
 
   // -------- Tools Section -------- //
-
-  #tools {
-    height: 3150px;
-  }
   
   .tools-desc-container {
     left: 35px;
@@ -1766,10 +1759,6 @@ $dayMap: (
 
   // -------- Tools Section -------- //
   
-  #tools {
-    height: 3150px;
-  }
-
   .tool-container {
     width: 125px;
     padding: 0px;
@@ -1856,6 +1845,15 @@ $dayMap: (
     padding-left: 25px;
     padding-right: 25px;
   }
+  .navbar-main-float {
+    //width: 515px;
+
+  }
+
+  .navbar-collapse {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
 
   .nav-btn-dirty {
     top: 2px;
@@ -1875,7 +1873,7 @@ $dayMap: (
   }
 
   .container {
-    left: 10px;
+    //left: 10px;
   }
 
   // -------- Projects Section -------- //
@@ -2024,10 +2022,6 @@ $dayMap: (
   
   // -------- Tools Section -------- //
 
-  #tools {
-    height: 3350px;
-  }
-
   .tool-container {
     width: 125px;
     padding: 0px;
@@ -2130,11 +2124,24 @@ $dayMap: (
 
   #home-cont {
     top: 0px;
-    width: 205px;
+    width: 135px;
+    padding: 0;
+  }
+
+  #home {
+    padding: 5px;
+    padding-top: 23px;
+  }
+
+  .greeting-section {
+
+  }
+
+  .greeting-para {
+    padding: 15px;
   }
 
   .container {
-    left: 10px;
   }
   .main-container {
     left: 0px;
@@ -2145,9 +2152,9 @@ $dayMap: (
   }
 
   #navbar {
-    width: 315px;
+    width: 380px;
     margin-top: -73px;
-    margin-left: 175px;
+    margin-left: 105px;
   }
 
   .navbar-text {
@@ -2178,32 +2185,51 @@ $dayMap: (
 
   // -------- Projects Section -------- //
 
-  #projects {
-    height: 1650px;
-  }
-
   .projects-block-title {
     top: 5px;
   }
 
   .site-container {
+    width: 280px;
+    height: 180px; 
     top: 20px;
-    right: -9%;
+    right: -4.5%;
   }
 
   .site-container-tablet {
-    top: 111px;
-    right: -7%;
-    
-  }
-
-  .site-container-mobile {
-    top: 111px;
+    width: 220px;
+    height: 160px;
+    top: 90px;
     right: -15%;
     
   }
 
+  .site-container-mobile {
+    width: 80px;
+    height: 140px;
+    top: 155px;
+    right: -37%;
+    
+  }
+
+  #runner-calc-desktop {
+    width: 275px;
+    height: 175px;
+  }
+
+  #runner-calc-tablet {
+    width: 215px;
+    height: 155px;
+  }
+
+  #runner-calc-mobile {
+    width: 75px;
+    height: 135px;
+  }
+
   .runner-calc-text {
+    width: 220px;
+    height: 160px;
     top: 100px;
     padding-bottom: 0px;
 
@@ -2215,6 +2241,7 @@ $dayMap: (
   }
 
    // -------- Github Graph Section -------- //
+
   
   .svg-container {
     
@@ -2228,10 +2255,6 @@ $dayMap: (
 
   .graph-container {
     padding-bottom: 250px;
-  }
-
-  #github {
-    height: 1230px;
   }
 
    #graph-para {
@@ -2322,10 +2345,6 @@ $dayMap: (
   
   // -------- Tools Section -------- //
 
-  #tools {
-    height: 3350px;
-  }
-
   .tool-container {
     width: 125px;
     padding: 0px;
@@ -2338,13 +2357,21 @@ $dayMap: (
   }
 
   .block-titles {
-    padding-left: 60px;
-    padding-right: 270px;
+    padding-left: 30px;
+    padding-right: 230px;
+    padding-top: 5px;
+
+  }
+
+  .block-title-section-text {
+    font-size: 34px;
+
   }
   
   .title-text {
     width: 350px;
     right: 70px;
+    font-size: 24px;
   }
 
   .block-para {

@@ -22,7 +22,7 @@
 	  			repo.push(res[i].full_name);
 	  		}
 	  		return repo;
-	  	}
+	  	};
 	  	
 	  	vm.getCommits = function(repo, repoNum, maxRepos) {
 	  		return $http.get('https://api.github.com' + '/repos/' + repo + '/stats/commit_activity')
@@ -33,7 +33,7 @@
 		  				return vm.getCommits(vm.repoContainer[repoNum], repoNum, maxRepos);
 		  			}
 		  		});
-	  	}
+	  	};
 
 	  	vm.getGithubStuff = function() {
 	  		return $http.get('https://api.github.com' + '/users/InvalidPleb/repos')
@@ -41,13 +41,13 @@
 		  			vm.pushCalledRepo(res.data, vm.repoContainer);
 		  			return vm.getCommits(vm.repoContainer[0], 0, vm.repoContainer.length);
 		  		});
-	  	}
+	  	};
 
 	  	
 
 	  	// -------- AJAX Callback -------- //
 
-	  	
+	  	/*
 
 		var calls = vm.getGithubStuff();
 	  	$q.all([calls]).then(function(){
@@ -177,6 +177,8 @@
 	  		};
 	  	});
 
+*/
+
 
 
 		// -------------- Github Graph -------------- //
@@ -206,7 +208,7 @@
 			    .outerRadius(outRad)
 			    .startAngle(sAng)
 			    .endAngle(eAng);
-		}
+		};
 
 	    // Obj containing RGB colors used in graph
 		vm.colorObj = {
@@ -300,7 +302,7 @@
 				i++;
 				return vm.outerRing(sAng, eAng, color, data, dayData, i);
 			}
-		}
+		};
 
 
 		// Recursive function to draw the day rings
@@ -330,7 +332,7 @@
 				ringCont.push(ring);
 			}
 			return ringCont;
-		}
+		};
 
 		
 		// Recursive function to draw the inner pie chart
@@ -385,7 +387,7 @@
 				i++;
 				return vm.innerRing(data, vm.repoContainer, vm.colorObj[i], i);
 			}
-		}
+		};
 
 	} 
 })();
