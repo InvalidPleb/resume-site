@@ -2122,15 +2122,21 @@ $dayMap: (
 
 @media (min-width:0px) and (max-width:599px) {
 
+  p {
+
+  }
+
   #home-cont {
     top: 0px;
-    width: 135px;
+    width: 80px;
     padding: 0;
+    
   }
 
   #home {
     padding: 5px;
-    padding-top: 23px;
+    padding-top: 15px;
+    font-size: 16px;
   }
 
   .greeting-section {
@@ -2147,22 +2153,27 @@ $dayMap: (
     left: 0px;
   }
 
+  .navbar-main {
+
+  }
+
   .nav > li {
     float: left;
   }
 
   #navbar {
-    width: 380px;
+    width: 85%;
     margin-top: -73px;
-    margin-left: 105px;
+    margin-left: 60px;
+    padding: 0px;
   }
 
   .navbar-text {
     top: -2px;
     display: block;
     font-size: 14px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   .nav-btn-dirty {
@@ -2185,8 +2196,15 @@ $dayMap: (
 
   // -------- Projects Section -------- //
 
+
   .projects-block-title {
     top: 5px;
+  }
+
+  .projects-title-section {
+    height: 100%;
+    padding-bottom: 10px;
+    padding-top: 10px;
   }
 
   .site-container {
@@ -2228,9 +2246,9 @@ $dayMap: (
   }
 
   .runner-calc-text {
-    width: 220px;
-    height: 160px;
+    width: 275px;
     top: 100px;
+    margin-top: 140px;
     padding-bottom: 0px;
 
   }
@@ -2350,6 +2368,10 @@ $dayMap: (
     padding: 0px;
   }
 
+  .tools-desc-container {
+    font-size: 18px;
+  }
+
   .block-container {
     width: 350px;
     left: 2px;
@@ -2357,8 +2379,8 @@ $dayMap: (
   }
 
   .block-titles {
-    padding-left: 30px;
-    padding-right: 230px;
+    padding-left: 35px;
+    padding-right: 245px;
     padding-top: 5px;
 
   }
@@ -2376,13 +2398,13 @@ $dayMap: (
 
   .block-para {
     top: -10px;
-    left: -40px;
-    padding-right: 20px;
+    left: -60px;
+    padding: 0px;
   }
 
   .block-name-def {
     right: 0px;
-    left: -2px;
+    left: 0px;
   }
 
   .block-name-def-cscript {
@@ -2394,26 +2416,35 @@ $dayMap: (
   }
 
   .block-name-def-tm {
-    left: -10px;
+    left: -12px;
   }
 
   .block-name-def-dark {
-    left: 7px;
+    left: 0px;
   }
 
   .frameworks {
     left: 7%;
 
-    & > :nth-child(1), :nth-child(3), :nth-child(5) {
-      //margin-right: -170px; 
+    & > div:nth-child(1) > .tool-container,
+    & > div:nth-child(3) > .tool-container,
+    & > div:nth-child(5) > .tool-container {
+      margin-top: 0px;
+      margin-right: 70px;
+      margin-left: 72px;
     }
   }
 
   .dev-tools {
     left: 1%;
 
-    & > :nth-child(1), :nth-child(3), :nth-child(5) {
-      //margin-right: -230px; 
+    & > div:nth-child(1) > .tool-container,
+    & > div:nth-child(3) > .tool-container,
+    & > div:nth-child(5) > .tool-container,
+    & > div:nth-child(7) > .tool-container {
+      margin-top: 0px;
+      margin-right: 70px;
+      margin-left: 82px;
     }
   }
 
@@ -2425,11 +2456,25 @@ $dayMap: (
     left: 6%;
   }
 
+  .preprocessors > div:nth-child(4) > .tool-container {
+
+    margin-top: 0px;
+    margin-left: 72px;
+
+  }
+
+  .preprocessors > div:nth-child(2) > .tool-container {
+
+    margin-top: 0px;
+    margin-left: 45px;
+
+  }
+
   .skills-list {
     width: 150px;
-    left: -13px;
-    text-align: center;
-    list-style: none;
+    left: 10px;
+    
+   
 
   }
 
