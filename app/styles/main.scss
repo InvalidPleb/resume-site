@@ -2134,8 +2134,12 @@ $dayMap: (
   }
 
   #home {
+    height: 52px;
+
     padding: 5px;
-    padding-top: 15px;
+    padding-top: 23px;
+    padding-left: 15px;
+    margin-top: -5px;
     font-size: 16px;
   }
 
@@ -2262,13 +2266,23 @@ $dayMap: (
 
   
   .svg-container {
-    
+    right: 563px;
     min-width: 400px;
     position: relative;
   }
 
   .graph-description {
     padding-bottom: 570px;
+
+    & > div > .graph-desc-section:nth-child(3) {
+      margin-top: 70%;
+    }
+
+    & > div:nth-child(2) {
+      top: -250px;
+      position: relative;
+
+    }
   }
 
   .graph-container {
@@ -2287,21 +2301,35 @@ $dayMap: (
 
   .contribution-text-right {
     width: 130px;
-    right: 15px;
+    right: 0px;
     position: relative;
     font-size: 20px;
   }
 
+  .text-bot {
+    top: 70px;
+  }
+
+  .contribution-info {
+    margin: 0px;
+  }
+
   .graph-circle {
-    left: 94px;
+    left: -33px;
   }
 
   .pie-tooltip {
-    left: 223px;  
+    left: 95px;  
   }
 
   .month-labels {
-    left: 31px;
+    left: -95px;
+  }
+
+  .day-labels {
+    left: -230px;
+    position: relative;
+
   }
 
   $lineMap: (
@@ -2329,7 +2357,7 @@ $dayMap: (
 
     .line:nth-child(#{$num}) {
       top: nth($values, 1) + px;
-      left: nth($values, 2) - 155 + px;
+      left: nth($values, 2) - 280 + px;
       width: 140px;
     }
   }
@@ -2339,7 +2367,7 @@ $dayMap: (
     .line-title:nth-child(#{$num}) {
       width: 100px;
       top: nth($values, 1) + px;
-      left: nth($values, 2) - 100 + px;
+      left: nth($values, 2) - 200 + px;
     }
 
   }
@@ -2347,7 +2375,7 @@ $dayMap: (
   @each $day, $values in $dayMap {
 
     ##{$day} {
-      left: nth($values, 1) - 276;  
+      left: nth($values, 1) - 176;  
       top: nth($values, 2) - 2;
     }
   }
@@ -2472,9 +2500,7 @@ $dayMap: (
 
   .skills-list {
     width: 150px;
-    left: 10px;
-    
-   
+    left: 23px;
 
   }
 
