@@ -493,8 +493,10 @@ $i: 1;
 #canvas {
   z-index: -1;
   position: absolute;
-  @include prefix(filter, blur(10px), webkit moz ms o);
+  //@include prefix(filter, blur(10px), webkit moz ms o);
   cursor: pointer;
+  //background-image: url('/images/alanwatts.jpeg');
+  opacity: 0.5;
 }
 
 $i: 0;
@@ -519,7 +521,7 @@ $i: 0;
 
 
   &:nth-child(2) {
-    margin-top: 0px;
+    margin-top: 220px;
   }
 
   &:nth-child(3) {
@@ -633,6 +635,8 @@ $i: 0;
   position: relative;
   @include border(1px solid, $dim-gold-color, top bottom left right);
   border-radius: 10px;
+  text-decoration: none;
+
 }
 
 .site-container-tablet {
@@ -667,14 +671,23 @@ $i: 0;
   top: 20px;
 }
 
+#runner-calc-container > .row:nth-child(2) {
+  margin-left: -45px; 
+}
+
 #runner-calc-desktop {
   height: 225px;
   width: 345px;
   left: 2px;
   top: 1px;
+  display: block;
   position: relative;
   background-image: url('/images/runnercalc-lg.png');
   border-radius: 10px;
+
+  &:hover {
+    border: none;
+  }
 }
 
 #runner-calc-tablet {
@@ -712,7 +725,7 @@ $i: 0;
   z-index: 2;
   display: flex;
   position: relative;
-  background-color: $dark-background;
+  background-color: transparent;
 }
 
 .svg-container {
@@ -1134,7 +1147,7 @@ $dayMap: (
   top: 120px;
   padding-bottom: 30px;
   position: relative;
-  background-color: $dark-background;
+  background-color: transparent;
   @include border(1px solid, $gold-color, left right top bottom);
   @include prefix(box-shadow, -13px 20px 35px 10px rgba(0,0,0,0.75), webkit moz ms o);
 }
@@ -1295,7 +1308,7 @@ $dayMap: (
 @media (min-width:1200px) and (max-width:1550px) {
 
   .main-container {
-    overflow: hidden;
+    //overflow: hidden;
     padding-bottom: 150px;
   }
 
@@ -1303,12 +1316,16 @@ $dayMap: (
     right: 10px;
   }
 
+  #runner-calc-container > .row:nth-child(2) {
+    margin-left: -45px; 
+  }
+
 }
 
 @media (min-width:992px) and (max-width:1199px) {
 
   .main-container {
-    overflow: hidden;
+    //overflow: hidden;
     padding-bottom: 150px;
   }
 
@@ -1320,8 +1337,8 @@ $dayMap: (
     right: 45px;
   }
 
-  .sphere-container {
-    left: 30px;
+  #runner-calc-container > .row:nth-child(2) {
+    margin-left: -45px; 
   }
 
   .block-name-def {
@@ -1336,13 +1353,18 @@ $dayMap: (
     right: -3px;
   }
 
+  .block-titles {
+    padding-left: 40px;
+    padding-right: 295px;
+  }
+
   .graph-description {
     height: 500px;
   }
 
   .title-text {
     width: 350px;
-    right: 40px;
+    right: 50px;
   }
 
   .svg-container {
@@ -1428,7 +1450,7 @@ $dayMap: (
 
   .main-container {
     padding-bottom: 130px;
-    overflow: hidden;
+    //overflow: hidden;
   }
 
   #projects {
@@ -1438,6 +1460,8 @@ $dayMap: (
   .project-desc-container {
     width: 90%;
   }
+
+
 
   .site-container {
     top: 20px;
@@ -1461,6 +1485,12 @@ $dayMap: (
   #runner-calc-container {
     height: 1050px;
   }
+
+  #runner-calc-container > .row:nth-child(2) {
+    margin-left: -15px; 
+  }
+
+
 
   // -------- Github Graph Section -------- //
 
@@ -1636,7 +1666,7 @@ $dayMap: (
     right: 0px;
     left: 0px;
     padding-bottom: 300px;
-    overflow: hidden;
+    //overflow: hidden;
   }
 
   #greeting-section {
@@ -1668,6 +1698,10 @@ $dayMap: (
 
   #runner-calc-container {
     padding-bottom: 160px;
+  }
+
+  #runner-calc-container > .row:nth-child(2) {
+    margin-left: -15px; 
   }
 
   // -------- Github Graph Section -------- //
@@ -1890,23 +1924,23 @@ $dayMap: (
 
   .site-container {
     top: 20px;
-    right: -9%;
+    right: -17%;
   }
 
   .site-container-tablet {
-    top: 111px;
-    right: -7%;
+    top: 85px;
+    right: -26.5%;
     
   }
 
   .site-container-mobile {
-    top: 111px;
-    right: -15%;
+    top: 151px;
+    right: -38%;
     
   }
 
   .runner-calc-text {
-    top: 100px;
+    top: 120px;
     padding-bottom: 0px;
 
   }
@@ -1914,6 +1948,10 @@ $dayMap: (
   #runner-calc-container {
     padding-bottom: 130px;
 
+  }
+
+  #runner-calc-container > .row:nth-child(2) {
+    margin-left: -15px; 
   }
 
    // -------- Github Graph Section -------- //
@@ -2124,10 +2162,6 @@ $dayMap: (
 
 @media (min-width:0px) and (max-width:599px) {
 
-  p {
-
-  }
-
   #home-cont {
     top: 0px;
     width: 80px;
@@ -2137,7 +2171,6 @@ $dayMap: (
 
   #home {
     height: 52px;
-
     padding: 5px;
     padding-top: 23px;
     padding-left: 15px;
@@ -2217,14 +2250,14 @@ $dayMap: (
     width: 280px;
     height: 180px; 
     top: 20px;
-    right: -4.5%;
+    right: -12.5%;
   }
 
   .site-container-tablet {
     width: 220px;
     height: 160px;
     top: 90px;
-    right: -15%;
+    right: -22%;
     
   }
 
@@ -2232,7 +2265,7 @@ $dayMap: (
     width: 80px;
     height: 140px;
     top: 155px;
-    right: -37%;
+    right: -43%;
     
   }
 

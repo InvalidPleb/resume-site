@@ -46,9 +46,6 @@
 	  	
 
 	  	// -------- AJAX Callback -------- //
-
-	  	
-
 		var calls = vm.getGithubStuff();
 	  	$q.all([calls]).then(function(){
 
