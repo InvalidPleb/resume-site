@@ -164,7 +164,7 @@ $bright-gold-color: #c9b564;
 $cream-color: #c9c5b7;
 $teal-color: #3ECF84;
 $rock-background: '/images/rock-background.png';
-$code-background: '/images/codebackground-2.png';
+$code-background: '/images/codebackground-3.png';
 
 
 // -------- Generic Element Selectors -------- //
@@ -370,7 +370,7 @@ $i: 1;
   height: calc(100% + 50px);
   width: 100%;
   z-index: -5;
-  margin-top: -750px;
+  margin-top: -850px;
   position: absolute;
   background-image: url($code-background);
   @include prefix(filter, blur(2px), webkit moz ms o);
@@ -466,7 +466,7 @@ $i: 1;
   padding: 0px;
   display: block;
   position: relative;
-  background-color: $dark-background;
+  background-color: transparent;
   @include border(1px solid, $gold-color, left right bottom top);
   @include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
 
@@ -1296,6 +1296,7 @@ $dayMap: (
 
   .main-container {
     overflow: hidden;
+    padding-bottom: 150px;
   }
 
   .block-name-def {
@@ -1308,6 +1309,7 @@ $dayMap: (
 
   .main-container {
     overflow: hidden;
+    padding-bottom: 150px;
   }
 
   .site-container {
@@ -2176,8 +2178,8 @@ $dayMap: (
     top: -2px;
     display: block;
     font-size: 14px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
   }
 
   .nav-btn-dirty {
@@ -2346,9 +2348,9 @@ $dayMap: (
 
   $repoTooltipMap: (
     1: (50, 360),
-    2: (90, 240),
+    2: (270, 210),
     3: (230, 590),
-    4: (270, 210),
+    4: (90, 240),
     5: (40, 390),
     6: (40, 420),
   );
@@ -2384,7 +2386,7 @@ $dayMap: (
 
     .repoTooltip:nth-child(#{$num}) {
       top: nth($values, 1) + px;
-      left: nth($values, 2) - 180px;
+      left: nth($values, 2) - 310px;
     }
   }
 
