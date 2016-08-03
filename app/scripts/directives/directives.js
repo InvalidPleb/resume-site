@@ -14,8 +14,6 @@
   scrollChangeHash.$inject = ['$rootScope', '$window'];
   scrollChange.$inject = ['$window'];
   
-  
-
   function mainBlock() {
       return {
           scope: {

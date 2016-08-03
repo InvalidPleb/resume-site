@@ -469,6 +469,7 @@ $i: 1;
   background-color: transparent;
   @include border(1px solid, $gold-color, left right bottom top);
   @include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
+  
 
   & > div {
     padding-bottom: 50px;
@@ -1453,10 +1454,6 @@ $dayMap: (
     //overflow: hidden;
   }
 
-  #projects {
-    height: 1650px;
-  }
-
   .project-desc-container {
     width: 90%;
   }
@@ -1671,10 +1668,6 @@ $dayMap: (
 
   #greeting-section {
     left: 0px;
-  }
-
-  #projects {
-    height: 1650px;
   }
 
   .site-container {
@@ -1914,10 +1907,6 @@ $dayMap: (
 
   // -------- Projects Section -------- //
 
-  #projects {
-    height: 1650px;
-  }
-
   .projects-block-title {
     top: 5px;
   }
@@ -1969,11 +1958,7 @@ $dayMap: (
   .graph-container {
     padding-bottom: 250px;
   }
-
-  #github {
-    height: 1230px;
-  }
-
+  
    #graph-para {
     height: 230px;
   }
