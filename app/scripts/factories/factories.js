@@ -21,11 +21,11 @@ function maths() {
     			},
 		setArr: function(arr, num) {
 					arr = [];
-				  	for (let i=0; i < num; i++) {arr.push(i);}
+				  	for (var i=0; i < num; i++) {arr.push(i);}
 				  	return arr;
 				},
 	    openLink: function(url) {
-					let link = window.open(url, '_blank');
+					var link = window.open(url, '_blank');
 					return link.focus();
 				},
 	};

@@ -18,7 +18,7 @@
 	  	vm.commitDaily = {};
 
 	  	vm.pushCalledRepo = function(res, repo) {
-	  		for (let i = 0; i < res.length; i++) {
+	  		for (var i = 0; i < res.length; i++) {
 	  			repo.push(res[i].full_name);
 	  		}
 	  		return repo;
@@ -76,14 +76,14 @@
 
 			$('.line-title:nth-child(2)').mouseover(function(){
 				$('.line:nth-child(2)').stop().animate({borderColor:"#3ECF84"},"fast");
-				let dayRingInd = gotParsedCommits[1];
+				var dayRingInd = gotParsedCommits[1];
 				dayRing = vm.middleRing(0, 50, vm.colorObj[9], dayRingInd[49]);
-				for (let j = 0; j < dayRing.length; j++) {
+				for (var j = 0; j < dayRing.length; j++) {
 					dayRing[j].transition().duration(200).style("opacity", 0.9);
 				}
 			}).mouseout(function(){
 				$('.line:nth-child(2)').stop().animate({borderColor:"#9E8E4C"},"fast");
-				for (let j = 0; j < dayRing.length; j++) {
+				for (var j = 0; j < dayRing.length; j++) {
 					dayRing[j].transition()		
 					.duration(200)		
 					.style("opacity", 0.1)
@@ -238,7 +238,7 @@
 				}
 
 				// Increasing shade and opacity of color relative to input data
-				let color1 = color[0] + (data[i] * 13),
+				var color1 = color[0] + (data[i] * 13),
 				    color2 = color[1] + (data[i] * 13),
 				    color3 = color[2] + (data[i] * 13),
 				    alpha = (data[i] * 0.1) + 0.05,
@@ -247,7 +247,7 @@
 				    g = vm.svgContainer.append('svg:g');
 
 				// Drawing the pie segment
-				let week = g.append("path")
+				var week = g.append("path")
 				    .attr("d", vm.arc(170, 200, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
 				    .attr("transform", "translate(200,250)")
 				    .style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")")
@@ -260,7 +260,7 @@
 					    // Drawing the day rings
 	            		dayRing = vm.middleRing(0, 50, color, dayDataInd);
 
-	            		for (let j = 0; j < dayRing.length; j++) {
+	            		for (var j = 0; j < dayRing.length; j++) {
 	            			dayRing[j].transition()		
 	            			.duration(200)		
 	            			.style("opacity", 0.9);
@@ -271,7 +271,8 @@
 					    $(".pie-tooltip-hover:nth-child(" + i + ")").css("opacity", "0");
 
 						// Hiding the day rings
-	            		for (let j = 0; j < dayRing.length; j++) {
+						console.log(dayRing);
+	            		for (var j = 0; j < dayRing.length; j++) {
 	            			dayRing[j].transition()		
 	            			.duration(200)		
 	            			.style("opacity", 0.1)
@@ -305,20 +306,20 @@
 		// Recursive function to draw the day rings
 		vm.middleRing = function(sAng, eAng, color, data) {
 
-			let ringCont = [];
-			for (let i = 0; i <= 6; i++) {
+			var ringCont = [];
+			for (var i = 0; i <= 6; i++) {
 
 				sAng = sAng + 50;
 				eAng = eAng + 50;
 
 				// Increasing shade and opacity of color relative to input data
-				let color1 = color[0] + (data[i] * 50),
+				var color1 = color[0] + (data[i] * 50),
 				    color2 = color[1] + (data[i] * 50),
 				    color3 = color[2] + (data[i] * 50),
 				    alpha = (data[i] * 0.2) + 0.05;
 
 				// Drawing the day ring segment
-				let ring = vm.svgContainer.append("path")
+				var ring = vm.svgContainer.append("path")
 				    .attr("d", vm.arc(145, 165, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
 				    .attr("transform", "translate(200,250)")
 				    .style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")")
@@ -337,7 +338,7 @@
 
 			if (i < data.length) {
 
-				let repoName = nameArr[i].slice(12,nameArr[i].length),
+				var repoName = nameArr[i].slice(12,nameArr[i].length),
 				    pieD = vm.pie(data),
 				    sAng = pieD[i].startAngle,
 				    eAng = pieD[i].endAngle,

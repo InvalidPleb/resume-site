@@ -61,7 +61,7 @@
           link: function(scope, element, attrs) {
             angular.element($window).bind("scroll", function() {
 
-              let projects = $('#projects-section').offset().top,
+              var projects = $('#projects-section').offset().top,
                   github = $('#github-section').offset().top,
                   tools = $('#tools-section').offset().top,
                   contact = $('#contact-section').offset().top,    

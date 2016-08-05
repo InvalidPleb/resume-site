@@ -267,6 +267,18 @@ module.exports = function (grunt) {
       }
     },
 
+     babel: {
+        options: {
+            sourceMap: true,
+            presets: ['es2015']
+        },
+        dist: {
+            files: {
+                '<%= yeoman.dist %>/scripts/es5.js': 'app/scripts/controllers/*.js'
+            }
+        }
+    },
+
     // Reads HTML for usemin blocks to enable smart builds that automatically
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
@@ -285,6 +297,9 @@ module.exports = function (grunt) {
         }
       }
     },
+
+
+   
 
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
@@ -501,6 +516,7 @@ module.exports = function (grunt) {
     'copy:dist',
     'cdnify',
     'cssmin',
+    'babel',
     'uglify',
     'filerev',
     'usemin',
