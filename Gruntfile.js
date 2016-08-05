@@ -274,7 +274,7 @@ module.exports = function (grunt) {
         },
         dist: {
             files: {
-                '<%= yeoman.dist %>/scripts/es5.js': 'app/scripts/controllers/*.js'
+                '.tmp/concat/scripts/scripts.js': '.tmp/concat/scripts/scripts.js'
             }
         }
     },

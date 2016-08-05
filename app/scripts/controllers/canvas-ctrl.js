@@ -117,7 +117,7 @@
 	  	// -------- Background Parallax -------- //
 
 	  	function parallax(image, offsetX, offsetY) {
-	  		var ypos = window.pageYOffset;
+	  		let ypos = window.pageYOffset;
 	  		return image.css('transform', 'translate3d(' + (ypos * offsetX) + 'px,' + (ypos * offsetY) + 'px,0px)');
 	  	}
 

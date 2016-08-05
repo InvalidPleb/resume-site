@@ -1,5 +1,5 @@
 (function(){
-
+	
 	'use strict';
 
 	angular
@@ -23,12 +23,11 @@
 	    			},
 			setArr: function(arr, num) {
 						arr = [];
-					  	for (var i=0; i < num; i++) {arr.push(i);}
+					  	for (let i=0; i < num; i++) {arr.push(i);}
 					  	return arr;
 					},
 		    openLink: function(url) {
-						var link = window.open(url, '_blank');
-						return link.focus();
+						return window.open(url, '_blank');
 					},
 		};
 	}

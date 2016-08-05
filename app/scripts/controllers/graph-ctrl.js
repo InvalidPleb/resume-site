@@ -271,7 +271,6 @@
 					    $(".pie-tooltip-hover:nth-child(" + i + ")").css("opacity", "0");
 
 						// Hiding the day rings
-						console.log(dayRing);
 	            		for (var j = 0; j < dayRing.length; j++) {
 	            			dayRing[j].transition()		
 	            			.duration(200)		
