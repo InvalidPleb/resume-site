@@ -645,7 +645,7 @@
 				attr:   {
 							blockClass: "linkedin-cont",
 		  					id: "linkedin",
-			  				href: "",
+			  				href: "https://www.linkedin.com/in/tucker-tatum-3043b9127",
 			  				nameClass: "block-name-def-soc",
 			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2"
 						},
@@ -670,8 +670,8 @@
 				text:   {
 							nameTxt: "Linkedin",
 							paraTxt: "",
-				  			txt1: "",
-				  			txt2: "",
+				  			txt1: "View",
+				  			txt2: "Linkedin",
 						}
 			};
 
@@ -680,7 +680,7 @@
 				attr:   {
 							blockClass: "githubsocial-cont",
 			  				id: "githubsocial",
-			  				href: "",
+			  				href: "https://github.com/InvalidPleb",
 			  				nameClass: "block-name-def-soc",
 			  				bsCol: "col-lg-2 col-md-2 col-sm-2 col-xs-2"
 						},
@@ -705,8 +705,8 @@
 				text:   {
 							nameTxt: "Github",
 							paraTxt: "",
-				  			txt1: "",
-				  			txt2: "",
+				  			txt1: "View",
+				  			txt2: "Github",
 						}
 			};
 

@@ -149,9 +149,6 @@ transition
   border-radius: 5px;
   transition: all 0.5s ease-in;
   
-  //&:hover {
-    //opacity: 0;
-  //}
 }
 
 // -------- Variables -------- //
@@ -1086,13 +1083,24 @@ $dayMap: (
     ##{$tool} {
       @include fadeImg('/images/' + $tool + '.png');
       margin: 0px 0px 0px 2px;
+      &:hover {
+        opacity: 0;
+      }
+    }
+  } @else if $tool == 'tmtheme' {
+    ##{$tool} {
+      @include fadeImg('/images/' + $tool + '.png');
+      margin: -1px 0px 0px -1px;
+      &:hover {
+        opacity: 0;
+      }
     }
   } @else if $tool == 'bootstrap' {
     ##{$tool} {
       @include fadeImg('/images/' + $tool + '.png');
       margin: -1px 0px 0px -1px;
     }
-  } @else if $tool == 'sass' or $tool == 'html' or $tool == 'githubsocial' or $tool == 'linkedin' {
+  } @else if $tool == 'sass' or $tool == 'html' {
     ##{$tool} {
       @include fadeImg('/images/' + $tool + '.png');
       margin: 2px 0px 0px 2px;
@@ -1107,10 +1115,22 @@ $dayMap: (
       @include fadeImg('/images/' + $tool + '.png');
       margin: 10px 0px 0px 7px;
     }
-  } @else if $tool == 'email'{
+  } @else if $tool == 'email' {
     ##{$tool} {
       @include fadeImg('/images/' + $tool + '.png');
       margin: 6px 0px 0px 6px;
+      &:hover {
+        opacity: 0;
+      }
+    }
+  } @else if $tool == 'githubsocial' or $tool == 'linkedin' {
+    ##{$tool} {
+      @include fadeImg('/images/' + $tool + '.png');
+      margin: 2px 0px 0px 2px;
+      &:hover {
+        opacity: 0;
+      }
+
     }
   } @else {
     ##{$tool} {
@@ -2145,7 +2165,7 @@ $dayMap: (
 
 }
 
-@media (min-width:0px) and (max-width:599px) {
+@media (min-width:350px) and (max-width:599px) {
 
   #home-cont {
     top: 0px;
@@ -2163,7 +2183,8 @@ $dayMap: (
     font-size: 16px;
   }
 
-  .greeting-section {
+  #greeting-section {
+    left: 200px;
 
   }
 
@@ -2423,6 +2444,399 @@ $dayMap: (
   .block-container {
     width: 350px;
     left: 2px;
+    margin: auto;
+  }
+
+  .block-titles {
+    padding-left: 35px;
+    padding-right: 245px;
+    padding-top: 5px;
+
+  }
+
+  .block-title-section-text {
+    font-size: 34px;
+
+  }
+  
+  .title-text {
+    width: 350px;
+    right: 70px;
+    font-size: 24px;
+  }
+
+  .block-para {
+    top: -10px;
+    left: -60px;
+    padding: 0px;
+  }
+
+  .block-name-def {
+    right: 0px;
+    left: 0px;
+  }
+
+  .block-name-def-cscript {
+    left: 1px;
+  }
+
+  .block-name-def-sass {
+    left: 1px;
+  }
+
+  .block-name-def-tm {
+    left: -12px;
+  }
+
+  .block-name-def-dark {
+    left: 0px;
+  }
+
+  .frameworks {
+    left: 7%;
+
+    & > div:nth-child(1) > .tool-container,
+    & > div:nth-child(3) > .tool-container,
+    & > div:nth-child(5) > .tool-container {
+      margin-top: 0px;
+      margin-right: 70px;
+      margin-left: 72px;
+    }
+  }
+
+  .dev-tools {
+    left: 1%;
+
+    & > div:nth-child(1) > .tool-container,
+    & > div:nth-child(3) > .tool-container,
+    & > div:nth-child(5) > .tool-container,
+    & > div:nth-child(7) > .tool-container {
+      margin-top: 0px;
+      margin-right: 70px;
+      margin-left: 82px;
+    }
+  }
+
+  .dev-tools > div > .tool-container {
+    margin-right: 7px;
+  }
+
+  .preprocessors {
+    left: 6%;
+  }
+
+  .preprocessors > div:nth-child(4) > .tool-container {
+
+    margin-top: 0px;
+    margin-left: 72px;
+
+  }
+
+  .preprocessors > div:nth-child(2) > .tool-container {
+
+    margin-top: 0px;
+    margin-left: 45px;
+
+  }
+
+  .skills-list {
+    width: 150px;
+    left: 23px;
+
+  }
+
+ 
+  .block-para {
+    right: 80px;
+    padding-left: 20px;
+    width: 250px;
+  }
+
+  .block-name-dark {
+    left: 10px;
+
+  }
+
+  .block-name-tm {
+    left: -10px;
+  }
+
+}
+
+
+@media (min-width:0px) and (max-width:349px) {
+
+  #home-cont {
+    top: 0px;
+    width: 80px;
+    padding: 0;
+    
+  }
+
+  #home {
+    height: 52px;
+    padding: 5px;
+    padding-top: 23px;
+    padding-left: 15px;
+    margin-top: -5px;
+    font-size: 16px;
+  }
+  .greeting-para {
+    padding: 15px;
+  }
+
+  .container {
+  }
+  .main-container {
+    left: 0px;
+  }
+
+  .navbar-main {
+
+  }
+
+  .nav > li {
+    float: left;
+  }
+
+  #navbar {
+    width: 85%;
+    margin-top: -73px;
+    margin-left: 60px;
+    padding: 0px;
+  }
+
+  .navbar-text {
+    top: -2px;
+    display: block;
+    font-size: 14px;
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+
+  .nav-btn-dirty {
+    top: 2px;
+    padding: 0px;
+  }
+
+  #greeting-section {
+    width: 315px;
+    left: -1px;
+  }
+
+  .main-container {
+    padding-bottom: 150px;
+    overflow: hidden;
+    margin-left: 2%;
+    margin-right:auto;
+    margin-left:auto;
+  }
+
+  // -------- Projects Section -------- //
+
+
+  .projects-block-title {
+    top: 5px;
+  }
+
+  .projects-title-section {
+    height: 100%;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+
+  .site-container {
+    width: 280px;
+    height: 180px; 
+    top: 20px;
+    right: -12.5%;
+  }
+
+  .site-container-tablet {
+    width: 220px;
+    height: 160px;
+    top: 90px;
+    right: -22%;
+    
+  }
+
+  .site-container-mobile {
+    width: 80px;
+    height: 140px;
+    top: 155px;
+    right: -43%;
+    
+  }
+
+  #runner-calc-desktop {
+    width: 275px;
+    height: 175px;
+  }
+
+  #runner-calc-tablet {
+    width: 215px;
+    height: 155px;
+  }
+
+  #runner-calc-mobile {
+    width: 75px;
+    height: 135px;
+  }
+
+  .runner-calc-text {
+    width: 275px;
+    top: 100px;
+    margin-top: 140px;
+    padding-bottom: 0px;
+
+  }
+
+  #runner-calc-container {
+    padding-bottom: 130px;
+
+  }
+
+   // -------- Github Graph Section -------- //
+
+  
+  .svg-container {
+    right: 563px;
+    min-width: 400px;
+    position: relative;
+  }
+
+  .graph-description {
+    padding-bottom: 570px;
+
+    & > div > .graph-desc-section:nth-child(3) {
+      margin-top: 70%;
+    }
+
+    & > div:nth-child(2) {
+      top: -250px;
+      position: relative;
+
+    }
+  }
+
+  .graph-container {
+    padding-bottom: 250px;
+  }
+
+   #graph-para {
+    height: 230px;
+  }
+
+  .contribution-text-left {
+    width: 130px;
+    position: relative;
+    font-size: 20px;
+  }
+
+  .contribution-text-right {
+    width: 130px;
+    right: 0px;
+    position: relative;
+    font-size: 20px;
+  }
+
+  .text-bot {
+    top: 70px;
+  }
+
+  .contribution-info {
+    margin: 0px;
+  }
+
+  .graph-circle {
+    left: -33px;
+  }
+
+  .pie-tooltip {
+    left: 95px;  
+  }
+
+  .month-labels {
+    left: -95px;
+  }
+
+  .day-labels {
+    left: -230px;
+    position: relative;
+
+  }
+
+  $lineMap: (
+    1: (75, 265),
+    2: (190, 600),
+    3: (290, 200),
+  );
+
+  $lineTitleMap: (
+    1: (50, 150),
+    2: (165, 625),
+    3: (265, 80),
+  );
+
+  $repoTooltipMap: (
+    1: (50, 360),
+    2: (270, 210),
+    3: (230, 590),
+    4: (90, 240),
+    5: (40, 390),
+    6: (40, 420),
+  );
+
+  @each $num, $values in $lineMap {
+
+    .line:nth-child(#{$num}) {
+      top: nth($values, 1) + px;
+      left: nth($values, 2) - 280 + px;
+      width: 140px;
+    }
+  }
+
+  @each $num, $values in $lineTitleMap {
+
+    .line-title:nth-child(#{$num}) {
+      width: 100px;
+      top: nth($values, 1) + px;
+      left: nth($values, 2) - 200 + px;
+    }
+
+  }
+
+  @each $day, $values in $dayMap {
+
+    ##{$day} {
+      left: nth($values, 1) - 176;  
+      top: nth($values, 2) - 2;
+    }
+  }
+
+  @each $num, $values in $repoTooltipMap {
+
+    .repoTooltip:nth-child(#{$num}) {
+      top: nth($values, 1) + px;
+      left: nth($values, 2) - 310px;
+    }
+  }
+
+  
+  // -------- Tools Section -------- //
+
+  .tool-container {
+    width: 125px;
+    padding: 0px;
+  }
+
+  .tools-desc-container {
+    font-size: 18px;
+  }
+
+  .block-container {
+    width: 315px;
+    left: -1px;
     margin: auto;
   }
 
