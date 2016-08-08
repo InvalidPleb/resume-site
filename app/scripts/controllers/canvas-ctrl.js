@@ -116,13 +116,20 @@
 
 	  	// -------- Background Parallax -------- //
 
+
+			
+
 	  	function parallax(image, offsetX, offsetY) {
 	  		let ypos = window.pageYOffset;
 	  		return image.css('transform', 'translate3d(' + (ypos * offsetX) + 'px,' + (ypos * offsetY) + 'px,0px)');
 	  	}
 
 	  	$(window).scroll(function(){
-	  		return parallax($('.padding'), 0, -0.4);
+	  		if (typeof InstallTrigger === 'undefined') {
+	  			return parallax($('.padding'), 0, -0.4);
+	  		 
+	  		}
+	  		
 	  	});
 
 

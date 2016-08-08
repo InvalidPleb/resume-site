@@ -37,10 +37,14 @@
 		return {
 			getDayCommits: function (inputArr) {
 
+				console.log(inputArr);
+
 					  			let inputArrSlice = [],
 						  		    weekCurrTotal = [],
 						  		    outputDays = [],
 						  		    outputRepos = [];
+
+						  		let error = false;
 
 						  		for (let i=0; i < 4; i++) {
 						  			inputArrSlice[i] = inputArr[i+1];
@@ -55,14 +59,40 @@
 
 						  				if (outputDays[j] === undefined) {
 						  					outputDays[j] = [];
-						  					outputDays[j].push(weekCurr[j].days);
+						  					
+
+						  					if (weekCurr[j] !== undefined) {
+						  						outputDays[j].push(weekCurr[j].days);
+						  					} else {
+
+						  						error = true; 
+						  					}
+						  					
 						  				} else {
-						  					outputDays[j].push(weekCurr[j].days);
+
+						  					if (weekCurr[j] !== undefined) {
+						  						outputDays[j].push(weekCurr[j].days);
+							  				} else {
+
+							  					error = true;
+							  				}
 						  				}
-						  				weekCurrTotal[i].push(weekCurr[j].total);
+
+						  				if (weekCurr[j] !== undefined) {
+						  					weekCurrTotal[i].push(weekCurr[j].total);
+						  				} else {
+						  					error = true;
+						  				}
 						  			}
 						  			outputRepos[i] = (weekCurrTotal[i].reduce(maths.add, 0));
 						  		}
+
+
+
+						  		if (error === true) {
+						  			location.reload();
+						  		}
+
 						  		return [outputRepos, outputDays];
 					  		},
 			sumDayCommits: function(inputArr) {

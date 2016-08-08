@@ -798,7 +798,7 @@ $repoTooltipMap: (
   border-radius: 50%;
   @include prefix(box-shadow, inset 0px 0px 35px 5px rgba(0,0,0,0.75), webkit moz ms o);
   color: $gold-color;
-  font: 12px sans-serif;
+  font: 12px 'Times New Roman';
   text-align: center;
   pointer-events: none;
   @include prefix(user-select, none, webkit moz ms o);
@@ -1288,12 +1288,21 @@ $dayMap: (
 .month-labels {
   height: 500px;
   width: 500px;
-  left: 317px;
+  left: 332px;
+  top: 18px;
   min-height: 500px;
   min-width: 500px;
   position: relative;
-  transform: rotate(210deg);
+  transform: rotate(120deg);
 }
+
+@-moz-document url-prefix() {
+    .month-labels {
+      left: 338px;
+      top: 20px;
+
+    }
+  }
 
 .block-href {
 
@@ -1422,6 +1431,19 @@ $dayMap: (
     6: (40, 420),
   );
 
+  .month-labels {
+    left: 233px;
+    top: -82px;
+  }
+
+  @-moz-document url-prefix() {
+    .month-labels {
+      left: 238px;
+      top: -80px;
+    }
+  }
+  
+
   @each $num, $values in $lineMap {
 
     .line:nth-child(#{$num}) {
@@ -1538,7 +1560,14 @@ $dayMap: (
   }
 
   .month-labels {
-    left: 108px;
+    left: 123px;
+  }
+
+  @-moz-document url-prefix() {
+    .month-labels {
+      left: 130px;
+
+    }
   }
 
   $lineMap: (
@@ -1733,10 +1762,6 @@ $dayMap: (
     left: 299px;  
   }
 
-  .month-labels {
-    left: 108px;
-  }
-
   #graph-para {
     height: 180px;
   }
@@ -1747,6 +1772,17 @@ $dayMap: (
 
   .graph-container {
     padding-bottom: 200px;
+  }
+
+  .month-labels {
+    left: 123px;
+  }
+
+  @-moz-document url-prefix() {
+    .month-labels {
+      left: 130px;
+
+    }
   }
 
   $lineMap: (
@@ -1973,12 +2009,22 @@ $dayMap: (
 
   .graph-description {
     padding-bottom: 570px;
+
+    & > div > .graph-desc-section:nth-child(3) {
+      margin-top: 40%;
+    }
+
+    & > div:nth-child(2) {
+      top: -250px;
+      position: relative;
+
+    }
   }
 
   .graph-container {
     padding-bottom: 250px;
   }
-  
+
    #graph-para {
     height: 230px;
   }
@@ -1991,9 +2037,17 @@ $dayMap: (
 
   .contribution-text-right {
     width: 130px;
-    right: 15px;
+    right: -110px;
     position: relative;
     font-size: 20px;
+  }
+
+  .text-bot {
+    top: 70px;
+  }
+
+  .contribution-info {
+    margin: 0px;
   }
 
   .graph-circle {
@@ -2004,8 +2058,16 @@ $dayMap: (
     left: 223px;  
   }
 
+
   .month-labels {
-    left: 31px;
+    left: 48px;
+  }
+
+  @-moz-document url-prefix() {
+    .month-labels {
+      left: 53px;
+
+    }
   }
 
   $lineMap: (
@@ -2364,7 +2426,14 @@ $dayMap: (
   }
 
   .month-labels {
-    left: -95px;
+    left: -80px;
+  }
+
+  @-moz-document url-prefix() {
+    .month-labels {
+       left: -74px;
+
+    }
   }
 
   .day-labels {
