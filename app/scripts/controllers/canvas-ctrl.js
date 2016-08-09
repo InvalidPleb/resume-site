@@ -121,7 +121,6 @@
 
 	  	function parallax(image, offsetX, offsetY) {
 	  		let ypos = window.pageYOffset;
-	  		
 	  		if (ypos < 600) {
 	  			console.log(ypos);
 	  			return image.css('transform', 'translate3d(' + (ypos * offsetX) + 'px,' + (ypos * offsetY) + 'px,0px)');
