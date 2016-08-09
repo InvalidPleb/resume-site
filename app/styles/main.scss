@@ -364,7 +364,7 @@ $i: 1;
 }
 
 #mainControlSection {
-  height: 620px;
+  height: 850px;
   z-index: -6;
   position: relative;
   //@include prefix(filter, blur(2px), webkit moz ms o);
@@ -375,10 +375,10 @@ $i: 1;
   height: calc(100% - 1000px);
   width: 100%;
   z-index: -5;
-  margin-top: -480px;
+  margin-top: -600px;
   position: absolute;
   background-color: $dark-background;
-  //background-image: url('/images/metal-pat-2.png');
+  //background-image: url('/images/dot-background.jpg');
   //background-image: url($code-background);
   //@include prefix(filter, blur(2px), webkit moz ms o);
   @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
@@ -473,16 +473,18 @@ $i: 1;
 // -------- Top Greeting Section -------- //
 
 #greeting-section {
-  height: 480px;
+  height: 600px;
   z-index: 5;
   right: 10px;
-  top: -520px;
+  top: -700px;
   padding: 0px;
   display: block;
   position: relative;
-  background-color: $dark-background;
-  @include border(1px solid, $gold-color, left right bottom top);
-  @include prefix(box-shadow, inset -1px 0px 18px 6px rgba(0,0,0,0.75), webkit moz ms o);
+  //background-color: $dark-background;
+  background-image: url('/images/metal-pat-3.png');
+  @include prefix(box-shadow, -21px 5px 44px -15px rgba(0,0,0,0.75), webkit moz ms o);
+  //@include border(1px solid, $gold-color, left right bottom top);
+  //@include prefix(box-shadow, inset -1px 0px 18px 6px rgba(0,0,0,0.75), webkit moz ms o);
   
 
   & > div {
@@ -530,9 +532,19 @@ $i: 0;
   top: 0;
   margin: 0px;
   padding: 0px;
+
   color: $bright-gold-color;
   font-size: 50px;
   text-align: center;
+
+  /*
+
+  color: rgba(48,48,48,1);
+  text-align: center;
+  text-transform: normal;
+  @include text-shadow(1px 1px 0 rgba(140,140,140,0.6) , -1px -1px 1px rgba(0,0,0,0.67) );
+
+  */
 
 
   &:nth-child(2) {
@@ -625,7 +637,7 @@ $i: 0;
 .main-container {
   @extend .container;
   right: 10px;
-  top: -560px;
+  top: -705px;
   z-index: -3;
   margin: auto;
   padding: 0px;
@@ -1186,15 +1198,16 @@ $dayMap: (
   top: 120px;
   padding-bottom: 30px;
   position: relative;
-  background-image: url('/images/codebackground-3.png');
-  @include border(1px solid, $gold-color, left right top bottom);
-  @include prefix(box-shadow, inset -1px 0px 18px 6px rgba(0,0,0,0.75), webkit moz ms o);
-  //@include prefix(box-shadow, -21px 5px 44px -15px rgba(0,0,0,0.75), webkit moz ms o);
+  background-image: url('/images/metal-pat-3.png');
+  //background-image: url('/images/codebackground-3.png');
+  //@include border(1px solid, $gold-color, left right top bottom);
+  //@include prefix(box-shadow, inset -1px 0px 18px 6px rgba(0,0,0,0.75), webkit moz ms o);
+  @include prefix(box-shadow, -2px 4px 47px -6px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
-.projects-container {
+.contacts-container {
   @extend .block-container;
-  //@include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
+  @include prefix(box-shadow, -3px 15px 47px -1px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
 .graph-container {
