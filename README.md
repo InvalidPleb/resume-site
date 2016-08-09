@@ -1,12 +1,8 @@
-# resume
+# My Resume Site
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.15.1.
+This is the development repository for www.tuckertatum.com.
 
 ## Build & development
 
-Run `grunt` for building and `grunt serve` for preview.
-
-## Testing
-
-Running `grunt test` will run the unit tests with karma.
+If for any reason you want to test the site yourself, clone the repository and run 'grunt serve' in the app directory.
+The app can be built with 'grunt' and tested for build with 'grunt serve:dist'. 
