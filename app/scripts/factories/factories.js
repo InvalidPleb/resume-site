@@ -37,8 +37,6 @@
 		return {
 			getDayCommits: function (inputArr) {
 
-				console.log(inputArr);
-
 					  			let inputArrSlice = [],
 						  		    weekCurrTotal = [],
 						  		    outputDays = [],

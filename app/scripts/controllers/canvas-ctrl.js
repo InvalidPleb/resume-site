@@ -117,20 +117,27 @@
 	  	// -------- Background Parallax -------- //
 
 
-			
+		
 
 	  	function parallax(image, offsetX, offsetY) {
 	  		let ypos = window.pageYOffset;
-	  		return image.css('transform', 'translate3d(' + (ypos * offsetX) + 'px,' + (ypos * offsetY) + 'px,0px)');
+	  		
+	  		if (ypos < 600) {
+	  			console.log(ypos);
+	  			return image.css('transform', 'translate3d(' + (ypos * offsetX) + 'px,' + (ypos * offsetY) + 'px,0px)');
+	  		}
+	  		
 	  	}
 
 	  	$(window).scroll(function(){
 	  		if (typeof InstallTrigger === 'undefined') {
-	  			return parallax($('.padding'), 0, -0.4);
+	  			return parallax($('#mainControlSection'), 0, 0.4);
 	  		 
 	  		}
 	  		
 	  	});
+
+
 
 
 	}

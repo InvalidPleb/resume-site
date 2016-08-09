@@ -322,12 +322,13 @@ a:active {
   background-color: $dark-background;
 }
 
-// -------- Background & Parallax -------- //
+// -------- Background -------- //
 
 
 .main-body {
   background-image: url($rock-background);
   overflow-x: hidden;
+
 
 }
 
@@ -362,15 +363,32 @@ $i: 1;
   $i: $i + 1;
 }
 
+#mainControlSection {
+  height: 620px;
+  left: 5px;
+  z-index: -6;
+  position: relative;
+  //@include prefix(filter, blur(2px), webkit moz ms o);
+  background-image: url($code-background);
+}
 
 #background {
-  height: calc(100% + 50px);
+  height: calc(100% - 1000px);
   width: 100%;
   z-index: -5;
-  margin-top: -850px;
+  margin-top: -480px;
   position: absolute;
-  background-image: url($code-background);
-  @include prefix(filter, blur(2px), webkit moz ms o);
+  background-color: $dark-background;
+  //background-image: url('/images/metal-pat-2.png');
+  //background-image: url($code-background);
+  //@include prefix(filter, blur(2px), webkit moz ms o);
+  @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
+}
+
+.buffer {
+  height: 100px;
+  //background-image: url('/images/metal-pat-2.png');
+
 }
 
 .navbar-main {
@@ -456,16 +474,16 @@ $i: 1;
 // -------- Top Greeting Section -------- //
 
 #greeting-section {
-  height: 800px;
+  height: 480px;
   z-index: 5;
   right: 10px;
-  top: 80px;
+  top: -520px;
   padding: 0px;
   display: block;
   position: relative;
-  background-color: transparent;
+  background-color: $dark-background;
   @include border(1px solid, $gold-color, left right bottom top);
-  @include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
+  @include prefix(box-shadow, inset -1px 0px 18px 6px rgba(0,0,0,0.75), webkit moz ms o);
   
 
   & > div {
@@ -482,8 +500,8 @@ $i: 1;
 
 .greeting-para {
   top: 45px;
-  padding-left: 20%;
-  padding-right: 20%;
+  padding-left: 10%;
+  padding-right: 10%;
   position: relative;
   text-align: left;
 }
@@ -519,7 +537,7 @@ $i: 0;
 
 
   &:nth-child(2) {
-    margin-top: 220px;
+    margin-top: 20px;
   }
 
   &:nth-child(3) {
@@ -608,6 +626,7 @@ $i: 0;
 .main-container {
   @extend .container;
   right: 10px;
+  top: -560px;
   z-index: -3;
   margin: auto;
   padding: 0px;
@@ -1168,14 +1187,15 @@ $dayMap: (
   top: 120px;
   padding-bottom: 30px;
   position: relative;
-  background-color: transparent;
+  background-image: url('/images/codebackground-3.png');
   @include border(1px solid, $gold-color, left right top bottom);
-  @include prefix(box-shadow, -13px 20px 35px 10px rgba(0,0,0,0.75), webkit moz ms o);
+  @include prefix(box-shadow, inset -1px 0px 18px 6px rgba(0,0,0,0.75), webkit moz ms o);
+  //@include prefix(box-shadow, -21px 5px 44px -15px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
 .projects-container {
   @extend .block-container;
-  @include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
+  //@include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
 .graph-container {

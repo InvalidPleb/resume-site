@@ -635,8 +635,8 @@
 				text:   {
 							nameTxt: "E-Mail",
 							paraTxt: "",
-				  			txt1: "",
-				  			txt2: "",
+				  			txt1: "insalience",
+				  			txt2: "@gmail.com",
 						}
 			};
 

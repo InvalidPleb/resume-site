@@ -59,6 +59,7 @@
       </div>
     </nav>
     <section id="mainControlSection" style="pointer-events:all;" ng-controller="CanvasCtrl as canvas">
+    </section>
       <div id="greeting-section" class="container">
         <canvas id="canvas"></canvas>
         <div>
@@ -70,18 +71,23 @@
             <span>FRONT END WEB DEVELOPER</span>
           </div>
           <div class="name-text row">
-            <div class="greeting-para">&nbsp; &nbsp; &nbsp; &nbsp;</div>
+            <div class="greeting-para">&nbsp; &nbsp; &nbsp; &nbsp; I'm a front end web developer with a passion for creating beautiful and useful applications. For years I've spent many hours of every day improving my development knowledge and skills by creating applications of my own while also contributing to others'. My love of programming and technology in general has morphed over the years from a fascination to a hobby, and is now a devotion. Solving problems is what I do, whether it be by developing a new tool or by fixing an old one.</div>
           </div>
         </div>
       </div>
-    </section>
+    
     <div ng-controller="CanvasCtrl as canvas">
-      <div id="background"></div>
+      <div id="background">
+        <div class="buffer"></div>
+      </div>
+      <!--
       <div ng-repeat="pads in [0, 1, 2, 3, 4, 5, 6, 7] track by $index">
         <div id="padding-{{$index}}" class="padding">
           <div class="decoration"></div>
         </div>
       </div>
+
+    -->
     </div>
     
     <div class="main-container">
