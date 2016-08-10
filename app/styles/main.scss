@@ -490,13 +490,10 @@ $i: 1;
   @include prefix(box-shadow, -21px 5px 44px -15px rgba(0,0,0,0.75), webkit moz ms o);
   //@include border(1px solid, $gold-color, left right bottom top);
   //@include prefix(box-shadow, inset -1px 0px 18px 6px rgba(0,0,0,0.75), webkit moz ms o);
-  
-
-  
 }
 
 .greeting-para {
-  top: 200px;
+  top: 100px;
   padding-left: 10%;
   padding-right: 10%;
   position: relative;
@@ -531,10 +528,9 @@ $i: 0;
 
 .name-text {
   @extend .block-title-section-text;
-  top: 0;
+  top: 80px;
   margin: 0px;
   padding: 0px;
-
   color: $bright-gold-color;
   font-size: 50px;
   text-align: center;
@@ -1530,6 +1526,12 @@ $dayMap: (
 }
 @media (min-width:875px) and (max-width:991px) {
 
+
+  .greeting-para {
+    top: 60px;
+
+  }
+
   // -------- Projects Section -------- //
 
   .main-container {
@@ -1760,6 +1762,11 @@ $dayMap: (
     left: 0px;
   }
 
+  .greeting-para {
+    top: 60px;
+
+  }
+
   .site-container {
     top: 20px;
     right: -103px;
@@ -1988,6 +1995,11 @@ $dayMap: (
 
   #greeting-section {
     width: 600px;
+  }
+
+  .greeting-para {
+    top: 40px;
+
   }
 
   .main-container {
@@ -2292,6 +2304,8 @@ $dayMap: (
   }
 
   .greeting-para {
+    top: 0px;
+    font-size: 14px;
     padding: 15px;
   }
 
