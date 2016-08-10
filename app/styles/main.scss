@@ -162,6 +162,7 @@ $cream-color: #c9c5b7;
 $teal-color: #3ECF84;
 $rock-background: '/images/rock-background.png';
 $code-background: '/images/codebackground-3.png';
+$metal-background: '/images/metal-pat-3.png';
 
 
 // -------- Generic Element Selectors -------- //
@@ -326,7 +327,7 @@ a:active {
 
 
 .main-body {
-  background-image: url($rock-background);
+  background-image: url($code-background);
   overflow-x: hidden;
 
 
@@ -372,15 +373,18 @@ $i: 1;
 }
 
 #background {
-  height: calc(100% - 1000px);
+  height: calc(100% - 750px);
   width: 100%;
   z-index: -5;
   margin-top: -600px;
+  margin-bottom: 100px;
   position: absolute;
-  background-color: $dark-background;
-  //background-image: url('/images/dot-background.jpg');
+  //background-color: $dark-background;
+
+  background-image: url($metal-background);
   //background-image: url($code-background);
   //@include prefix(filter, blur(2px), webkit moz ms o);
+  @include border(1px solid, $gold-color, bottom top);
   @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
@@ -412,6 +416,7 @@ $i: 1;
   top: -1px;
   position: fixed;
   background: $grey-background;
+  //background-image: url()
   @include border(1px solid, $gold-color, bottom);
 }
 
@@ -481,30 +486,27 @@ $i: 1;
   display: block;
   position: relative;
   //background-color: $dark-background;
-  background-image: url('/images/metal-pat-3.png');
+  background-image: url($metal-background);
   @include prefix(box-shadow, -21px 5px 44px -15px rgba(0,0,0,0.75), webkit moz ms o);
   //@include border(1px solid, $gold-color, left right bottom top);
   //@include prefix(box-shadow, inset -1px 0px 18px 6px rgba(0,0,0,0.75), webkit moz ms o);
   
 
-  & > div {
-    padding-bottom: 50px;
-  }
-
-  & > div > span {
-    left:20px;
-    top:20px;
-    position:relative;
-    font-size:14px;
-  }
+  
 }
 
 .greeting-para {
-  top: 45px;
+  top: 200px;
   padding-left: 10%;
   padding-right: 10%;
   position: relative;
   text-align: left;
+
+  & > div {
+    padding: 20px;
+    @include border(1px solid, $gold-color, left right bottom top);
+    @include prefix(box-shadow, inset 0px 0px 9px 1px rgba(0,0,0,0.85), webkit moz ms o);
+  }
 }
 
 #canvas {
@@ -629,17 +631,17 @@ $i: 0;
   left: 5%;
   top: 20px;
   position: relative;
-  background-image: url($rock-background);
-  @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
+  //background-image: url($rock-background);
+  //@include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
 
 .main-container {
   @extend .container;
   right: 10px;
-  top: -705px;
   z-index: -3;
   margin: auto;
+  margin-top: -718px;
   padding: 0px;
   padding-bottom: 50px;
   position: relative;
@@ -651,8 +653,10 @@ $i: 0;
   margin-top: 50px;
   padding: 0px 20px 20px 20px;
   position: relative;
-  background-image: url($rock-background);
-  @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
+  background-color: $dark-background;
+  //background-image: url($rock-background);
+  @include border(1px solid, $dim-gold-color, top bottom left right);
+  @include prefix(box-shadow, -5px 4px 35px -1px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
 .site-container {
@@ -972,8 +976,12 @@ $lineTitleMap: (
   padding: 10px;
   padding-bottom: 500px;
   position: absolute;
-  background-image: url($rock-background);
-  @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
+
+  background-color: $dark-background;
+  //background-image: url($rock-background);
+  //@include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
+  @include border(1px solid, $dim-gold-color, top bottom left right);
+  @include prefix(box-shadow, -5px 4px 35px -1px rgba(0,0,0,0.75), webkit moz ms o);
   @include prefix(user-select, all, webkit moz ms o);
 }
 
@@ -1198,16 +1206,17 @@ $dayMap: (
   top: 120px;
   padding-bottom: 30px;
   position: relative;
-  background-image: url('/images/metal-pat-3.png');
+  //background-color: #151515;
+  //background-image: url('/images/metal-pat-3.png');
   //background-image: url('/images/codebackground-3.png');
   //@include border(1px solid, $gold-color, left right top bottom);
   //@include prefix(box-shadow, inset -1px 0px 18px 6px rgba(0,0,0,0.75), webkit moz ms o);
-  @include prefix(box-shadow, -2px 4px 47px -6px rgba(0,0,0,0.75), webkit moz ms o);
+  //@include prefix(box-shadow, -2px 4px 47px -6px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
 .contacts-container {
   @extend .block-container;
-  @include prefix(box-shadow, -3px 15px 47px -1px rgba(0,0,0,0.75), webkit moz ms o);
+  //@include prefix(box-shadow, -3px 15px 47px -1px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
 .graph-container {
@@ -1229,9 +1238,9 @@ $dayMap: (
   margin-bottom: 30px;
   padding-bottom: 40px;
   float: none;
-  @include prefix(box-shadow, -10px 10px 28px -9px rgba(0,0,0,0.75), webkit moz ms o);
-  @include border(1px solid, $gold-color, top left bottom right);
-  border-radius: 3px;
+  background-color: $dark-background;
+  @include border(1px solid, $dim-gold-color, top left bottom right);
+  @include prefix(box-shadow, inset 0px 0px 9px 1px rgba(0,0,0,0.85), webkit moz ms o);
   text-align: center;
 }
 

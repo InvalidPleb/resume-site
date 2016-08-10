@@ -130,7 +130,6 @@
 	  	$(window).scroll(function(){
 	  		if (typeof InstallTrigger === 'undefined') {
 	  			return parallax($('#mainControlSection'), 0, 0.4);
-	  		 
 	  		}
 	  		
 	  	});
