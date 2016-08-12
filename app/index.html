@@ -1,15 +1,13 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <meta name="description" content="">
+    <title>Tucker Tatum | Front End Web Developer</title>
+    <meta name="description" content="I'm a front end web developer with a passion for creating beautiful and useful applications.">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     
     <!-- build:css(.) styles/vendor.css -->
-
-
     <!-- bower:css -->
     <!-- endbower -->
     <!-- endbuild -->
@@ -58,45 +56,36 @@
         <!--/.nav-collapse -->
       </div>
     </nav>
-    <section id="mainControlSection" style="pointer-events:all;" ng-controller="CanvasCtrl as canvas">
-    </section>
-      <div id="greeting-section" class="container">
-        <div>
-          <span></span>
-          <div class="name-text row">
-            <span>Tucker Tatum</span>
-          </div>
-          <div class="name-text row">
-            <span>FRONT END WEB DEVELOPER</span>
-          </div>
-          <div class="name-text row">
-            <div class="greeting-para">
-              <div>&nbsp; &nbsp; &nbsp; &nbsp; I'm a front end web developer with a passion for creating beautiful and useful applications. For years I've spent many hours of every day improving my development knowledge and skills by creating applications of my own while also contributing to others'. My love of programming and technology in general has morphed over the years from a fascination to a hobby, and is now a devotion. Solving problems is what I do, whether it be by developing a new tool or by fixing an old one.
-              </div>
-            </div>
+    <div id="top-background" parallax></div>
+    <div id="greeting-section" class="container">
+      <div>
+        <span></span>
+        <div class="name-text row">
+          <h1>Tucker Tatum</h1>
+        </div>
+        <div class="name-text row">
+          <h2>FRONT END WEB DEVELOPER</h2>
+        </div>
+        <div class="name-text row">
+          <div class="greeting-para">
+            <h4>&nbsp; &nbsp; &nbsp; &nbsp; I'm a front end web developer with a passion for creating beautiful and useful applications. My love of creative work and learning, ability to solve real world problems, and dedication to work hard until the job is done make me a great asset to any team.
+            </h4>
           </div>
         </div>
       </div>
+    </div>
     
-    <div ng-controller="CanvasCtrl as canvas">
+    <div>
       <div id="background">
         <div class="buffer"></div>
       </div>
-      <!--
-      <div ng-repeat="pads in [0, 1, 2, 3, 4, 5, 6, 7] track by $index">
-        <div id="padding-{{$index}}" class="padding">
-          <div class="decoration"></div>
-        </div>
-      </div>
-
-    -->
     </div>
     
     <div class="main-container">
       <div class="index" ng-controller="BlockCtrl as block">
         <section id="projects-section" class="block-container">
           <div class="projects-title-section">
-              <div class="block-title-section-text">My projects</div>
+              <h2 class="block-title-section-text">My projects</h2>
           </div>
           <div id="runner-calc-container" class="seperator skills-container">
               <div class="row">
@@ -124,7 +113,7 @@
                   </div>
               </div>
               <div class="runner-calc-text tools-desc-container"> 
-                  <p>&nbsp; &nbsp; &nbsp; &nbsp; RunnerCalculator.com is my main project that I've been developing for almost a year now. It's a simple site that allows users to calculate various numbers that a runner might be interested in finding out. Sites like this have been around for awhile, but I disappointed with the user experience of some of the current pace calculators available online because many of them had been left relatively unchanged for over a decade and had used outdated or just bad code. So I made a site with modern web technology that anyone can use quickly, easily, and most importantly, on the run. It looks and works great on all devices and major browsers, and is made to be scalable, easy to develop, and secure. </p>
+                  <p>&nbsp; &nbsp; &nbsp; &nbsp; RunnerCalculator.com is my main project that I've been developing for almost a year now. It's a web app built with modern technology that allows runners to easily calculate a few useful numbers associated with running. I built the application myself from the ground up and I used the project to learn more about the web development process. It looks and works great on all devices and major browsers, and is made to be scalable, clean, fast, and easy to use on the run. </p>
               </div>
           </div>
           <div class="seperator skills-container">
@@ -145,7 +134,7 @@
         </section>
         <section id="github-section" class="block-container">
           <div class="projects-title-section">
-            <div class="block-title-section-text">Clean, modular, &amp; scalable code</div>
+            <h2 class="block-title-section-text">Clean, modular, &amp; scalable code</h2>
           </div>
           <div class="block-group"> 
             <div class="skills-container">
@@ -153,7 +142,7 @@
                   <main-block info="html"></main-block>
               </div>
               <div class="tools-desc-container">
-                  <p>&nbsp; &nbsp; &nbsp; &nbsp; Angular directives and Bootstrap classes make HTML capable of some very powerful &amp; expressive logic that I take advantage of every day in my development process. With Angular, I can keep a lot of the DOM logic inside of the HTML as opposed to hidden in the controllers somewhere, which results in code that is quick &amp; easy to debug and understand. I also follow <a href="https://google.github.io/styleguide/htmlcssguide.xml">Google's HTML style guide</a> for purposes of effiency and to be consistent with Google's search engine algorithms. I use useful &amp; descriptive tag names for my elements instead of just using 'div' for everything as well as commenting parts of my code that may be of interest.</p>
+                  <p>&nbsp; &nbsp; &nbsp; &nbsp; I follow <a href="https://google.github.io/styleguide/htmlcssguide.xml">Google's HTML style guide</a> in order to have clean and standards-compliant markup, and also to be consistent with Google's search engine algorithms. I use useful &amp; descriptive tag names for my elements as well as commenting parts of my code that may be of interest. Angular directives and Bootstrap classes make HTML capable of some very powerful &amp; expressive logic that I take advantage of every day in my development process. With Angular, I can keep a lot of the DOM logic inside of the HTML as opposed to hidden in the controllers somewhere, which results in code that is quick &amp; easy to debug and understand. </p>
               </div>
             </div>
           </div>
@@ -173,7 +162,7 @@
                   <main-block info="css"></main-block>
               </div>
               <div class="tools-desc-container">
-                  <p>&nbsp; &nbsp; &nbsp; &nbsp; I consistently order all of my CSS properties within their classes and group relevant classes and ID's together as much as possible for ease of editing and readability. My websites support the major browsers (Chrome, Firefox, IE9+, Safari, and Opera) and I try to make the user experience uniform across them as much as possible. I also include cross-browser prefixes for properties like 'filter' and 'box-shadow' to support the querks of those browsers. My websites are responsive and look great on all of the popular device sizes, including mobile, tablet, laptops and large desktops.</p>
+                  <p>&nbsp; &nbsp; &nbsp; &nbsp; My code follows W3C standards for CSS development I consistently order all of my CSS properties within their classes and group relevant classes and ID's together as much as possible for ease of editing and readability. My websites support the major browsers (Chrome, Firefox, IE9+, Safari, and Opera) and I try to make the user experience uniform across them as much as possible. I also include cross-browser prefixes for properties like 'filter' and 'box-shadow' to support the querks of those browsers. My websites are responsive and look great on all of the popular device sizes, including mobile, tablet, laptops and large desktops.</p>
               </div>
             </div>
           </div>
@@ -183,114 +172,108 @@
         <section class="graph-container" ng-controller="GraphCtrl as graph">
           <div class="loadingScreen fadable" ng-hide="loading == false" ng-model="loading">
             <div class="loading"></div>
+          </div>
+          <div class="projects-title-section">
+            <div class="block-title-section-text">My live Github activity</div>
+          </div>
+          <div class="d3-container">
+            <div class="animation-container">
+              <div class="month-labels">
+                <div id="{{dataObj.months[month]}}" ng-repeat="month in months track by $index">{{dataObj.months[month]}}</div>
+              </div>
+              <div class="day-labels">
+                <div id="{{dataObj.days[graphDays]}}" ng-repeat="graphDays in days track by $index">{{dataObj.days[graphDays]}}</div>
+              </div>
+              <div>
+                <div class="line" ng-repeat="lines in [0, 1, 2] track by $index"></div>
+              </div>
+              <div>
+                  <div class="line-title">
+                    <div class="tooltipText">Weeks</div>
+                    <div>Hover over the chart ring for more info</div>
+                  </div>
+                  
+                  <div class="line-title">
+                    <div class="tooltipText">Days</div>
+                    <div>Hover over the chart ring for more info</div>
+                  </div>
+                  <div class="line-title">
+                    <div class="tooltipText">Repositories</div>
+                    <div>Hover over the chart ring for more info</div>
+                  </div>
+              </div>
+              <div>
+                  <div class="repoTooltip" ng-repeat="repo in repos track by $index">
+                    <p class="repo-name">{{dataObj.repositories.names[repo]}}</p>
+                    <p> {{dataObj.repositories.commits[repo]}} commits</p>
+                    <p>Click to view on Github</p>
+                  </div>
+              </div>
+              <div>
+                  <div class="pie-tooltip-hover" ng-repeat="week in weeks track by $index">
+                    <p class="day-tooltip-title">Week {{week + 1}}</p>
+                    <p class="day-tooltip-label"> &nbsp; &nbsp; Day &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Commits</p>
+                    <div class="day-tooltip-container">
+                      <p class="day-tooltip" ng-repeat="day in days track by $index"> {{dayNames[day]}} |<span>{{dataObj.commits.days[week][day]}}</span></p>
+                    </div>
+                  </div>
+              </div>
+          </div>
+          <div class="graph-description col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="row">
+                  <div class="col-lg-2 col-md-0 col-sm-0 col-xs-0"></div>
+                  <div class="graph-desc-section col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                      <div class="block-center">
+                        <span>Contributions</span>
+                      </div>
+                  </div>
+                  <div class="graph-desc-section col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                      <div class="block-center">
+                        <span>Repositories</span>
+                      </div>
+                  </div>
+                  <div class="col-lg-2 col-md-0 col-sm-0 col-xs-0"></div>
+              </div>
+              <div class="row">
+                  <div class="col-lg-2 col-md-0 col-sm-0 col-xs-0"></div>
+                  <div class="contribution-info col-lg-2 col-md-3 col-sm-3 col-xs-6">
+                    <p class="contribution-text-right">This week</p>
+                    <p class="contribution-text-right">This year</p>
+                    <p class="contribution-text-right">Current Streak</p>
+                    <p class="contribution-text-right">Longest Streak</p>
+                  </div>
+                  <div class="contribution-info col-lg-2 col-md-3 col-sm-3 col-xs-6">
+                    <p class="contribution-text-left"><span>{{dataObj.commits.thisWeek}}</span> commits</p>
+                    <p class="contribution-text-left"><span>{{dataObj.commits.thisYear}}</span> commits</p>
+                    <p class="contribution-text-left"><span>{{dataObj.commits.currStreak}}</span> days</p>
+                    <p class="contribution-text-left"><span>{{dataObj.commits.longestStreak}}</span> days</p>
+                  </div>
+                  <div class="contribution-info text-bot col-lg-2 col-md-3 col-sm-3 col-xs-6">
+                    <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.runnerCalc}}">Runner Calc</a></p>
+                    <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.resumeSite}}">Resume</a></p>
+                    <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.sips}}">Sips</a></p>
+                    <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.darkReader}}">Dark Reader</a></p>
+                    <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.tmTheme}}">TmTheme</a></p>
+                  </div>
+                  <div class="contribution-info text-bot col-lg-2 col-md-3 col-sm-3 col-xs-6">
+                    <p class="contribution-text-left"><span>{{dataObj.repositories.runnerCalc}}</span> commits</p>
+                    <p class="contribution-text-left"><span>{{dataObj.repositories.resumeSite}}</span> commits</p>
+                    <p class="contribution-text-left"><span>{{dataObj.repositories.sips}}</span> commits</p>
+                    <p class="contribution-text-left"><span>{{dataObj.repositories.darkReader}}</span> commits</p>
+                    <p class="contribution-text-left"><span>{{dataObj.repositories.tmTheme}}</span> commit</p>
+                  </div>
+                  <div class="col-lg-2 col-md-0 col-sm-0 col-xs-0"></div>
+              </div>
+              <div id="graph-para" class="row tools-desc-container">
+                  <p>&nbsp; &nbsp; &nbsp; &nbsp; I've been pushing my code to Github every day for almost a year in order to make all of my development activity public. The graph above visually displays some of that information using D3.js and is populated upon refresh with live data requested from the Github API. You can hover over the outer week ring to reveal the daily data for that week, and over the inner pie chart to see information about my specific repositories. </p>
+                  <p>&nbsp; &nbsp; &nbsp; &nbsp; </p>
+              </div>   
             </div>
-            <div class="projects-title-section">
-              <div class="block-title-section-text">My live Github activity</div>
-            </div>
-  
-            <div class="d3-container">
-                <div class="animation-container">
-                    <div class="month-labels">
-                        <div id="{{dataObj.months[month]}}" ng-repeat="month in months track by $index">{{dataObj.months[month]}}</div>
-                    </div>
-                    <div class="day-labels">
-                        <div id="{{dataObj.days[graphDays]}}" ng-repeat="graphDays in days track by $index">{{dataObj.days[graphDays]}}</div>
-                    </div>
-                    <div>
-                        <div class="line" ng-repeat="lines in [0, 1, 2] track by $index"></div>
-                    </div>
-                    <div>
-                        <div class="line-title">
-                            <div class="tooltipText">Weeks</div>
-                            <div>Hover over the chart ring for more info</div>
-                        </div>
-                        
-                        <div class="line-title">
-                            <div class="tooltipText">Days</div>
-                            <div>Hover over the chart ring for more info</div>
-                        </div>
-                        <div class="line-title">
-                            <div class="tooltipText">Repositories</div>
-                            <div>Hover over the chart ring for more info</div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="repoTooltip" ng-repeat="repo in repos track by $index">
-                            <p class="repo-name">{{dataObj.repositories.names[repo]}}</p>
-                            <p> {{dataObj.repositories.commits[repo]}} commits</p>
-                            <p>Click to view on Github</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="pie-tooltip-hover" ng-repeat="week in weeks track by $index">
-                            <p class="day-tooltip-title">Week {{week + 1}}</p>
-                            <p class="day-tooltip-label"> &nbsp; &nbsp; Day &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Commits</p>
-                            <div class="day-tooltip-container">
-                                <p class="day-tooltip" ng-repeat="day in days track by $index"> {{dayNames[day]}} |<span>{{dataObj.commits.days[week][day]}}</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="graph-description col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-0 col-sm-0 col-xs-0"></div>
-                        <div class="graph-desc-section col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                            <div class="block-center">
-                                <span>Contributions</span>
-                            </div>
-                        </div>
-                        <div class="graph-desc-section col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                            <div class="block-center">
-                                <span>Repositories</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-0 col-sm-0 col-xs-0"></div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-lg-2 col-md-0 col-sm-0 col-xs-0"></div>
-                        <div class="contribution-info col-lg-2 col-md-3 col-sm-3 col-xs-6">
-                            <p class="contribution-text-right">This week</p>
-                            <p class="contribution-text-right">This year</p>
-                            <p class="contribution-text-right">Current Streak</p>
-                            <p class="contribution-text-right">Longest Streak</p>
-                        </div>
-                        <div class="contribution-info col-lg-2 col-md-3 col-sm-3 col-xs-6">
-                            <p class="contribution-text-left"><span>{{dataObj.commits.thisWeek}}</span> commits</p>
-                            <p class="contribution-text-left"><span>{{dataObj.commits.thisYear}}</span> commits</p>
-                            <p class="contribution-text-left"><span>{{dataObj.commits.currStreak}}</span> days</p>
-                            <p class="contribution-text-left"><span>{{dataObj.commits.longestStreak}}</span> days</p>
-                        </div>
-
-
-                        <div class="contribution-info text-bot col-lg-2 col-md-3 col-sm-3 col-xs-6">
-                            <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.runnerCalc}}">Runner Calc</a></p>
-                            <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.resumeSite}}">Resume</a></p>
-                            <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.sips}}">Sips</a></p>
-                            <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.darkReader}}">Dark Reader</a></p>
-                            <p class="contribution-text-right"><a ng-href="{{dataObj.repositories.href.tmTheme}}">TmTheme</a></p>
-                        </div>
-                        <div class="contribution-info text-bot col-lg-2 col-md-3 col-sm-3 col-xs-6">
-                            <p class="contribution-text-left"><span>{{dataObj.repositories.runnerCalc}}</span> commits</p>
-                            <p class="contribution-text-left"><span>{{dataObj.repositories.resumeSite}}</span> commits</p>
-                            <p class="contribution-text-left"><span>{{dataObj.repositories.sips}}</span> commits</p>
-                            
-                            <p class="contribution-text-left"><span>{{dataObj.repositories.darkReader}}</span> commits</p>
-                            <p class="contribution-text-left"><span>{{dataObj.repositories.tmTheme}}</span> commit</p>
-                        </div>
-                        <div class="col-lg-2 col-md-0 col-sm-0 col-xs-0"></div>
-                    </div>
-                    <div id="graph-para" class="row tools-desc-container">
-                        <p>&nbsp; &nbsp; &nbsp; &nbsp; I've been pushing my code to Github every day for almost a year in order to make all of my development activity public. The graph above visually displays some of that information using D3.js and is populated upon refresh with live data requested from the Github API. You can hover over the outer week ring to reveal the daily data for that week, and over the inner pie chart to see information about my specific repositories. </p>
-                        <p>&nbsp; &nbsp; &nbsp; &nbsp; </p>
-                    </div>   
-                </div>
-            </div>
+          </div>
         </section>
         <section id="tools-section" class="block-container">
           <div class="projects-title-section">
-              <div class="block-title-section-text">Tools I use</div>
+              <h2 class="block-title-section-text">Tools I use</h2>
           </div>
           <div class="block-group"> 
             <div class="skills-container">
@@ -373,7 +356,7 @@
         </section>
         <section id="contact-section" class="contacts-container" >
           <div class="projects-title-section">
-            <div class="block-title-section-text">Contact me</div>
+            <h2 class="block-title-section-text">Contact me</h2>
           </div>
           <div class="block-group">
             <div class="contact-type-container">
@@ -438,7 +421,6 @@
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/block-ctrl.js"></script>
     <script src="scripts/controllers/graph-ctrl.js"></script>
-    <script src="scripts/controllers/canvas-ctrl.js"></script>
     <script src="scripts/directives/directives.js"></script>
     <script src="scripts/factories/factories.js"></script>
     <!-- endbuild -->

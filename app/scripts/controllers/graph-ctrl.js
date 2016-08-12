@@ -18,6 +18,7 @@
 	  	vm.commitDaily = {};
 
 	  	vm.pushCalledRepo = function(res, repo) {
+	  		console.log(res.length);
 	  		for (var i = 0; i < res.length; i++) {
 	  			repo.push(res[i].full_name);
 	  		}

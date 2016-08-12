@@ -4,15 +4,19 @@
 
   angular
     .module('resumeApp')
-    .directive('navScroll', navScroll)
     .directive('mainBlock', mainBlock)
-    .directive('toolBlock', toolBlock)
+    .directive('navScroll', navScroll)
+    .directive('parallax', parallax)
     .directive('scrollChange', scrollChange)
-    .directive('scrollChangeHash', scrollChangeHash);
+    .directive('scrollChangeHash', scrollChangeHash)
+    .directive('toolBlock', toolBlock);
+    
 
   navScroll.$inject = ['$rootScope'];
-  scrollChangeHash.$inject = ['$rootScope', '$window'];
+  parallax.$inject = ['$window'];
   scrollChange.$inject = ['$window'];
+  scrollChangeHash.$inject = ['$rootScope', '$window'];
+  
   
   function mainBlock() {
       return {
@@ -90,6 +94,26 @@
               }
           });
         }
+      };
+  }
+
+  function parallax($window) {
+
+     return {
+          link: function(scope, element, attrs) {
+            function parallaxScroll(image, offsetX, offsetY) {
+              let ypos = window.pageYOffset;
+              if (ypos < 600) {
+                return image.css('transform', 'translate3d(' + (ypos * offsetX) + 'px,' + (ypos * offsetY) + 'px,0px)');
+              }
+            }
+
+            angular.element($window).bind("scroll", function() {
+              if (typeof InstallTrigger === 'undefined') {
+                return parallaxScroll($('#' + attrs.id), 0, 0.4);
+              }
+            });
+          }
       };
   }
 
