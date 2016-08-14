@@ -748,7 +748,8 @@ $repoTooltipMap: (
   z-index: 5;         
   left: 506px;
   top: 174px;
-  padding: 2px;     
+  padding: 2px;
+  display: none;
   position: absolute;
   background-image: url($metal-background);
   @include border(2px solid, $gold-color, top left right bottom);

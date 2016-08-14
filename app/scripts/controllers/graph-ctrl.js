@@ -78,7 +78,7 @@
 			$('.line-title:nth-child(2)').mouseover(function(){
 				$('.line:nth-child(2)').stop().animate({borderColor:"#3ECF84"},"fast");
 				var dayRingInd = gotParsedCommits[1];
-				dayRing = vm.middleRing(0, 50, vm.colorObj[9], dayRingInd[49]);
+				dayRing = vm.middleRing(0, 50, [95, 115], vm.colorObj[9], dayRingInd[49]);
 				for (var j = 0; j < dayRing.length; j++) {
 					dayRing[j].transition().duration(200).style("opacity", 0.9);
 				}
@@ -92,11 +92,33 @@
 				}
 			});
 
-			vm.outerRing(-1, 5.5, [0,105, 0], gotParsedCommits[0], gotParsedCommits[1], 0);
-			vm.middleRing(0, 50, [0,105, 0], [1,1,1,1,1,1,1]);
-			vm.innerRing(repoCommits, vm.repoContainer, vm.colorObj[0], 0);
+			
+
+			
+			$(window).resize(function(){
 
 
+
+			});
+
+			var winWidth = $(window).width();
+			console.log(winWidth);
+
+
+			if (winWidth < 430) {
+
+				vm.outerRing(-1, 5.5, [120, 150], [0,105, 0], gotParsedCommits[0], gotParsedCommits[1], 0);
+				vm.middleRing(0, 50, [95, 115], [0,105, 0], [1,1,1,1,1,1,1]);
+				vm.innerRing(repoCommits, [20, 90], vm.repoContainer, vm.colorObj[0], 0);
+
+			} else {
+
+				vm.outerRing(-1, 5.5, [170, 200], [0,105, 0], gotParsedCommits[0], gotParsedCommits[1], 0);
+				vm.middleRing(0, 50, [145, 165], [0,105, 0], [1,1,1,1,1,1,1]);
+				vm.innerRing(repoCommits, [80, 140], vm.repoContainer, vm.colorObj[0], 0);
+			}
+
+			
 			// This object contains the data for the Github graph
 	  		$scope.dataObj = {
 
@@ -224,7 +246,7 @@
 
 
 		// Recursive function to draw the outer ring
-		vm.outerRing = function(sAng, eAng, color, data, dayData, i) {
+		vm.outerRing = function(sAng, eAng, arc, color, data, dayData, i) {
 
 			// Each outer ring segment / function call stands for a week
 			if (i < 52) {
@@ -249,7 +271,7 @@
 
 				// Drawing the pie segment
 				var week = g.append("path")
-				    .attr("d", vm.arc(170, 200, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
+				    .attr("d", vm.arc(arc[0], arc[1], (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
 				    .attr("transform", "translate(200,250)")
 				    .style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")")
 				    .style("cursor", "pointer")
@@ -259,7 +281,7 @@
 					    $(".pie-tooltip-hover:nth-child(" + i + ")").css("opacity", "1");
 
 					    // Drawing the day rings
-	            		dayRing = vm.middleRing(0, 50, color, dayDataInd);
+	            		dayRing = vm.middleRing(0, 50, [vm.middleRingArc[0], vm.middleRingArc[1]], color, dayDataInd);
 
 	            		for (var j = 0; j < dayRing.length; j++) {
 	            			dayRing[j].transition()		
@@ -298,15 +320,17 @@
 				}
 
 				i++;
-				return vm.outerRing(sAng, eAng, color, data, dayData, i);
+				return vm.outerRing(sAng, eAng, arc, color, data, dayData, i);
 			}
 		};
 
 
 		// Recursive function to draw the day rings
-		vm.middleRing = function(sAng, eAng, color, data) {
+		vm.middleRing = function(sAng, eAng, arc, color, data) {
 
+			vm.middleRingArc = arguments[2];
 			var ringCont = [];
+
 			for (var i = 0; i <= 6; i++) {
 
 				sAng = sAng + 50;
@@ -320,7 +344,7 @@
 
 				// Drawing the day ring segment
 				var ring = vm.svgContainer.append("path")
-				    .attr("d", vm.arc(145, 165, (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
+				    .attr("d", vm.arc(arc[0], arc[1], (sAng * Math.PI / 180), (eAng * Math.PI / 180)))
 				    .attr("transform", "translate(200,250)")
 				    .style("fill", "rgba(" + color1 + "," + color2 + "," + color3 + "," + alpha + ")")
 					.style("opacity", 0.3);
@@ -334,7 +358,7 @@
 
 		
 		// Recursive function to draw the inner pie chart
-		vm.innerRing = function(data, nameArr, color, i){
+		vm.innerRing = function(data, arc, nameArr, color, i){
 
 			if (i < data.length) {
 
@@ -346,7 +370,7 @@
 
 				// Drawing the pie segment
 				var pieCurve = vm.svgContainer.append("path")
-				    .attr("d", vm.arc(80, 140, sAng, eAng))
+				    .attr("d", vm.arc(arc[0], arc[1], sAng, eAng))
 				    .attr("transform", "translate(200,250)")
 				    .attr("class", "pie")
 				    .style("fill", "rgba(" + color + "," + alpha + ")")
@@ -383,7 +407,7 @@
 				}
 
 				i++;
-				return vm.innerRing(data, vm.repoContainer, vm.colorObj[i], i);
+				return vm.innerRing(data, arc, vm.repoContainer, vm.colorObj[i], i);
 			}
 		};
 
