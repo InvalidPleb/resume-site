@@ -2612,7 +2612,7 @@ $dayMap: (
 
   #home-cont {
     top: 0px;
-    width: 80px;
+    width: 60px;
     padding: 0;
     
   }
@@ -2621,7 +2621,7 @@ $dayMap: (
     height: 52px;
     padding: 5px;
     padding-top: 23px;
-    padding-left: 15px;
+    padding-left: 5px;
     margin-top: -5px;
     font-size: 16px;
   }
@@ -2644,16 +2644,16 @@ $dayMap: (
   }
 
   #navbar {
-    width: 85%;
+    width: 83%;
     margin-top: -73px;
-    margin-left: 60px;
+    margin-left: 50px;
     padding: 0px;
   }
 
   .navbar-text {
     top: -2px;
     display: block;
-    font-size: 14px;
+    font-size: 13px;
     padding-left: 7px;
     padding-right: 7px;
   }
@@ -2664,7 +2664,9 @@ $dayMap: (
   }
 
   #greeting-section {
-    width: 315px;
+    width: 310px;
+    height: 800px;
+    top: -780px;
     left: -1px;
   }
 
@@ -2693,14 +2695,14 @@ $dayMap: (
     width: 280px;
     height: 180px; 
     top: 20px;
-    right: -12.5%;
+    right: -8.5%;
   }
 
   .site-container-tablet {
     width: 220px;
     height: 160px;
     top: 90px;
-    right: -22%;
+    right: -19%;
     
   }
 
@@ -2708,7 +2710,7 @@ $dayMap: (
     width: 80px;
     height: 140px;
     top: 155px;
-    right: -43%;
+    right: -41%;
     
   }
 
@@ -2875,7 +2877,8 @@ $dayMap: (
   }
 
   .tools-desc-container {
-    font-size: 18px;
+    width: 245px;
+    font-size: 16px;
   }
 
   .block-container {
@@ -2885,21 +2888,21 @@ $dayMap: (
   }
 
   .block-titles {
-    padding-left: 35px;
-    padding-right: 245px;
+    padding-left: 10px;
+    padding-right: 225px;
     padding-top: 5px;
 
   }
 
   .block-title-section-text {
-    font-size: 34px;
+    font-size: 30px;
 
   }
   
   .title-text {
     width: 350px;
     right: 70px;
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .block-para {
@@ -2930,7 +2933,7 @@ $dayMap: (
   }
 
   .frameworks {
-    left: 7%;
+    left: 1%;
 
     & > div:nth-child(1) > .tool-container,
     & > div:nth-child(3) > .tool-container,
@@ -2942,7 +2945,7 @@ $dayMap: (
   }
 
   .dev-tools {
-    left: 1%;
+    left: -5%;
 
     & > div:nth-child(1) > .tool-container,
     & > div:nth-child(3) > .tool-container,
@@ -2959,7 +2962,7 @@ $dayMap: (
   }
 
   .preprocessors {
-    left: 6%;
+    left: -1%;
   }
 
   .preprocessors > div:nth-child(4) > .tool-container {
