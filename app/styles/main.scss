@@ -1898,10 +1898,6 @@ $dayMap: (
     padding-left: 25px;
     padding-right: 25px;
   }
-  .navbar-main-float {
-    //width: 515px;
-
-  }
 
   .navbar-collapse {
     padding-left: 5px;
@@ -1928,10 +1924,6 @@ $dayMap: (
     margin-left: 2%;
     margin-right:auto;
     margin-left:auto;
-  }
-
-  .container {
-    //left: 10px;
   }
 
   // -------- Projects Section -------- //
@@ -2024,7 +2016,11 @@ $dayMap: (
   }
 
   .graph-circle {
-    left: 94px;
+    height: 310px;
+    width: 310px;
+    z-index: -3;
+    top: 95px;
+    left: 144px;
   }
 
   .pie-tooltip {
@@ -2033,7 +2029,9 @@ $dayMap: (
 
 
   .month-labels {
-    left: 48px;
+    left: 68px;
+    top: 0px;
+    transform: rotate(0deg);
   }
 
   @-moz-document url-prefix() {
@@ -2042,6 +2040,7 @@ $dayMap: (
 
     }
   }
+
 
   $lineMap: (
     1: (75, 265),
@@ -2063,6 +2062,51 @@ $dayMap: (
     5: (40, 390),
     6: (40, 420),
   );
+
+  $monthMap: (
+
+    Jan: (210px, 125px, 15deg),
+    Feb: (233px, 223px, 42deg),
+    Mar: (190px, 320px, 70.5deg),
+    Apr: (76px, 380px, 105deg),
+    May: (1px, 436px, 130deg),
+    Jun: (-165px, 382px, 162deg),
+    Jul: (-280px, 242px, 195deg),
+    Aug: (-328px, 82px, 223deg),
+    Sep: (-293px, -100px, 255deg),
+    Oct: (-186px, -240px, 285deg),
+    Nov: (-48px, -315px, 312deg),
+    Dec: (105px, -307px, 342deg)
+
+  );
+
+  $dayMap: (
+
+    Sun: (158px, 213px, 75deg),
+    Mon: (142px, 277px, 130deg),
+    Tue: (60px, 295px, 180deg),
+    Wed: (-20px, 232px, 230deg),
+    Thu: (-43px, 115px, 282deg),
+    Fri: (15px, 18px, 330deg),
+    Sat: (105px, -3px, 25deg)
+
+  );
+
+  @each $month, $values in $monthMap {
+    // left, top, deg
+
+    ##{$month} {
+      @include monthLabel(nth($values, 1) - 15px, nth($values, 2) + 8px, nth($values, 3)); 
+    }
+  }
+
+  @each $day, $values in $dayMap {
+
+    ##{$day} {
+      @include dayLabel(nth($values, 1) + 7px, nth($values, 2), nth($values, 3)); 
+    }
+
+  }
 
   @each $num, $values in $lineMap {
 

@@ -93,30 +93,52 @@
 			});
 
 			
-
-			
-			$(window).resize(function(){
-
-
-
-			});
-
 			var winWidth = $(window).width();
-			console.log(winWidth);
 
+			function drawRings(outerArc, middleArc, innerArc) {
+				vm.outerRing(-1, 5.5, outerArc, [0,105, 0], gotParsedCommits[0], gotParsedCommits[1], 0);
+				vm.middleRing(0, 50, middleArc, [0,105, 0], [1,1,1,1,1,1,1]);
+				vm.innerRing(repoCommits, innerArc, vm.repoContainer, vm.colorObj[0], 0);
+			}
 
-			if (winWidth < 430) {
+			// Initial Draw
+			if (winWidth < 753) {
 
-				vm.outerRing(-1, 5.5, [120, 150], [0,105, 0], gotParsedCommits[0], gotParsedCommits[1], 0);
-				vm.middleRing(0, 50, [95, 115], [0,105, 0], [1,1,1,1,1,1,1]);
-				vm.innerRing(repoCommits, [20, 90], vm.repoContainer, vm.colorObj[0], 0);
+				drawRings([120, 150], [95, 115], [20, 90]);
+				var ringSize = 'small';
 
 			} else {
 
-				vm.outerRing(-1, 5.5, [170, 200], [0,105, 0], gotParsedCommits[0], gotParsedCommits[1], 0);
-				vm.middleRing(0, 50, [145, 165], [0,105, 0], [1,1,1,1,1,1,1]);
-				vm.innerRing(repoCommits, [80, 140], vm.repoContainer, vm.colorObj[0], 0);
+				drawRings([170, 200], [145, 165], [80, 140]);
+				var ringSize = 'large';
 			}
+
+
+			// Resize Draw
+			$(window).resize(function(){
+
+				winWidth = $(window).width();
+				
+				if (winWidth < 753) {
+
+					if (ringSize === 'large') {
+						vm.svgContainer.selectAll("*").remove();
+						drawRings([120, 150], [95, 115], [20, 90]);
+						ringSize = 'small';
+					}
+
+				} else {
+
+					if (ringSize === 'small') {
+						vm.svgContainer.selectAll("*").remove();
+						drawRings([170, 200], [145, 165], [80, 140]);
+						ringSize = 'large';
+					}
+				}
+
+			});
+
+
 
 			
 			// This object contains the data for the Github graph
@@ -360,6 +382,8 @@
 		// Recursive function to draw the inner pie chart
 		vm.innerRing = function(data, arc, nameArr, color, i){
 
+
+
 			if (i < data.length) {
 
 				var repoName = nameArr[i].slice(12,nameArr[i].length),
@@ -402,7 +426,6 @@
 						$('.line:nth-child(3)').stop().animate({borderColor:"#9E8E4C"},"fast");
 						pieCurve.style("fill", "rgba(" + color + "," + alpha + ")").style("transition", "all .25s cubic-bezier(.17,.67,.83,.67)");
 					});
-
 
 				}
 
