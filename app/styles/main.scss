@@ -749,7 +749,6 @@ $repoTooltipMap: (
   left: 506px;
   top: 174px;
   padding: 2px;
-  display: none;
   position: absolute;
   background-image: url($metal-background);
   @include border(2px solid, $gold-color, top left right bottom);
@@ -793,7 +792,6 @@ $repoTooltipMap: (
   z-index: 3;
   position: absolute;
   @include border(1px solid, $gold-color, bottom);
-  @include prefix(box-shadow, -7px 6px 24px 5px rgba(0,0,0,0.75), webkit moz ms o);
   pointer-events: none;
 
 }
@@ -2024,14 +2022,15 @@ $dayMap: (
   }
 
   .pie-tooltip {
-    left: 223px;  
+    left: 223px;
+    display: none; 
   }
 
 
   .month-labels {
-    left: 68px;
-    top: 0px;
-    transform: rotate(0deg);
+    left: 38px;
+    top: 17px;
+    transform: rotate(125deg);
   }
 
   @-moz-document url-prefix() {
@@ -2043,15 +2042,15 @@ $dayMap: (
 
 
   $lineMap: (
-    1: (75, 265),
-    2: (190, 600),
-    3: (290, 200),
+    1: (120, 270),
+    2: (195, 550),
+    3: (290, 250),
   );
 
   $lineTitleMap: (
-    1: (50, 150),
-    2: (165, 625),
-    3: (265, 80),
+    1: (95, 170),
+    2: (170, 570),
+    3: (265, 120),
   );
 
   $repoTooltipMap: (
@@ -2068,15 +2067,15 @@ $dayMap: (
     Jan: (210px, 125px, 15deg),
     Feb: (233px, 223px, 42deg),
     Mar: (190px, 320px, 70.5deg),
-    Apr: (76px, 380px, 105deg),
-    May: (1px, 436px, 130deg),
-    Jun: (-165px, 382px, 162deg),
-    Jul: (-280px, 242px, 195deg),
-    Aug: (-328px, 82px, 223deg),
-    Sep: (-293px, -100px, 255deg),
-    Oct: (-186px, -240px, 285deg),
-    Nov: (-48px, -315px, 312deg),
-    Dec: (105px, -307px, 342deg)
+    Apr: (77px, 385px, 105deg),
+    May: (-42px, 398px, 130deg),
+    Jun: (-185px, 326px, 162deg),
+    Jul: (-280px, 183px, 195deg),
+    Aug: (-305px, 28px, 223deg),
+    Sep: (-250px, -135px, 255deg),
+    Oct: (-137px, -245px, 285deg),
+    Nov: (8px, -285px, 317deg),
+    Dec: (128px, -251px, 347deg)
 
   );
 
@@ -2436,23 +2435,9 @@ $dayMap: (
     margin: 0px;
   }
 
-  .graph-circle {
-    left: -33px;
-  }
-
   .pie-tooltip {
-    left: 95px;  
-  }
-
-  .month-labels {
-    left: -80px;
-  }
-
-  @-moz-document url-prefix() {
-    .month-labels {
-       left: -74px;
-
-    }
+    left: 95px;
+    display: none; 
   }
 
   .day-labels {
@@ -2461,35 +2446,140 @@ $dayMap: (
 
   }
 
+  .graph-circle {
+    height: 310px;
+    width: 310px;
+    z-index: -3;
+    top: 95px;
+    left: 16px;
+  }
+
+  .month-labels {
+    left: -90px;
+    top: 17px;
+    transform: rotate(125deg);
+  }
+
+  @-moz-document url-prefix() {
+    .month-labels {
+      left: 53px;
+
+    }
+  }
+
+
   $lineMap: (
-    1: (75, 265),
-    2: (190, 600),
-    3: (290, 200),
+    1: (120, 270),
+    2: (195, 550),
+    3: (290, 250),
   );
 
+  $lineMap: (
+    1: (120, 370),
+    2: (195, 550),
+    3: (290, 250),
+  );
+
+
+  
+
   $lineTitleMap: (
-    1: (50, 150),
-    2: (165, 625),
-    3: (265, 80),
+    1: (15, 265),
+    2: (70, 410),
+    3: (400, 260),
   );
 
   $repoTooltipMap: (
-    1: (50, 360),
-    2: (270, 210),
-    3: (230, 590),
-    4: (90, 240),
-    5: (40, 390),
-    6: (40, 420),
+    1: (90, 360),
+    2: (270, 280),
+    3: (230, 490),
+    4: (130, 260),
+    5: (80, 390),
+    6: (80, 420),
   );
+
+  $monthMap: (
+
+    Jan: (210px, 125px, 15deg),
+    Feb: (233px, 223px, 42deg),
+    Mar: (190px, 320px, 70.5deg),
+    Apr: (77px, 385px, 105deg),
+    May: (-42px, 398px, 130deg),
+    Jun: (-185px, 326px, 162deg),
+    Jul: (-280px, 183px, 195deg),
+    Aug: (-305px, 28px, 223deg),
+    Sep: (-250px, -135px, 255deg),
+    Oct: (-137px, -245px, 285deg),
+    Nov: (8px, -285px, 317deg),
+    Dec: (128px, -251px, 347deg)
+
+  );
+
+  $dayMap: (
+
+    Sun: (158px, 213px, 75deg),
+    Mon: (142px, 277px, 130deg),
+    Tue: (60px, 295px, 180deg),
+    Wed: (-20px, 232px, 230deg),
+    Thu: (-43px, 115px, 282deg),
+    Fri: (15px, 18px, 330deg),
+    Sat: (105px, -3px, 25deg)
+
+  );
+
+  @each $month, $values in $monthMap {
+    // left, top, deg
+
+    ##{$month} {
+      @include monthLabel(nth($values, 1) - 15px, nth($values, 2) + 8px, nth($values, 3)); 
+    }
+  }
+
+  @each $day, $values in $dayMap {
+
+    ##{$day} {
+      @include dayLabel(nth($values, 1) + 7px, nth($values, 2), nth($values, 3)); 
+    }
+
+  }
 
   @each $num, $values in $lineMap {
 
-    .line:nth-child(#{$num}) {
-      top: nth($values, 1) + px;
-      left: nth($values, 2) - 280 + px;
-      width: 140px;
+    @if $num == 1 {
+      .line:nth-child(#{$num}) {
+        top: nth($values, 1) - 80 + px;
+        left: nth($values, 2) - 255 + px;
+        height: 80px;
+        width: 2px;
+        border: none;
+        border-left: 1px solid $gold-color;
+      }
+
+    } @else if $num == 2 {
+      .line:nth-child(#{$num}) {
+        top: nth($values, 1) - 90 + px;
+        left: nth($values, 2) - 290 + px;
+        height: 100px;
+        width: 2px;
+        border: none;
+        border-left: 1px solid $gold-color;
+      }
+
+    } @else if $num == 3 {
+      .line:nth-child(#{$num}) {
+        top: nth($values, 1) + 0 + px;
+        left: nth($values, 2) - 140 + px;
+        height: 150px;
+        width: 2px;
+        border: none;
+        border-left: 1px solid $gold-color;
+      }
+
     }
+
   }
+
+  
 
   @each $num, $values in $lineTitleMap {
 
@@ -2790,7 +2880,7 @@ $dayMap: (
 
   
   .svg-container {
-    right: 563px;
+    right: 575px;
     min-width: 400px;
     position: relative;
   }
@@ -2803,7 +2893,7 @@ $dayMap: (
     }
 
     & > div:nth-child(2) {
-      top: -250px;
+      top: -240px;
       position: relative;
 
     }
@@ -2825,7 +2915,7 @@ $dayMap: (
 
   .contribution-text-right {
     width: 130px;
-    right: 0px;
+    right: 10px;
     position: relative;
     font-size: 20px;
   }
@@ -2838,53 +2928,143 @@ $dayMap: (
     margin: 0px;
   }
 
-  .graph-circle {
-    left: -33px;
-  }
-
-  .pie-tooltip {
-    left: 95px;  
-  }
-
-  .month-labels {
-    left: -95px;
-  }
-
   .day-labels {
-    left: -230px;
+    left: -242px;
     position: relative;
 
   }
 
+  .graph-circle {
+    height: 310px;
+    width: 310px;
+    z-index: -3;
+    top: 95px;
+    left: 4px;
+  }
+
+  .pie-tooltip {
+    left: 223px;
+    display: none; 
+  }
+
+
+  .month-labels {
+    left: -102px;
+    top: 17px;
+    transform: rotate(125deg);
+  }
+
+  @-moz-document url-prefix() {
+    .month-labels {
+      left: 53px;
+
+    }
+  }
+
+
   $lineMap: (
-    1: (75, 265),
-    2: (190, 600),
-    3: (290, 200),
+    1: (120, 370),
+    2: (195, 550),
+    3: (290, 250),
   );
 
   $lineTitleMap: (
-    1: (50, 150),
-    2: (165, 625),
-    3: (265, 80),
+    1: (15, 265),
+    2: (70, 410),
+    3: (400, 260),
   );
 
   $repoTooltipMap: (
-    1: (50, 360),
-    2: (270, 210),
-    3: (230, 590),
-    4: (90, 240),
-    5: (40, 390),
-    6: (40, 420),
+    1: (90, 360),
+    2: (270, 280),
+    3: (230, 490),
+    4: (130, 260),
+    5: (80, 390),
+    6: (80, 420),
   );
+
+  $monthMap: (
+
+    Jan: (210px, 125px, 15deg),
+    Feb: (233px, 223px, 42deg),
+    Mar: (190px, 320px, 70.5deg),
+    Apr: (77px, 385px, 105deg),
+    May: (-42px, 398px, 130deg),
+    Jun: (-185px, 326px, 162deg),
+    Jul: (-280px, 183px, 195deg),
+    Aug: (-305px, 28px, 223deg),
+    Sep: (-250px, -135px, 255deg),
+    Oct: (-137px, -245px, 285deg),
+    Nov: (8px, -285px, 317deg),
+    Dec: (128px, -251px, 347deg)
+
+  );
+
+  $dayMap: (
+
+    Sun: (158px, 213px, 75deg),
+    Mon: (142px, 277px, 130deg),
+    Tue: (60px, 295px, 180deg),
+    Wed: (-20px, 232px, 230deg),
+    Thu: (-43px, 115px, 282deg),
+    Fri: (15px, 18px, 330deg),
+    Sat: (105px, -3px, 25deg)
+
+  );
+
+  @each $month, $values in $monthMap {
+    // left, top, deg
+
+    ##{$month} {
+      @include monthLabel(nth($values, 1) - 15px, nth($values, 2) + 8px, nth($values, 3)); 
+    }
+  }
+
+  @each $day, $values in $dayMap {
+
+    ##{$day} {
+      @include dayLabel(nth($values, 1) + 7px, nth($values, 2), nth($values, 3)); 
+    }
+
+  }
+
 
   @each $num, $values in $lineMap {
 
-    .line:nth-child(#{$num}) {
-      top: nth($values, 1) + px;
-      left: nth($values, 2) - 280 + px;
-      width: 140px;
+    @if $num == 1 {
+      .line:nth-child(#{$num}) {
+        top: nth($values, 1) - 80 + px;
+        left: nth($values, 2) - 255 + px;
+        height: 80px;
+        width: 2px;
+        border: none;
+        border-left: 1px solid $gold-color;
+      }
+
+    } @else if $num == 2 {
+      .line:nth-child(#{$num}) {
+        top: nth($values, 1) - 90 + px;
+        left: nth($values, 2) - 290 + px;
+        height: 100px;
+        width: 2px;
+        border: none;
+        border-left: 1px solid $gold-color;
+      }
+
+    } @else if $num == 3 {
+      .line:nth-child(#{$num}) {
+        top: nth($values, 1) + 0 + px;
+        left: nth($values, 2) - 140 + px;
+        height: 150px;
+        width: 2px;
+        border: none;
+        border-left: 1px solid $gold-color;
+      }
+
     }
+
   }
+
 
   @each $num, $values in $lineTitleMap {
 
