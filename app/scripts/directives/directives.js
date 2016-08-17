@@ -71,13 +71,13 @@
                   contact = $('#contact-section').offset().top,    
                   elementOff = ($(element).offset().top + 75);
 
-              if (elementOff > projects && elementOff < github) {
-                window.location.hash = '#/' + 'projects';
-                scope.navSpan = 'projects';
-                $rootScope.navScrollClick = scope.navSpan;
-              } else if (elementOff > github && elementOff < tools) {
+              if (elementOff >  github && elementOff < projects) {
                 window.location.hash = '#/' + 'development';
                 scope.navSpan = 'github';
+                $rootScope.navScrollClick = scope.navSpan;
+              } else if (elementOff > projects && elementOff < tools) {
+                window.location.hash = '#/' + 'projects';
+                scope.navSpan = 'projects';
                 $rootScope.navScrollClick = scope.navSpan;
               } else if (elementOff > tools && elementOff < (contact - 500)) {
                 window.location.hash = '#/' + 'tools';

@@ -1366,24 +1366,24 @@ $dayMap: (
   }
 
   $lineMap: (
-    1: (190, 640),
-    2: (290, 200),
-    3: (75, 265),
+    1: (75, 265), // Weeks
+    2: (190, 640), // Days
+    3: (290, 200), // Repos
   );
 
   $lineTitleMap: (
-    1: (50, 150),
-    2: (265, 80),
-    3: (165, 830),
+    1: (50, 190), // Weeks
+    2: (165, 775), // Days
+    3: (265, 90), // Repos
   );
 
   $repoTooltipMap: (
-    1: (50, 360),
-    2: (90, 240),
-    3: (230, 590),
-    4: (270, 210),
-    5: (40, 390),
-    6: (40, 420),
+    1: (50, 360), // Dark Reader
+    2: (270, 210), // Resume 
+    3: (230, 590), // Runner Calc
+    4: (90, 240), // Sips
+    5: (40, 390), // SublimeTxt 
+    6: (40, 420), // TmTheme
   );
 
   .month-labels {
@@ -1524,6 +1524,10 @@ $dayMap: (
     left: 123px;
   }
 
+  .line-title:hover {
+    height: 130px;
+  }
+
   @-moz-document url-prefix() {
     .month-labels {
       left: 130px;
@@ -1585,6 +1589,8 @@ $dayMap: (
       left: nth($values, 2) - 110px;
     }
   }
+
+  
 
   // -------- Tools Section -------- //
   
@@ -1726,6 +1732,10 @@ $dayMap: (
 
   .pie-tooltip {
     left: 299px;  
+  }
+
+  .line-title:hover {
+    height: 130px;
   }
 
   #graph-para {
@@ -2026,6 +2036,10 @@ $dayMap: (
     display: none; 
   }
 
+  .line-title:hover {
+    height: 130px;
+  }
+
 
   .month-labels {
     left: 38px;
@@ -2055,9 +2069,9 @@ $dayMap: (
 
   $repoTooltipMap: (
     1: (50, 360),
-    2: (90, 240),
+    2: (270, 210),
     3: (230, 590),
-    4: (270, 210),
+    4: (90, 240),
     5: (40, 390),
     6: (40, 420),
   );
@@ -2467,6 +2481,10 @@ $dayMap: (
     }
   }
 
+  .line-title:hover {
+    height: 130px;
+  }
+
 
   $lineMap: (
     1: (120, 270),
@@ -2787,9 +2805,9 @@ $dayMap: (
   .navbar-text {
     top: -2px;
     display: block;
-    font-size: 13px;
-    padding-left: 7px;
-    padding-right: 7px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   .nav-btn-dirty {
@@ -2880,7 +2898,7 @@ $dayMap: (
 
   
   .svg-container {
-    right: 575px;
+    right: 545px;
     min-width: 400px;
     position: relative;
   }
@@ -2959,6 +2977,10 @@ $dayMap: (
       left: 53px;
 
     }
+  }
+
+  .line-title:hover {
+    height: 130px;
   }
 
 

@@ -32,13 +32,13 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav">
             <li>
-              <div class="nav-btn-clean" ng-class="{home: 'nav-btn-clean', projects: 'nav-btn-dirty', github: 'nav-btn-clean', tools: 'nav-btn-clean', contact: 'nav-btn-clean'}[navSpan]" ng-model="navSpan">
-                <a id="projects" nav-scroll class="navbar-text" >Work</a>
+              <div class="nav-btn-clean" ng-class="{home: 'nav-btn-clean', projects: 'nav-btn-clean', github: 'nav-btn-dirty', tools: 'nav-btn-clean', contact: 'nav-btn-clean'}[navSpan]" ng-model="navSpan">
+                <a id="github" nav-scroll class="navbar-text" >Development</a>
               </div>
             </li>
             <li>
-              <div class="nav-btn-clean" ng-class="{home: 'nav-btn-clean', projects: 'nav-btn-clean', github: 'nav-btn-dirty', tools: 'nav-btn-clean', contact: 'nav-btn-clean'}[navSpan]" ng-model="navSpan">
-                <a id="github" nav-scroll class="navbar-text" >Development</a>
+              <div class="nav-btn-clean" ng-class="{home: 'nav-btn-clean', projects: 'nav-btn-dirty', github: 'nav-btn-clean', tools: 'nav-btn-clean', contact: 'nav-btn-clean'}[navSpan]" ng-model="navSpan">
+                <a id="projects" nav-scroll class="navbar-text" >Work</a>
               </div>
             </li>
             <li>
@@ -83,55 +83,7 @@
     
     <div class="main-container">
       <div class="index" ng-controller="BlockCtrl as block">
-        <section id="projects-section" class="block-container">
-          <div class="projects-title-section">
-              <h2 class="block-title-section-text">My projects</h2>
-          </div>
-          <div id="runner-calc-container" class="seperator skills-container">
-              <div class="row">
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
-                  <div class="block-titles col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                      <div class="title-text">RunnerCalculator.com</div>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
-              </div>
-              <div class="row">
-                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0"></div>
-                  <div class="site-container col-lg-2 col-md-2 col-sm-2 col-xs-0">
-                      <a href="http://www.runnercalculator.com" id="runner-calc-desktop"></a>
-                      <p class="site-container-txt">Large</p>
-                  </div>
-                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0"></div>
-                  <div class="site-container-tablet col-lg-2 col-md-2 col-sm-2 col-xs-0">
-                      <a href="http://www.runnercalculator.com" id="runner-calc-tablet"></a>
-                      <p class="site-container-txt-tablet">Medium</p>
-                  </div>
-                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0"></div>
-                  <div class="site-container-mobile col-lg-2 col-md-2 col-sm-2 col-xs-0">
-                      <a href="http://www.runnercalculator.com" id="runner-calc-mobile"></a>
-                      <p class="site-container-txt-mobile">Small</p>
-                  </div>
-              </div>
-              <div class="runner-calc-text tools-desc-container"> 
-                  <p>&nbsp; &nbsp; &nbsp; &nbsp; RunnerCalculator.com is my main project that I've been developing for almost a year now. It's a web app built with modern technology that allows runners to easily calculate a few useful numbers associated with running. I built the application myself from the ground up and I used the project to learn more about the web development process. It looks and works great on all devices and major browsers, and is made to be scalable, clean, fast, and easy to use on the run. </p>
-              </div>
-          </div>
-          <div class="seperator skills-container">
-              <div class="row">
-                  
-                  <div class="block-titles col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                      <div class="title-text">Projects I've contributed to</div>
-                  </div>
-              </div>
-              <div class="row preprocessors">
-                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-                  <main-block info="darkreader"></main-block>
-                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
-                  <main-block info="tmtheme"></main-block>
-                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-              </div>
-          </div> 
-        </section>
+
         <section id="github-section" class="block-container">
           <div class="projects-title-section">
             <h2 class="block-title-section-text">Clean, modular, &amp; scalable code</h2>
@@ -190,16 +142,16 @@
               <div>
                   <div class="line-title">
                     <div class="tooltipText">Weeks</div>
-                    <div>Hover over the chart ring for more info</div>
+                    <div>Each segment represents one week</div>
                   </div>
                   
                   <div class="line-title">
                     <div class="tooltipText">Days</div>
-                    <div>Hover over the chart ring for more info</div>
+                    <div>Each segment represents one day</div>
                   </div>
                   <div class="line-title">
                     <div class="tooltipText">Repositories</div>
-                    <div>Hover over the chart ring for more info</div>
+                    <div>Pie chart sized by repository contribution</div>
                   </div>
               </div>
               <div>
@@ -271,6 +223,65 @@
             </div>
           </div>
         </section>
+
+
+
+
+
+        <section id="projects-section" class="block-container">
+          <div class="projects-title-section">
+              <h2 class="block-title-section-text">My projects</h2>
+          </div>
+          <div id="runner-calc-container" class="seperator skills-container">
+              <div class="row">
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+                  <div class="block-titles col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                      <div class="title-text">RunnerCalculator.com</div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+              </div>
+              <div class="row">
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0"></div>
+                  <div class="site-container col-lg-2 col-md-2 col-sm-2 col-xs-0">
+                      <a href="http://www.runnercalculator.com" id="runner-calc-desktop"></a>
+                      <p class="site-container-txt">Large</p>
+                  </div>
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0"></div>
+                  <div class="site-container-tablet col-lg-2 col-md-2 col-sm-2 col-xs-0">
+                      <a href="http://www.runnercalculator.com" id="runner-calc-tablet"></a>
+                      <p class="site-container-txt-tablet">Medium</p>
+                  </div>
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0"></div>
+                  <div class="site-container-mobile col-lg-2 col-md-2 col-sm-2 col-xs-0">
+                      <a href="http://www.runnercalculator.com" id="runner-calc-mobile"></a>
+                      <p class="site-container-txt-mobile">Small</p>
+                  </div>
+              </div>
+              <div class="runner-calc-text tools-desc-container"> 
+                  <p>&nbsp; &nbsp; &nbsp; &nbsp; RunnerCalculator.com is my main project that I've been developing for almost a year now. It's a web app built with modern technology that allows runners to easily calculate a few useful numbers associated with running. I built the application myself from the ground up and I used the project to learn more about the web development process. It looks and works great on all devices and major browsers, and is made to be scalable, clean, fast, and easy to use on the run. </p>
+              </div>
+          </div>
+          <div class="seperator skills-container">
+              <div class="row">
+                  
+                  <div class="block-titles col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                      <div class="title-text">Projects I've contributed to</div>
+                  </div>
+              </div>
+              <div class="row preprocessors">
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+                  <main-block info="darkreader"></main-block>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+                  <main-block info="tmtheme"></main-block>
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+              </div>
+          </div> 
+        </section>
+        
+
+
+
+
         <section id="tools-section" class="block-container">
           <div class="projects-title-section">
               <h2 class="block-title-section-text">Tools I use</h2>

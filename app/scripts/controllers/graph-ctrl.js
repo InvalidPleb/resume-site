@@ -73,24 +73,7 @@
 			$scope.dayNames = ["S", "M", "T", "W", "T", "F", "S",];
 
 
-			var dayRing;
-
-			$('.line-title:nth-child(2)').mouseover(function(){
-				$('.line:nth-child(2)').stop().animate({borderColor:"#3ECF84"},"fast");
-				var dayRingInd = gotParsedCommits[1];
-				dayRing = vm.middleRing(0, 50, [95, 115], vm.colorObj[9], dayRingInd[49]);
-				for (var j = 0; j < dayRing.length; j++) {
-					dayRing[j].transition().duration(200).style("opacity", 0.9);
-				}
-			}).mouseout(function(){
-				$('.line:nth-child(2)').stop().animate({borderColor:"#9E8E4C"},"fast");
-				for (var j = 0; j < dayRing.length; j++) {
-					dayRing[j].transition()		
-					.duration(200)		
-					.style("opacity", 0.1)
-					.remove();
-				}
-			});
+			
 
 			
 			var winWidth = $(window).width();
@@ -136,6 +119,33 @@
 					}
 				}
 
+			});
+
+			var dayRing;
+
+			$('.line-title:nth-child(2)').mouseover(function(){
+				$('.line:nth-child(2)').stop().animate({borderColor:"#3ECF84"},"fast");
+
+				var dayRingInd = gotParsedCommits[1];
+
+				if (ringSize === 'small') {
+					dayRing = vm.middleRing(0, 50, [95, 115], vm.colorObj[9], dayRingInd[49]);
+				} else {
+					dayRing = vm.middleRing(0, 50, [145, 165], vm.colorObj[9], dayRingInd[49]);
+				}
+
+				for (var j = 0; j < dayRing.length; j++) {
+					dayRing[j].transition().duration(200).style("opacity", 0.9);
+				}
+				
+			}).mouseout(function(){
+				$('.line:nth-child(2)').stop().animate({borderColor:"#9E8E4C"},"fast");
+				for (var j = 0; j < dayRing.length; j++) {
+					dayRing[j].transition()		
+					.duration(200)		
+					.style("opacity", 0.1)
+					.remove();
+				}
 			});
 
 
