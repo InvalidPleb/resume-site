@@ -375,7 +375,7 @@ $i: 1;
 
 #top-background {
   height: 850px;
-  z-index: -6;
+  z-index: -8;
   position: relative;
   background-image: url($code-background);
 }
@@ -390,6 +390,11 @@ $i: 1;
   background-image: url($metal-background);
   @include border(1px solid, $gold-color, bottom top);
   @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 .navbar-main {
@@ -484,8 +489,10 @@ $i: 1;
   display: block;
   position: relative;
   //background-color: $dark-background;
-  background-image: url($metal-background);
+  background-image: url('/images/portrait-grey-xlg.JPG');
+  background-position: -500px -400px;
   @include prefix(box-shadow, -21px 5px 44px -15px rgba(0,0,0,0.75), webkit moz ms o);
+  overflow-x: hidden;
   //@include border(1px solid, $gold-color, left right bottom top);
   //@include prefix(box-shadow, inset -1px 0px 18px 6px rgba(0,0,0,0.75), webkit moz ms o);
 }
@@ -497,11 +504,36 @@ $i: 1;
   position: relative;
   text-align: left;
 
-  & > h4 {
+  & > div {
+    height: 100px;
+    z-index:0;
+    position: relative;
     padding: 20px;
     @include border(1px solid, $gold-color, left right bottom top);
     @include prefix(box-shadow, inset 0px 0px 9px 1px rgba(0,0,0,0.85), webkit moz ms o);
+    //background-image: url($metal-background);
+    //filter: blur(3px);
+    background-color: grey;
+    opacity: .9;
+    
+
+    & > h4 {
+    opacity: 1;
+    z-index: 10;
+    position: relative;
+    margin: 0;
+
+
   }
+
+
+
+    
+  }
+
+  
+
+
 }
 
 .name-text {
@@ -3246,5 +3278,4 @@ $dayMap: (
   .block-name-tm {
     left: -10px;
   }
-
 }

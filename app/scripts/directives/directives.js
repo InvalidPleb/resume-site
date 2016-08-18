@@ -71,6 +71,9 @@
                   contact = $('#contact-section').offset().top,    
                   elementOff = ($(element).offset().top + 75);
 
+
+              
+
               if (elementOff >  github && elementOff < projects) {
                 window.location.hash = '#/' + 'development';
                 scope.navSpan = 'github';

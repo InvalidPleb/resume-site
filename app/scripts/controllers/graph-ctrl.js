@@ -148,6 +148,11 @@
 				}
 			});
 
+			if (window.navigator.platform === 'MacIntel') {
+
+				$('html').css('overflow-x', 'hidden');
+			}
+
 
 
 			
@@ -228,9 +233,6 @@
 		  				]
 	  		};
 	  	});
-
-
-
 
 
 		// -------------- Github Graph -------------- //
