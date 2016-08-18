@@ -184,6 +184,12 @@ body {
   
 }
 
+h2, h3, h4 {
+  margin: 0;
+}
+
+
+
 a:hover, 
 a:focus, 
 a:active {
@@ -254,6 +260,7 @@ a:active {
 .buffer {
   height: 100px;
 }
+
 
 // -------- Angular & Bootstrap Class Modifications -------- //
 
@@ -489,71 +496,99 @@ body {
   display: block;
   position: relative;
   //background-color: $dark-background;
-  background-image: url('/images/portrait-grey-xlg.JPG');
-  background-position: -500px -400px;
+  
+  
   @include prefix(box-shadow, -21px 5px 44px -15px rgba(0,0,0,0.75), webkit moz ms o);
   overflow-x: hidden;
   //@include border(1px solid, $gold-color, left right bottom top);
   //@include prefix(box-shadow, inset -1px 0px 18px 6px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
+
+.portrait-background {
+
+
+  //background-image: url('/images/portrait-close-lg.jpg');
+  //background-position: -20px -150px;
+  width: 100%;
+  max-width:100%;
+  max-height:100%;
+  position: absolute;
+
+}
+
 .greeting-para {
-  top: 100px;
+  top: 170px;
   padding-left: 10%;
   padding-right: 10%;
   position: relative;
   text-align: left;
+  margin: 0;
 
   & > div {
-    height: 100px;
-    z-index:0;
-    position: relative;
+    z-index:2;
     padding: 20px;
-    @include border(1px solid, $gold-color, left right bottom top);
-    @include prefix(box-shadow, inset 0px 0px 9px 1px rgba(0,0,0,0.85), webkit moz ms o);
-    //background-image: url($metal-background);
-    //filter: blur(3px);
+    position: relative;
+   // @include border(1px solid, $gold-color, left right bottom top);
     background-color: grey;
-    opacity: .9;
+    opacity: .75;
     
 
     & > h4 {
     opacity: 1;
-    z-index: 10;
+    z-index: 3;
     position: relative;
     margin: 0;
-
-
+    }
   }
+}
 
+.name-text-box {
 
+  width: 50%;
+  left: 25%;
+  bottom: 10px;
+  position: relative;
+  //@include border(1px solid, $gold-color, left right bottom top);
+  //@include prefix(box-shadow, inset 0px 0px 9px 1px rgba(0,0,0,0.85), webkit moz ms o);
+  background-color: grey;
+  opacity: .75;
+  z-index: 3;
 
-    
+  &:nth-child(3) {
+    width: 25%;
+    left: 37.5%;
   }
-
-  
-
 
 }
 
 .name-text {
   @extend .block-title-section-text;
-  top: 80px;
+  top: 50px;
   margin: 0px;
   padding: 0px;
   color: $bright-gold-color;
   font-size: 50px;
   text-align: center;
 
+
+
   & > h1 {
-    margin-top: 20px;
-    font: 48px 'Times New Roman';
+    z-index: 4;
+    position: relative;
+    font: 60px 'Times New Roman';
+    margin: 0;
+
+
   }
 
   &:nth-child(3) {
-    margin-top: 20px;
+    z-index: 4;
+    top: 150px;
+    position: relative;
     font-size: 28px;
-    letter-spacing: 8px;
+    //letter-spacing: 8px;
+
   }
   &:nth-child(4) {
     font-size: 18px;
@@ -1341,6 +1376,41 @@ $dayMap: (
 
 @media (min-width:992px) and (max-width:1199px) {
 
+
+  .name-text {
+
+    top: 50px;
+
+    & > h1 {
+
+      font: 48px 'Times New Roman';
+    }
+
+    & > h2 {
+      font-size: 30px;
+    }
+
+    &:nth-child(3) {
+      top: 150px;
+      //letter-spacing: 8px;
+    }
+
+
+    &:nth-child(4) {
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+
+  }
+
+  .name-text-box {
+
+    &:nth-child(3) {
+      width: 35%;
+      left: 32.5%;
+    }
+  }
+
   .main-container {
     //overflow: hidden;
     padding-bottom: 150px;
@@ -1475,6 +1545,46 @@ $dayMap: (
 
 }
 @media (min-width:875px) and (max-width:991px) {
+
+  .portrait-background {
+    //transform: scale(0.5, 0.5);
+  }
+
+  .name-text {
+
+    top: 50px;
+
+
+    & > h1 {
+
+      font: 48px 'Times New Roman';
+    }
+
+    & > h2 {
+      font-size: 30px;
+    }
+
+    &:nth-child(3) {
+      top: 150px;
+      //letter-spacing: 8px;
+    }
+
+
+    &:nth-child(4) {
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+
+  }
+
+  .name-text-box {
+
+    &:nth-child(3) {
+      width: 35%;
+      left: 32.5%;
+    }
+  }
+
 
 
   .greeting-para {
