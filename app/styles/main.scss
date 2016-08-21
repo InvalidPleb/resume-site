@@ -444,7 +444,6 @@ body {
   top: -1px;
   position: fixed;
   background: $grey-background;
-  //background-image: url()
   @include border(1px solid, $gold-color, bottom);
 }
 
@@ -539,7 +538,6 @@ body {
     z-index:2;
     padding: 20px;
     position: relative;
-   // @include border(1px solid, $gold-color, left right bottom top);
     background-color: grey;
     opacity: .75;
     
@@ -559,8 +557,6 @@ body {
   left: 25%;
   bottom: 10px;
   position: relative;
-  //@include border(1px solid, $gold-color, left right bottom top);
-  //@include prefix(box-shadow, inset 0px 0px 9px 1px rgba(0,0,0,0.85), webkit moz ms o);
   background-color: grey;
   opacity: .75;
   z-index: 3;
@@ -597,9 +593,8 @@ body {
     top: 150px;
     position: relative;
     font-size: 28px;
-    //letter-spacing: 8px;
-
   }
+
   &:nth-child(4) {
     font-size: 18px;
     letter-spacing: 1px;
@@ -631,8 +626,6 @@ body {
   left: 5%;
   top: 20px;
   position: relative;
-  //background-image: url($rock-background);
-  //@include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
 }
 
 
@@ -654,7 +647,6 @@ body {
   padding: 0px 20px 20px 20px;
   position: relative;
   background-color: $dark-background;
-  //background-image: url($rock-background);
   @include border(1px solid, $dim-gold-color, top bottom left right);
   @include prefix(box-shadow, -5px 4px 35px -1px rgba(0,0,0,0.75), webkit moz ms o);
 }
@@ -1291,7 +1283,6 @@ $dayMap: (
   background-image: url($metal-background);
   @include border(1px solid, $dim-gold-color, top left bottom right);
   @include prefix(box-shadow, inset 0px 0px 9px 1px rgba(0,0,0,0.85), webkit moz ms o);
-  //border-radius: 10px;
 }
 
 .tools-desc-container {
@@ -1370,7 +1361,6 @@ $dayMap: (
 @media (min-width:1200px) and (max-width:1550px) {
 
   .main-container {
-    //overflow: hidden;
     padding-bottom: 150px;
   }
 
@@ -1401,7 +1391,6 @@ $dayMap: (
 
     &:nth-child(3) {
       top: 150px;
-      //letter-spacing: 8px;
     }
 
 
@@ -1421,7 +1410,6 @@ $dayMap: (
   }
 
   .main-container {
-    //overflow: hidden;
     padding-bottom: 150px;
   }
 
@@ -1575,7 +1563,6 @@ $dayMap: (
 
     &:nth-child(3) {
       top: 220px;
-      //letter-spacing: 8px;
     }
 
 
@@ -1608,7 +1595,6 @@ $dayMap: (
 
   .main-container {
     padding-bottom: 130px;
-    //overflow: hidden;
   }
 
   .project-desc-container {
@@ -1887,7 +1873,6 @@ $dayMap: (
     right: 0px;
     left: 0px;
     padding-bottom: 300px;
-    //overflow: hidden;
   }
 
   
@@ -2141,7 +2126,6 @@ $dayMap: (
 
     &:nth-child(3) {
       top: 220px;
-      //letter-spacing: 8px;
     }
 
 
@@ -2453,18 +2437,10 @@ $dayMap: (
 
   .frameworks {
     left: 7%;
-
-    & > :nth-child(1), :nth-child(3), :nth-child(5) {
-      //margin-right: -170px; 
-    }
   }
 
   .dev-tools {
     left: 1%;
-
-    & > :nth-child(1), :nth-child(3), :nth-child(5) {
-      //margin-right: -230px; 
-    }
   }
 
   .dev-tools > div > .tool-container {
@@ -2544,7 +2520,6 @@ $dayMap: (
 
     &:nth-child(3) {
       top: 180px;
-      //letter-spacing: 8px;
     }
 
 
@@ -3086,7 +3061,6 @@ $dayMap: (
 
     &:nth-child(3) {
       top: 160px;
-      //letter-spacing: 8px;
     }
 
 
@@ -3234,11 +3208,7 @@ $dayMap: (
    // -------- Github Graph Section -------- //
 
    .loading-txt {
-    
     left: 20px;
-    
-    
-     
   }
 
   
