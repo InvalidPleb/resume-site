@@ -19,16 +19,15 @@
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
+    
+    <!-- Begin Navbar -->
     <nav class="navbar navbar-inverse navbar-main" ng-class="{true: 'navbar-main', false: 'navbar-main-float'}[navText]"  scroll-change-hash scroll-change>
       <div class="container">
-
         <div class="navbar-header">
           <div id="home-cont" class="nav-btn-clean" ng-class="{home: 'nav-btn-dirty', projects: 'nav-btn-clean', github: 'nav-btn-clean', tools: 'nav-btn-clean', contact: 'nav-btn-clean'}[navSpan]" ng-model="navSpan">
             <a id="home" nav-scroll class="navbar-text navbar-brand">Tucker Tatum</a>
           </div>
         </div>
-
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav">
             <li>
@@ -53,11 +52,12 @@
             </li>
           </ul>
         </div>
-        <!--/.nav-collapse -->
       </div>
     </nav>
+    <!-- End Navbar-->
+    <!-- Begin Greeting Section -->
     <div id="top-background" parallax></div>
-    <div id="greeting-section" class="container">
+    <section id="greeting-section" class="container">
       <div class="portrait-background"></div>
         <div class="name-text name-text-box row">
           <h1>Hi, I'm Tucker Tatum.</h1>
@@ -74,19 +74,16 @@
             </div>   
           </div>
         </div>
-      
-      
+    </section>
+    <!-- End Greeting Section -->
+    <div id="background">
+      <div class="buffer"></div>
     </div>
-    
-    <div>
-      <div id="background">
-        <div class="buffer"></div>
-      </div>
-    </div>
-    
+    <!-- Begin Main Container -->
     <div class="main-container">
+      <!-- Begin Controller -->
       <div class="index" ng-controller="BlockCtrl as block">
-
+        <!-- Begin Development Section -->
         <section id="github-section" class="block-container">
           <div class="projects-title-section">
             <h2 class="block-title-section-text">Clean, modular, &amp; scalable code</h2>
@@ -122,8 +119,8 @@
             </div>
           </div>
         </section>
-
-
+        <!-- End Development Section -->
+        <!-- Begin Github Section-->
         <section class="graph-container" ng-controller="GraphCtrl as graph">
           <div class="loadingScreen fadable" ng-hide="loading == false" ng-model="loading">
             <div class="loading"></div>
@@ -226,11 +223,8 @@
             </div>
           </div>
         </section>
-
-
-
-
-
+        <!-- End Github Section -->
+        <!-- Begin Projects Section -->
         <section id="projects-section" class="block-container">
           <div class="projects-title-section">
               <h2 class="block-title-section-text">My projects</h2>
@@ -280,11 +274,8 @@
               </div>
           </div> 
         </section>
-        
-
-
-
-
+        <!-- End Projects Section -->
+        <!-- Begin Tools Section -->
         <section id="tools-section" class="block-container">
           <div class="projects-title-section">
               <h2 class="block-title-section-text">Tools I use</h2>
@@ -373,6 +364,8 @@
             </div>
           </div> 
         </section>
+        <!-- End Tools Section -->
+        <!-- Begin Contacts Section -->
         <section id="contact-section" class="contacts-container" >
           <div class="projects-title-section">
             <h2 class="block-title-section-text">Contact me</h2>
@@ -391,8 +384,11 @@
             </div>
           </div>
         </section>
+        <!-- End Contacts Section -->
       </div>
+      <!-- End Controller -->
     </div>
+    <!-- End Main Container -->
     
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
