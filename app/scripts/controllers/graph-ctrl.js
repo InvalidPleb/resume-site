@@ -18,7 +18,6 @@
 	  	vm.commitDaily = {};
 
 	  	vm.pushCalledRepo = function(res, repo) {
-	  		console.log(res.length);
 	  		for (var i = 0; i < res.length; i++) {
 	  			repo.push(res[i].full_name);
 	  		}
@@ -152,10 +151,7 @@
 
 				$('html').css('overflow-x', 'hidden');
 				$('#background').css('overflow-x', 'hidden');
-				console.log('yo');
 			}
-
-
 
 			
 			// This object contains the data for the Github graph

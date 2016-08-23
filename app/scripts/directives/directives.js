@@ -8,8 +8,7 @@
     .directive('navScroll', navScroll)
     .directive('parallax', parallax)
     .directive('scrollChange', scrollChange)
-    .directive('scrollChangeHash', scrollChangeHash)
-    .directive('toolBlock', toolBlock);
+    .directive('scrollChangeHash', scrollChangeHash);
     
 
   navScroll.$inject = ['$rootScope'];
@@ -17,7 +16,7 @@
   scrollChange.$inject = ['$window'];
   scrollChangeHash.$inject = ['$rootScope', '$window'];
   
-  
+  // Directive for block template
   function mainBlock() {
       return {
           scope: {
@@ -29,17 +28,8 @@
       };
   }
 
-  function toolBlock() {
-      return {
-          scope: {
-            toolInfo: '=info'
-          },
-          restrict: 'AEC',
-          templateUrl: '/views/tooldir.html',
-          replace: true
-      };
-  }
-
+  // Directive to smooth-scroll to a location on a page determined
+  // by the element's id.
   function navScroll($rootScope) {
       return {
           restrict: "A",
@@ -54,12 +44,13 @@
                   $(window).scrollTo(0, 800, {offset:-55});
                 }
                 $rootScope.navScrollClick = attrs.id;
-              }
-            });
-          }
-    };
-  }
+              }//end if
+            });//end click function
+          }//end link
+    };//end return
+  }//end navScroll
 
+  // Directive to change the sub url of the page to match the location
   function scrollChangeHash($rootScope, $window) {
       return {
           link: function(scope, element, attrs) {
@@ -70,9 +61,6 @@
                   tools = $('#tools-section').offset().top,
                   contact = $('#contact-section').offset().top,    
                   elementOff = ($(element).offset().top + 75);
-
-
-              
 
               if (elementOff >  github && elementOff < projects) {
                 window.location.hash = '#/' + 'development';
@@ -95,17 +83,18 @@
                 scope.navSpan = 'home';
                 $rootScope.navScrollClick = scope.navSpan;
               }
-          });
-        }
-      };
-  }
+          });//end scroll function
+        }//end link
+      };//end return
+  }//end scrollChangeHash
 
+  // Directive to parallax scroll the element.
   function parallax($window) {
-
      return {
           link: function(scope, element, attrs) {
             function parallaxScroll(image, offsetX, offsetY) {
               let ypos = window.pageYOffset;
+              // Stops scrolling after a certain point
               if (ypos < 600) {
                 return image.css('transform', 'translate3d(' + (ypos * offsetX) + 'px,' + (ypos * offsetY) + 'px,0px)');
               }
@@ -114,12 +103,13 @@
             angular.element($window).bind("scroll", function() {
               if (typeof InstallTrigger === 'undefined') {
                 return parallaxScroll($('#' + attrs.id), 0, 0.4);
-              }
-            });
-          }
-      };
+              }//end if
+            });//end scroll function
+          }//end link
+      };//end parallax
   }
 
+  // Directive to modify the navbar CSS when not scrolled to the top
   function scrollChange($window) {
       return {
           link: function(scope, element, attrs) {
@@ -138,8 +128,8 @@
                     $('.nav-btn-clean').css('height', '50px');
                 }
                 scope.$apply();
-            });
-        }
-      };
-  }
-})();
+            });//end scroll function
+        }//end link
+      };//end return
+  }//end scrollChange
+})();//end IIFE

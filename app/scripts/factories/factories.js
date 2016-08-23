@@ -9,32 +9,44 @@
 
 	dataParse.$inject = ['maths'];
 
+
+	// Factory containing general math functions
 	function maths() {
 		return {
+			// Adds two numbers together
 			add: function(a, b) {
 					return a + b;
 			     },
+			// Generates a random number between min - max values
 			getRandom: function(min, max) {
 					  	return Math.random() * (max - min) + min;
 					},
+			// Rounds the number to the dec place specified
 			numRound: function(value,dec){
 				        value=Math.floor(value * dec + 0.05) / dec;
 				        return(value);
 	    			},
-			setArr: function(arr, num) {
+	    	// Creates an array with set length
+			setArr: function(arr, length) {
 						arr = [];
-					  	for (var i=0; i < num; i++) {arr.push(i);}
+					  	for (let i=0; i < length; i++) {arr.push(i);}
 					  	return arr;
 					},
+			// Opens a link with a given url. Acts like anchor tag.
 		    openLink: function(url) {
-						var link = window.open(url, '_blank');
+						let link = window.open(url, '_blank');
 						return link.focus();
 					},
 		};
-	}
+	}//end maths
 
+	// Factory containing functions to turn Github API data into workable objects
 	function dataParse(maths) {
 		return {
+
+			// Gets the day commits from all Github repos in 'inputArr' and returns an array
+			// containing an array of the repo names as strings, and an array with the daily
+			// commits for each repo.
 			getDayCommits: function (inputArr) {
 
 					  			let inputArrSlice = [],
@@ -85,14 +97,15 @@
 						  			outputRepos[i] = (weekCurrTotal[i].reduce(maths.add, 0));
 						  		}
 
-
-
+						  		// TODO: find solution to Github API errors
 						  		if (error === true) {
 						  			location.reload();
 						  		}
 
 						  		return [outputRepos, outputDays];
-					  		},
+					  		},// end getDayCommits
+
+			// Takes in a Github repo array and returns an array with all repo commits summed
 			sumDayCommits: function(inputArr) {
 
 						  		let daySums = [];
@@ -114,7 +127,11 @@
 						  			}
 						  		}
 						  		return daySums;
-					  		},
+					  		},//end sumDayCommits
+
+			// Takes in the Github day array and returns an array containing
+			// an array of all week commits summed by week, and an array
+			// containing each day commit by day.
 			parseCommits: function(inputArr) {
 
 				  			let dayArr = [],
@@ -153,7 +170,9 @@
 					  			}
 					  		}
 					  		return [weekCommits, dayArr];
-				  		},
+				  		},//end parseCommits
+
+			// Takes in a Github day array and returns the streak of days	  		
 		    streakData: function(inputArr) {
 
 				  			let streakArr = [];
@@ -168,6 +187,8 @@
 				  			}
 				  			return streakArr;
 				  		},
+
+			// Counts the streaks and determines the current streak and longest streak
 			getStreaks: function(inputArr) {
 
 							let streakCounter = 0,
@@ -200,6 +221,6 @@
 							}
 							return [currStreak, longestStreak];
 						},
-	    	};
-	}
-})();
+	    	};//end getStreaks
+	}//end dataParse
+})();//end IIFE
