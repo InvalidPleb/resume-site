@@ -2506,7 +2506,7 @@ $dayMap: (
 
   .name-text {
 
-    top: 40px;
+    top: 90px;
 
 
     & > h1 {
@@ -2519,7 +2519,7 @@ $dayMap: (
     }
 
     &:nth-child(3) {
-      top: 180px;
+      top: 220px;
     }
 
 
@@ -2549,7 +2549,7 @@ $dayMap: (
   }
 
   .greeting-para {
-    top: 220px;
+    top: 150px;
     font-size: 14px;
     padding: 15px;
 
@@ -3131,6 +3131,11 @@ $dayMap: (
     padding: 0px;
   }
 
+  .navbar-main-float {
+    
+
+  }
+
   
 
   .main-container {
@@ -3262,7 +3267,7 @@ $dayMap: (
   }
 
   .day-labels {
-    left: -242px;
+    left: -232px;
     position: relative;
 
   }

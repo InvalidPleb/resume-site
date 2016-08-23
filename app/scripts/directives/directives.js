@@ -113,19 +113,48 @@
   function scrollChange($window) {
       return {
           link: function(scope, element, attrs) {
-            angular.element($window).bind("scroll", function() {
+            var winWidth = $(window).width();
+            $($window).bind("resize", function(){
+              winWidth = $(window).width();
+            });
+
+            $($window).bind("scroll", function() {
                 if (this.pageYOffset === 0) {
                     scope.navText = true;
                     $('.navbar-text').css('height', '72px');
                     $('.navbar-text').css('padding-top', '23px');
                     $('.nav-btn-dirty').css('height', '70px');
                     $('.nav-btn-clean').css('height', '70px');
+
+                    if (winWidth === 320) {
+                      $('#home').css('top', '0px');
+                      console.log('yo');
+
+                    }
+
                 } else {
+
+                  if (winWidth > 320) {
                     scope.navText = false;
                     $('.navbar-text').css('height', '52px');
                     $('.navbar-text').css('padding-top', '14px');
                     $('.nav-btn-dirty').css('height', '50px');
                     $('.nav-btn-clean').css('height', '50px');
+
+                  } else {
+                    scope.navText = false;
+                    $('.navbar-text').css('height', '52px');
+                    $('.navbar-text').css('padding-top', '30px');
+                    $('.nav-btn-dirty').css('height', '60px');
+                    $('.nav-btn-clean').css('height', '60px');
+                    $('#home').css('top', '-20px');
+
+
+
+
+                  }
+
+                    
                 }
                 scope.$apply();
             });//end scroll function
