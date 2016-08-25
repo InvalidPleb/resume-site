@@ -186,7 +186,7 @@
 				  				}
 				  			}
 				  			return streakArr;
-				  		},
+				  		},//end steakData,
 
 			// Counts the streaks and determines the current streak and longest streak
 			getStreaks: function(inputArr) {

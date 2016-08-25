@@ -17,13 +17,25 @@
 	  	vm.repoContainer = [];
 	  	vm.commitDaily = {};
 
+	  	// Takes a data response and returns repo names
 	  	vm.pushCalledRepo = function(res, repo) {
 	  		for (var i = 0; i < res.length; i++) {
 	  			repo.push(res[i].full_name);
 	  		}
 	  		return repo;
-	  	};
+	  	}//end pushCalledRepo
+
+	  	// Gets the names of the repos for getCommits to use to call
+	  	vm.getGithubStuff = function() {
+	  		return $http.get('https://api.github.com' + '/users/InvalidPleb/repos')
+		  		.then(function(res){
+		  			vm.pushCalledRepo(res.data, vm.repoContainer);
+		  			return vm.getCommits(vm.repoContainer[0], 0, vm.repoContainer.length);
+		  		});//end callback
+	  	}//end getGithubStuff
 	  	
+	  	// Takes a repo container, a repoNum index, and the max number of repos to search through
+	  	// Returns a promise.
 	  	vm.getCommits = function(repo, repoNum, maxRepos) {
 	  		return $http.get('https://api.github.com' + '/repos/' + repo + '/stats/commit_activity')
 	  			.then(function(res){
@@ -32,18 +44,8 @@
 		  			if (repoNum < maxRepos) {
 		  				return vm.getCommits(vm.repoContainer[repoNum], repoNum, maxRepos);
 		  			}
-		  		});
-	  	};
-
-	  	vm.getGithubStuff = function() {
-	  		return $http.get('https://api.github.com' + '/users/InvalidPleb/repos')
-		  		.then(function(res){
-		  			vm.pushCalledRepo(res.data, vm.repoContainer);
-		  			return vm.getCommits(vm.repoContainer[0], 0, vm.repoContainer.length);
-		  		});
-	  	};
-
-	  	
+		  		});//end callback
+	  	}//end getCommits
 
 	  	// -------- AJAX Callback -------- //
 		var calls = vm.getGithubStuff();
@@ -72,9 +74,6 @@
 			$scope.dayNames = ["S", "M", "T", "W", "T", "F", "S",];
 
 
-			
-
-			
 			var winWidth = $(window).width();
 
 			function drawRings(outerArc, middleArc, innerArc) {
@@ -123,6 +122,7 @@
 			var dayRing;
 
 			$('.line-title:nth-child(2)').mouseover(function(){
+
 				$('.line:nth-child(2)').stop().animate({borderColor:"#3ECF84"},"fast");
 
 				var dayRingInd = gotParsedCommits[1];
@@ -229,8 +229,8 @@
 		  				"Fri",
 		  				"Sat"
 		  				]
-	  		};
-	  	});
+	  		};//end dataObj
+	  	});//end q callback
 
 
 		// -------------- Github Graph -------------- //
@@ -353,8 +353,8 @@
 
 				i++;
 				return vm.outerRing(sAng, eAng, arc, color, data, dayData, i);
-			}
-		};
+			}//end if
+		};//end outerRing
 
 
 		// Recursive function to draw the day rings
@@ -386,13 +386,11 @@
 				ringCont.push(ring);
 			}
 			return ringCont;
-		};
+		};//end middleRing
 
 		
 		// Recursive function to draw the inner pie chart
 		vm.innerRing = function(data, arc, nameArr, color, i){
-
-
 
 			if (i < data.length) {
 
@@ -441,8 +439,8 @@
 
 				i++;
 				return vm.innerRing(data, arc, vm.repoContainer, vm.colorObj[i], i);
-			}
-		};
+			}//end if
+		};//end innerRing
 
-	} 
-})();
+	}//end GraphCtrl 
+})();//end IIFE
