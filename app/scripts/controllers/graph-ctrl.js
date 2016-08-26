@@ -23,7 +23,7 @@
 	  			repo.push(res[i].full_name);
 	  		}
 	  		return repo;
-	  	}//end pushCalledRepo
+	  	};//end pushCalledRepo
 
 	  	// Gets the names of the repos for getCommits to use to call
 	  	vm.getGithubStuff = function() {
@@ -32,7 +32,7 @@
 		  			vm.pushCalledRepo(res.data, vm.repoContainer);
 		  			return vm.getCommits(vm.repoContainer[0], 0, vm.repoContainer.length);
 		  		});//end callback
-	  	}//end getGithubStuff
+	  	};//end getGithubStuff
 	  	
 	  	// Takes a repo container, a repoNum index, and the max number of repos to search through
 	  	// Returns a promise.
@@ -45,206 +45,21 @@
 		  				return vm.getCommits(vm.repoContainer[repoNum], repoNum, maxRepos);
 		  			}
 		  		});//end callback
-	  	}//end getCommits
-
-	  	// -------- AJAX Callback -------- //
-		var calls = vm.getGithubStuff();
-	  	$q.all([calls]).then(function(){
-
-	  		$scope.loading = false;
-	  		
-	  		var gotDayCommits = dataParse.getDayCommits(vm.commitDaily),
-	  		    repoCommits = gotDayCommits[0],
-	  		    dayCommits = gotDayCommits[1];
-	  		
-	  		repoCommits.push(1);
-	  		repoCommits.unshift(3);
-
-	  		var daySums = dataParse.sumDayCommits(dayCommits),
-	  		    gotParsedCommits = dataParse.parseCommits(daySums),
-	  		    allWeekCommits = gotParsedCommits[0],
-	  		    allDayCommits = gotParsedCommits[1],
-	  		    streakArr = dataParse.streakData(allDayCommits),
-	  		    gotStreaks = dataParse.getStreaks(streakArr);
-
-	  		$scope.months = maths.setArr($scope.months, 12);
-			$scope.weeks = maths.setArr($scope.weeks, 52);
-			$scope.days = maths.setArr($scope.days, 7);
-			$scope.repos = maths.setArr($scope.repos, 6);
-			$scope.dayNames = ["S", "M", "T", "W", "T", "F", "S",];
-
-
-			var winWidth = $(window).width();
-
-			function drawRings(outerArc, middleArc, innerArc) {
-				vm.outerRing(-1, 5.5, outerArc, [0,105, 0], gotParsedCommits[0], gotParsedCommits[1], 0);
-				vm.middleRing(0, 50, middleArc, [0,105, 0], [1,1,1,1,1,1,1]);
-				vm.innerRing(repoCommits, innerArc, vm.repoContainer, vm.colorObj[0], 0);
-			}
-
-			// Initial Draw
-			if (winWidth < 753) {
-
-				drawRings([120, 150], [95, 115], [20, 90]);
-				var ringSize = 'small';
-
-			} else {
-
-				drawRings([170, 200], [145, 165], [80, 140]);
-				var ringSize = 'large';
-			}
-
-
-			// Resize Draw
-			$(window).resize(function(){
-
-				winWidth = $(window).width();
-				
-				if (winWidth < 753) {
-
-					if (ringSize === 'large') {
-						vm.svgContainer.selectAll("*").remove();
-						drawRings([120, 150], [95, 115], [20, 90]);
-						ringSize = 'small';
-					}
-
-				} else {
-
-					if (ringSize === 'small') {
-						vm.svgContainer.selectAll("*").remove();
-						drawRings([170, 200], [145, 165], [80, 140]);
-						ringSize = 'large';
-					}
-				}
-
-			});
-
-			var dayRing;
-
-			$('.line-title:nth-child(2)').mouseover(function(){
-
-				$('.line:nth-child(2)').stop().animate({borderColor:"#3ECF84"},"fast");
-
-				var dayRingInd = gotParsedCommits[1];
-
-				if (ringSize === 'small') {
-					dayRing = vm.middleRing(0, 50, [95, 115], vm.colorObj[9], dayRingInd[49]);
-				} else {
-					dayRing = vm.middleRing(0, 50, [145, 165], vm.colorObj[9], dayRingInd[49]);
-				}
-
-				for (var j = 0; j < dayRing.length; j++) {
-					dayRing[j].transition().duration(200).style("opacity", 0.9);
-				}
-				
-			}).mouseout(function(){
-				$('.line:nth-child(2)').stop().animate({borderColor:"#9E8E4C"},"fast");
-				for (var j = 0; j < dayRing.length; j++) {
-					dayRing[j].transition()		
-					.duration(200)		
-					.style("opacity", 0.1)
-					.remove();
-				}
-			});
-
-			if (window.navigator.platform === 'MacIntel') {
-
-				$('html').css('overflow-x', 'hidden');
-				$('#background').css('overflow-x', 'hidden');
-			}
-
-			
-			// This object contains the data for the Github graph
-	  		$scope.dataObj = {
-
-	  			commits: {
-
-	  				days: allDayCommits,
-	  				weeks: allWeekCommits,
-	  				thisWeek: allWeekCommits[51],
-	  				thisYear: allWeekCommits.reduce(maths.add, 0),
-	  				currStreak: gotStreaks[0],
-	  				longestStreak: gotStreaks[1],
-	  			},
-
-	  			repositories: {
-
-	  				names: [
-	  					"Dark Reader",
-	  					"Resume",
-	  					"Runner Calculator",
-	  					"sips",
-	  					"Sublime Text Themes",
-	  					"TmTheme Editor"
-	  					],
-
-	  				commits: [
-		  				repoCommits[0],
-		  				repoCommits[1],
-		  				repoCommits[2],
-		                repoCommits[3],
-		  				repoCommits[4],
-		  	            repoCommits[5],
-	  					],
-
-	  				darkReader: repoCommits[0],
-	  				resumeSite: repoCommits[1],
-	  				runnerCalc: repoCommits[2],
-	  				sips: repoCommits[3],
-	  				sublimeText: repoCommits[4],
-	  				tmTheme: repoCommits[5],
-
-	  				href: {
-
-	  					darkReader: "https://github.com/alexanderby/darkreader",
-		  				resumeSite: "https://github.com/InvalidPleb/resume-site",
-		  				runnerCalc: "https://github.com/InvalidPleb/Runner-Calculator",
-		  				sips: "https://github.com/InvalidPleb/sips",
-		  				sublimeText: "https://github.com/InvalidPleb/sublime-text-themes",
-		  				tmTheme: "https://github.com/aziz/tmTheme-Editor",
-	  				}
-	  			},
-
-	  			months: [
-		  				"Jan",
-		  				"Feb",
-		  				"Mar",
-		  				"Apr",
-		  				"May",
-		  				"Jun",
-		  				"Jul",
-		  				"Aug",
-		  				"Sep",
-		  				"Oct",
-		  				"Nov",
-		  				"Dec"
-		  				],
-
-		  		days: [
-		  				"Sun",
-		  				"Mon",
-		  				"Tue",
-		  				"Wed",
-		  				"Thu",
-		  				"Fri",
-		  				"Sat"
-		  				]
-	  		};//end dataObj
-	  	});//end q callback
-
+	  	};//end getCommits
 
 		// -------------- Github Graph -------------- //
 
 	  	// Setting up D3
-
 	  	vm.svgContainer = d3.select(".animation-container")
 	  		.append("svg")
 	  		.attr("class", "svg-container")
 			.attr("width", 400)
 			.attr("height", 500);
 
+		// Returns a diameter for a pie section
 		vm.pie = d3.layout.pie()
 			.value(function(d) {
+				console.log(d);
 				return d;
 		});
 
@@ -254,6 +69,8 @@
 	    vm.graphCircle = d3.select(".animation-container").append("div")	
 					.attr("class", "graph-circle");
 
+		// Returns a pie chart section with given start and end angles
+		// and radii.
 		vm.arc = function(inRad, outRad, sAng, eAng) {
 			return d3.svg.arc()
 				.innerRadius(inRad)
@@ -356,7 +173,6 @@
 			}//end if
 		};//end outerRing
 
-
 		// Recursive function to draw the day rings
 		vm.middleRing = function(sAng, eAng, arc, color, data) {
 
@@ -441,6 +257,203 @@
 				return vm.innerRing(data, arc, vm.repoContainer, vm.colorObj[i], i);
 			}//end if
 		};//end innerRing
+
+
+		// -------- AJAX Callback -------- //
+		var calls = vm.getGithubStuff();
+	  	$q.all([calls]).then(function(){
+
+	  		// Hiding loading screen
+	  		$scope.loading = false;
+	  		
+	  		// Declaring vars for specific aspects of the data
+	  		var dayRing,
+	  			ringSize,
+	  			gotDayCommits = dataParse.getDayCommits(vm.commitDaily),
+	  		    repoCommits = gotDayCommits[0],
+	  		    dayCommits = gotDayCommits[1],
+	  			daySums = dataParse.sumDayCommits(dayCommits),
+	  		    gotParsedCommits = dataParse.parseCommits(daySums),
+	  		    allWeekCommits = gotParsedCommits[0],
+	  		    allDayCommits = gotParsedCommits[1],
+	  		    streakArr = dataParse.streakData(allDayCommits),
+	  		    gotStreaks = dataParse.getStreaks(streakArr);
+
+	  		// Takes in arc arrays of inner and outer diameters and returns three D3 rings
+	  		vm.drawRings = function(outerArc, middleArc, innerArc) {
+	  			return [ 
+					vm.outerRing(-1, 5.5, outerArc, [0,105, 0], gotParsedCommits[0], gotParsedCommits[1], 0),
+					vm.middleRing(0, 50, middleArc, [0,105, 0], [1,1,1,1,1,1,1]),
+					vm.innerRing(repoCommits, innerArc, vm.repoContainer, vm.colorObj[0], 0)
+				];
+			};
+
+			// Returns a mouseover function for the line titles
+			vm.lineMouseover = function() {
+
+				return $('.line-title:nth-child(2)').mouseover(function(){
+
+					$('.line:nth-child(2)').stop().animate({borderColor:"#3ECF84"},"fast");
+
+					if (ringSize === 'small') {
+						dayRing = vm.middleRing(0, 50, [95, 115], vm.colorObj[9], allDayCommits[49]);
+					} else {
+						dayRing = vm.middleRing(0, 50, [145, 165], vm.colorObj[9], allDayCommits[49]);
+					}
+
+					for (var j = 0; j < dayRing.length; j++) {
+						dayRing[j].transition().duration(200).style("opacity", 0.9);
+					}
+					
+				}).mouseout(function(){
+					$('.line:nth-child(2)').stop().animate({borderColor:"#9E8E4C"},"fast");
+					for (var j = 0; j < dayRing.length; j++) {
+						dayRing[j].transition()		
+						.duration(200)		
+						.style("opacity", 0.1)
+						.remove();
+					}
+				});//end return
+			};//end lineMouseover
+
+	  		// Removing the first and last entries in repoCommits
+	  		repoCommits.push(1);
+	  		repoCommits.unshift(3);
+	  		
+	  		// Setting arrays for ng-repeats 
+	  		$scope.months = maths.setArr($scope.months, 12);
+			$scope.weeks = maths.setArr($scope.weeks, 52);
+			$scope.days = maths.setArr($scope.days, 7);
+			$scope.repos = maths.setArr($scope.repos, 6);
+			$scope.dayNames = ["S", "M", "T", "W", "T", "F", "S",];
+			vm.lineMouseover();
+
+			// Initial draw of the D3 rings
+			var winWidth = $(window).width();
+
+			// Graph is set to small size for tablet and smaller devices
+			if (winWidth < 753) {
+
+				vm.drawRings([120, 150], [95, 115], [20, 90]);
+				ringSize = 'small';
+
+			} else {
+
+				vm.drawRings([170, 200], [145, 165], [80, 140]);
+				ringSize = 'large';
+			}
+
+			// Resize draw of the D3 rings
+			$(window).resize(function(){
+
+				winWidth = $(window).width();
+				
+				// Checks if tablet or smaller
+				if (winWidth < 753) {
+
+					// Changes it to small if it was already large
+					if (ringSize === 'large') {
+						vm.svgContainer.selectAll("*").remove();
+						vm.drawRings([120, 150], [95, 115], [20, 90]);
+						ringSize = 'small';
+					}
+
+				// Checks if larger than tablet
+				} else {
+
+					// Changes it to large if it was already small
+					if (ringSize === 'small') {
+						vm.svgContainer.selectAll("*").remove();
+						vm.drawRings([170, 200], [145, 165], [80, 140]);
+						ringSize = 'large';
+					}
+				}
+			});//end resize function
+
+			// Changing some css based upon platform
+			if (window.navigator.platform === 'MacIntel') {
+
+				$('html').css('overflow-x', 'hidden');
+				$('#background').css('overflow-x', 'hidden');
+			}
+
+			// This object contains the data for the Github graph
+	  		$scope.dataObj = {
+
+	  			commits: {
+
+	  				days: allDayCommits,
+	  				weeks: allWeekCommits,
+	  				thisWeek: allWeekCommits[51],
+	  				thisYear: allWeekCommits.reduce(maths.add, 0),
+	  				currStreak: gotStreaks[0],
+	  				longestStreak: gotStreaks[1],
+	  			},
+
+	  			repositories: {
+
+	  				names: [
+	  					"Dark Reader",
+	  					"Resume",
+	  					"Runner Calculator",
+	  					"sips",
+	  					"Sublime Text Themes",
+	  					"TmTheme Editor"
+	  					],
+
+	  				commits: [
+		  				repoCommits[0],
+		  				repoCommits[1],
+		  				repoCommits[2],
+		                repoCommits[3],
+		  				repoCommits[4],
+		  	            repoCommits[5],
+	  					],
+
+	  				darkReader: repoCommits[0],
+	  				resumeSite: repoCommits[1],
+	  				runnerCalc: repoCommits[2],
+	  				sips: repoCommits[3],
+	  				sublimeText: repoCommits[4],
+	  				tmTheme: repoCommits[5],
+
+	  				href: {
+
+	  					darkReader: "https://github.com/alexanderby/darkreader",
+		  				resumeSite: "https://github.com/InvalidPleb/resume-site",
+		  				runnerCalc: "https://github.com/InvalidPleb/Runner-Calculator",
+		  				sips: "https://github.com/InvalidPleb/sips",
+		  				sublimeText: "https://github.com/InvalidPleb/sublime-text-themes",
+		  				tmTheme: "https://github.com/aziz/tmTheme-Editor",
+	  				}
+	  			},
+
+	  			months: [
+		  				"Jan",
+		  				"Feb",
+		  				"Mar",
+		  				"Apr",
+		  				"May",
+		  				"Jun",
+		  				"Jul",
+		  				"Aug",
+		  				"Sep",
+		  				"Oct",
+		  				"Nov",
+		  				"Dec"
+		  				],
+
+		  		days: [
+		  				"Sun",
+		  				"Mon",
+		  				"Tue",
+		  				"Wed",
+		  				"Thu",
+		  				"Fri",
+		  				"Sat"
+		  				]
+	  		};//end dataObj
+	  	});//end q callback
 
 	}//end GraphCtrl 
 })();//end IIFE
