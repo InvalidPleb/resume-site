@@ -59,7 +59,6 @@
 		// Returns a diameter for a pie section
 		vm.pie = d3.layout.pie()
 			.value(function(d) {
-				console.log(d);
 				return d;
 		});
 

@@ -10,7 +10,6 @@
     .directive('scrollChange', scrollChange)
     .directive('scrollChangeHash', scrollChangeHash);
     
-
   navScroll.$inject = ['$rootScope'];
   parallax.$inject = ['$window'];
   scrollChange.$inject = ['$window'];
@@ -128,8 +127,6 @@
 
                     if (winWidth === 320) {
                       $('#home').css('top', '0px');
-                      console.log('yo');
-
                     }
 
                 } else {
@@ -148,13 +145,7 @@
                     $('.nav-btn-dirty').css('height', '60px');
                     $('.nav-btn-clean').css('height', '60px');
                     $('#home').css('top', '-20px');
-
-
-
-
                   }
-
-                    
                 }
                 scope.$apply();
             });//end scroll function
