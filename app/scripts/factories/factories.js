@@ -70,7 +70,6 @@
 						  				if (outputDays[j] === undefined) {
 						  					outputDays[j] = [];
 						  					
-
 						  					if (weekCurr[j] !== undefined) {
 						  						outputDays[j].push(weekCurr[j].days);
 						  					} else {
@@ -186,7 +185,7 @@
 				  				}
 				  			}
 				  			return streakArr;
-				  		},//end steakData,
+				  		},//end steakData
 
 			// Counts the streaks and determines the current streak and longest streak
 			getStreaks: function(inputArr) {

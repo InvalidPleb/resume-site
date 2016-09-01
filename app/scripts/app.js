@@ -1,9 +1,12 @@
-'use strict';
-angular
-  .module('resumeApp', [
-    'ngAnimate',
-    'ngCookies',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch'
-  ]);
+(function(){
+  'use strict';
+  angular
+    .module('resumeApp', [
+      'ngAnimate',
+      'ngCookies',
+      'ngRoute',
+      'ngSanitize',
+      'ngTouch'
+    ]);
+})();
+
