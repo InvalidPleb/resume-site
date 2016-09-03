@@ -7,162 +7,12 @@ $icon-font-path: '../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import 'bootstrap-sass-official/assets/stylesheets/_bootstrap.scss';
 // endbower 
 
-/* 
-
--------- Property Ordering Template --------
-
-@extend
-@include
-
-all @includes offering property shorthand are positioned in the normal property's position
-
-e.g. @include prefix(box-shadow, inset 0px 0px 9px 1px rgba(0,0,0,0.85), webkit moz ms o)
-goes in box shadow's position
 
 
--- Dimensions --
-
-height
-width
-z-index
-
--- Positioning --
-
-bottom
-left
-right
-top
-
--- Spacing --
-
-margin
-padding
-white-space
-
--- Visibility / Display --
-
-display
-float
-list-style
-opacity
-overflow
-position
-visibility
-vertical-align
-
--- Background / Filter --
-
-background color
-background image
-filter
-
--- Border --
-
-border
-border-color
-border-radius
-box-shadow
-outline
-
--- Text --
-
-color
-font family
-font size
-font weight
-letter-spacing
-line-height
-text-align
-
--- Animation / Events--
-
-animation
-cursor
-keyframes
-pointer-events
-transition
+@import 'base';
 
 
-*/
 
-// -------- Mixins -------- //
-
-@mixin border($style, $color, $sides) {
-    @if ($style != '') {
-        @if ($sides == '') {
-            border: $style $color;
-        } @else {
-            @each $side in $sides {
-               @if ($side == 'top' or
-                    $side == 'right' or
-                    $side == 'bottom' or
-                    $side == 'left') {
-                      border-#{$side}: $style $color;
-                }
-            }
-        }  
-    }
-}
-
-@mixin prefix($property, $value, $prefixes: ()) {
-  @each $prefix in $prefixes {
-    #{'-' + $prefix + '-' + $property}: $value;
-  }
-  #{$property}: $value;
-}
-
-@mixin monthLabel($left, $top, $deg){
-  left: $left;
-  top: $top;
-  margin: 0px 0px 0px 60px;
-  position: relative;
-  color: #84783b;
-  font-family: 'Times New Roman';
-  font-size: 18px;
-  @include prefix(transform, rotate($deg), webkit moz ms o);
-  @include prefix(user-select, none, webkit moz ms o);
-  -webkit-touch-callout: none;
-}
-
-@mixin dayLabel($left, $top, $deg) {
-  left: $left;
-  top: $top;
-  z-index: 5;
-  position: relative;
-  color: #84783b;
-  font-family: 'Times New Roman';
-  font-size: 18px;
-  @include prefix(transform, rotate($deg), webkit moz ms o);
-  @include prefix(user-select, none, webkit moz ms o);
-  -webkit-touch-callout: none;
-}
-
-@mixin fadeImg($img) {
-  height: 125px;
-  width: 125px;
-  z-index: 1;
-  opacity: 1;
-  -webkit-backface-visibility: hidden;
-  position: relative;
-  background-image: url($img);
-  background-repeat: no-repeat;
-  border-radius: 5px;
-  transition: all 0.5s ease-in;
-  
-}
-
-// -------- Variables -------- //
-
-$dark-background: #181819;
-$grey-background: #262626;
-$gold-color: #9E8E4C;
-$dim-gold-color: #524A2A;
-$bright-gold-color: #c9b564;
-$cream-color: #c9c5b7;
-$teal-color: #3ECF84;
-$rock-background: '/images/rock-background.png';
-$code-background: '/images/codebackground.jpg';
-$metal-background: '/images/metal-pat.jpg';
 
 
 // -------- Generic Element Selectors -------- //
@@ -181,14 +31,12 @@ body {
   z-index: -10;
   padding: 0;
   position: relative;
-  
+  overflow-x: hidden;
 }
 
 h2, h3, h4 {
   margin: 0;
 }
-
-
 
 a:hover, 
 a:focus, 
@@ -303,204 +151,107 @@ a:active {
 }
 
 
-// -------- Loading Overlay -------- //
-
-.loading {
-  height: 60px;
-  width: 60px;
-  z-index: 4;
-  bottom: 20%;
-  left: 0px;
-  right: 0px;
-  top: 0px;
-  margin: auto;
-  position: absolute;
-  border: 5px solid #FFF;
-  border-top-color: $gold-color;
-  border-radius: 100%;
-  animation: round 1s linear infinite;
-
-}
-
-@keyframes round {
-  from {transform: rotate (0deg)}
-  to {transform: rotate(360deg)}
-}
-
-.loadingScreen {
-  height: 100%;
-  width: 100%;
-  z-index: 3;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  top: 0px;
-  margin: auto;
-  position: absolute;
-  background-color: $dark-background;
-  @include prefix(box-shadow, -5px 4px 35px -1px rgba(0,0,0,0.75), webkit moz ms o);
-
-}
-
-.loading-txt {
-  @extend .loading;
-  @extend .gold-text;
-  top: 150px;
-  left: 30px;
-  height: 50px;
-  width: 300px;
-  border: none;
-  animation: none;
-  
-   
-}
-
-// -------- Background -------- //
 
 
-.main-body {
-  background-image: url($code-background);
-  overflow-x: hidden;
 
 
-}
 
-.decoration {
-  height: 45px;
-  width: 100%;
-  top: 40%;
-  position: relative;
-  @include border(2px solid, $gold-color, bottom top);
-  background-image: url('/images/metal-pat-2.png');
-  @include prefix(box-shadow, inset 0px 0px 20px 5px rgba(0,0,0,0.75), webkit moz ms o);
-}
-
-.padding {
-  height: 200px;
-  width: 100%;
-  z-index: -3;
-  margin-top: 50px;
-  position: absolute;
-  background-image: url($rock-background);
-  @include prefix(box-shadow, -7px 11px 28px 14px rgba(0,0,0,0.75), webkit moz ms o);
-}
-
-$i: 1;
-
-@while $i < 8 {
-
- ##{padding- + $i} {
-    margin-top: ($i * 1400) + px;
-  }
-
-  $i: $i + 1;
-}
-
-#top-background {
-  height: 850px;
-  z-index: -8;
-  position: relative;
-  background-image: url($code-background);
-  background-color: $dark-background;
-}
-
-#background {
-  height: calc(100% - 750px);
-  width: 100%;
-  z-index: 1;
-  margin-top: -600px;
-  margin-bottom: 100px;
-  position: absolute;
-  background-image: url($metal-background);
-  background-color: $dark-background;
-  @include border(1px solid, $gold-color, bottom top);
-  @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
-  overflow-x: hidden;
-}
-
-body {
-  overflow-x: hidden;
-}
-
-.navbar-main {
-  height: 70px;
-  width: 100%;
-  z-index: 6;
-  top: 1px;
-  position: absolute;
-  background-color: $dark-background;
-  border-radius: 0px;
-  @include border(1px solid, $dark-background, bottom);
-  @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
-  font-size: 16px;
-  transition: all .25s cubic-bezier(.17,.67,.83,.67);
-}
-
-.navbar-main-float {
-  @extend .navbar-main;
-  height: 50px;
-  left: 0;
-  right: 0;
-  top: -1px;
-  position: fixed;
-  background: $grey-background;
-  @include border(1px solid, $gold-color, bottom);
-}
-
-.navbar-nav {
-  padding: none;
-  list-style: none;
-  
-}
-
-.navbar-text {
-  height: 72px;
-  z-index: 2;
-  margin: 0;
-  margin-top: -2px;
-  padding: 23px 30px 0px 30px;
-  position: relative;
-  color: white;
-  cursor: pointer;
-  @include prefix(user-select, none, webkit moz ms o);
-  transition: all .25s cubic-bezier(.17,.67,.83,.67);
+@import 'loading';
+@import 'background';
+@import 'navbar';
 
 
-  &:hover {
-    background-color: $bright-gold-color;
-    @include border(0px solid, $gold-color, top left bottom right);
-    color: white;
-  }
-}
 
-.navbar-text-float {
-  @extend .navbar-text;
-  height: 50px;
-  padding-top: 12px;
-}
 
-#home {
-  margin-top: -1px;
-  font-size: 20px;
-}
 
-#home-cont {
-  padding-left: 15px;
-}
 
-.nav-btn-dirty {
-  @extend .navbar-text;
-  margin-top: -2px;
-  z-index: 1;
-  padding: 0px;
-  background-color: $bright-gold-color;
-  color: white;
-}
 
-.nav-btn-clean {
-  @extend .nav-btn-dirty;
-  background-color: transparent;
-}
+
+
+
+
+
+/* 
+
+-------- Property Ordering Template --------
+
+@extend
+@include
+
+all @includes offering property shorthand are positioned in the normal property's position
+
+e.g. @include prefix(box-shadow, inset 0px 0px 9px 1px rgba(0,0,0,0.85), webkit moz ms o)
+goes in box shadow's position
+
+
+-- Dimensions --
+
+height
+width
+z-index
+
+-- Positioning --
+
+bottom
+left
+right
+top
+
+-- Spacing --
+
+margin
+padding
+white-space
+
+-- Visibility / Display --
+
+display
+float
+list-style
+opacity
+overflow
+position
+visibility
+vertical-align
+
+-- Background / Filter --
+
+background color
+background image
+filter
+
+-- Border --
+
+border
+border-color
+border-radius
+box-shadow
+outline
+
+-- Text --
+
+color
+font family
+font size
+font weight
+letter-spacing
+line-height
+text-align
+
+-- Animation / Events--
+
+animation
+cursor
+keyframes
+pointer-events
+transition
+
+
+*/
+
+
+
+
 // -------- Top Greeting Section -------- //
 
 #greeting-section {
@@ -541,7 +292,6 @@ body {
     background-color: grey;
     opacity: .75;
     
-
     & > h4 {
     opacity: 1;
     z-index: 3;
@@ -552,7 +302,6 @@ body {
 }
 
 .name-text-box {
-
   width: 50%;
   left: 25%;
   bottom: 10px;
@@ -577,15 +326,11 @@ body {
   font-size: 50px;
   text-align: center;
 
-
-
   & > h1 {
     z-index: 4;
     position: relative;
     font: 60px 'Times New Roman';
     margin: 0;
-
-
   }
 
   &:nth-child(3) {
@@ -600,17 +345,6 @@ body {
     letter-spacing: 1px;
   }
 
-}
-
-.sphere-container {
-  @extend .name-text;
-  top: 100px;
-  right: 25px;
-  pointer-events: none;
-
-  &:nth-child(3) {
-    letter-spacing: 0px;
-  }
 }
 
 // -------- Projects Section -------- //
@@ -1353,11 +1087,6 @@ $dayMap: (
   .#{$tool + '-cont'} {
     border: 1px solid $values;
   }
-}
-
-
-.main-footer {
-  text-align: center;
 }
 
 

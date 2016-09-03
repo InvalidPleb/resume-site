@@ -1,0 +1,29 @@
+// -------- Background -------- //
+
+.main-body {
+  background-image: url($code-background);
+  overflow-x: hidden;
+}
+
+#top-background {
+  height: 850px;
+  z-index: -8;
+  position: relative;
+  background-image: url($code-background);
+  background-color: $dark-background;
+}
+
+#background {
+  height: calc(100% - 750px);
+  width: 100%;
+  z-index: 1;
+  margin-top: -600px;
+  margin-bottom: 100px;
+  position: absolute;
+  background-image: url($metal-background);
+  background-color: $dark-background;
+  @include border(1px solid, $gold-color, bottom top);
+  @include prefix(box-shadow, -7px 6px 24px 2px rgba(0,0,0,0.75), webkit moz ms o);
+  overflow-x: hidden;
+}
+

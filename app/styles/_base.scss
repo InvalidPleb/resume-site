@@ -1,0 +1,78 @@
+// -------- Mixins -------- //
+
+@mixin border($style, $color, $sides) {
+    @if ($style != '') {
+        @if ($sides == '') {
+            border: $style $color;
+        } @else {
+            @each $side in $sides {
+               @if ($side == 'top' or
+                    $side == 'right' or
+                    $side == 'bottom' or
+                    $side == 'left') {
+                      border-#{$side}: $style $color;
+                }
+            }
+        }  
+    }
+}
+
+@mixin prefix($property, $value, $prefixes: ()) {
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value;
+  }
+  #{$property}: $value;
+}
+
+@mixin monthLabel($left, $top, $deg){
+  left: $left;
+  top: $top;
+  margin: 0px 0px 0px 60px;
+  position: relative;
+  color: #84783b;
+  font-family: 'Times New Roman';
+  font-size: 18px;
+  @include prefix(transform, rotate($deg), webkit moz ms o);
+  @include prefix(user-select, none, webkit moz ms o);
+  -webkit-touch-callout: none;
+}
+
+@mixin dayLabel($left, $top, $deg) {
+  left: $left;
+  top: $top;
+  z-index: 5;
+  position: relative;
+  color: #84783b;
+  font-family: 'Times New Roman';
+  font-size: 18px;
+  @include prefix(transform, rotate($deg), webkit moz ms o);
+  @include prefix(user-select, none, webkit moz ms o);
+  -webkit-touch-callout: none;
+}
+
+@mixin fadeImg($img) {
+  height: 125px;
+  width: 125px;
+  z-index: 1;
+  opacity: 1;
+  -webkit-backface-visibility: hidden;
+  position: relative;
+  background-image: url($img);
+  background-repeat: no-repeat;
+  border-radius: 5px;
+  transition: all 0.5s ease-in;
+  
+}
+
+// -------- Variables -------- //
+
+$dark-background: #181819;
+$grey-background: #262626;
+$gold-color: #9E8E4C;
+$dim-gold-color: #524A2A;
+$bright-gold-color: #c9b564;
+$cream-color: #c9c5b7;
+$teal-color: #3ECF84;
+$rock-background: '/images/rock-background.png';
+$code-background: '/images/codebackground.jpg';
+$metal-background: '/images/metal-pat.jpg';

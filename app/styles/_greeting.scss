@@ -1,0 +1,92 @@
+// -------- Top Greeting Section -------- //
+
+#greeting-section {
+  height: 600px;
+  z-index: 5;
+  right: 10px;
+  top: -700px;
+  padding: 0px;
+  display: block;
+  position: relative; 
+  background-color: $dark-background;
+  @include prefix(box-shadow, -21px 5px 44px -15px rgba(0,0,0,0.75), webkit moz ms o);
+  overflow-x: hidden;
+}
+
+
+.portrait-background {
+  background-image: url('/images/portrait-close-lg-2.jpg');
+  height: 100%;
+  width: 100%;
+  max-width:100%;
+  max-height:100%;
+  position: absolute;
+}
+
+.greeting-para {
+  top: 170px;
+  padding-left: 10%;
+  padding-right: 10%;
+  position: relative;
+  text-align: left;
+  margin: 0;
+
+  & > div {
+    z-index:2;
+    padding: 20px;
+    position: relative;
+    background-color: grey;
+    opacity: .75;
+    
+    & > h4 {
+    opacity: 1;
+    z-index: 3;
+    position: relative;
+    margin: 0;
+    }
+  }
+}
+
+.name-text-box {
+  width: 50%;
+  left: 25%;
+  bottom: 10px;
+  position: relative;
+  background-color: grey;
+  opacity: .75;
+  z-index: 3;
+
+  &:nth-child(3) {
+    width: 25%;
+    left: 37.5%;
+  }
+}
+
+.name-text {
+  @extend .block-title-section-text;
+  top: 50px;
+  margin: 0px;
+  padding: 0px;
+  color: $bright-gold-color;
+  font-size: 50px;
+  text-align: center;
+
+  & > h1 {
+    z-index: 4;
+    position: relative;
+    font: 60px 'Times New Roman';
+    margin: 0;
+  }
+
+  &:nth-child(3) {
+    z-index: 4;
+    top: 150px;
+    position: relative;
+    font-size: 28px;
+  }
+
+  &:nth-child(4) {
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+}
