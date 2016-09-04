@@ -1,0 +1,175 @@
+// -------- Tools Section -------- //
+
+.tool-container {
+  padding-left: 23px;
+  position: relative;
+  white-space: nowrap;
+  border-radius: 10px;
+}
+
+.block-container {
+  z-index: -2;
+  top: 120px;
+  padding-bottom: 30px;
+  position: relative;
+}
+
+.contacts-container {
+  @extend .block-container;
+}
+
+.graph-container {
+  @extend .block-container;
+  padding-bottom: 180px;
+  @include prefix(user-select, none, webkit moz ms o);
+
+}
+
+.block-group {
+  margin-top: 60px;
+  position: relative;
+}
+
+.block-titles {
+  height: 50px;
+  top: 20px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  padding-bottom: 40px;
+  float: none;
+  background-image: url($metal-background);
+  @include border(1px solid, $dim-gold-color, top left bottom right);
+  @include prefix(box-shadow, inset 0px 0px 9px 1px rgba(0,0,0,0.85), webkit moz ms o);
+  text-align: center;
+}
+
+.title-text {
+  @extend .gold-text;
+  top: 25%;
+  position: relative;
+  color: $cream-color;
+  font-size: 28px;
+  text-align: center;
+}
+
+.block-name-def {
+  @extend .gold-text;
+  right: 5px;
+  top: 20px;
+  position: relative;
+  text-align: center;
+}
+
+.block-name-def-tm {
+  @extend .block-name-def;
+  right: 13px;
+}
+
+.block-name-def-cscript, 
+.block-name-def-dark, 
+.block-name-def-sass, {
+  @extend .block-name-def;
+}
+
+.block-name-def-soc {
+  @extend .block-name-def;
+}
+
+.block-para {
+  @extend .gold-text;
+  color: $cream-color;
+  width: 300px;
+  top: -30px;
+  right: 70px;
+  font-size: 17px;
+  position: relative;
+  white-space: normal;
+}
+
+.skills-list {
+  left: 12%;
+  margin-top: 20%;
+  padding-bottom: 20px;
+  position: relative;
+  color: $bright-gold-color;
+}
+
+.project-desc-container {
+  @extend .gold-text;
+  position: relative;
+  color: $cream-color;
+  background-image: url($metal-background);
+  @include border(1px solid, $dim-gold-color, top left bottom right);
+  @include prefix(box-shadow, inset 0px 0px 9px 1px rgba(0,0,0,0.85), webkit moz ms o);
+}
+
+.tools-desc-container {
+  @extend .gold-text;
+  @extend .project-desc-container;
+  padding: 10px;
+  color: $cream-color;
+  font-size: 19px;
+}
+
+.frameworks {
+  left: 8.5%;
+  position: relative;
+}
+
+.dev-tools {
+  left: 4%;
+  position: relative;
+}
+
+.preprocessors {
+  left: 12.5%;
+  position: relative;
+}
+
+.month-labels {
+  height: 500px;
+  width: 500px;
+  left: 332px;
+  top: 18px;
+  min-height: 500px;
+  min-width: 500px;
+  position: relative;
+  transform: rotate(120deg);
+}
+
+@-moz-document url-prefix() {
+    .month-labels {
+      left: 338px;
+      top: 20px;
+
+    }
+  }
+
+.block-href {
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:active {
+    text-decoration: none;
+  }
+
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+.img-text {
+  bottom: 100px;
+  z-index: 0;
+  position: relative;
+  transition: all 0.5s ease-in;
+}
+
+@each $tool, $values in $toolMap {
+  .#{$tool + '-cont'} {
+    border: 1px solid $values;
+  }
+}
+

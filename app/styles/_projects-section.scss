@@ -1,0 +1,119 @@
+// -------- Projects Section -------- //
+
+.index {
+  z-index: -5;
+  position: relative;
+}
+
+.projects-title-section {
+  height: 100px;
+  width: 90%;
+  left: 5%;
+  top: 20px;
+  position: relative;
+}
+
+
+.main-container {
+  @extend .container;
+  right: 10px;
+  z-index: 2;
+  margin: auto;
+  margin-top: -718px;
+  padding: 0px;
+  padding-bottom: 50px;
+  position: relative;
+}
+
+.skills-container {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 0px 20px 20px 20px;
+  position: relative;
+  background-color: $dark-background;
+  @include border(1px solid, $dim-gold-color, top bottom left right);
+  @include prefix(box-shadow, -5px 4px 35px -1px rgba(0,0,0,0.75), webkit moz ms o);
+}
+
+.site-container {
+  @extend .main-blocks;
+  height: 230px;
+  width: 350px;
+  top: 10px;
+  position: relative;
+  @include border(1px solid, $dim-gold-color, top bottom left right);
+  border-radius: 10px;
+  text-decoration: none;
+
+}
+
+.site-container-tablet {
+  @extend .site-container;
+  height: 180px;
+  width: 250px;
+  top: 62px;
+  
+}
+
+.site-container-mobile {
+  @extend .site-container;
+  height: 180px;
+  width: 125px;
+  top: 63px;
+  
+}
+
+.site-container-txt {
+  @extend .gold-text;
+  top: 20px;
+  position: relative;
+}
+
+.site-container-txt-tablet {
+  @extend .site-container-txt;
+  top: 20px;
+}
+
+.site-container-txt-mobile {
+  @extend .site-container-txt;
+  top: 20px;
+}
+
+#runner-calc-container > .row:nth-child(2) {
+  margin-left: -45px; 
+}
+
+#runner-calc-desktop {
+  height: 225px;
+  width: 345px;
+  left: 2px;
+  top: 1px;
+  display: block;
+  position: relative;
+  background-image: url('/images/runnercalc-lg.png');
+  border-radius: 10px;
+
+  &:hover {
+    border: none;
+  }
+}
+
+#runner-calc-tablet {
+  @extend #runner-calc-desktop;
+  height: 175px;
+  width: 245px;
+  background-image: url('/images/runnercalc-md.png');
+}
+
+#runner-calc-mobile {
+  @extend #runner-calc-desktop;
+  height: 175px;
+  width: 120px;
+  top: 2px;
+  background-image: url('/images/runnercalc-sm.png');
+}
+
+.runner-calc-text {
+  margin-top: 100px;
+}
