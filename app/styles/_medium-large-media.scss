@@ -1,0 +1,167 @@
+@media (min-width:992px) and (max-width:1199px) {
+
+  .name-text {
+
+    top: 50px;
+
+    & > h1 {
+
+      font: 48px 'Times New Roman';
+    }
+
+    & > h2 {
+      font-size: 30px;
+    }
+
+    &:nth-child(3) {
+      top: 150px;
+    }
+
+
+    &:nth-child(4) {
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+
+  }
+
+  .name-text-box {
+
+    &:nth-child(3) {
+      width: 35%;
+      left: 32.5%;
+    }
+  }
+
+  .main-container {
+    padding-bottom: 150px;
+  }
+
+  .site-container {
+    right: 10px;
+  }
+
+  .site-container-tablet {
+    right: 45px;
+  }
+
+  #runner-calc-container > .row:nth-child(2) {
+    margin-left: -45px; 
+  }
+
+  .block-name-def {
+    right: -10px;
+  }
+
+  .block-name-def-cscript {
+    right: -6px;
+  }
+
+  .block-name-def-sass {
+    right: -3px;
+  }
+
+  .block-titles {
+    padding-left: 40px;
+    padding-right: 295px;
+  }
+
+  .graph-description {
+    height: 500px;
+  }
+
+  .title-text {
+    width: 350px;
+    right: 50px;
+  }
+
+  .svg-container {
+    right: 251px;
+    position: relative;
+  }
+
+  .graph-circle {
+    left: 278px;
+  }
+
+  .pie-tooltip {
+    left: 407px;  
+  }
+
+  $lineMap: (
+    1: (75, 265), // Weeks
+    2: (190, 640), // Days
+    3: (290, 200), // Repos
+  );
+
+  $lineTitleMap: (
+    1: (50, 190), // Weeks
+    2: (165, 775), // Days
+    3: (265, 90), // Repos
+  );
+
+  $repoTooltipMap: (
+    1: (50, 360), // Dark Reader
+    2: (270, 210), // Resume 
+    3: (230, 590), // Runner Calc
+    4: (90, 240), // Sips
+    5: (40, 390), // SublimeTxt 
+    6: (40, 420), // TmTheme
+  );
+
+  .month-labels {
+    left: 233px;
+    top: -82px;
+  }
+
+  @-moz-document url-prefix() {
+    .month-labels {
+      left: 238px;
+      top: -80px;
+    }
+  }
+  
+
+  @each $num, $values in $lineMap {
+
+    .line:nth-child(#{$num}) {
+      width: 180px;
+      left: nth($values, 2) - 15 + px;
+      top: nth($values, 1) + px;
+    }
+  }
+
+  @each $num, $values in $lineTitleMap {
+
+    .line-title:nth-child(#{$num}) {
+      left: nth($values, 2) - 40 + px;
+      top: nth($values, 1) + px;
+    }
+  }
+
+  @each $month, $values in $monthMap {
+
+    ##{$month} {
+      left: nth($values, 1) + 73;  
+      top: nth($values, 2) - 42;
+    }
+  }
+
+  @each $day, $values in $dayMap {
+
+    ##{$day} {
+      left: nth($values, 1) - 92;  
+      top: nth($values, 2) - 2;
+    }
+  }
+
+  @each $num, $values in $repoTooltipMap {
+
+    .repoTooltip:nth-child(#{$num}) {
+      left: nth($values, 2) + px;
+      top: nth($values, 1) + px;
+    }
+  }
+
+
+}
