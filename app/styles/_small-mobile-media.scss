@@ -1,0 +1,544 @@
+@media (min-width:0px) and (max-width:349px) {
+
+  #home-cont {
+    top: 0px;
+    width: 60px;
+    padding: 0;
+    
+  }
+
+  #home {
+    height: 52px;
+    padding: 5px;
+    padding-top: 23px;
+    padding-left: 5px;
+    margin-top: -5px;
+    font-size: 16px;
+  }
+
+  .portrait-background {
+    background-image: url('/images/portrait-close-xs.jpg');
+  }
+
+  .name-text {
+
+    top: 40px;
+
+
+    & > h1 {
+
+      font: 32px 'Times New Roman';
+    }
+
+    & > h2 {
+      font-size: 24px;
+    }
+
+    &:nth-child(3) {
+      top: 160px;
+    }
+
+
+    &:nth-child(4) {
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+
+  }
+
+  .name-text-box {
+
+    &:nth-child(2) {
+      width: 70%;
+      left: 15%;
+    }
+
+    &:nth-child(3) {
+      width: 60%;
+      left: 20%;
+    }
+  }
+
+
+  h3 {
+    font-size: 16px;
+  }
+
+  #greeting-section {
+    width: 310px;
+    height: 600px;
+    top: -720px;
+    left: -1px;
+  }
+
+  .greeting-para {
+    top: 160px;
+    font-size: 14px;
+    padding: 15px;
+
+  }
+
+  .main-container {
+    left: 0px;
+  }
+
+  .nav > li {
+    float: left;
+  }
+
+  #navbar {
+    width: 83%;
+    margin-top: -73px;
+    margin-left: 50px;
+    padding: 0px;
+  }
+
+  .navbar-text {
+    top: -2px;
+    display: block;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .nav-btn-dirty {
+    top: 2px;
+    padding: 0px;
+  }
+
+  .navbar-main-float {
+    
+
+  }
+
+  
+
+  .main-container {
+    padding-bottom: 150px;
+    overflow: hidden;
+    margin-left: 2%;
+    margin-right:auto;
+    margin-left:auto;
+  }
+
+  // -------- Projects Section -------- //
+
+
+  .projects-block-title {
+    top: 5px;
+  }
+
+  .projects-title-section {
+    height: 100%;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+
+  .site-container {
+    width: 280px;
+    height: 180px; 
+    top: 20px;
+    right: -8.5%;
+  }
+
+  .site-container-tablet {
+    width: 220px;
+    height: 160px;
+    top: 90px;
+    right: -19%;
+    
+  }
+
+  .site-container-mobile {
+    width: 80px;
+    height: 140px;
+    top: 155px;
+    right: -41%;
+    
+  }
+
+  #runner-calc-desktop {
+    width: 275px;
+    height: 175px;
+  }
+
+  #runner-calc-tablet {
+    width: 215px;
+    height: 155px;
+  }
+
+  #runner-calc-mobile {
+    width: 75px;
+    height: 135px;
+  }
+
+  .runner-calc-text {
+    width: 275px;
+    top: 100px;
+    margin-top: 140px;
+    padding-bottom: 0px;
+
+  }
+
+  #runner-calc-container {
+    padding-bottom: 130px;
+
+  }
+
+   // -------- Github Graph Section -------- //
+
+   .loading-txt {
+    left: 20px;
+  }
+
+  
+  .svg-container {
+    right: 545px;
+    min-width: 400px;
+    position: relative;
+  }
+
+  .graph-description {
+    padding-bottom: 570px;
+
+    & > div > .graph-desc-section:nth-child(3) {
+      margin-top: 70%;
+    }
+
+    & > div:nth-child(2) {
+      top: -240px;
+      position: relative;
+
+    }
+  }
+
+  .graph-container {
+    padding-bottom: 250px;
+  }
+
+   #graph-para {
+    height: 230px;
+  }
+
+  .contribution-text-left {
+    width: 130px;
+    position: relative;
+    font-size: 20px;
+  }
+
+  .contribution-text-right {
+    width: 130px;
+    right: 10px;
+    position: relative;
+    font-size: 20px;
+  }
+
+  .text-bot {
+    top: 70px;
+  }
+
+  .contribution-info {
+    margin: 0px;
+  }
+
+  .day-labels {
+    left: -232px;
+    position: relative;
+
+  }
+
+  .graph-circle {
+    height: 310px;
+    width: 310px;
+    z-index: -3;
+    top: 95px;
+    left: 4px;
+  }
+
+  .pie-tooltip {
+    left: 223px;
+    display: none; 
+  }
+
+
+  .month-labels {
+    left: -102px;
+    top: 17px;
+    transform: rotate(125deg);
+  }
+
+  @-moz-document url-prefix() {
+    .month-labels {
+      left: 53px;
+
+    }
+  }
+
+  .line-title:hover {
+    height: 130px;
+  }
+
+
+  $lineMap: (
+    1: (120, 370),
+    2: (195, 550),
+    3: (290, 250),
+  );
+
+  $lineTitleMap: (
+    1: (15, 265),
+    2: (70, 410),
+    3: (400, 260),
+  );
+
+  $repoTooltipMap: (
+    1: (90, 360),
+    2: (270, 280),
+    3: (230, 490),
+    4: (130, 260),
+    5: (80, 390),
+    6: (80, 420),
+  );
+
+  $monthMap: (
+
+    Jan: (210px, 125px, 15deg),
+    Feb: (233px, 223px, 42deg),
+    Mar: (190px, 320px, 70.5deg),
+    Apr: (77px, 385px, 105deg),
+    May: (-42px, 398px, 130deg),
+    Jun: (-185px, 326px, 162deg),
+    Jul: (-280px, 183px, 195deg),
+    Aug: (-305px, 28px, 223deg),
+    Sep: (-250px, -135px, 255deg),
+    Oct: (-137px, -245px, 285deg),
+    Nov: (8px, -285px, 317deg),
+    Dec: (128px, -251px, 347deg)
+
+  );
+
+  $dayMap: (
+
+    Sun: (158px, 213px, 75deg),
+    Mon: (142px, 277px, 130deg),
+    Tue: (60px, 295px, 180deg),
+    Wed: (-20px, 232px, 230deg),
+    Thu: (-43px, 115px, 282deg),
+    Fri: (15px, 18px, 330deg),
+    Sat: (105px, -3px, 25deg)
+
+  );
+
+  @each $month, $values in $monthMap {
+    // left, top, deg
+
+    ##{$month} {
+      @include monthLabel(nth($values, 1) - 15px, nth($values, 2) + 8px, nth($values, 3)); 
+    }
+  }
+
+  @each $day, $values in $dayMap {
+
+    ##{$day} {
+      @include dayLabel(nth($values, 1) + 7px, nth($values, 2), nth($values, 3)); 
+    }
+
+  }
+
+
+  @each $num, $values in $lineMap {
+
+    @if $num == 1 {
+      .line:nth-child(#{$num}) {
+        top: nth($values, 1) - 80 + px;
+        left: nth($values, 2) - 255 + px;
+        height: 80px;
+        width: 2px;
+        border: none;
+        border-left: 1px solid $gold-color;
+      }
+
+    } @else if $num == 2 {
+      .line:nth-child(#{$num}) {
+        top: nth($values, 1) - 90 + px;
+        left: nth($values, 2) - 290 + px;
+        height: 100px;
+        width: 2px;
+        border: none;
+        border-left: 1px solid $gold-color;
+      }
+
+    } @else if $num == 3 {
+      .line:nth-child(#{$num}) {
+        top: nth($values, 1) + 0 + px;
+        left: nth($values, 2) - 140 + px;
+        height: 150px;
+        width: 2px;
+        border: none;
+        border-left: 1px solid $gold-color;
+      }
+
+    }
+
+  }
+
+
+  @each $num, $values in $lineTitleMap {
+
+    .line-title:nth-child(#{$num}) {
+      width: 100px;
+      top: nth($values, 1) + px;
+      left: nth($values, 2) - 200 + px;
+    }
+
+  }
+
+  @each $day, $values in $dayMap {
+
+    ##{$day} {
+      left: nth($values, 1) - 176;  
+      top: nth($values, 2) - 2;
+    }
+  }
+
+  @each $num, $values in $repoTooltipMap {
+
+    .repoTooltip:nth-child(#{$num}) {
+      top: nth($values, 1) + px;
+      left: nth($values, 2) - 310px;
+    }
+  }
+
+  
+  // -------- Tools Section -------- //
+
+  .tool-container {
+    width: 125px;
+    padding: 0px;
+  }
+
+  .tools-desc-container {
+    width: 245px;
+    font-size: 16px;
+  }
+
+  .block-container {
+    width: 315px;
+    left: -1px;
+    margin: auto;
+  }
+
+  .block-titles {
+    padding-left: 10px;
+    padding-right: 225px;
+    padding-top: 5px;
+
+  }
+
+  .block-title-section-text {
+    font-size: 30px;
+
+  }
+  
+  .title-text {
+    width: 350px;
+    right: 70px;
+    font-size: 20px;
+  }
+
+  .block-para {
+    top: -10px;
+    left: -60px;
+    padding: 0px;
+  }
+
+  .block-name-def {
+    right: 0px;
+    left: 0px;
+  }
+
+  .block-name-def-cscript {
+    left: 1px;
+  }
+
+  .block-name-def-sass {
+    left: 1px;
+  }
+
+  .block-name-def-tm {
+    left: -12px;
+  }
+
+  .block-name-def-dark {
+    left: 0px;
+  }
+
+  .frameworks {
+    left: 1%;
+
+    & > div:nth-child(1) > .tool-container,
+    & > div:nth-child(3) > .tool-container,
+    & > div:nth-child(5) > .tool-container {
+      margin-top: 0px;
+      margin-right: 70px;
+      margin-left: 72px;
+    }
+  }
+
+  .dev-tools {
+    left: -5%;
+
+    & > div:nth-child(1) > .tool-container,
+    & > div:nth-child(3) > .tool-container,
+    & > div:nth-child(5) > .tool-container,
+    & > div:nth-child(7) > .tool-container {
+      margin-top: 0px;
+      margin-right: 70px;
+      margin-left: 82px;
+    }
+  }
+
+  .dev-tools > div > .tool-container {
+    margin-right: 7px;
+  }
+
+  .preprocessors {
+    left: -1%;
+  }
+
+  .preprocessors > div:nth-child(4) > .tool-container {
+
+    margin-top: 0px;
+    margin-left: 72px;
+
+  }
+
+  .preprocessors > div:nth-child(2) > .tool-container {
+
+    margin-top: 0px;
+    margin-left: 45px;
+
+  }
+
+  .skills-list {
+    width: 150px;
+    left: 23px;
+
+  }
+
+ 
+  .block-para {
+    right: 80px;
+    padding-left: 20px;
+    width: 250px;
+  }
+
+  .block-name-dark {
+    left: 10px;
+
+  }
+
+  .block-name-tm {
+    left: -10px;
+  }
+}

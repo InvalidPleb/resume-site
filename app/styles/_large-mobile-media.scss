@@ -1,0 +1,410 @@
+
+@media (min-width:600px) and (max-width:767px) {
+
+  .portrait-background {
+    background-image: url('/images/portrait-close-sm.jpg');
+  }
+
+  #home-cont {
+    top: 0px;
+    width: 205px;
+  }
+
+  .nav > li {
+    float: left;
+  }
+
+  #navbar {
+    width: 515px;
+    margin-top: -73px;
+    margin-left: 175px;
+  }
+
+  .navbar-text {
+    top: -2px;
+    display: block;
+    font-size: 14px;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .navbar-collapse {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .nav-btn-dirty {
+    top: 2px;
+    padding: 0px;
+  }
+
+  #greeting-section {
+    width: 600px;
+  }
+
+  .name-text {
+
+    top: 80px;
+
+
+    & > h1 {
+
+      font: 32px 'Times New Roman';
+    }
+
+    & > h2 {
+      font-size: 24px;
+    }
+
+    &:nth-child(3) {
+      top: 220px;
+    }
+
+
+    &:nth-child(4) {
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+
+  }
+
+  .name-text-box {
+
+    &:nth-child(3) {
+      width: 35%;
+      left: 32.5%;
+    }
+  }
+
+
+  h3 {
+    font-size: 18px;
+  }
+
+  .greeting-para {
+    top: 240px;
+
+  }
+
+  .main-container {
+    padding-bottom: 150px;
+    overflow: hidden;
+    margin-left: 2%;
+    margin-right:auto;
+    margin-left:auto;
+  }
+
+  // -------- Projects Section -------- //
+
+  .projects-block-title {
+    top: 5px;
+  }
+
+  .site-container {
+    top: 20px;
+    right: -17%;
+  }
+
+  .site-container-tablet {
+    top: 85px;
+    right: -26.5%;
+    
+  }
+
+  .site-container-mobile {
+    top: 151px;
+    right: -38%;
+    
+  }
+
+  .runner-calc-text {
+    top: 120px;
+    padding-bottom: 0px;
+
+  }
+
+  #runner-calc-container {
+    padding-bottom: 130px;
+
+  }
+
+  #runner-calc-container > .row:nth-child(2) {
+    margin-left: -15px; 
+  }
+
+   // -------- Github Graph Section -------- //
+  
+  .svg-container {
+    right: 435px;
+    min-width: 400px;
+    position: relative;
+  }
+
+  .graph-description {
+    padding-bottom: 570px;
+
+    & > div > .graph-desc-section:nth-child(3) {
+      margin-top: 40%;
+    }
+
+    & > div:nth-child(2) {
+      top: -250px;
+      position: relative;
+
+    }
+  }
+
+  .graph-container {
+    padding-bottom: 250px;
+  }
+
+   #graph-para {
+    height: 230px;
+  }
+
+  .contribution-text-left {
+    width: 130px;
+    position: relative;
+    font-size: 20px;
+  }
+
+  .contribution-text-right {
+    width: 130px;
+    right: -110px;
+    position: relative;
+    font-size: 20px;
+  }
+
+  .text-bot {
+    top: 70px;
+  }
+
+  .contribution-info {
+    margin: 0px;
+  }
+
+  .graph-circle {
+    height: 310px;
+    width: 310px;
+    z-index: -3;
+    top: 95px;
+    left: 144px;
+  }
+
+  .pie-tooltip {
+    left: 223px;
+    display: none; 
+  }
+
+  .line-title:hover {
+    height: 130px;
+  }
+
+
+  .month-labels {
+    left: 38px;
+    top: 17px;
+    transform: rotate(125deg);
+  }
+
+  @-moz-document url-prefix() {
+    .month-labels {
+      left: 53px;
+
+    }
+  }
+
+
+  $lineMap: (
+    1: (120, 270),
+    2: (195, 550),
+    3: (290, 250),
+  );
+
+  $lineTitleMap: (
+    1: (95, 170),
+    2: (170, 570),
+    3: (265, 120),
+  );
+
+  $repoTooltipMap: (
+    1: (50, 360),
+    2: (270, 210),
+    3: (230, 590),
+    4: (90, 240),
+    5: (40, 390),
+    6: (40, 420),
+  );
+
+  $monthMap: (
+
+    Jan: (210px, 125px, 15deg),
+    Feb: (233px, 223px, 42deg),
+    Mar: (190px, 320px, 70.5deg),
+    Apr: (77px, 385px, 105deg),
+    May: (-42px, 398px, 130deg),
+    Jun: (-185px, 326px, 162deg),
+    Jul: (-280px, 183px, 195deg),
+    Aug: (-305px, 28px, 223deg),
+    Sep: (-250px, -135px, 255deg),
+    Oct: (-137px, -245px, 285deg),
+    Nov: (8px, -285px, 317deg),
+    Dec: (128px, -251px, 347deg)
+
+  );
+
+  $dayMap: (
+
+    Sun: (158px, 213px, 75deg),
+    Mon: (142px, 277px, 130deg),
+    Tue: (60px, 295px, 180deg),
+    Wed: (-20px, 232px, 230deg),
+    Thu: (-43px, 115px, 282deg),
+    Fri: (15px, 18px, 330deg),
+    Sat: (105px, -3px, 25deg)
+
+  );
+
+  @each $month, $values in $monthMap {
+    // left, top, deg
+
+    ##{$month} {
+      @include monthLabel(nth($values, 1) - 15px, nth($values, 2) + 8px, nth($values, 3)); 
+    }
+  }
+
+  @each $day, $values in $dayMap {
+
+    ##{$day} {
+      @include dayLabel(nth($values, 1) + 7px, nth($values, 2), nth($values, 3)); 
+    }
+
+  }
+
+  @each $num, $values in $lineMap {
+
+    .line:nth-child(#{$num}) {
+      top: nth($values, 1) + px;
+      left: nth($values, 2) - 155 + px;
+      width: 140px;
+    }
+  }
+
+  @each $num, $values in $lineTitleMap {
+
+    .line-title:nth-child(#{$num}) {
+      width: 100px;
+      top: nth($values, 1) + px;
+      left: nth($values, 2) - 100 + px;
+    }
+
+  }
+
+  @each $day, $values in $dayMap {
+
+    ##{$day} {
+      left: nth($values, 1) - 276;  
+      top: nth($values, 2) - 2;
+    }
+  }
+
+  @each $num, $values in $repoTooltipMap {
+
+    .repoTooltip:nth-child(#{$num}) {
+      top: nth($values, 1) + px;
+      left: nth($values, 2) - 180px;
+    }
+  }
+
+  
+  // -------- Tools Section -------- //
+
+  .tool-container {
+    width: 125px;
+    padding: 0px;
+  }
+
+  .block-container {
+    width: 600px;
+    margin-right:auto;
+    margin-left:auto;
+  }
+
+  .block-titles {
+    padding-left: 60px;
+    padding-right: 270px;
+  }
+  
+  .title-text {
+    width: 350px;
+    right: 70px;
+  }
+
+  .block-para {
+    top: -10px;
+    left: -40px;
+    padding-right: 20px;
+  }
+
+  .block-name-def {
+    right: 0px;
+    left: -2px;
+  }
+
+  .block-name-def-cscript {
+    left: 1px;
+  }
+
+  .block-name-def-sass {
+    left: 1px;
+  }
+
+  .block-name-def-tm {
+    left: -10px;
+  }
+
+  .block-name-def-dark {
+    left: 7px;
+  }
+
+  .frameworks {
+    left: 7%;
+  }
+
+  .dev-tools {
+    left: 1%;
+  }
+
+  .dev-tools > div > .tool-container {
+    margin-right: 7px;
+  }
+
+  .preprocessors {
+    left: 6%;
+  }
+
+  .skills-list {
+    width: 150px;
+    left: -13px;
+    text-align: center;
+    list-style: none;
+
+  }
+
+ 
+  .block-para {
+    right: 80px;
+    padding-left: 20px;
+    width: 250px;
+  }
+
+  .block-name-dark {
+    left: 10px;
+
+  }
+
+  .block-name-tm {
+    left: -10px;
+  }
+
+}

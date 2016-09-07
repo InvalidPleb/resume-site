@@ -1,0 +1,266 @@
+@media (min-width:875px) and (max-width:991px) {
+
+  .portrait-background {
+    background-image: url('/images/portrait-close-md-2.jpg');
+  }
+
+  .name-text {
+
+    top: 80px;
+
+
+    & > h1 {
+
+      font: 40px 'Times New Roman';
+    }
+
+    & > h2 {
+      font-size: 30px;
+    }
+
+    &:nth-child(3) {
+      top: 220px;
+    }
+
+
+    &:nth-child(4) {
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+
+  }
+
+  .name-text-box {
+
+    &:nth-child(3) {
+      width: 35%;
+      left: 32.5%;
+    }
+  }
+
+
+  h3 {
+    font-size: 20px;
+  }
+
+  .greeting-para {
+    top: 230px;
+
+  }
+
+  // -------- Projects Section -------- //
+
+  .main-container {
+    padding-bottom: 130px;
+
+  }
+
+  .project-desc-container {
+    width: 90%;
+  }
+
+
+
+  .site-container {
+    top: 20px;
+    right: -103px;
+  }
+
+  .site-container-tablet {
+    top: 360px;
+    right: 48%;
+  }
+
+  .site-container-mobile {
+    top: 170px;
+    right: 5%;
+  }
+
+  .runner-calc-text {
+    top: 150px;
+  }
+
+  #runner-calc-container {
+    height: 1050px;
+  }
+
+  #runner-calc-container > .row:nth-child(2) {
+    margin-left: -15px; 
+  }
+
+
+
+  // -------- Github Graph Section -------- //
+
+  .svg-container {
+    min-width: 400px;
+    right: 359px;
+    position: relative;
+  }
+
+  #graph-para {
+    height: 190px;
+  }
+
+  .graph-description {
+    padding-bottom: 530px;
+  }
+
+  .graph-container {
+    padding-bottom: 200px;
+  }
+
+  .graph-circle {
+    left: 170px;
+  }
+
+  .pie-tooltip {
+    left: 299px;  
+  }
+
+  .month-labels {
+    left: 123px;
+  }
+
+  .line-title:hover {
+    height: 130px;
+  }
+
+  @-moz-document url-prefix() {
+    .month-labels {
+      left: 130px;
+
+    }
+  }
+
+  $lineMap: (
+    1: (75, 265), // Weeks
+    2: (190, 640), // Days
+    3: (290, 200), // Repos
+  );
+
+  $lineTitleMap: (
+    1: (50, 150), // Weeks
+    2: (165, 675), // Days
+    3: (265, 80), // Repos
+  );
+
+  $repoTooltipMap: (
+    1: (50, 360), // Dark Reader
+    2: (270, 210), // Resume 
+    3: (230, 590), // Runner Calc
+    4: (90, 240), // Sips
+    5: (40, 390), // SublimeTxt 
+    6: (40, 420), // TmTheme
+  );
+
+  @each $num, $values in $lineMap {
+
+    .line:nth-child(#{$num}) {
+      top: nth($values, 1) + px;
+      left: nth($values, 2) - 125 + px;
+      width: 180px;
+    }
+  }
+
+  @each $num, $values in $lineTitleMap {
+
+    .line-title:nth-child(#{$num}) {
+      width: 100px;
+      top: nth($values, 1) + px;
+      left: nth($values, 2) - 65 + px;
+    }
+  }
+
+  @each $day, $values in $dayMap {
+
+    ##{$day} {
+      left: nth($values, 1) - 200;  
+      top: nth($values, 2) - 2;
+    }
+  }
+
+  @each $num, $values in $repoTooltipMap {
+
+    .repoTooltip:nth-child(#{$num}) {
+      top: nth($values, 1) + px;
+      left: nth($values, 2) - 110px;
+    }
+  }
+
+  
+
+  // -------- Tools Section -------- //
+  
+  .tools-desc-container {
+    left: 35px;
+  }
+
+  .tool-container {
+    padding: 0px;
+  }
+
+  .title-text {
+    width: 350px;
+    right: 70px;
+  }
+
+  .block-titles {
+    padding-left: 60px;
+    padding-right: 270px;
+  }
+
+  .skills-list {
+    margin-top: 35%;
+  }
+
+  .block-name-def {
+    right: -6px;
+  }
+
+  .block-name-def-cscript {
+    left: 10px;
+  }
+
+  .block-name-def-sass {
+    left: 8px;
+  }
+
+  .block-name-def-tm {
+    left: -10px;
+  }
+
+  .block-name-def-dark {
+    left: 7px;
+  }
+
+  .block-para {
+    right: 80px;
+    padding-left: 20px;
+  }
+
+  .block-name-dark {
+    left: 10px;
+  }
+
+  .block-name-tm {
+    left: -10px;
+  }
+
+  .frameworks {
+    left: 8%;
+  }
+
+  .dev-tools {
+    left: 3%;
+  }
+
+  .dev-tools > div > .tool-container {
+    margin-right: 50px;
+  }
+
+  .preprocessors {
+    left: 12%;
+  }
+
+}
