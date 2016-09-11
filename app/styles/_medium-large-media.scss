@@ -1,5 +1,9 @@
 @media (min-width:992px) and (max-width:1199px) {
 
+  .greeting-para {
+    top: 220px;
+  }
+
   .name-text {
 
     top: 50px;
@@ -14,7 +18,7 @@
     }
 
     &:nth-child(3) {
-      top: 150px;
+      top: 180px;
     }
 
 
