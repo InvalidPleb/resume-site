@@ -195,27 +195,20 @@
 							    currStreak = 0,
 							    endCurrStreak = false;
 
-							for (let i = (inputArr.length - 1); i > 0; i--) {
+							for (let i=0; i < inputArr.length; i++) {
 
 								if (inputArr[i] === 0) {
 
-									if (streakCounter === 0) {
+									if (streakCounter !== 0) {
 
-									} else {
-
-										if (currStreak > longestStreak) {
-											longestStreak = currStreak;
+										if (longestStreak < streakCounter) {
+											longestStreak = streakCounter;
 										}
-										endCurrStreak = true;
 										streakCounter = 0;
 									}
-
 								} else {
-
-									if (endCurrStreak === false) {
-										currStreak = streakCounter;
-									}
 									streakCounter++;
+									currStreak = streakCounter;
 								}
 							}
 							return [currStreak, longestStreak];

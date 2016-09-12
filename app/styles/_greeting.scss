@@ -62,8 +62,15 @@
   border-radius: 15px;
 
   &:nth-child(3) {
-    width: 25%;
-    left: 37.5%;
+    width: 35%;
+    left: 32.5%;
+    cursor: pointer;
+    transition: all .25s cubic-bezier(.17,.67,.83,.67);
+
+    &:hover {
+      background-color: $bright-gold-color;
+      color: #8a7523;
+    }
   }
 }
 
@@ -72,7 +79,7 @@
   z-index: 3;
   top: 50px;
   margin: 0px;
-  padding: 0px;
+  padding: 5px;
   color: $bright-gold-color;
   font-size: 50px;
   text-align: center;
@@ -88,6 +95,8 @@
     z-index: 4;
     top: 180px;
     position: relative;
+    border: 3px solid $bright-gold-color;
+    border-radius: 2px;
     font-size: 28px;
   }
 

@@ -8,12 +8,15 @@
     .directive('navScroll', navScroll)
     .directive('parallax', parallax)
     .directive('scrollChange', scrollChange)
-    .directive('scrollChangeHash', scrollChangeHash);
+    .directive('scrollChangeHash', scrollChangeHash)
+    .directive('scrollToBot', scrollToBot);
     
   navScroll.$inject = ['$rootScope'];
   parallax.$inject = ['$window'];
   scrollChange.$inject = ['$window'];
   scrollChangeHash.$inject = ['$rootScope', '$window'];
+
+
   
   // Directive for block template
   function mainBlock() {
@@ -152,4 +155,20 @@
         }//end link
       };//end return
   }//end scrollChange
+
+  function scrollToBot() {
+    return {
+      restrict: "A",
+      link: function(scope, element, attrs) {
+        console.log('yo');
+        return $(element).click(function() {
+          if ((window.innerHeight + window.scrollY) < document.body.offsetHeight) {
+            window.scrollTo(0,document.body.scrollHeight);
+          }
+        });
+      }
+    };
+  }
+
+
 })();//end IIFE

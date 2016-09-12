@@ -442,3 +442,7 @@ $dayMap: (
     @include dayLabel(nth($values, 1) + 7px, nth($values, 2), nth($values, 3)); 
   }
 }
+
+#email + span  {
+  font-size: 16px;
+}

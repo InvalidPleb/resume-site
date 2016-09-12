@@ -27,7 +27,7 @@
 
   .name-text {
 
-    top: 90px;
+    top: 110px;
 
 
     & > h1 {
@@ -39,7 +39,7 @@
     }
 
     &:nth-child(3) {
-      top: 220px;
+      top: 260px;
     }
 
 
@@ -69,9 +69,13 @@
   }
 
   .greeting-para {
-    top: 150px;
+    top: 255px;
     font-size: 14px;
-    padding: 15px;
+    padding: 5px;
+
+    & > div {
+      padding: 0px;
+    }
 
   }
 
@@ -490,6 +494,7 @@
     & > div:nth-child(3) > .tool-container,
     & > div:nth-child(5) > .tool-container,
     & > div:nth-child(7) > .tool-container {
+
       margin-top: 0px;
       margin-right: 70px;
       margin-left: 82px;
